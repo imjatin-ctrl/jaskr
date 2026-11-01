@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}Members Directory{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-coral">Multi-Tenant Isolation</span>
+    <h1>{{ org.name }} Members Directory</h1>
+    <p style="color: var(--ink-muted);">Scoped list of athletes registered with {{ org.name }} branches. Cross-tenant records are strictly isolated.</p>
+  </div>
+
+  <div class="card" style="margin-bottom: 2.5rem;">
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Member ID</th>
+            <th>Athlete Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Home Branch</th>
+            <th>Active Plan</th>
+            <th>Expiry Date</th>
+            <th>Registered</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in members %}
+            <tr>
+              <td class="mono-num">#{{ m.member_id }}</td>
+              <td><strong>{{ m.full_name }}</strong></td>
+              <td>{{ m.email }}</td>
+              <td>{{ m.phone }}</td>
+              <td>{{ m.home_branch_name }} ({{ m.city }})</td>
+              <td>
+                <span class="badge {% if m.active_plan != 'None' %}badge-mint{% else %}badge{% endif %}">
+                  {{ m.active_plan }}
+                </span>
+              </td>
+              <td class="mono-num">{{ m.plan_end }}</td>
+              <td class="mono-num">{{ m.registration_date }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Show SQL Drawer -->
+  {{ sql_comp.sql_drawer(
+      "Organization Scoped Member Isolation Query",
+      "SELECT m.member_id, m.full_name, u.email, b.name AS home_branch\nFROM members m\nJOIN users u ON m.user_id = u.user_id\nJOIN branches b ON m.home_branch_id = b.branch_id\nWHERE b.organization_id = " ~ org.organization_id ~ ";",
+      ["JOIN", "TENANT-ISOLATION", "SCOPED-SEEK"],
+      "Demonstrates multi-tenant isolation: Organization A owner can never view Organization B members."
+  ) }}
+</div>
+{% endblock %}

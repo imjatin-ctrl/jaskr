@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}{{ branch.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <!-- Top Banner & Actions -->
+  <div class="card" style="margin-bottom: 2rem; border-top: 8px solid var(--brand-yellow);">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem;">
+      <div style="max-width: 780px;">
+        <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
+          <span class="badge badge-yellow">Branch #{{ branch.branch_id }}</span>
+          <span class="badge badge-blue">{{ branch.organization_name }}</span>
+          <span class="badge" style="background: #F1F5F9;">📍 {{ branch.city }}, {{ branch.state }}</span>
+          <span class="badge badge-mint">Cap: {{ branch.capacity }} Athletes</span>
+        </div>
+
+        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">{{ branch.name }}</h1>
+        <p style="font-size: 1.1rem; color: var(--ink-muted); margin-bottom: 0.75rem;">
+          {{ branch.description }}
+        </p>
+        <p style="font-size: 0.95rem; color: var(--ink-muted);">
+          📮 <strong>Address:</strong> {{ branch.address }}, {{ branch.city }}, {{ branch.state }} - {{ branch.pincode }} | 📞 <strong>Phone:</strong> {{ branch.phone }}
+        </p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 0.5rem; min-width: 180px;">
+        <a href="{{ url_for('public.compare', id=branch.branch_id) }}" class="btn btn-sm">
+          ⚡ Compare Branch
+        </a>
+        <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg" style="text-align: center;">
+          Join This Gym →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: flex-start;">
+    <!-- Main Left Column -->
+    <div>
+      <!-- 1. D3 Crowd Heat Grid -->
+      <section class="card" style="margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div>
+            <span class="badge badge-yellow" style="margin-bottom: 0.25rem;">Differentiator D3</span>
+            <h3>Historical Crowd Density Heat Grid</h3>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span class="badge" style="background: #FEF3C7; color: #92400E; font-size: 0.75rem;">
+              ⚠️ Estimate - Not live occupancy
+            </span>
+            <span style="font-size: 0.8rem; color: var(--ink-muted);">
+              Sample: <strong>{{ total_samples }} check-ins</strong> (8-wk window)
+            </span>
+          </div>
+        </div>
+
+        <p style="font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 1rem;">
+          Hourly historical attendance distribution aggregated from check-in timestamps. Normalized against branch capacity ({{ branch.capacity }} max).
+        </p>
+
+        <!-- Crowd Scale Legend -->
+        <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; font-size: 0.8rem;">
+          <span><strong>Legend:</strong></span>
+          <span style="display: inline-flex; align-items: center; gap: 0.25rem;">
+            <span style="width: 14px; height: 14px; background: var(--mint-green); border: 1.5px solid #14121F; border-radius: 2px;"></span> Quiet (< 40%)
+          </span>
+          <span style="display: inline-flex; align-items: center; gap: 0.25rem;">
+            <span style="width: 14px; height: 14px; background: var(--brand-yellow); border: 1.5px solid #14121F; border-radius: 2px;"></span> Moderate (40-75%)
+          </span>
+          <span style="display: inline-flex; align-items: center; gap: 0.25rem;">
+            <span style="width: 14px; height: 14px; background: var(--hot-coral); border: 1.5px solid #14121F; border-radius: 2px;"></span> Peak / Busy (> 75%)
+          </span>
+        </div>
+
+        <!-- Heat Grid Table -->
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.75rem;">
+            <thead>
+              <tr style="border-bottom: var(--border-thin);">
+                <th style="padding: 0.4rem; text-align: left;">Day</th>
+                {% for h in range(6, 23) %}
+                  <th style="padding: 0.4rem; text-align: center;">{{ "%02d"|format(h) }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% set day_names = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] %}
+              {% for d in range(7) %}
+                <tr>
+                  <td style="padding: 0.4rem; font-weight: 700;">{{ day_names[d] }}</td>
+                  {% for h in range(6, 23) %}
+                    {% set cell = crowd_matrix[d][h] %}
+                    <td style="padding: 2px;">
+                      <div class="crowd-tile {% if cell.level == 'quiet' %}crowd-quiet{% elif cell.level == 'moderate' %}crowd-mod{% elif cell.level == 'busy' %}crowd-busy{% else %}crowd-nodata{% endif %}"
+                           title="{{ day_names[d] }} {{ "%02d:00"|format(h) }}: {{ cell.count }} visits recorded">
+                        {{ cell.count if cell.count > 0 else '-' }}
+                      </div>
+                    </td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 2. Facilities & Amenities -->
+      <section class="card" style="margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1rem;">Available Facilities & Zones ({{ facilities|length }})</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+          {% for f in facilities %}
+            <div style="background: var(--bg-canvas); border: var(--border-thin); border-radius: var(--radius-sm); padding: 0.75rem;">
+              <strong style="display: block; font-size: 0.95rem; margin-bottom: 0.25rem;">✨ {{ f.facility_name }}</strong>
+              <p style="font-size: 0.85rem; color: var(--ink-muted);">{{ f.description }}</p>
+              {% if f.availability_notes %}
+                <span class="badge" style="margin-top: 0.4rem; background: #FEF08A; font-size: 0.7rem;">⚠️ {{ f.availability_notes }}</span>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+
+      <!-- 3. Gym Equipment Inventory -->
+      <section class="card" style="margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1rem;">Workout Equipment Highlights ({{ equipment|length }} Types)</h3>
+        <div style="overflow-x: auto;">
+          <table class="table-custom">
+            <thead>
+              <tr>
+                <th>Equipment Name</th>
+                <th>Quantity</th>
+                <th>Condition</th>
+                <th>Last Serviced</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for eq in equipment %}
+                <tr>
+                  <td><strong>{{ eq.equipment_name }}</strong></td>
+                  <td class="mono-num">{{ eq.quantity }} units</td>
+                  <td>
+                    <span class="badge {% if eq.condition_status == 'good' %}badge-mint{% elif eq.condition_status == 'needs_service' %}badge-yellow{% else %}badge-coral{% endif %}">
+                      {{ eq.condition_status|replace('_', ' ') }}
+                    </span>
+                  </td>
+                  <td class="mono-num">{{ eq.last_serviced_on }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 4. Trainers Team -->
+      <section class="card" style="margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1rem;">Coaches & Personal Trainers</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+          {% for t in trainers %}
+            <div style="border: var(--border-thin); border-radius: var(--radius-sm); padding: 0.75rem; background: #fff;">
+              <div style="font-weight: 700; font-size: 1rem;">🏋️ {{ t.full_name }}</div>
+              <div style="font-size: 0.85rem; color: var(--electric-blue); font-weight: 600; margin-bottom: 0.25rem;">{{ t.specialization }}</div>
+              <div style="font-size: 0.8rem; color: var(--ink-muted);">Assigned since {{ t.start_date }}</div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+
+    <!-- Right Sidebar: Hours & Plans -->
+    <div>
+      <!-- Opening Hours -->
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <h4 style="margin-bottom: 0.75rem; border-bottom: var(--border-thin); padding-bottom: 0.5rem;">Opening Hours</h4>
+        {% set dnames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %}
+        <ul style="list-style: none; font-size: 0.9rem; display: flex; flex-direction: column; gap: 0.5rem;">
+          {% for h in hours %}
+            <li style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed rgba(20, 18, 31, 0.1); padding-bottom: 0.3rem;">
+              <span style="font-weight: 600;">{{ dnames[h.day_of_week] }}</span>
+              <span class="mono-num" style="color: var(--ink-muted);">
+                {% if h.is_closed %}
+                  <span class="badge badge-coral" style="font-size: 0.65rem;">Closed</span>
+                {% else %}
+                  {{ h.open_time[:5] }} - {{ h.close_time[:5] }}
+                {% endif %}
+              </span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Membership Plans Available -->
+      <div class="card">
+        <h4 style="margin-bottom: 0.75rem; border-bottom: var(--border-thin); padding-bottom: 0.5rem;">Available Plans (Ex-GST)</h4>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          {% for p in plans %}
+            <div style="border: var(--border-thin); border-radius: var(--radius-sm); padding: 0.75rem; background: var(--bg-canvas);">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                  <strong style="display: block; font-size: 1rem;">{{ p.plan_name }}</strong>
+                  <span style="font-size: 0.8rem; color: var(--ink-muted);">{{ p.duration_months }} Month{{ 's' if p.duration_months > 1 else '' }} validity</span>
+                </div>
+                <div class="mono-num" style="font-size: 1.2rem; font-weight: 800; color: var(--ink-primary);">
+                  ₹{{ "{:,.0f}".format(p.price) }}
+                </div>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--ink-muted); margin-top: 0.4rem;">{{ p.description }}</p>
+              <div style="margin-top: 0.5rem; text-align: right;">
+                <a href="{{ url_for('auth.register') }}" class="btn btn-sm btn-primary" style="font-size: 0.75rem;">
+                  Choose Plan
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Show SQL Drawer -->
+  {{ sql_comp.sql_drawer(
+      "Branch Detail & Historical Crowd Analytics Query",
+      "SELECT HOUR(check_in) AS hour, COUNT(*) AS visits FROM attendance WHERE branch_id = " ~ branch.branch_id ~ " GROUP BY HOUR(check_in);",
+      ["JOIN", "GROUP BY", "AGGREGATION", "TIME-SERIES"],
+      "Crowd data is computed by aggregating timestamp intervals across historical visits and grouping by hour of day."
+  ) }}
+</div>
+{% endblock %}

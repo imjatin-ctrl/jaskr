@@ -1,0 +1,14 @@
+email,role,description
+admin.demo@jaskrgymgrid.example,admin,"Platform administrator: approvals, platform stats, DBMS Lab"
+owner.ironpulse.demo@jaskrgymgrid.example,owner,"Owner of IronPulse Fitness (org 1, 6 branches)"
+owner.flexnation.demo@jaskrgymgrid.example,owner,Owner of FlexNation Gyms (org 2) - use for cross-tenant isolation tests
+owner.aarogya.demo@jaskrgymgrid.example,owner,"Owner of Aarogya Active Club (org 3, Jaipur)"
+owner.sundarban.demo@jaskrgymgrid.example,owner,"Owner of Sundarban Strength House (org 4, Kolkata)"
+owner.zenith.demo@jaskrgymgrid.example,owner,Owner of Zenith Strength Lab - organization is PENDING admin approval
+manager.demo@jaskrgymgrid.example,staff:BRANCH_MANAGER,"Branch manager, IronPulse Saket (branch 1)"
+frontdesk.demo@jaskrgymgrid.example,staff:FRONT_DESK,"Front desk, IronPulse Saket (branch 1)"
+trainer.demo@jaskrgymgrid.example,staff:TRAINER,"Trainer, IronPulse Saket (branch 1)"
+finance.demo@jaskrgymgrid.example,staff:FINANCE,"Finance officer, IronPulse Fitness (org-wide)"
+member.demo@jaskrgymgrid.example,member,"Rohan Malhotra - Annual All-Access (FULL access), home IronPulse Saket"
+member.monthly.demo@jaskrgymgrid.example,member,"Priya Deshmukh - Monthly Flex (HOME_ONLY), home FlexNation Baner - shows DENIED at other branches"
+member.expired.demo@jaskrgymgrid.example,member,Imran Qureshi - membership EXPIRED 2026-08-31 - shows DENIED everywhere

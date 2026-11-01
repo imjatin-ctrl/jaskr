@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Member Registration{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 580px; padding: 2rem 1.25rem;">
+  <div class="card">
+    <div style="text-align: center; margin-bottom: 1.5rem;">
+      <span class="badge badge-mint" style="margin-bottom: 0.5rem;">Join Jaskr GymGrid</span>
+      <h2>Create Your Member Account</h2>
+      <p style="color: var(--ink-muted); font-size: 0.95rem;">One passport for multi-branch gym access across India</p>
+    </div>
+
+    <form method="POST" action="{{ url_for('auth.register') }}">
+      <div style="margin-bottom: 1.25rem;">
+        <label style="display: block; font-family: var(--font-display); font-weight: 700; margin-bottom: 0.4rem;">Full Name</label>
+        <input type="text" name="full_name" required placeholder="e.g. Arjun Kapoor" 
+               style="width: 100%; padding: 0.75rem 1rem; border: var(--border-thick); border-radius: var(--radius-md); font-family: var(--font-body); font-size: 1rem;">
+      </div>
+
+      <div style="margin-bottom: 1.25rem;">
+        <label style="display: block; font-family: var(--font-display); font-weight: 700; margin-bottom: 0.4rem;">Email Address</label>
+        <input type="email" name="email" required placeholder="e.g. arjun.k@mailbox.example" 
+               style="width: 100%; padding: 0.75rem 1rem; border: var(--border-thick); border-radius: var(--radius-md); font-family: var(--font-body); font-size: 1rem;">
+      </div>
+
+      <div style="margin-bottom: 1.25rem;">
+        <label style="display: block; font-family: var(--font-display); font-weight: 700; margin-bottom: 0.4rem;">Phone Number (India)</label>
+        <input type="tel" name="phone" required placeholder="+91 98765 43210" 
+               style="width: 100%; padding: 0.75rem 1rem; border: var(--border-thick); border-radius: var(--radius-md); font-family: var(--font-body); font-size: 1rem;">
+      </div>
+
+      <div style="margin-bottom: 1.25rem;">
+        <label style="display: block; font-family: var(--font-display); font-weight: 700; margin-bottom: 0.4rem;">Home Gym Branch</label>
+        <select name="home_branch_id" required style="width: 100%; padding: 0.75rem 1rem; border: var(--border-thick); border-radius: var(--radius-md); font-family: var(--font-body); font-size: 1rem; background: #fff;">
+          <option value="">-- Choose your primary home branch --</option>
+          {% for b in branches %}
+            <option value="{{ b.branch_id }}">{{ b.name }} ({{ b.city }})</option>
+          {% endfor %}
+        </select>
+        <small style="color: var(--ink-muted); display: block; margin-top: 0.25rem;">This branch determines your base access tier and home amenities.</small>
+      </div>
+
+      <div style="margin-bottom: 1.5rem;">
+        <label style="display: block; font-family: var(--font-display); font-weight: 700; margin-bottom: 0.4rem;">Password</label>
+        <input type="password" name="password" required placeholder="Choose a secure password" 
+               style="width: 100%; padding: 0.75rem 1rem; border: var(--border-thick); border-radius: var(--radius-md); font-family: var(--font-body); font-size: 1rem;">
+      </div>
+
+      <button type="submit" class="btn btn-accent btn-lg" style="width: 100%; margin-bottom: 1rem;">
+        Register & Enter Member Dashboard
+      </button>
+    </form>
+
+    <div style="text-align: center; font-size: 0.9rem; border-top: 1.5px solid rgba(20, 18, 31, 0.1); padding-top: 1rem;">
+      Already registered? <a href="{{ url_for('auth.login') }}" style="color: var(--electric-blue); font-weight: 700; text-decoration: underline;">Sign In</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

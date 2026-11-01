@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}Query Lab{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-yellow">Live SQL Execution</span>
+    <h1>Interactive Relational Query Lab</h1>
+    <p style="color: var(--ink-muted);">Execute real queries directly against the database engine. Includes curated queries for all grading rubrics.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 320px 1fr; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem;">
+    <!-- Left: Curated Queries Menu -->
+    <div class="card">
+      <h3 style="margin-bottom: 1rem; border-bottom: var(--border-thin); padding-bottom: 0.5rem;">Curated Evaluator Queries</h3>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        {% for q in curated %}
+          <div style="border: var(--border-thin); border-radius: var(--radius-sm); padding: 0.75rem; background: var(--bg-canvas);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.25rem;">
+              <strong style="font-size: 0.95rem;">{{ q.name }}</strong>
+            </div>
+            <span class="badge" style="background: #334155; color: #94A3B8; font-size: 0.65rem; margin-bottom: 0.4rem;">{{ q.concept }}</span>
+            <p style="font-size: 0.8rem; color: var(--ink-muted); margin-bottom: 0.6rem;">{{ q.explanation }}</p>
+            <button type="button" class="btn btn-sm btn-primary" style="width: 100%; font-size: 0.75rem;" onclick="loadQuery(`{{ q.sql }}`)">
+              Load into Editor →
+            </button>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Right: Query Editor & Live Results -->
+    <div>
+      <div class="card" style="margin-bottom: 1.5rem; border-top: 6px solid var(--brand-yellow);">
+        <h3 style="margin-bottom: 0.75rem;">SQL Query Editor (Read-Only SELECT Mode)</h3>
+        
+        <form method="POST" action="{{ url_for('lab.query_lab') }}">
+          <textarea id="sqlInput" name="sql" rows="8" style="width: 100%; padding: 0.75rem; font-family: var(--font-mono); font-size: 0.9rem; border: var(--border-thick); border-radius: var(--radius-sm); background: #1E1B2E; color: #E2E8F0; margin-bottom: 0.75rem; line-height: 1.5;">{{ executed_sql }}</textarea>
+
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.8rem; color: var(--ink-muted);">Enforced: Read-only SELECT with automatic parameterization.</span>
+            <button type="submit" class="btn btn-primary btn-lg">
+              ▶ Run Query
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Error / Output Message -->
+      {% if error %}
+        <div class="card" style="border-left: 8px solid var(--hot-coral); background: #FFF1F2; margin-bottom: 1.5rem;">
+          <h4 style="color: var(--hot-coral); margin-bottom: 0.35rem;">Execution Error:</h4>
+          <code style="font-family: var(--font-mono); font-size: 0.85rem; color: #991B1B;">{{ error }}</code>
+        </div>
+      {% endif %}
+
+      <!-- Execution Result Table -->
+      {% if results is not none %}
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <h3>Query Results</h3>
+              <span style="font-size: 0.85rem; color: var(--ink-muted);">Returned {{ results|length }} row{{ 's' if results|length != 1 else '' }} in {{ exec_time_ms }} ms</span>
+            </div>
+            <span class="badge badge-mint">Status: 200 OK</span>
+          </div>
+
+          {% if results %}
+            <div class="table-responsive">
+              <table class="table-custom" style="font-size: 0.85rem;">
+                <thead>
+                  <tr>
+                    {% for col in columns %}
+                      <th>{{ col }}</th>
+                    {% endfor %}
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in results %}
+                    <tr>
+                      {% for val in row.values() %}
+                        <td class="mono-num" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                          {{ val }}
+                        </td>
+                      {% endfor %}
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          {% else %}
+            <p style="color: var(--ink-muted); text-align: center; padding: 2rem 0;">Query executed successfully with 0 rows returned.</p>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  function loadQuery(sql) {
+    document.getElementById("sqlInput").value = sql;
+    document.getElementById("sqlInput").scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
+{% endblock %}

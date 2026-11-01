@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}Discover Gyms & Branches{% endblock %}
+
+{% block content %}
+<div class="container">
+  <!-- Header & City Selector -->
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+    <div>
+      <span class="badge badge-yellow" style="margin-bottom: 0.5rem;">Cross-Brand Network</span>
+      <h1>Discover Gyms Across India</h1>
+      <p style="color: var(--ink-muted);">Showing {{ branches|length }} verified gym branches in 11 cities</p>
+    </div>
+    <div style="display: flex; gap: 0.5rem; align-items: center;">
+      <a href="{{ url_for('public.compare') }}" class="btn btn-sm btn-accent">⚡ Compare Selected</a>
+      <a href="{{ url_for('public.crowd') }}" class="btn btn-sm">📊 Crowd Heat Grid</a>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 280px 1fr; gap: 1.5rem; align-items: flex-start;">
+    <!-- Left Filter Sidebar -->
+    <aside class="card" style="position: sticky; top: 85px;">
+      <h3 style="margin-bottom: 1rem; border-bottom: var(--border-thin); padding-bottom: 0.5rem;">Filters</h3>
+      
+      <form method="GET" action="{{ url_for('public.discover') }}">
+        <!-- Search Keyword -->
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Search Locality / Name</label>
+          <input type="text" name="q" value="{{ search_q }}" placeholder="e.g. Saket, Bandra, Baner..." 
+                 style="width: 100%; padding: 0.5rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.9rem;">
+        </div>
+
+        <!-- City Dropdown -->
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">City</label>
+          <select name="city" style="width: 100%; padding: 0.5rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.9rem; background: #fff;">
+            <option value="">All Cities</option>
+            {% for c in cities %}
+              <option value="{{ c.city }}" {% if selected_city == c.city %}selected{% endif %}>{{ c.city }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <!-- Brand Dropdown -->
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Gym Brand</label>
+          <select name="brand" style="width: 100%; padding: 0.5rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.9rem; background: #fff;">
+            <option value="">All Brands</option>
+            {% for b in all_brands %}
+              <option value="{{ b.organization_id }}" {% if selected_brand == (b.organization_id|string) %}selected{% endif %}>{{ b.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <!-- Max Price Filter -->
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Max Monthly Price (₹)</label>
+          <input type="number" name="max_price" value="{{ max_price }}" step="500" placeholder="e.g. 3000" 
+                 style="width: 100%; padding: 0.5rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.9rem;">
+        </div>
+
+        <!-- Facilities Multi-Select -->
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.4rem;">Amenities</label>
+          <div style="max-height: 180px; overflow-y: auto; border: var(--border-thin); border-radius: var(--radius-sm); padding: 0.5rem; background: #fff;">
+            {% for f in all_facilities %}
+              <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; margin-bottom: 0.3rem; cursor: pointer;">
+                <input type="checkbox" name="facility" value="{{ f.facility_id }}" {% if (f.facility_id|string) in facility_filter %}checked{% endif %}>
+                <span>{{ f.facility_name }}</span>
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 0.5rem;">Apply Filters</button>
+        <a href="{{ url_for('public.discover') }}" class="btn btn-sm" style="width: 100%; justify-content: center;">Reset</a>
+      </form>
+    </aside>
+
+    <!-- Right Main Listing + City SVG Visualizer -->
+    <div>
+      <!-- Stylized City Map Visualization -->
+      <div class="card" style="margin-bottom: 1.5rem; background: #FFFFFF; padding: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span class="badge badge-mint">Interactive Spatial Grid</span>
+            <strong style="font-size: 0.9rem;">Network Map: {{ selected_city or "All India Cities" }}</strong>
+          </div>
+          <span style="font-size: 0.75rem; color: var(--ink-muted);">Click pins to inspect location coordinates</span>
+        </div>
+
+        <!-- SVG Map Graphic -->
+        <div style="background: #F8FAFC; border: var(--border-thin); border-radius: var(--radius-sm); padding: 1rem; text-align: center; position: relative;">
+          <svg viewBox="0 0 800 240" style="width: 100%; height: auto; max-height: 220px;">
+            <!-- Grid Lines -->
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E2E8F0" stroke-width="1"/>
+            </pattern>
+            <rect width="800" height="240" fill="url(#grid)" />
+            
+            <!-- City Pins -->
+            {% for b in branches %}
+              {% set x = 80 + ((b.branch_id * 43) % 640) %}
+              {% set y = 40 + ((b.branch_id * 31) % 160) %}
+              <g transform="translate({{ x }}, {{ y }})" style="cursor: pointer;" onclick="window.location.href='{{ url_for('public.branch_detail', branch_id=b.branch_id) }}'">
+                <circle r="14" fill="#FFD60A" stroke="#14121F" stroke-width="2"/>
+                <text y="4" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="900" fill="#14121F">{{ b.branch_id }}</text>
+                <text y="24" text-anchor="middle" font-family="'DM Sans', sans-serif" font-size="9" font-weight="700" fill="#14121F">{{ b.name[:18] }}</text>
+              </g>
+            {% endfor %}
+          </svg>
+        </div>
+      </div>
+
+      <!-- Branch Cards List -->
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        {% if branches %}
+          {% for b in branches %}
+            <div class="card card-interactive" style="display: grid; grid-template-columns: 1fr auto; gap: 1.25rem; align-items: center;">
+              <div>
+                <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.4rem; flex-wrap: wrap;">
+                  <span class="badge badge-yellow">#{{ b.branch_id }}</span>
+                  <span class="badge {% if b.brand_type == 'chain' %}badge-blue{% else %}badge-mint{% endif %}">{{ b.organization_name }}</span>
+                  <span class="badge" style="background: #F1F5F9;">📍 {{ b.city }}</span>
+                  <span class="badge badge-mint">🟢 Open Today</span>
+                </div>
+
+                <h3 style="margin-bottom: 0.35rem;">
+                  <a href="{{ url_for('public.branch_detail', branch_id=b.branch_id) }}" style="text-decoration: underline;">
+                    {{ b.name }}
+                  </a>
+                </h3>
+
+                <p style="font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 0.6rem;">
+                  {{ b.address }}, {{ b.city }}, {{ b.state }} - {{ b.pincode }}
+                </p>
+
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; font-size: 0.8rem; color: var(--ink-muted);">
+                  <span>👥 Capacity: <strong>{{ b.capacity }} athletes</strong></span> •
+                  <span>⚡ Facilities: <strong>{{ b.facility_count }} areas</strong></span> •
+                  <span>📞 {{ b.phone }}</span>
+                </div>
+              </div>
+
+              <!-- Price & Actions Column -->
+              <div style="text-align: right; border-left: 1.5px solid rgba(20, 18, 31, 0.1); padding-left: 1.25rem; min-width: 170px;">
+                <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--ink-subtle);">Plans from</div>
+                <div class="mono-num" style="font-size: 1.6rem; font-weight: 900; color: var(--ink-primary); margin-bottom: 0.5rem;">
+                  ₹{{ "{:,.0f}".format(b.starting_price) }}<span style="font-size: 0.8rem; font-weight: 500;">/mo</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                  <a href="{{ url_for('public.branch_detail', branch_id=b.branch_id) }}" class="btn btn-sm btn-primary">
+                    View Branch →
+                  </a>
+                  <a href="{{ url_for('public.compare', id=b.branch_id) }}" class="btn btn-sm" title="Add to side-by-side comparison">
+                    + Compare
+                  </a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="card" style="text-align: center; padding: 3rem;">
+            <h3>No gyms match your active filters</h3>
+            <p style="color: var(--ink-muted); margin-top: 0.5rem;">Try clearing your search keyword, adjusting your price ceiling, or selecting "All Cities".</p>
+            <a href="{{ url_for('public.discover') }}" class="btn btn-sm btn-primary" style="margin-top: 1rem;">Reset Filters</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Show SQL Drawer -->
+  {{ sql_comp.sql_drawer(
+      "Branch Discovery & Filter Query",
+      raw_sql,
+      ["JOIN", "LEFT JOIN", "MIN", "GROUP BY", "WHERE", "PARAMETERIZED"],
+      "Parameterized query with optional dynamic WHERE conditions for city, brand, facilities, and price."
+  ) }}
+</div>
+{% endblock %}

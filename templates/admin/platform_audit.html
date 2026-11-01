@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Global System Audit Trail{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-violet">Compliance Ledger</span>
+    <h1>Platform Global Audit Trail</h1>
+    <p style="color: var(--ink-muted);">Global immutable audit log tracking payment settlements, refund authorisations, and administrative decisions.</p>
+  </div>
+
+  <div class="card" style="margin-bottom: 2.5rem;">
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Audit ID</th>
+            <th>Action</th>
+            <th>Table</th>
+            <th>Record ID</th>
+            <th>User Email</th>
+            <th>Timestamp</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for log in logs %}
+            <tr>
+              <td class="mono-num">#{{ log.audit_id }}</td>
+              <td><span class="badge badge-yellow" style="font-size: 0.65rem;">{{ log.action }}</span></td>
+              <td class="mono-num"><strong>{{ log.table_name }}</strong></td>
+              <td class="mono-num">#{{ log.record_id }}</td>
+              <td>{{ log.email }}</td>
+              <td class="mono-num">{{ log.created_at }}</td>
+              <td style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-muted); max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                {{ log.new_value }}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}Finance Desk & Reconciliation{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-yellow">Differentiator D4</span>
+    <h1>Finance Desk & Accounting Reconciliation</h1>
+    <p style="color: var(--ink-muted);">
+      Defined financial metrics with strict separation between Invoices, Gross Receipts, Refunds, Net Revenue, and Operating Expenses.
+    </p>
+  </div>
+
+  <!-- Metric Definition Cards -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem;">
+    <div class="card" style="border-left: 8px solid var(--electric-blue);">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Gross Receipts</div>
+      <div class="mono-num" style="font-size: 1.8rem; font-weight: 900; color: var(--ink-primary);">
+        ₹{{ "{:,.2f}".format(summary.gross_receipts) }}
+      </div>
+      <div style="font-size: 0.75rem; color: var(--ink-subtle);">SUM(payments WHERE status='successful')</div>
+    </div>
+
+    <div class="card" style="border-left: 8px solid var(--hot-coral);">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Completed Refunds</div>
+      <div class="mono-num" style="font-size: 1.8rem; font-weight: 900; color: var(--hot-coral);">
+        -₹{{ "{:,.2f}".format(summary.completed_refunds) }}
+      </div>
+      <div style="font-size: 0.75rem; color: var(--ink-subtle);">SUM(refunds WHERE status='completed')</div>
+    </div>
+
+    <div class="card" style="border-left: 8px solid var(--mint-green);">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Net Receipts</div>
+      <div class="mono-num" style="font-size: 1.8rem; font-weight: 900; color: var(--mint-green);">
+        ₹{{ "{:,.2f}".format(summary.net_receipts) }}
+      </div>
+      <div style="font-size: 0.75rem; color: var(--ink-subtle);">Gross Receipts - Completed Refunds</div>
+    </div>
+
+    <div class="card" style="border-left: 8px solid #F59E0B;">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Operating Expenses</div>
+      <div class="mono-num" style="font-size: 1.8rem; font-weight: 900; color: var(--ink-primary);">
+        ₹{{ "{:,.2f}".format(total_expenses) }}
+      </div>
+      <div style="font-size: 0.75rem; color: var(--ink-subtle);">Paid/approved vouchers</div>
+    </div>
+  </div>
+
+  <!-- Invoices Reconciliation Table -->
+  <div class="card" style="margin-bottom: 2.5rem;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+      <div>
+        <h3>Invoices & Item Reconciliation</h3>
+        <p style="font-size: 0.85rem; color: var(--ink-muted);">Validating that invoice total matches sum of line items (including GST 18%).</p>
+      </div>
+      <span class="badge badge-mint">Reconciliation Engine Active</span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Invoice #</th>
+            <th>Member</th>
+            <th>Branch</th>
+            <th>Date</th>
+            <th>Recorded Total</th>
+            <th>Items Sum</th>
+            <th>Reconciled?</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for inv in invoices %}
+            {% set is_match = (inv.total - inv.items_sum)|abs < 0.02 %}
+            <tr>
+              <td class="mono-num"><strong>{{ inv.invoice_number }}</strong></td>
+              <td>{{ inv.member_name }}</td>
+              <td>{{ inv.branch_name }}</td>
+              <td class="mono-num">{{ inv.invoice_date }}</td>
+              <td class="mono-num">₹{{ "{:,.2f}".format(inv.total) }}</td>
+              <td class="mono-num">₹{{ "{:,.2f}".format(inv.items_sum or 0) }}</td>
+              <td>
+                {% if is_match %}
+                  <span class="badge badge-mint" style="font-size: 0.65rem;">✓ 100% Match</span>
+                {% else %}
+                  <span class="badge badge-coral" style="font-size: 0.65rem;">✕ Mismatch</span>
+                {% endif %}
+              </td>
+              <td>
+                <span class="badge {% if inv.status == 'paid' %}badge-mint{% elif inv.status == 'refunded' %}badge-blue{% else %}badge-coral{% endif %}">
+                  {{ inv.status|upper }}
+                </span>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Budget Variance Alert Rows -->
+  <div class="card" style="margin-bottom: 2.5rem; border-left: 8px solid var(--hot-coral);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+      <div>
+        <span class="badge badge-coral" style="margin-bottom: 0.25rem;">Budget Variance Flag</span>
+        <h3>Top Overspent Budget Categories</h3>
+      </div>
+      <span style="font-size: 0.85rem; color: var(--ink-muted);">Actual Expenses > Budgeted Cap</span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Branch</th>
+            <th>Category</th>
+            <th>Period</th>
+            <th>Budgeted Amount</th>
+            <th>Actual Spent</th>
+            <th>Overspend Variance</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ov in overspent %}
+            {% set diff = ov.actual_spent - ov.budget_amount %}
+            <tr>
+              <td><strong>{{ ov.branch_name }}</strong></td>
+              <td>{{ ov.category_name }}</td>
+              <td class="mono-num">{{ ov.budget_period }}</td>
+              <td class="mono-num">₹{{ "{:,.2f}".format(ov.budget_amount) }}</td>
+              <td class="mono-num">₹{{ "{:,.2f}".format(ov.actual_spent) }}</td>
+              <td class="mono-num" style="color: var(--hot-coral); font-weight: 800;">
+                +₹{{ "{:,.2f}".format(diff) }}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Show SQL Drawer -->
+  {{ sql_comp.sql_drawer(
+      "Financial Aggregation & Variance Query",
+      "SELECT bb.branch_id, ec.category_name, bb.budget_period, bb.budget_amount,\nSUM(e.amount) AS actual_spent, (SUM(e.amount) - bb.budget_amount) AS variance\nFROM branch_budgets bb\nJOIN expenses e ON bb.branch_id = e.branch_id AND bb.expense_category_id = e.expense_category_id\nJOIN expense_categories ec ON bb.expense_category_id = ec.expense_category_id\nGROUP BY bb.branch_id, ec.category_name, bb.budget_period\nHAVING SUM(e.amount) > bb.budget_amount\nORDER BY variance DESC;",
+      ["GROUP BY", "HAVING", "AGGREGATION", "VARIANCE-ANALYSIS"],
+      "Demonstrates GROUP BY with HAVING clause to isolate branches exceeding approved budgets."
+  ) }}
+</div>
+{% endblock %}

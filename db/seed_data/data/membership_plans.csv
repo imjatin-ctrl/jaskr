@@ -1,0 +1,17 @@
+plan_id,organization_id,plan_name,duration_months,price,description
+1,1,Monthly Flex,1,2800.00,Single-branch access.
+2,1,Quarterly Pro,3,7200.00,Multi-branch access within your city.
+3,1,Weekday Saver,3,5900.00,"Budget plan, weekdays only, all branches."
+4,1,Half-Yearly Elite,6,12500.00,Multi-branch access within your city.
+5,1,Annual All-Access,12,21000.00,"All branches, every day."
+6,2,Monthly Flex,1,2400.00,Single-branch access.
+7,2,Quarterly Plus,3,6300.00,Multi-branch access within your city.
+8,2,Weekday Saver,3,5100.00,"Budget plan, weekdays only, all branches."
+9,2,Half-Yearly Pro,6,11000.00,Multi-branch access within your city.
+10,2,Annual Pass,12,18500.00,"All branches, every day."
+11,3,Monthly Club,1,1500.00,Single-branch access.
+12,3,Quarterly Club,3,3900.00,Multi-branch access within your city.
+13,3,Annual Club,12,12000.00,"All branches, every day."
+14,4,Monthly Lift,1,1800.00,Single-branch access.
+15,4,Quarterly Lift,3,4800.00,Single-branch access.
+16,4,Annual Lift,12,14500.00,"All branches, every day."

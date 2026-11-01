@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Under the Hood DBMS Lab{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2.5rem; text-align: center; max-width: 820px; margin-left: auto; margin-right: auto;">
+    <span class="badge" style="background: var(--violet-royal); color: #fff; margin-bottom: 0.5rem;">Academic Demonstration Magnet</span>
+    <h1 style="font-size: 2.8rem; margin-bottom: 0.75rem;">Under the Hood: DBMS Lab</h1>
+    <p style="color: var(--ink-muted); font-size: 1.15rem;">
+      An interactive suite designed specifically for DBMS project evaluators. Test live SQL queries, simulate ACID transaction rollbacks, trigger schema constraints, and verify multi-tenant isolation.
+    </p>
+  </div>
+
+  <!-- Interactive Lab Modules Grid -->
+  <div class="bento-grid" style="margin-bottom: 3rem;">
+    <!-- ER Explorer -->
+    <div class="card card-interactive" style="border-top: 6px solid var(--violet-royal);">
+      <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🗺️</div>
+      <span class="badge badge-violet" style="margin-bottom: 0.5rem;">Schema & Relations</span>
+      <h3>ER Diagram Explorer</h3>
+      <p style="font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 1.25rem;">
+        Visual relational model across all 24 tables. Inspect Primary Keys, Foreign Keys, cascading rules, and 3NF normalization proofs.
+      </p>
+      <a href="{{ url_for('lab.er_explorer') }}" class="btn btn-sm" style="background: var(--violet-subtle); color: var(--violet-royal); border-color: var(--violet-royal);">
+        Open ER Explorer →
+      </a>
+    </div>
+
+    <!-- Query Lab -->
+    <div class="card card-interactive" style="border-top: 6px solid var(--brand-yellow);">
+      <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">💻</div>
+      <span class="badge badge-yellow" style="margin-bottom: 0.5rem;">Live SQL Execution</span>
+      <h3>Interactive Query Lab</h3>
+      <p style="font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 1.25rem;">
+        Execute curated evaluator queries (5-table joins, GROUP BY / HAVING, scalar & correlated subqueries, and views) or test custom queries.
+      </p>
+      <a href="{{ url_for('lab.query_lab') }}" class="btn btn-sm btn-primary">
+        Run Query Lab →
+      </a>
+    </div>
+
+    <!-- Constraint Lab -->
+    <div class="card card-interactive" style="border-top: 6px solid var(--hot-coral);">
+      <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🛡️</div>
+      <span class="badge badge-coral" style="margin-bottom: 0.5rem;">Integrity Checks</span>
+      <h3>Constraint Lab</h3>
+      <p style="font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 1.25rem;">
+        Deliberately trigger database errors (negative money, inverted dates, orphan FKs, over-refunds) and view raw DB constraint messages.
+      </p>
+      <a href="{{ url_for('lab.constraint_lab') }}" class="btn btn-sm btn-danger">
+        Test Constraints →
+      </a>
+    </div>
+
+    <!-- Transaction Theater -->
+    <div class="card card-interactive" style="border-top: 6px solid var(--electric-blue);">
+      <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎭</div>
+      <span class="badge badge-blue" style="margin-bottom: 0.5rem;">ACID & Rollback</span>
+      <h3>Transaction Theater</h3>
+      <p style="font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 1.25rem;">
+        Visualize step-by-step transaction execution in <code>sp_record_payment</code>. Toggle simulated failure to watch ACID ROLLBACK in action!
+      </p>
+      <a href="{{ url_for('lab.transaction_theater') }}" class="btn btn-sm btn-accent">
+        Enter Theater →
+      </a>
+    </div>
+
+    <!-- Permissions Lab -->
+    <div class="card card-interactive" style="border-top: 6px solid #F59E0B);">
+      <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔑</div>
+      <span class="badge" style="background: #FEF3C7; color: #92400E; margin-bottom: 0.5rem;">DCL & Least Privilege</span>
+      <h3>Permissions Lab</h3>
+      <p style="font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 1.25rem;">
+        Matrix of MySQL users (<code>gg_public</code>, <code>gg_member</code>, <code>gg_staff</code>, <code>gg_owner</code>, <code>gg_admin</code>) and live command authorization tests.
+      </p>
+      <a href="{{ url_for('lab.permissions_lab') }}" class="btn btn-sm">
+        Inspect DCL Grants →
+      </a>
+    </div>
+
+    <!-- Isolation Lab -->
+    <div class="card card-interactive" style="border-top: 6px solid var(--mint-green);">
+      <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏰</div>
+      <span class="badge badge-mint" style="margin-bottom: 0.5rem;">Differentiator D6</span>
+      <h3>Multi-Tenant Isolation Lab</h3>
+      <p style="font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 1.25rem;">
+        Live simulated attacks attempting cross-tenant owner data snooping and cross-member billing leaks, proving server-side enforcement.
+      </p>
+      <a href="{{ url_for('lab.isolation_lab') }}" class="btn btn-sm btn-success">
+        Test Isolation (D6) →
+      </a>
+    </div>
+  </div>
+
+  <!-- Normalization & 3NF Documentation Note -->
+  <div class="card" style="margin-bottom: 2rem;">
+    <h3 style="margin-bottom: 0.75rem;">Relational Design & 3NF Justification</h3>
+    <p style="font-size: 0.95rem; color: var(--ink-muted); line-height: 1.6; margin-bottom: 1rem;">
+      The Jaskr GymGrid database strictly adheres to Third Normal Form (3NF). Every non-key attribute is non-transitively dependent on the primary key:
+    </p>
+    <ul style="font-size: 0.9rem; color: var(--ink-primary); line-height: 1.7; padding-left: 1.25rem;">
+      <li><strong>1NF:</strong> All attribute values are atomic; repeating groups (facilities, equipment, hours) are modeled in separate child relations.</li>
+      <li><strong>2NF:</strong> No partial functional dependencies on composite keys (e.g. <code>branch_hours</code> depends fully on <code>(branch_id, day_of_week)</code>).</li>
+      <li><strong>3NF:</strong> No transitive dependencies; member demographics reside in <code>members</code>, user credentials in <code>users</code>, and branch details in <code>branches</code>.</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Reports Center{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-coral">Auditing & Compliance</span>
+    <h1>Financial Reports Center</h1>
+    <p style="color: var(--ink-muted);">Generate and export verified transaction statements and expense registers for {{ org.name }}.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+    <!-- Revenue Report Card -->
+    <div class="card" style="border-top: 6px solid var(--mint-green);">
+      <h3 style="margin-bottom: 0.5rem;">Revenue & Payments Register</h3>
+      <p style="font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 1.25rem;">
+        Complete breakdown of payments, settlement references, membership links, and payment methods.
+      </p>
+      <div style="display: flex; gap: 0.5rem;">
+        <a href="{{ url_for('owner.export_csv', type='payments') }}" class="btn btn-sm btn-primary">
+          📥 Download Payments CSV
+        </a>
+        <button onclick="window.print()" class="btn btn-sm">🖨️ Print Report</button>
+      </div>
+    </div>
+
+    <!-- Expenses Report Card -->
+    <div class="card" style="border-top: 6px solid var(--electric-blue);">
+      <h3 style="margin-bottom: 0.5rem;">Operating Expenses Ledger</h3>
+      <p style="font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 1.25rem;">
+        Complete listing of expense vouchers across Rent, Utilities, Maintenance, and Payroll.
+      </p>
+      <div style="display: flex; gap: 0.5rem;">
+        <a href="{{ url_for('owner.export_csv', type='expenses') }}" class="btn btn-sm btn-accent">
+          📥 Download Expenses CSV
+        </a>
+        <button onclick="window.print()" class="btn btn-sm">🖨️ Print Report</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

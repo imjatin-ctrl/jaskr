@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}List Your Gym{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 680px; padding: 2rem 1.25rem;">
+  <div class="card" style="border-top: 8px solid var(--hot-coral);">
+    <div style="text-align: center; margin-bottom: 1.5rem;">
+      <span class="badge badge-coral" style="margin-bottom: 0.5rem;">Partner with Jaskr GymGrid</span>
+      <h2>List Your Fitness Centre or Chain</h2>
+      <p style="color: var(--ink-muted); font-size: 0.95rem;">Join India's unified gym access network. Applications are reviewed by Platform Admin.</p>
+    </div>
+
+    <form method="POST" action="{{ url_for('auth.list_gym') }}">
+      <div style="background: var(--bg-canvas); border: var(--border-thin); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.5rem;">
+        <h4 style="margin-bottom: 1rem; color: var(--hot-coral);">1. Organization Details</h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div>
+            <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Organization Name</label>
+            <input type="text" name="org_name" required placeholder="e.g. Apex Combat Club" 
+                   style="width: 100%; padding: 0.65rem; border: var(--border-thick); border-radius: var(--radius-sm); font-size: 0.95rem;">
+          </div>
+          <div>
+            <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Brand Structure</label>
+            <select name="brand_type" style="width: 100%; padding: 0.65rem; border: var(--border-thick); border-radius: var(--radius-sm); font-size: 0.95rem; background: #fff;">
+              <option value="independent">Independent Gym (Single location)</option>
+              <option value="chain">Multi-Branch Chain</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Headquarters City</label>
+            <input type="text" name="hq_city" required placeholder="e.g. Bengaluru" 
+                   style="width: 100%; padding: 0.65rem; border: var(--border-thick); border-radius: var(--radius-sm); font-size: 0.95rem;">
+          </div>
+          <div>
+            <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Official Contact Email</label>
+            <input type="email" name="contact_email" required placeholder="contact@apexclub.example" 
+                   style="width: 100%; padding: 0.65rem; border: var(--border-thick); border-radius: var(--radius-sm); font-size: 0.95rem;">
+          </div>
+        </div>
+      </div>
+
+      <div style="background: var(--bg-canvas); border: var(--border-thin); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.5rem;">
+        <h4 style="margin-bottom: 1rem; color: var(--electric-blue);">2. Owner Account Credentials</h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div>
+            <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Owner Full Name</label>
+            <input type="text" name="owner_name" required placeholder="e.g. Vikramaditya Sen" 
+                   style="width: 100%; padding: 0.65rem; border: var(--border-thick); border-radius: var(--radius-sm); font-size: 0.95rem;">
+          </div>
+          <div>
+            <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Owner Phone</label>
+            <input type="tel" name="owner_phone" required placeholder="+91 99887 76655" 
+                   style="width: 100%; padding: 0.65rem; border: var(--border-thick); border-radius: var(--radius-sm); font-size: 0.95rem;">
+          </div>
+          <div>
+            <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Owner Login Email</label>
+            <input type="email" name="owner_email" required placeholder="vikram@apexclub.example" 
+                   style="width: 100%; padding: 0.65rem; border: var(--border-thick); border-radius: var(--radius-sm); font-size: 0.95rem;">
+          </div>
+          <div>
+            <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Password</label>
+            <input type="password" name="password" required placeholder="Set account password" 
+                   style="width: 100%; padding: 0.65rem; border: var(--border-thick); border-radius: var(--radius-sm); font-size: 0.95rem;">
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--ink-muted);">
+        ℹ️ <em>Submission creates an organization record with <code>status = 'pending'</code>. Upon verification by the platform admin, your owner dashboard and branch creation tools will be fully unlocked.</em>
+      </div>
+
+      <button type="submit" class="btn btn-danger btn-lg" style="width: 100%;">
+        Submit Gym Listing Application
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

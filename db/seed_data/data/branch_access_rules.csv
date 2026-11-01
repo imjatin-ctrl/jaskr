@@ -1,0 +1,75 @@
+access_rule_id,plan_id,branch_id,access_type,conditions
+1,1,1,HOME_ONLY,Valid only at the member's registered home branch.
+2,1,2,HOME_ONLY,Valid only at the member's registered home branch.
+3,1,3,HOME_ONLY,Valid only at the member's registered home branch.
+4,1,4,HOME_ONLY,Valid only at the member's registered home branch.
+5,1,5,HOME_ONLY,Valid only at the member's registered home branch.
+6,1,6,HOME_ONLY,Valid only at the member's registered home branch.
+7,2,1,SAME_CITY,Valid at every branch in the member's home city.
+8,2,2,SAME_CITY,Valid at every branch in the member's home city.
+9,2,3,SAME_CITY,Valid at every branch in the member's home city.
+10,2,4,SAME_CITY,Valid at every branch in the member's home city.
+11,2,5,SAME_CITY,Valid at every branch in the member's home city.
+12,2,6,SAME_CITY,Valid at every branch in the member's home city.
+13,3,1,WEEKDAYS_ONLY,"Valid at all branches of the organization, Monday to Friday only."
+14,3,2,WEEKDAYS_ONLY,"Valid at all branches of the organization, Monday to Friday only."
+15,3,3,WEEKDAYS_ONLY,"Valid at all branches of the organization, Monday to Friday only."
+16,3,4,WEEKDAYS_ONLY,"Valid at all branches of the organization, Monday to Friday only."
+17,3,5,WEEKDAYS_ONLY,"Valid at all branches of the organization, Monday to Friday only."
+18,3,6,WEEKDAYS_ONLY,"Valid at all branches of the organization, Monday to Friday only."
+19,4,1,SAME_CITY,Valid at every branch in the member's home city.
+20,4,2,SAME_CITY,Valid at every branch in the member's home city.
+21,4,3,SAME_CITY,Valid at every branch in the member's home city.
+22,4,4,SAME_CITY,Valid at every branch in the member's home city.
+23,4,5,SAME_CITY,Valid at every branch in the member's home city.
+24,4,6,SAME_CITY,Valid at every branch in the member's home city.
+25,5,1,FULL,Valid at all branches of the organization during opening hours.
+26,5,2,FULL,Valid at all branches of the organization during opening hours.
+27,5,3,FULL,Valid at all branches of the organization during opening hours.
+28,5,4,FULL,Valid at all branches of the organization during opening hours.
+29,5,5,FULL,Valid at all branches of the organization during opening hours.
+30,5,6,FULL,Valid at all branches of the organization during opening hours.
+31,6,7,HOME_ONLY,Valid only at the member's registered home branch.
+32,6,8,HOME_ONLY,Valid only at the member's registered home branch.
+33,6,9,HOME_ONLY,Valid only at the member's registered home branch.
+34,6,10,HOME_ONLY,Valid only at the member's registered home branch.
+35,6,11,HOME_ONLY,Valid only at the member's registered home branch.
+36,6,12,HOME_ONLY,Valid only at the member's registered home branch.
+37,6,13,HOME_ONLY,Valid only at the member's registered home branch.
+38,7,7,SAME_CITY,Valid at every branch in the member's home city.
+39,7,8,SAME_CITY,Valid at every branch in the member's home city.
+40,7,9,SAME_CITY,Valid at every branch in the member's home city.
+41,7,10,SAME_CITY,Valid at every branch in the member's home city.
+42,7,11,SAME_CITY,Valid at every branch in the member's home city.
+43,7,12,SAME_CITY,Valid at every branch in the member's home city.
+44,7,13,SAME_CITY,Valid at every branch in the member's home city.
+45,8,7,WEEKDAYS_ONLY,"Valid at all branches of the organization, Monday to Friday only."
+46,8,8,WEEKDAYS_ONLY,"Valid at all branches of the organization, Monday to Friday only."
+47,8,9,WEEKDAYS_ONLY,"Valid at all branches of the organization, Monday to Friday only."
+48,8,10,WEEKDAYS_ONLY,"Valid at all branches of the organization, Monday to Friday only."
+49,8,11,WEEKDAYS_ONLY,"Valid at all branches of the organization, Monday to Friday only."
+50,8,12,WEEKDAYS_ONLY,"Valid at all branches of the organization, Monday to Friday only."
+51,8,13,WEEKDAYS_ONLY,"Valid at all branches of the organization, Monday to Friday only."
+52,9,7,SAME_CITY,Valid at every branch in the member's home city.
+53,9,8,SAME_CITY,Valid at every branch in the member's home city.
+54,9,9,SAME_CITY,Valid at every branch in the member's home city.
+55,9,10,SAME_CITY,Valid at every branch in the member's home city.
+56,9,11,SAME_CITY,Valid at every branch in the member's home city.
+57,9,12,SAME_CITY,Valid at every branch in the member's home city.
+58,9,13,SAME_CITY,Valid at every branch in the member's home city.
+59,10,7,FULL,Valid at all branches of the organization during opening hours.
+60,10,8,FULL,Valid at all branches of the organization during opening hours.
+61,10,9,FULL,Valid at all branches of the organization during opening hours.
+62,10,10,FULL,Valid at all branches of the organization during opening hours.
+63,10,11,FULL,Valid at all branches of the organization during opening hours.
+64,10,12,FULL,Valid at all branches of the organization during opening hours.
+65,10,13,FULL,Valid at all branches of the organization during opening hours.
+66,11,14,HOME_ONLY,Valid only at the member's registered home branch.
+67,11,15,HOME_ONLY,Valid only at the member's registered home branch.
+68,12,14,SAME_CITY,Valid at every branch in the member's home city.
+69,12,15,SAME_CITY,Valid at every branch in the member's home city.
+70,13,14,FULL,Valid at all branches of the organization during opening hours.
+71,13,15,FULL,Valid at all branches of the organization during opening hours.
+72,14,16,HOME_ONLY,Valid only at the member's registered home branch.
+73,15,16,HOME_ONLY,Valid only at the member's registered home branch.
+74,16,16,FULL,Valid at all branches of the organization during opening hours.

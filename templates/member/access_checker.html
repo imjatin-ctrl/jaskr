@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}Access Checker (D2){% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-yellow">Differentiator D2</span>
+    <h1>Cross-Branch Access Checker</h1>
+    <p style="color: var(--ink-muted); font-size: 1.05rem;">
+      Test any branch in India against your current membership pass. The relational engine evaluates organization boundaries, city tiers, and day-of-week rules in real time.
+    </p>
+  </div>
+
+  <!-- Member Plan Context Ribbon -->
+  <div class="card" style="margin-bottom: 2rem; background: #FFFFFF; border-left: 8px solid var(--electric-blue);">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--ink-subtle);">Active Passholder:</span>
+        <div style="font-size: 1.25rem; font-weight: 800;">{{ member.full_name }} (Member #{{ member.member_id }})</div>
+        <div style="font-size: 0.9rem; color: var(--ink-muted);">
+          Home Branch: <strong>{{ member.home_branch_name }}</strong> ({{ member.home_branch_city }}) • Network: <strong>{{ member.organization_name }}</strong>
+        </div>
+      </div>
+
+      <div style="text-align: right;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--ink-subtle);">Active Tier:</span>
+        <div style="font-size: 1.25rem; font-weight: 800; color: var(--electric-blue);">
+          {{ active_ms.plan_name if active_ms else "No Active Pass" }}
+        </div>
+        {% if active_ms %}
+          <div style="font-size: 0.8rem; color: var(--mint-green); font-weight: 700;">
+            ✓ Active until {{ active_ms.end_date }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem;">
+    <!-- Left: Branch Selector Form & Result Card -->
+    <div>
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <h3 style="margin-bottom: 1rem;">1. Select Target Branch to Test</h3>
+        <form method="POST" action="{{ url_for('member.access_checker') }}">
+          <div style="margin-bottom: 1.25rem;">
+            <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.4rem;">Select Gym Branch (17 Available across India):</label>
+            <select name="branch_id" style="width: 100%; padding: 0.75rem; border: var(--border-thick); border-radius: var(--radius-sm); font-size: 0.95rem; background: #fff;">
+              {% for b in all_branches %}
+                <option value="{{ b.branch_id }}" {% if target_branch_id == b.branch_id %}selected{% endif %}>
+                  {{ b.name }} ({{ b.city }}) - {{ b.organization_name }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+            ⚡ Run Access Evaluation Engine
+          </button>
+        </form>
+      </div>
+
+      <!-- Evaluation Result Output Box -->
+      {% if result %}
+        <div class="card" style="border-left: 10px solid {% if result.status == 'ALLOWED' %}var(--mint-green){% else %}var(--hot-coral){% endif %}; background: #FFFFFF;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <span class="badge {{ result.badge_class }}" style="font-size: 0.9rem; padding: 0.35rem 0.85rem;">
+              {{ result.status }}
+            </span>
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-muted);">
+              Rule Type: <strong>{{ result.access_type }}</strong>
+            </span>
+          </div>
+
+          <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: {% if result.status == 'ALLOWED' %}var(--mint-green){% else %}var(--hot-coral){% endif %};">
+            {% if result.status == 'ALLOWED' %}
+              ✓ Access Confirmed
+            {% else %}
+              ✕ Entry Denied
+            {% endif %}
+          </h3>
+
+          <p style="font-size: 1rem; color: var(--ink-primary); line-height: 1.5; margin-bottom: 1rem;">
+            {{ result.reason }}
+          </p>
+
+          <div style="background: var(--bg-canvas); border: var(--border-thin); border-radius: var(--radius-sm); padding: 0.75rem; font-size: 0.85rem;">
+            <div>📋 <strong>Contract Rule:</strong> {{ result.rule }}</div>
+            <div style="margin-top: 0.25rem;">📅 <strong>Snapshot Date:</strong> 2026-10-30</div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Right: "Which branches can my plan reach?" Spatial Grid -->
+    <div class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <h3>Which Branches Can My Plan Reach?</h3>
+        <span class="badge badge-mint">{{ reachable_branch_ids|length }} of 17 Accessible</span>
+      </div>
+
+      <p style="font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 1rem;">
+        Green circles indicate branches your active pass allows you to visit today. Gray circles represent branches outside your plan's geographic or organizational scope.
+      </p>
+
+      <div style="background: #F8FAFC; border: var(--border-thin); border-radius: var(--radius-sm); padding: 1rem; text-align: center;">
+        <svg viewBox="0 0 540 240" style="width: 100%; height: auto; max-height: 220px;">
+          <!-- Dot grid background -->
+          {% for r in range(6) %}
+            {% for c in range(12) %}
+              <circle cx="{{ c * 48 + 12 }}" cy="{{ r * 42 + 12 }}" r="1.5" fill="#CBD5E1" />
+            {% endfor %}
+          {% endfor %}
+
+          <!-- Branches rendered as pins -->
+          {% for b in all_branches %}
+            {% set bx = 40 + ((b.branch_id * 47) % 460) %}
+            {% set by = 30 + ((b.branch_id * 37) % 180) %}
+            {% set is_reachable = b.branch_id in reachable_branch_ids %}
+            <g transform="translate({{ bx }}, {{ by }})">
+              <circle r="14" fill="{% if is_reachable %}#10B981{% else %}#E2E8F0{% endif %}" stroke="#14121F" stroke-width="2" />
+              <text y="4" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="900" fill="{% if is_reachable %}#FFFFFF{% else %}#64748B{% endif %}">
+                {{ b.branch_id }}
+              </text>
+              <text y="24" text-anchor="middle" font-family="'DM Sans', sans-serif" font-size="8" font-weight="700" fill="#14121F">
+                {{ b.city }}
+              </text>
+            </g>
+          {% endfor %}
+        </svg>
+      </div>
+
+      <!-- Quick List of Reachable Branches -->
+      <div style="margin-top: 1rem;">
+        <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem;">Reachability Summary:</h4>
+        <div style="max-height: 180px; overflow-y: auto; font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.35rem;">
+          {% for b in all_branches %}
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed rgba(20, 18, 31, 0.1); padding-bottom: 0.25rem;">
+              <span>{{ b.name }} ({{ b.city }})</span>
+              {% if b.branch_id in reachable_branch_ids %}
+                <span class="badge badge-mint" style="font-size: 0.65rem;">✓ Allowed</span>
+              {% else %}
+                <span class="badge" style="background: #E2E8F0; color: #64748B; font-size: 0.65rem;">✕ Denied</span>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Show SQL Drawer -->
+  {{ sql_comp.sql_drawer(
+      "D2 Access Checker SQL Rules Evaluation",
+      "SELECT r.access_type, r.conditions, b.city, o.organization_id\nFROM branch_access_rules r\nJOIN branches b ON r.branch_id = b.branch_id\nJOIN organizations o ON b.organization_id = o.organization_id\nWHERE r.plan_id = " ~ (active_ms.plan_id if active_ms else 0) ~ " AND r.branch_id = " ~ (target_branch_id or 1) ~ ";",
+      ["JOIN", "WHERE", "CONSTRAINTS", "SECURITY-POLICY"],
+      "Demonstrates multi-branch relational rule checking without hardcoding in application memory."
+  ) }}
+</div>
+{% endblock %}

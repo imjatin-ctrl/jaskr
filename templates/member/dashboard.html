@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}Member Dashboard{% endblock %}
+
+{% block content %}
+<div class="container">
+  <!-- Welcome Banner -->
+  <div class="card" style="margin-bottom: 2rem; border-top: 8px solid var(--mint-green);">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
+          <span class="badge badge-mint">Member #{{ member.member_id }}</span>
+          <span class="badge badge-yellow">Home: {{ member.home_branch_name }}</span>
+          <span class="badge" style="background: #F1F5F9;">📍 {{ member.home_branch_city }}</span>
+        </div>
+        <h1 style="font-size: 2.2rem; margin-bottom: 0.35rem;">Welcome back, {{ member.full_name }}!</h1>
+        <p style="color: var(--ink-muted); font-size: 1rem;">
+          Your fitness pass is synced across <strong>{{ member.organization_name }}</strong>.
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+        <a href="{{ url_for('member.check_in') }}" class="btn btn-primary btn-lg">
+          📱 Check-In / QR
+        </a>
+        <a href="{{ url_for('member.access_checker') }}" class="btn btn-accent btn-lg">
+          🔍 Access Checker (D2)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bento Grid: Active Plan, Inside Status, Streak, Upcoming Session -->
+  <div class="bento-grid" style="margin-bottom: 2rem;">
+    <!-- Active Plan Card -->
+    <div class="card" style="border-left: 8px solid var(--brand-yellow);">
+      <span class="badge badge-yellow" style="margin-bottom: 0.5rem;">Current Membership</span>
+      {% if active_ms %}
+        <h3 style="font-size: 1.4rem; margin-bottom: 0.25rem;">{{ active_ms.plan_name }}</h3>
+        <p style="font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 0.75rem;">{{ active_ms.plan_desc }}</p>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; border-top: 1.5px solid rgba(20, 18, 31, 0.1); padding-top: 0.75rem;">
+          <div>
+            <span style="font-size: 0.8rem; color: var(--ink-muted); text-transform: uppercase;">Valid Until</span>
+            <div class="mono-num" style="font-weight: 700;">{{ active_ms.end_date }}</div>
+          </div>
+          <div style="text-align: right;">
+            <div class="mono-num" style="font-size: 1.6rem; font-weight: 900; color: var(--mint-green);">
+              {{ days_left }}
+            </div>
+            <span style="font-size: 0.75rem; color: var(--ink-muted); text-transform: uppercase;">Days Left</span>
+          </div>
+        </div>
+      {% else %}
+        <div style="padding: 1rem 0;">
+          <p style="color: var(--hot-coral); font-weight: 700; margin-bottom: 0.5rem;">No Active Membership Pass</p>
+          <a href="{{ url_for('member.memberships') }}" class="btn btn-sm btn-primary">Choose a Plan →</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Live Attendance / Inside Status -->
+    <div class="card" style="border-left: 8px solid var(--electric-blue);">
+      <span class="badge badge-blue" style="margin-bottom: 0.5rem;">Floor Attendance</span>
+      {% if currently_inside %}
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin: 0.5rem 0;">
+          <span style="width: 12px; height: 12px; background: var(--mint-green); border-radius: 50%; display: inline-block;"></span>
+          <strong style="color: var(--mint-green);">CURRENTLY INSIDE</strong>
+        </div>
+        <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">
+          Checked in at <strong>{{ currently_inside.branch_name }}</strong> since {{ currently_inside.check_in[11:16] }}.
+        </p>
+        <form method="POST" action="{{ url_for('member.check_in') }}">
+          <input type="hidden" name="action" value="check_out">
+          <button type="submit" class="btn btn-sm btn-danger" style="width: 100%;">
+            Check Out Now
+          </button>
+        </form>
+      {% else %}
+        <div style="font-size: 0.9rem; color: var(--ink-muted); margin: 0.5rem 0 1rem;">
+          You are currently outside. Ready for today's workout?
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div class="mono-num" style="font-size: 1.5rem; font-weight: 900;">{{ total_checkins }}</div>
+            <span style="font-size: 0.75rem; color: var(--ink-muted);">Total Workouts Recorded</span>
+          </div>
+          <a href="{{ url_for('member.check_in') }}" class="btn btn-sm btn-primary">Check In</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Next Training Session -->
+    <div class="card" style="border-left: 8px solid var(--violet-royal);">
+      <span class="badge badge-violet" style="margin-bottom: 0.5rem;">Personal Coaching</span>
+      {% if next_session %}
+        <h4 style="font-size: 1.1rem; margin-bottom: 0.25rem;">{{ next_session.focus }}</h4>
+        <p style="font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 0.5rem;">
+          Coach: <strong>{{ next_session.trainer_name }}</strong> @ {{ next_session.branch_name }}
+        </p>
+        <div class="mono-num" style="font-weight: 700; font-size: 0.9rem; color: var(--electric-blue);">
+          📅 {{ next_session.session_start }} ({{ next_session.duration_minutes }}m)
+        </div>
+      {% else %}
+        <p style="font-size: 0.9rem; color: var(--ink-muted); margin: 0.5rem 0 1rem;">No personal training sessions scheduled.</p>
+        <a href="{{ url_for('member.training') }}" class="btn btn-sm">Book a Trainer →</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Recent Attendance & Billing Split -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+    <!-- Recent Workouts -->
+    <div class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3>Recent Workouts</h3>
+        <a href="{{ url_for('member.check_in') }}" class="btn btn-sm">View Heatmap →</a>
+      </div>
+      <div class="table-responsive">
+        <table class="table-custom" style="font-size: 0.85rem;">
+          <thead>
+            <tr>
+              <th>Branch</th>
+              <th>Check-in</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for a in recent_attendance %}
+              <tr>
+                <td><strong>{{ a.branch_name }}</strong></td>
+                <td class="mono-num">{{ a.check_in[5:16] }}</td>
+                <td class="mono-num">
+                  {% if a.check_out %}
+                    Completed
+                  {% else %}
+                    <span class="badge badge-mint" style="font-size: 0.65rem;">Active</span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% else %}
+              <tr><td colspan="3" style="text-align: center; color: var(--ink-muted);">No workouts recorded yet.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Recent Invoices -->
+    <div class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3>Recent Invoices & GST</h3>
+        <a href="{{ url_for('member.billing') }}" class="btn btn-sm">All Invoices →</a>
+      </div>
+      <div class="table-responsive">
+        <table class="table-custom" style="font-size: 0.85rem;">
+          <thead>
+            <tr>
+              <th>Invoice #</th>
+              <th>Date</th>
+              <th>Amount (INR)</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for inv in recent_invoices %}
+              <tr>
+                <td class="mono-num"><strong>{{ inv.invoice_number }}</strong></td>
+                <td class="mono-num">{{ inv.invoice_date }}</td>
+                <td class="mono-num">₹{{ "{:,.2f}".format(inv.total) }}</td>
+                <td>
+                  <span class="badge {% if inv.status == 'paid' %}badge-mint{% elif inv.status == 'refunded' %}badge-blue{% else %}badge-coral{% endif %}" style="font-size: 0.65rem;">
+                    {{ inv.status|upper }}
+                  </span>
+                </td>
+              </tr>
+            {% else %}
+              <tr><td colspan="4" style="text-align: center; color: var(--ink-muted);">No invoices found.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Show SQL Drawer -->
+  {{ sql_comp.sql_drawer(
+      "Member Dashboard Context Query",
+      "SELECT m.*, ms.*, p.plan_name FROM members m\nJOIN memberships ms ON m.member_id = ms.member_id\nJOIN membership_plans p ON ms.plan_id = p.plan_id\nWHERE m.member_id = " ~ member.member_id ~ " AND ms.status = 'active';",
+      ["JOIN", "WHERE", "INDEX-SEEK", "MEMBER-SCOPED"],
+      "Server-side session derives member_id and executes parameterized scoped lookup."
+  ) }}
+</div>
+{% endblock %}

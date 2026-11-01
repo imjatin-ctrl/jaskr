@@ -1,0 +1,24 @@
+{% macro sql_drawer(title, sql_statement, concepts=[], explanation="") %}
+<div class="sql-drawer">
+  <div class="sql-drawer-header">
+    <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <span style="background: var(--brand-yellow); color: #14121F; font-family: var(--font-display); font-weight: 800; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">Show SQL</span>
+      <strong style="font-size: 0.95rem; color: #FFFFFF;">{{ title }}</strong>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      {% for c in concepts %}
+        <span class="badge" style="background: #334155; color: #94A3B8; border-color: #475569; font-size: 0.65rem;">{{ c }}</span>
+      {% endfor %}
+      <span style="font-family: var(--font-mono); font-size: 0.75rem; color: #94A3B8;">▼ Toggle</span>
+    </div>
+  </div>
+  <div class="sql-drawer-body" style="display: none;">
+    {% if explanation %}
+      <p style="margin-bottom: 0.75rem; color: #A5B4FC; font-family: var(--font-body); font-size: 0.85rem;">
+        💡 <strong>Evaluator Note:</strong> {{ explanation }}
+      </p>
+    {% endif %}
+    <code>{{ sql_statement }}</code>
+  </div>
+</div>
+{% endmacro %}

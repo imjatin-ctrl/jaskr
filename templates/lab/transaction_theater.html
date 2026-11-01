@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}Transaction Theater{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 900px;">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-blue">ACID Demonstration</span>
+    <h1>ACID Transaction Theater</h1>
+    <p style="color: var(--ink-muted);">
+      Watch the atomic lifecycle of <code>sp_record_payment</code>. Toggle forced failure to witness an automatic ROLLBACK and verify that zero orphan rows remain in the database.
+    </p>
+  </div>
+
+  <!-- Interactive Controls Card -->
+  <div class="card" style="margin-bottom: 2rem; border-top: 6px solid var(--electric-blue);">
+    <h3 style="margin-bottom: 1rem;">Execute Stored Procedure Transaction</h3>
+    
+    <form method="POST" action="{{ url_for('lab.transaction_theater') }}">
+      <div style="background: var(--bg-canvas); border: var(--border-thin); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1.25rem;">
+        <label style="display: flex; align-items: center; gap: 0.75rem; font-weight: 700; cursor: pointer;">
+          <input type="checkbox" name="force_fail" value="1" style="width: 18px; height: 18px;">
+          <span style="color: var(--hot-coral);">⚠️ Force Transaction Failure (Demonstrates Exception Handler & ROLLBACK)</span>
+        </label>
+        <small style="display: block; margin-top: 0.35rem; color: var(--ink-muted); margin-left: 1.9rem;">
+          When checked, the stored procedure deliberately encounters a forced failure before COMMIT, executing a clean ROLLBACK.
+        </small>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+        🎬 Run Transaction Simulation
+      </button>
+    </form>
+  </div>
+
+  <!-- Animation / Step-by-Step Execution Sequence -->
+  {% if simulation %}
+    <div class="card" style="margin-bottom: 2.5rem; border-left: 10px solid {% if simulation.success %}var(--mint-green){% else %}var(--hot-coral){% endif %};">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <span class="badge {% if simulation.success %}badge-mint{% else %}badge-coral{% endif %}" style="font-size: 0.9rem;">
+          Outcome: {{ "COMMITTED" if simulation.success else "ROLLED BACK" }}
+        </span>
+        <span class="mono-num" style="font-size: 0.85rem; color: var(--ink-muted);">
+          Elapsed: {{ simulation.elapsed_ms }} ms
+        </span>
+      </div>
+
+      <h3 style="margin-bottom: 0.5rem; color: {% if simulation.success %}var(--mint-green){% else %}var(--hot-coral){% endif %};">
+        {{ simulation.message }}
+      </h3>
+
+      <!-- Step Cards Pipeline -->
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem;">
+        {% for s in simulation.steps %}
+          <div style="border: var(--border-thin); border-radius: var(--radius-sm); padding: 0.75rem 1rem; background: var(--bg-canvas); display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <strong style="font-family: var(--font-mono); font-size: 0.95rem; display: block;">{{ s.step }}</strong>
+              <span style="font-size: 0.8rem; color: var(--ink-muted);">{{ s.desc }}</span>
+            </div>
+            <span class="badge {% if s.status in ('DONE', 'SUCCESS') %}badge-mint{% else %}badge-coral{% endif %}">
+              {{ s.status }}
+            </span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Show SQL Drawer -->
+  {{ sql_comp.sql_drawer(
+      "sp_record_payment Transaction Definition",
+      "CREATE PROCEDURE sp_record_payment(...)\nBEGIN\n  DECLARE EXIT HANDLER FOR SQLEXCEPTION BEGIN ROLLBACK; END;\n  START TRANSACTION;\n  INSERT INTO payments (...) VALUES (...);\n  UPDATE invoices SET status = 'paid' WHERE ...;\n  UPDATE memberships SET status = 'active' WHERE ...;\n  INSERT INTO audit_log (...) VALUES (...);\n  COMMIT;\nEND;",
+      ["ACID", "TRANSACTION", "STORED-PROCEDURE", "ROLLBACK", "COMMIT"],
+      "Demonstrates multi-table atomicity with stored procedure exception handlers."
+  ) }}
+</div>
+{% endblock %}

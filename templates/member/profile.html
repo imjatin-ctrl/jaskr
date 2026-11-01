@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Profile & Privacy{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 720px;">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-mint">Account Management</span>
+    <h1>Profile & Data Portability</h1>
+    <p style="color: var(--ink-muted);">Manage your personal information and export your full fitness journey records.</p>
+  </div>
+
+  <!-- Profile Edit Card -->
+  <div class="card" style="margin-bottom: 2rem;">
+    <h3 style="margin-bottom: 1rem; border-bottom: var(--border-thin); padding-bottom: 0.5rem;">Personal Details</h3>
+    <form method="POST" action="{{ url_for('member.profile') }}">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+        <div>
+          <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Full Name</label>
+          <input type="text" name="full_name" value="{{ member.full_name }}" required
+                 style="width: 100%; padding: 0.65rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.95rem;">
+        </div>
+        <div>
+          <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Phone Number</label>
+          <input type="text" name="phone" value="{{ member.phone }}" required
+                 style="width: 100%; padding: 0.65rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.95rem;">
+        </div>
+      </div>
+
+      <div style="margin-bottom: 1.25rem;">
+        <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Home Branch (Fixed)</label>
+        <input type="text" value="{{ member.home_branch_name }} ({{ member.home_branch_city }}) - {{ member.organization_name }}" disabled
+               style="width: 100%; padding: 0.65rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.95rem; background: var(--bg-canvas); color: var(--ink-muted);">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save Profile Changes</button>
+    </form>
+  </div>
+
+  <!-- Privacy & Data Portability (JSON Export) -->
+  <div class="card" style="border-left: 8px solid var(--electric-blue);">
+    <h3 style="margin-bottom: 0.5rem;">Data Privacy & Portability</h3>
+    <p style="font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 1.25rem;">
+      In accordance with data protection principles, you can export a complete machine-readable copy of your membership profile, check-in history, invoices, and coaching notes.
+    </p>
+
+    <a href="{{ url_for('member.export_data') }}" class="btn btn-accent">
+      📦 Download My Data (JSON)
+    </a>
+  </div>
+</div>
+{% endblock %}

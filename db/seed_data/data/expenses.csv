@@ -1,0 +1,1386 @@
+expense_id,branch_id,expense_category_id,recorded_by,expense_date,amount,vendor,description,status
+1,1,1,43,2026-01-01,26000.00,Mehra Holdings,Rent - January 2026,paid
+2,6,1,43,2026-01-01,39000.00,Kapoor Realty and Estates,Rent - January 2026,paid
+3,7,1,86,2026-01-01,25100.00,Shah Realty Partners,Rent - January 2026,paid
+4,11,1,86,2026-01-01,21300.00,Nair Estates,Rent - January 2026,paid
+5,12,1,86,2026-01-01,26400.00,Kapoor Realty and Estates,Rent - January 2026,paid
+6,13,1,86,2026-01-01,14100.00,Gupta Commercial Spaces,Rent - January 2026,paid
+7,14,1,99,2026-01-01,6800.00,Gupta Commercial Spaces,Rent - January 2026,paid
+8,5,1,43,2026-01-02,32200.00,Rao Properties LLP,Rent - January 2026,paid
+9,8,1,86,2026-01-02,21200.00,Gupta Commercial Spaces,Rent - January 2026,paid
+10,10,1,86,2026-01-02,19300.00,Kapoor Realty and Estates,Rent - January 2026,paid
+11,2,1,43,2026-01-03,34700.00,Shah Realty Partners,Rent - January 2026,paid
+12,2,10,43,2026-01-03,900.00,Local Vendor,Miscellaneous - January 2026,paid
+13,3,1,43,2026-01-03,31700.00,Shah Realty Partners,Rent - January 2026,paid
+14,3,10,43,2026-01-03,900.00,Stationery Hub,Miscellaneous - January 2026,paid
+15,4,1,43,2026-01-03,34800.00,Mehra Holdings,Rent - January 2026,paid
+16,9,1,86,2026-01-03,28900.00,Kapoor Realty and Estates,Rent - January 2026,paid
+17,15,1,99,2026-01-03,8200.00,Rao Properties LLP,Rent - January 2026,paid
+18,16,1,106,2026-01-03,12800.00,Rao Properties LLP,Rent - January 2026,paid
+19,14,10,99,2026-01-04,500.00,Local Vendor,Miscellaneous - January 2026,paid
+20,3,3,43,2026-01-05,2300.00,Sharma Gym Equipment Repairs,Equipment Maintenance - January 2026,paid
+21,3,6,43,2026-01-05,1800.00,Spark Social Studio,Marketing and Promotions - January 2026,paid
+22,5,10,43,2026-01-05,1200.00,Office Mart,Miscellaneous - January 2026,paid
+23,11,3,86,2026-01-05,2500.00,FitServe India,Equipment Maintenance - January 2026,paid
+24,12,6,86,2026-01-05,3500.00,Spark Social Studio,Marketing and Promotions - January 2026,paid
+25,9,4,86,2026-01-06,1600.00,Anand Supplies,Housekeeping and Supplies - January 2026,paid
+26,10,6,86,2026-01-06,5900.00,RedBrick Outdoor,Marketing and Promotions - January 2026,paid
+27,13,4,86,2026-01-06,3600.00,Kaveri Facility Services,Housekeeping and Supplies - January 2026,paid
+28,3,7,43,2026-01-07,900.00,CloudDesk Software,Software and Internet - January 2026,paid
+29,7,4,86,2026-01-07,2100.00,Kaveri Facility Services,Housekeeping and Supplies - January 2026,paid
+30,8,10,86,2026-01-07,900.00,Stationery Hub,Miscellaneous - January 2026,paid
+31,9,6,86,2026-01-07,1100.00,Pixel Print and Media,Marketing and Promotions - January 2026,paid
+32,9,7,86,2026-01-07,500.00,SecureEye CCTV Services,Software and Internet - January 2026,paid
+33,12,3,86,2026-01-07,2500.00,TechnoFit Services,Equipment Maintenance - January 2026,paid
+34,12,7,86,2026-01-07,900.00,NetLink Broadband,Software and Internet - January 2026,paid
+35,3,4,43,2026-01-08,4300.00,Anand Supplies,Housekeeping and Supplies - January 2026,paid
+36,5,4,43,2026-01-08,6000.00,Anand Supplies,Housekeeping and Supplies - January 2026,paid
+37,5,7,43,2026-01-08,1100.00,CloudDesk Software,Software and Internet - January 2026,paid
+38,6,7,43,2026-01-08,1800.00,SecureEye CCTV Services,Software and Internet - January 2026,paid
+39,7,7,86,2026-01-08,600.00,NetLink Broadband,Software and Internet - January 2026,paid
+40,8,6,86,2026-01-08,3200.00,RedBrick Outdoor,Marketing and Promotions - January 2026,paid
+41,10,7,86,2026-01-08,1000.00,SecureEye CCTV Services,Software and Internet - January 2026,paid
+42,15,7,99,2026-01-08,1000.00,CloudDesk Software,Software and Internet - January 2026,paid
+43,2,4,43,2026-01-09,5800.00,Anand Supplies,Housekeeping and Supplies - January 2026,paid
+44,4,4,43,2026-01-09,4600.00,Kaveri Facility Services,Housekeeping and Supplies - January 2026,paid
+45,10,3,86,2026-01-09,2200.00,TechnoFit Services,Equipment Maintenance - January 2026,paid
+46,10,4,86,2026-01-09,4300.00,CleanSweep Housekeeping,Housekeeping and Supplies - January 2026,paid
+47,11,4,86,2026-01-09,2900.00,CleanSweep Housekeeping,Housekeeping and Supplies - January 2026,paid
+48,13,7,86,2026-01-09,600.00,CloudDesk Software,Software and Internet - January 2026,paid
+49,14,7,99,2026-01-09,500.00,SecureEye CCTV Services,Software and Internet - January 2026,paid
+50,15,4,99,2026-01-09,2200.00,Kaveri Facility Services,Housekeeping and Supplies - January 2026,paid
+51,16,4,106,2026-01-09,2800.00,CleanSweep Housekeeping,Housekeeping and Supplies - January 2026,paid
+52,16,6,106,2026-01-09,4700.00,RedBrick Outdoor,Marketing and Promotions - January 2026,paid
+53,1,4,43,2026-01-10,4300.00,Kaveri Facility Services,Housekeeping and Supplies - January 2026,paid
+54,1,6,43,2026-01-10,1700.00,Spark Social Studio,Marketing and Promotions - January 2026,paid
+55,2,7,43,2026-01-10,1600.00,CloudDesk Software,Software and Internet - January 2026,paid
+56,4,2,43,2026-01-10,9300.00,Bharat Diesel Supplies,Electricity and Utilities - January 2026,paid
+57,4,7,43,2026-01-10,700.00,NetLink Broadband,Software and Internet - January 2026,paid
+58,6,2,43,2026-01-10,15100.00,State Power Distribution Company,Electricity and Utilities - January 2026,paid
+59,6,4,43,2026-01-10,7500.00,Anand Supplies,Housekeeping and Supplies - January 2026,paid
+60,8,4,86,2026-01-10,3600.00,CleanSweep Housekeeping,Housekeeping and Supplies - January 2026,paid
+61,10,2,86,2026-01-10,5400.00,Bharat Diesel Supplies,Electricity and Utilities - January 2026,approved
+62,11,2,86,2026-01-10,5300.00,City Water Board,Electricity and Utilities - January 2026,paid
+63,12,4,86,2026-01-10,4800.00,Anand Supplies,Housekeeping and Supplies - January 2026,paid
+64,14,4,99,2026-01-10,2500.00,CleanSweep Housekeeping,Housekeeping and Supplies - January 2026,paid
+65,2,2,43,2026-01-11,8800.00,State Power Distribution Company,Electricity and Utilities - January 2026,paid
+66,6,6,43,2026-01-11,4200.00,Spark Social Studio,Marketing and Promotions - January 2026,paid
+67,7,2,86,2026-01-11,7100.00,Bharat Diesel Supplies,Electricity and Utilities - January 2026,paid
+68,7,6,86,2026-01-11,5700.00,Spark Social Studio,Marketing and Promotions - January 2026,paid
+69,8,7,86,2026-01-11,800.00,SecureEye CCTV Services,Software and Internet - January 2026,paid
+70,9,8,86,2026-01-11,1000.00,Fire Safety Department,Quarterly insurance premium,paid
+71,12,2,86,2026-01-11,9700.00,State Power Distribution Company,Electricity and Utilities - January 2026,paid
+72,15,10,99,2026-01-11,500.00,Office Mart,Miscellaneous - January 2026,paid
+73,1,7,43,2026-01-12,700.00,CloudDesk Software,Software and Internet - January 2026,paid
+74,8,2,86,2026-01-12,9200.00,Bharat Diesel Supplies,Electricity and Utilities - January 2026,paid
+75,11,7,86,2026-01-12,1000.00,SecureEye CCTV Services,Software and Internet - January 2026,paid
+76,12,10,86,2026-01-12,700.00,Stationery Hub,Miscellaneous - January 2026,paid
+77,13,2,86,2026-01-12,5700.00,Bharat Diesel Supplies,Electricity and Utilities - January 2026,paid
+78,13,8,86,2026-01-12,1800.00,Fire Safety Department,Quarterly insurance premium,paid
+79,16,3,106,2026-01-12,2200.00,Sharma Gym Equipment Repairs,Equipment Maintenance - January 2026,paid
+80,1,2,43,2026-01-13,10600.00,Bharat Diesel Supplies,Electricity and Utilities - January 2026,paid
+81,7,10,86,2026-01-13,800.00,Stationery Hub,Miscellaneous - January 2026,paid
+82,8,8,86,2026-01-13,1300.00,Fire Safety Department,Quarterly insurance premium,paid
+83,9,2,86,2026-01-13,4800.00,City Water Board,Electricity and Utilities - January 2026,paid
+84,12,8,86,2026-01-13,1500.00,Fire Safety Department,Quarterly insurance premium,paid
+85,16,7,106,2026-01-13,600.00,CloudDesk Software,Software and Internet - January 2026,paid
+86,5,2,43,2026-01-14,5800.00,State Power Distribution Company,Electricity and Utilities - January 2026,paid
+87,6,8,43,2026-01-14,2100.00,Suraksha General Insurance,Quarterly insurance premium,paid
+88,10,9,86,2026-01-14,10100.00,Floorcraft Contractors,Repairs and Renovation - January 2026,paid
+89,11,8,86,2026-01-14,1900.00,Fire Safety Department,Quarterly insurance premium,paid
+90,13,10,86,2026-01-14,500.00,Local Vendor,Miscellaneous - January 2026,paid
+91,14,2,99,2026-01-14,3400.00,Bharat Diesel Supplies,Electricity and Utilities - January 2026,paid
+92,1,3,43,2026-01-15,1500.00,Muscle Care Engineers,Equipment Maintenance - January 2026,paid
+93,2,8,43,2026-01-15,2700.00,Fire Safety Department,Quarterly insurance premium,paid
+94,3,2,43,2026-01-15,9200.00,Bharat Diesel Supplies,Electricity and Utilities - January 2026,paid
+95,9,10,86,2026-01-15,500.00,Office Mart,Miscellaneous - January 2026,paid
+96,13,3,86,2026-01-15,800.00,Muscle Care Engineers,Equipment Maintenance - January 2026,paid
+97,13,6,86,2026-01-15,1700.00,Pixel Print and Media,Marketing and Promotions - January 2026,paid
+98,14,8,99,2026-01-15,1400.00,Fire Safety Department,Quarterly insurance premium,paid
+99,15,2,99,2026-01-15,3500.00,City Water Board,Electricity and Utilities - January 2026,paid
+100,16,2,106,2026-01-15,7300.00,State Power Distribution Company,Electricity and Utilities - January 2026,paid
+101,16,8,106,2026-01-15,1600.00,Fire Safety Department,Quarterly insurance premium,paid
+102,4,3,43,2026-01-16,2500.00,Sharma Gym Equipment Repairs,Equipment Maintenance - January 2026,paid
+103,4,10,43,2026-01-16,1000.00,Stationery Hub,Miscellaneous - January 2026,paid
+104,10,10,86,2026-01-16,500.00,Stationery Hub,Miscellaneous - January 2026,paid
+105,16,10,106,2026-01-16,500.00,Stationery Hub,Miscellaneous - January 2026,paid
+106,2,6,43,2026-01-17,8000.00,Spark Social Studio,Marketing and Promotions - January 2026,paid
+107,3,8,43,2026-01-18,1200.00,Suraksha General Insurance,Quarterly insurance premium,paid
+108,4,8,43,2026-01-18,1800.00,Fire Safety Department,Quarterly insurance premium,paid
+109,7,8,86,2026-01-18,1300.00,Suraksha General Insurance,Quarterly insurance premium,paid
+110,11,6,86,2026-01-18,5900.00,LocalReach Ads,Marketing and Promotions - January 2026,paid
+111,14,6,99,2026-01-18,3800.00,LocalReach Ads,Marketing and Promotions - January 2026,paid
+112,15,6,99,2026-01-18,4600.00,Pixel Print and Media,Marketing and Promotions - January 2026,approved
+113,1,8,43,2026-01-20,1500.00,Municipal Corporation Licensing,Quarterly insurance premium,paid
+114,5,8,43,2026-01-20,1700.00,Suraksha General Insurance,Quarterly insurance premium,paid
+115,7,3,86,2026-01-20,800.00,FitServe India,Equipment Maintenance - January 2026,paid
+116,10,8,86,2026-01-20,1900.00,Fire Safety Department,Quarterly insurance premium,paid
+117,4,6,43,2026-01-21,5200.00,LocalReach Ads,Marketing and Promotions - January 2026,paid
+118,5,6,43,2026-01-21,1700.00,LocalReach Ads,Marketing and Promotions - January 2026,paid
+119,8,3,86,2026-01-21,2000.00,Sharma Gym Equipment Repairs,Equipment Maintenance - January 2026,paid
+120,15,8,99,2026-01-21,1500.00,Suraksha General Insurance,Quarterly insurance premium,paid
+121,2,3,43,2026-01-22,2200.00,Sharma Gym Equipment Repairs,Equipment Maintenance - January 2026,paid
+122,11,9,86,2026-01-22,10800.00,Verma Interiors,Repairs and Renovation - January 2026,paid
+123,9,3,86,2026-01-24,1100.00,FitServe India,Equipment Maintenance - January 2026,paid
+124,15,3,99,2026-01-24,2300.00,TechnoFit Services,Equipment Maintenance - January 2026,paid
+125,1,10,43,2026-01-25,1000.00,Local Vendor,Miscellaneous - January 2026,paid
+126,5,3,43,2026-01-25,2400.00,TechnoFit Services,Equipment Maintenance - January 2026,paid
+127,6,3,43,2026-01-25,3800.00,Muscle Care Engineers,Equipment Maintenance - January 2026,paid
+128,11,10,86,2026-01-25,800.00,Office Mart,Miscellaneous - January 2026,paid
+129,14,3,99,2026-01-25,2200.00,Sharma Gym Equipment Repairs,Equipment Maintenance - January 2026,paid
+130,6,10,43,2026-01-26,1500.00,Local Vendor,Miscellaneous - January 2026,paid
+131,16,9,106,2026-01-26,7900.00,Coolbreeze AC Works,Repairs and Renovation - January 2026,paid
+132,1,5,43,2026-01-31,19400.00,Payroll Run,Monthly payroll - January 2026,paid
+133,2,5,43,2026-01-31,27300.00,Payroll Run,Monthly payroll - January 2026,paid
+134,3,5,43,2026-01-31,16300.00,Payroll Run,Monthly payroll - January 2026,paid
+135,4,5,43,2026-01-31,20100.00,Payroll Run,Monthly payroll - January 2026,paid
+136,5,5,43,2026-01-31,21400.00,Payroll Run,Monthly payroll - January 2026,paid
+137,6,5,43,2026-01-31,29400.00,Payroll Run,Monthly payroll - January 2026,paid
+138,7,5,86,2026-01-31,17100.00,Payroll Run,Monthly payroll - January 2026,paid
+139,8,5,86,2026-01-31,19400.00,Payroll Run,Monthly payroll - January 2026,paid
+140,9,5,86,2026-01-31,11800.00,Payroll Run,Monthly payroll - January 2026,paid
+141,10,5,86,2026-01-31,16800.00,Payroll Run,Monthly payroll - January 2026,paid
+142,11,5,86,2026-01-31,17700.00,Payroll Run,Monthly payroll - January 2026,paid
+143,12,5,86,2026-01-31,20100.00,Payroll Run,Monthly payroll - January 2026,paid
+144,13,5,86,2026-01-31,17500.00,Payroll Run,Monthly payroll - January 2026,paid
+145,14,5,99,2026-01-31,13800.00,Payroll Run,Monthly payroll - January 2026,paid
+146,15,5,99,2026-01-31,17000.00,Payroll Run,Monthly payroll - January 2026,paid
+147,16,5,106,2026-01-31,16600.00,Payroll Run,Monthly payroll - January 2026,paid
+148,2,1,43,2026-02-01,34700.00,Mehra Holdings,Rent - February 2026,paid
+149,4,1,43,2026-02-01,34800.00,Kapoor Realty and Estates,Rent - February 2026,paid
+150,6,1,43,2026-02-01,39000.00,Shah Realty Partners,Rent - February 2026,paid
+151,7,1,86,2026-02-01,25100.00,Mehra Holdings,Rent - February 2026,paid
+152,8,1,86,2026-02-01,21200.00,Nair Estates,Rent - February 2026,approved
+153,9,1,86,2026-02-01,28900.00,Rao Properties LLP,Rent - February 2026,paid
+154,13,1,86,2026-02-01,14100.00,Kapoor Realty and Estates,Rent - February 2026,rejected
+155,15,1,99,2026-02-01,8200.00,Kapoor Realty and Estates,Rent - February 2026,paid
+156,1,1,43,2026-02-02,26000.00,Gupta Commercial Spaces,Rent - February 2026,paid
+157,3,1,43,2026-02-02,31700.00,Kapoor Realty and Estates,Rent - February 2026,rejected
+158,11,1,86,2026-02-02,21300.00,Mehra Holdings,Rent - February 2026,paid
+159,12,1,86,2026-02-02,26400.00,Nair Estates,Rent - February 2026,paid
+160,5,1,43,2026-02-03,32200.00,Kapoor Realty and Estates,Rent - February 2026,paid
+161,10,1,86,2026-02-03,19300.00,Kapoor Realty and Estates,Rent - February 2026,paid
+162,11,10,86,2026-02-03,700.00,Local Vendor,Miscellaneous - February 2026,paid
+163,14,1,99,2026-02-03,6800.00,Rao Properties LLP,Rent - February 2026,paid
+164,16,1,106,2026-02-03,12800.00,Mehra Holdings,Rent - February 2026,paid
+165,16,10,106,2026-02-03,500.00,Stationery Hub,Miscellaneous - February 2026,paid
+166,6,6,43,2026-02-04,5900.00,RedBrick Outdoor,Marketing and Promotions - February 2026,paid
+167,8,10,86,2026-02-04,500.00,Stationery Hub,Miscellaneous - February 2026,paid
+168,15,10,99,2026-02-04,500.00,Office Mart,Miscellaneous - February 2026,paid
+169,4,10,43,2026-02-05,500.00,Local Vendor,Miscellaneous - February 2026,paid
+170,9,10,86,2026-02-05,500.00,Local Vendor,Miscellaneous - February 2026,paid
+171,2,4,43,2026-02-06,5100.00,Kaveri Facility Services,Housekeeping and Supplies - February 2026,paid
+172,8,4,86,2026-02-06,4900.00,Kaveri Facility Services,Housekeeping and Supplies - February 2026,paid
+173,10,3,86,2026-02-06,1300.00,TechnoFit Services,Equipment Maintenance - February 2026,paid
+174,11,4,86,2026-02-06,4200.00,Kaveri Facility Services,Housekeeping and Supplies - February 2026,paid
+175,12,4,86,2026-02-06,5300.00,Anand Supplies,Housekeeping and Supplies - February 2026,paid
+176,14,4,99,2026-02-06,2100.00,Kaveri Facility Services,Housekeeping and Supplies - February 2026,paid
+177,3,7,43,2026-02-07,600.00,CloudDesk Software,Software and Internet - February 2026,paid
+178,7,4,86,2026-02-07,3700.00,Anand Supplies,Housekeeping and Supplies - February 2026,paid
+179,10,4,86,2026-02-07,2400.00,Anand Supplies,Housekeeping and Supplies - February 2026,paid
+180,13,4,86,2026-02-07,2700.00,Kaveri Facility Services,Housekeeping and Supplies - February 2026,paid
+181,14,3,99,2026-02-07,1000.00,TechnoFit Services,Equipment Maintenance - February 2026,paid
+182,1,4,43,2026-02-08,3300.00,Anand Supplies,Housekeeping and Supplies - February 2026,paid
+183,3,4,43,2026-02-08,3600.00,CleanSweep Housekeeping,Housekeeping and Supplies - February 2026,paid
+184,5,4,43,2026-02-08,3700.00,CleanSweep Housekeeping,Housekeeping and Supplies - February 2026,paid
+185,5,6,43,2026-02-08,7200.00,RedBrick Outdoor,Marketing and Promotions - February 2026,paid
+186,6,4,43,2026-02-08,9100.00,CleanSweep Housekeeping,Housekeeping and Supplies - February 2026,paid
+187,9,4,86,2026-02-08,2200.00,Anand Supplies,Housekeeping and Supplies - February 2026,paid
+188,11,6,86,2026-02-08,4800.00,Spark Social Studio,Marketing and Promotions - February 2026,paid
+189,13,7,86,2026-02-08,900.00,SecureEye CCTV Services,Software and Internet - February 2026,paid
+190,1,6,43,2026-02-09,2300.00,RedBrick Outdoor,Marketing and Promotions - February 2026,paid
+191,2,10,43,2026-02-09,900.00,Office Mart,Miscellaneous - February 2026,paid
+192,4,4,43,2026-02-09,4100.00,Kaveri Facility Services,Housekeeping and Supplies - February 2026,paid
+193,4,7,43,2026-02-09,1300.00,NetLink Broadband,Software and Internet - February 2026,paid
+194,6,10,43,2026-02-09,1500.00,Local Vendor,Miscellaneous - February 2026,paid
+195,7,9,86,2026-02-09,10800.00,Floorcraft Contractors,Repairs and Renovation - February 2026,paid
+196,12,7,86,2026-02-09,600.00,NetLink Broadband,Software and Internet - February 2026,paid
+197,14,10,99,2026-02-09,500.00,Local Vendor,Miscellaneous - February 2026,paid
+198,15,7,99,2026-02-09,700.00,NetLink Broadband,Software and Internet - February 2026,paid
+199,3,2,43,2026-02-10,7500.00,Bharat Diesel Supplies,Electricity and Utilities - February 2026,paid
+200,7,2,86,2026-02-10,3300.00,Bharat Diesel Supplies,Electricity and Utilities - February 2026,paid
+201,9,3,86,2026-02-10,5100.00,Sharma Gym Equipment Repairs,Equipment Maintenance - February 2026,paid
+202,9,7,86,2026-02-10,500.00,NetLink Broadband,Software and Internet - February 2026,paid
+203,10,7,86,2026-02-10,700.00,CloudDesk Software,Software and Internet - February 2026,approved
+204,11,3,86,2026-02-10,700.00,Sharma Gym Equipment Repairs,Equipment Maintenance - February 2026,paid
+205,14,2,99,2026-02-10,3100.00,State Power Distribution Company,Electricity and Utilities - February 2026,paid
+206,15,4,99,2026-02-10,1900.00,CleanSweep Housekeeping,Housekeeping and Supplies - February 2026,paid
+207,15,6,99,2026-02-10,3500.00,Pixel Print and Media,Marketing and Promotions - February 2026,paid
+208,16,4,106,2026-02-10,2000.00,CleanSweep Housekeeping,Housekeeping and Supplies - February 2026,paid
+209,2,7,43,2026-02-11,1000.00,CloudDesk Software,Software and Internet - February 2026,paid
+210,6,7,43,2026-02-11,1500.00,NetLink Broadband,Software and Internet - February 2026,paid
+211,7,6,86,2026-02-11,2500.00,LocalReach Ads,Marketing and Promotions - February 2026,paid
+212,7,7,86,2026-02-11,1100.00,CloudDesk Software,Software and Internet - February 2026,paid
+213,10,2,86,2026-02-11,6800.00,City Water Board,Electricity and Utilities - February 2026,paid
+214,11,2,86,2026-02-11,7700.00,Bharat Diesel Supplies,Electricity and Utilities - February 2026,paid
+215,13,9,86,2026-02-11,10200.00,Coolbreeze AC Works,Repairs and Renovation - February 2026,paid
+216,1,2,43,2026-02-12,9400.00,Bharat Diesel Supplies,Electricity and Utilities - February 2026,paid
+217,1,7,43,2026-02-12,1000.00,CloudDesk Software,Software and Internet - February 2026,paid
+218,2,2,43,2026-02-12,9100.00,State Power Distribution Company,Electricity and Utilities - February 2026,paid
+219,4,3,43,2026-02-12,1800.00,Muscle Care Engineers,Equipment Maintenance - February 2026,paid
+220,11,9,86,2026-02-12,5500.00,Floorcraft Contractors,Repairs and Renovation - February 2026,paid
+221,13,6,86,2026-02-12,3500.00,Spark Social Studio,Marketing and Promotions - February 2026,paid
+222,16,3,106,2026-02-12,900.00,TechnoFit Services,Equipment Maintenance - February 2026,paid
+223,5,2,43,2026-02-13,9400.00,Bharat Diesel Supplies,Electricity and Utilities - February 2026,paid
+224,5,7,43,2026-02-13,1200.00,CloudDesk Software,Software and Internet - February 2026,paid
+225,5,10,43,2026-02-13,800.00,Office Mart,Miscellaneous - February 2026,paid
+226,6,2,43,2026-02-13,13000.00,Bharat Diesel Supplies,Electricity and Utilities - February 2026,paid
+227,8,2,86,2026-02-13,8500.00,Bharat Diesel Supplies,Electricity and Utilities - February 2026,paid
+228,8,7,86,2026-02-13,700.00,SecureEye CCTV Services,Software and Internet - February 2026,paid
+229,9,2,86,2026-02-13,2800.00,City Water Board,Electricity and Utilities - February 2026,paid
+230,9,6,86,2026-02-13,3900.00,RedBrick Outdoor,Marketing and Promotions - February 2026,paid
+231,11,7,86,2026-02-13,500.00,SecureEye CCTV Services,Software and Internet - February 2026,paid
+232,13,2,86,2026-02-13,4400.00,City Water Board,Electricity and Utilities - February 2026,paid
+233,14,6,99,2026-02-13,1300.00,Pixel Print and Media,Marketing and Promotions - February 2026,paid
+234,14,7,99,2026-02-13,500.00,CloudDesk Software,Software and Internet - February 2026,paid
+235,15,2,99,2026-02-13,3000.00,State Power Distribution Company,Electricity and Utilities - February 2026,paid
+236,16,7,106,2026-02-13,700.00,CloudDesk Software,Software and Internet - February 2026,paid
+237,16,2,106,2026-02-14,5900.00,City Water Board,Electricity and Utilities - February 2026,paid
+238,4,2,43,2026-02-15,8900.00,Bharat Diesel Supplies,Electricity and Utilities - February 2026,paid
+239,4,6,43,2026-02-15,6700.00,RedBrick Outdoor,Marketing and Promotions - February 2026,approved
+240,8,3,86,2026-02-15,1500.00,TechnoFit Services,Equipment Maintenance - February 2026,paid
+241,12,2,86,2026-02-15,9100.00,City Water Board,Electricity and Utilities - February 2026,paid
+242,1,9,43,2026-02-16,6400.00,Verma Interiors,Repairs and Renovation - February 2026,paid
+243,5,3,43,2026-02-16,2900.00,TechnoFit Services,Equipment Maintenance - February 2026,paid
+244,1,3,43,2026-02-17,800.00,Sharma Gym Equipment Repairs,Equipment Maintenance - February 2026,paid
+245,3,10,43,2026-02-18,500.00,Stationery Hub,Miscellaneous - February 2026,paid
+246,12,6,86,2026-02-18,7100.00,Pixel Print and Media,Marketing and Promotions - February 2026,paid
+247,15,3,99,2026-02-18,900.00,Sharma Gym Equipment Repairs,Equipment Maintenance - February 2026,paid
+248,16,6,106,2026-02-18,2300.00,RedBrick Outdoor,Marketing and Promotions - February 2026,paid
+249,6,3,43,2026-02-19,9000.00,FitServe India,Equipment Maintenance - February 2026,paid
+250,7,10,86,2026-02-19,500.00,Stationery Hub,Miscellaneous - February 2026,paid
+251,8,6,86,2026-02-20,4800.00,LocalReach Ads,Marketing and Promotions - February 2026,paid
+252,10,10,86,2026-02-20,600.00,Local Vendor,Miscellaneous - February 2026,paid
+253,12,3,86,2026-02-20,1800.00,Muscle Care Engineers,Equipment Maintenance - February 2026,paid
+254,2,6,43,2026-02-21,6600.00,RedBrick Outdoor,Marketing and Promotions - February 2026,paid
+255,3,6,43,2026-02-21,3500.00,LocalReach Ads,Marketing and Promotions - February 2026,paid
+256,10,6,86,2026-02-21,4600.00,LocalReach Ads,Marketing and Promotions - February 2026,paid
+257,3,3,43,2026-02-22,1200.00,TechnoFit Services,Equipment Maintenance - February 2026,paid
+258,7,3,86,2026-02-22,2300.00,Sharma Gym Equipment Repairs,Equipment Maintenance - February 2026,paid
+259,11,9,86,2026-02-22,7400.00,Verma Interiors,Repairs and Renovation - February 2026,paid
+260,1,10,43,2026-02-23,500.00,Office Mart,Miscellaneous - February 2026,approved
+261,2,3,43,2026-02-24,3700.00,Sharma Gym Equipment Repairs,Equipment Maintenance - February 2026,paid
+262,12,10,86,2026-02-25,700.00,Office Mart,Miscellaneous - February 2026,paid
+263,13,3,86,2026-02-25,1000.00,Muscle Care Engineers,Equipment Maintenance - February 2026,paid
+264,13,10,86,2026-02-25,700.00,Office Mart,Miscellaneous - February 2026,paid
+265,1,5,43,2026-02-28,19400.00,Payroll Run,Monthly payroll - February 2026,paid
+266,2,5,43,2026-02-28,27300.00,Payroll Run,Monthly payroll - February 2026,paid
+267,3,5,43,2026-02-28,16300.00,Payroll Run,Monthly payroll - February 2026,paid
+268,4,5,43,2026-02-28,20100.00,Payroll Run,Monthly payroll - February 2026,paid
+269,5,5,43,2026-02-28,21400.00,Payroll Run,Monthly payroll - February 2026,paid
+270,6,5,43,2026-02-28,29400.00,Payroll Run,Monthly payroll - February 2026,paid
+271,7,5,86,2026-02-28,17100.00,Payroll Run,Monthly payroll - February 2026,paid
+272,8,5,86,2026-02-28,19400.00,Payroll Run,Monthly payroll - February 2026,paid
+273,9,5,86,2026-02-28,11800.00,Payroll Run,Monthly payroll - February 2026,paid
+274,10,5,86,2026-02-28,16800.00,Payroll Run,Monthly payroll - February 2026,paid
+275,11,5,86,2026-02-28,17700.00,Payroll Run,Monthly payroll - February 2026,paid
+276,12,5,86,2026-02-28,20100.00,Payroll Run,Monthly payroll - February 2026,paid
+277,13,5,86,2026-02-28,17500.00,Payroll Run,Monthly payroll - February 2026,paid
+278,14,5,99,2026-02-28,13800.00,Payroll Run,Monthly payroll - February 2026,paid
+279,15,5,99,2026-02-28,17000.00,Payroll Run,Monthly payroll - February 2026,paid
+280,16,5,106,2026-02-28,16600.00,Payroll Run,Monthly payroll - February 2026,paid
+281,1,1,43,2026-03-01,26000.00,Rao Properties LLP,Rent - March 2026,paid
+282,2,1,43,2026-03-01,34700.00,Nair Estates,Rent - March 2026,paid
+283,4,1,43,2026-03-01,34800.00,Kapoor Realty and Estates,Rent - March 2026,paid
+284,15,1,99,2026-03-01,8200.00,Kapoor Realty and Estates,Rent - March 2026,approved
+285,3,1,43,2026-03-02,31700.00,Rao Properties LLP,Rent - March 2026,paid
+286,7,1,86,2026-03-02,25100.00,Nair Estates,Rent - March 2026,paid
+287,9,1,86,2026-03-02,28900.00,Gupta Commercial Spaces,Rent - March 2026,paid
+288,13,1,86,2026-03-02,14100.00,Mehra Holdings,Rent - March 2026,paid
+289,14,1,99,2026-03-02,6800.00,Nair Estates,Rent - March 2026,paid
+290,16,1,106,2026-03-02,12800.00,Rao Properties LLP,Rent - March 2026,paid
+291,5,1,43,2026-03-03,32200.00,Mehra Holdings,Rent - March 2026,paid
+292,6,1,43,2026-03-03,39000.00,Mehra Holdings,Rent - March 2026,approved
+293,6,10,43,2026-03-03,1200.00,Stationery Hub,Miscellaneous - March 2026,paid
+294,8,1,86,2026-03-03,21200.00,Rao Properties LLP,Rent - March 2026,paid
+295,10,1,86,2026-03-03,19300.00,Mehra Holdings,Rent - March 2026,paid
+296,11,1,86,2026-03-03,21300.00,Gupta Commercial Spaces,Rent - March 2026,approved
+297,12,1,86,2026-03-03,26400.00,Kapoor Realty and Estates,Rent - March 2026,paid
+298,4,10,43,2026-03-04,500.00,Local Vendor,Miscellaneous - March 2026,paid
+299,10,6,86,2026-03-04,5000.00,Spark Social Studio,Marketing and Promotions - March 2026,paid
+300,10,10,86,2026-03-04,500.00,Stationery Hub,Miscellaneous - March 2026,paid
+301,6,6,43,2026-03-05,10800.00,LocalReach Ads,Marketing and Promotions - March 2026,paid
+302,15,10,99,2026-03-05,900.00,Office Mart,Miscellaneous - March 2026,paid
+303,8,10,86,2026-03-06,500.00,Office Mart,Miscellaneous - March 2026,paid
+304,9,4,86,2026-03-06,2500.00,Anand Supplies,Housekeeping and Supplies - March 2026,paid
+305,9,6,86,2026-03-06,1800.00,Pixel Print and Media,Marketing and Promotions - March 2026,paid
+306,10,4,86,2026-03-06,2700.00,Anand Supplies,Housekeeping and Supplies - March 2026,paid
+307,12,4,86,2026-03-06,3200.00,CleanSweep Housekeeping,Housekeeping and Supplies - March 2026,paid
+308,13,4,86,2026-03-06,2800.00,Anand Supplies,Housekeeping and Supplies - March 2026,paid
+309,15,4,99,2026-03-06,2400.00,Kaveri Facility Services,Housekeeping and Supplies - March 2026,paid
+310,1,4,43,2026-03-07,3300.00,Kaveri Facility Services,Housekeeping and Supplies - March 2026,paid
+311,2,7,43,2026-03-07,1100.00,NetLink Broadband,Software and Internet - March 2026,paid
+312,4,4,43,2026-03-07,5000.00,Kaveri Facility Services,Housekeeping and Supplies - March 2026,paid
+313,4,7,43,2026-03-07,600.00,CloudDesk Software,Software and Internet - March 2026,paid
+314,6,7,43,2026-03-07,1900.00,CloudDesk Software,Software and Internet - March 2026,paid
+315,10,7,86,2026-03-07,1100.00,SecureEye CCTV Services,Software and Internet - March 2026,paid
+316,12,3,86,2026-03-07,900.00,FitServe India,Equipment Maintenance - March 2026,paid
+317,12,6,86,2026-03-07,4500.00,Pixel Print and Media,Marketing and Promotions - March 2026,paid
+318,12,7,86,2026-03-07,700.00,CloudDesk Software,Software and Internet - March 2026,paid
+319,13,7,86,2026-03-07,1100.00,NetLink Broadband,Software and Internet - March 2026,paid
+320,14,7,99,2026-03-07,600.00,CloudDesk Software,Software and Internet - March 2026,paid
+321,16,4,106,2026-03-07,3100.00,Anand Supplies,Housekeeping and Supplies - March 2026,paid
+322,2,4,43,2026-03-08,4800.00,Kaveri Facility Services,Housekeeping and Supplies - March 2026,approved
+323,3,4,43,2026-03-08,2900.00,CleanSweep Housekeeping,Housekeeping and Supplies - March 2026,paid
+324,7,4,86,2026-03-08,2700.00,Anand Supplies,Housekeeping and Supplies - March 2026,paid
+325,8,4,86,2026-03-08,3500.00,Anand Supplies,Housekeeping and Supplies - March 2026,paid
+326,11,7,86,2026-03-08,1000.00,SecureEye CCTV Services,Software and Internet - March 2026,paid
+327,12,10,86,2026-03-08,700.00,Local Vendor,Miscellaneous - March 2026,paid
+328,14,10,99,2026-03-08,500.00,Stationery Hub,Miscellaneous - March 2026,rejected
+329,1,3,43,2026-03-09,2500.00,Muscle Care Engineers,Equipment Maintenance - March 2026,paid
+330,3,7,43,2026-03-09,1100.00,SecureEye CCTV Services,Software and Internet - March 2026,rejected
+331,5,6,43,2026-03-09,3300.00,RedBrick Outdoor,Marketing and Promotions - March 2026,paid
+332,5,7,43,2026-03-09,700.00,CloudDesk Software,Software and Internet - March 2026,paid
+333,6,4,43,2026-03-09,9100.00,Anand Supplies,Housekeeping and Supplies - March 2026,paid
+334,14,4,99,2026-03-09,2000.00,Anand Supplies,Housekeeping and Supplies - March 2026,paid
+335,5,4,43,2026-03-10,3800.00,Kaveri Facility Services,Housekeeping and Supplies - March 2026,paid
+336,8,2,86,2026-03-10,9500.00,State Power Distribution Company,Electricity and Utilities - March 2026,paid
+337,10,2,86,2026-03-10,7300.00,City Water Board,Electricity and Utilities - March 2026,paid
+338,10,3,86,2026-03-10,1900.00,FitServe India,Equipment Maintenance - March 2026,paid
+339,11,4,86,2026-03-10,3400.00,Anand Supplies,Housekeeping and Supplies - March 2026,paid
+340,14,2,99,2026-03-10,2900.00,City Water Board,Electricity and Utilities - March 2026,paid
+341,15,3,99,2026-03-10,1300.00,FitServe India,Equipment Maintenance - March 2026,paid
+342,15,7,99,2026-03-10,700.00,NetLink Broadband,Software and Internet - March 2026,approved
+343,16,2,106,2026-03-10,6900.00,Bharat Diesel Supplies,Electricity and Utilities - March 2026,paid
+344,3,2,43,2026-03-11,8100.00,City Water Board,Electricity and Utilities - March 2026,paid
+345,4,2,43,2026-03-11,9400.00,State Power Distribution Company,Electricity and Utilities - March 2026,paid
+346,4,3,43,2026-03-11,6200.00,Sharma Gym Equipment Repairs,Equipment Maintenance - March 2026,paid
+347,8,7,86,2026-03-11,1200.00,CloudDesk Software,Software and Internet - March 2026,paid
+348,11,2,86,2026-03-11,3600.00,State Power Distribution Company,Electricity and Utilities - March 2026,paid
+349,13,2,86,2026-03-11,4000.00,State Power Distribution Company,Electricity and Utilities - March 2026,paid
+350,2,3,43,2026-03-12,2200.00,FitServe India,Equipment Maintenance - March 2026,paid
+351,2,10,43,2026-03-12,1200.00,Stationery Hub,Miscellaneous - March 2026,paid
+352,3,3,43,2026-03-12,1900.00,TechnoFit Services,Equipment Maintenance - March 2026,approved
+353,3,6,43,2026-03-12,3500.00,Spark Social Studio,Marketing and Promotions - March 2026,paid
+354,6,2,43,2026-03-12,17300.00,City Water Board,Electricity and Utilities - March 2026,paid
+355,7,2,86,2026-03-12,4800.00,Bharat Diesel Supplies,Electricity and Utilities - March 2026,paid
+356,7,10,86,2026-03-12,600.00,Office Mart,Miscellaneous - March 2026,approved
+357,11,10,86,2026-03-12,500.00,Stationery Hub,Miscellaneous - March 2026,paid
+358,16,7,106,2026-03-12,1000.00,NetLink Broadband,Software and Internet - March 2026,paid
+359,1,7,43,2026-03-13,600.00,CloudDesk Software,Software and Internet - March 2026,paid
+360,7,7,86,2026-03-13,800.00,NetLink Broadband,Software and Internet - March 2026,paid
+361,9,7,86,2026-03-13,600.00,SecureEye CCTV Services,Software and Internet - March 2026,paid
+362,13,3,86,2026-03-13,1800.00,FitServe India,Equipment Maintenance - March 2026,paid
+363,2,6,43,2026-03-14,5800.00,LocalReach Ads,Marketing and Promotions - March 2026,paid
+364,3,10,43,2026-03-14,500.00,Stationery Hub,Miscellaneous - March 2026,paid
+365,15,2,99,2026-03-14,4300.00,City Water Board,Electricity and Utilities - March 2026,approved
+366,16,3,106,2026-03-14,800.00,Sharma Gym Equipment Repairs,Equipment Maintenance - March 2026,paid
+367,1,2,43,2026-03-15,5800.00,City Water Board,Electricity and Utilities - March 2026,paid
+368,2,2,43,2026-03-15,7000.00,State Power Distribution Company,Electricity and Utilities - March 2026,paid
+369,5,2,43,2026-03-15,10200.00,State Power Distribution Company,Electricity and Utilities - March 2026,paid
+370,9,2,86,2026-03-15,4200.00,State Power Distribution Company,Electricity and Utilities - March 2026,paid
+371,9,3,86,2026-03-15,1100.00,Sharma Gym Equipment Repairs,Equipment Maintenance - March 2026,paid
+372,12,2,86,2026-03-15,10200.00,City Water Board,Electricity and Utilities - March 2026,paid
+373,1,6,43,2026-03-16,1500.00,Spark Social Studio,Marketing and Promotions - March 2026,paid
+374,8,6,86,2026-03-16,4000.00,Pixel Print and Media,Marketing and Promotions - March 2026,paid
+375,16,10,106,2026-03-16,900.00,Local Vendor,Miscellaneous - March 2026,paid
+376,13,10,86,2026-03-17,500.00,Local Vendor,Miscellaneous - March 2026,paid
+377,14,9,99,2026-03-17,11300.00,Coolbreeze AC Works,Repairs and Renovation - March 2026,paid
+378,16,6,106,2026-03-17,2200.00,Spark Social Studio,Marketing and Promotions - March 2026,paid
+379,11,6,86,2026-03-18,2400.00,Spark Social Studio,Marketing and Promotions - March 2026,paid
+380,14,3,99,2026-03-18,1900.00,FitServe India,Equipment Maintenance - March 2026,paid
+381,1,10,43,2026-03-19,600.00,Local Vendor,Miscellaneous - March 2026,paid
+382,3,9,43,2026-03-19,10200.00,Floorcraft Contractors,Repairs and Renovation - March 2026,paid
+383,7,6,86,2026-03-19,5700.00,RedBrick Outdoor,Marketing and Promotions - March 2026,paid
+384,13,6,86,2026-03-20,3800.00,RedBrick Outdoor,Marketing and Promotions - March 2026,paid
+385,14,6,99,2026-03-20,4400.00,Spark Social Studio,Marketing and Promotions - March 2026,paid
+386,15,6,99,2026-03-20,4100.00,Pixel Print and Media,Marketing and Promotions - March 2026,paid
+387,4,6,43,2026-03-21,4200.00,Pixel Print and Media,Marketing and Promotions - March 2026,paid
+388,5,3,43,2026-03-21,1700.00,Sharma Gym Equipment Repairs,Equipment Maintenance - March 2026,paid
+389,9,10,86,2026-03-21,500.00,Local Vendor,Miscellaneous - March 2026,rejected
+390,6,3,43,2026-03-23,2500.00,TechnoFit Services,Equipment Maintenance - March 2026,paid
+391,8,3,86,2026-03-23,2000.00,Sharma Gym Equipment Repairs,Equipment Maintenance - March 2026,paid
+392,11,3,86,2026-03-23,2000.00,FitServe India,Equipment Maintenance - March 2026,paid
+393,5,10,43,2026-03-25,1000.00,Office Mart,Miscellaneous - March 2026,paid
+394,7,3,86,2026-03-25,1300.00,FitServe India,Equipment Maintenance - March 2026,approved
+395,12,9,86,2026-03-26,14100.00,Floorcraft Contractors,Repairs and Renovation - March 2026,paid
+396,14,9,99,2026-03-27,6600.00,Verma Interiors,Repairs and Renovation - March 2026,paid
+397,9,9,86,2026-03-28,9200.00,Coolbreeze AC Works,Repairs and Renovation - March 2026,paid
+398,1,5,43,2026-03-31,19400.00,Payroll Run,Monthly payroll - March 2026,paid
+399,2,5,43,2026-03-31,27300.00,Payroll Run,Monthly payroll - March 2026,paid
+400,3,5,43,2026-03-31,16300.00,Payroll Run,Monthly payroll - March 2026,paid
+401,4,5,43,2026-03-31,20100.00,Payroll Run,Monthly payroll - March 2026,paid
+402,5,5,43,2026-03-31,21400.00,Payroll Run,Monthly payroll - March 2026,paid
+403,6,5,43,2026-03-31,29400.00,Payroll Run,Monthly payroll - March 2026,paid
+404,7,5,86,2026-03-31,17100.00,Payroll Run,Monthly payroll - March 2026,paid
+405,8,5,86,2026-03-31,19400.00,Payroll Run,Monthly payroll - March 2026,paid
+406,9,5,86,2026-03-31,11800.00,Payroll Run,Monthly payroll - March 2026,paid
+407,10,5,86,2026-03-31,16800.00,Payroll Run,Monthly payroll - March 2026,paid
+408,11,5,86,2026-03-31,17700.00,Payroll Run,Monthly payroll - March 2026,paid
+409,12,5,86,2026-03-31,20100.00,Payroll Run,Monthly payroll - March 2026,paid
+410,13,5,86,2026-03-31,17500.00,Payroll Run,Monthly payroll - March 2026,paid
+411,14,5,99,2026-03-31,13800.00,Payroll Run,Monthly payroll - March 2026,paid
+412,15,5,99,2026-03-31,17000.00,Payroll Run,Monthly payroll - March 2026,paid
+413,16,5,106,2026-03-31,16600.00,Payroll Run,Monthly payroll - March 2026,paid
+414,7,1,86,2026-04-01,25100.00,Gupta Commercial Spaces,Rent - April 2026,paid
+415,10,1,86,2026-04-01,19300.00,Rao Properties LLP,Rent - April 2026,paid
+416,12,1,86,2026-04-01,26400.00,Rao Properties LLP,Rent - April 2026,paid
+417,2,1,43,2026-04-02,34700.00,Mehra Holdings,Rent - April 2026,paid
+418,3,1,43,2026-04-02,31700.00,Mehra Holdings,Rent - April 2026,paid
+419,4,1,43,2026-04-02,34800.00,Mehra Holdings,Rent - April 2026,paid
+420,8,1,86,2026-04-02,21200.00,Nair Estates,Rent - April 2026,paid
+421,9,1,86,2026-04-02,28900.00,Gupta Commercial Spaces,Rent - April 2026,paid
+422,11,1,86,2026-04-02,21300.00,Nair Estates,Rent - April 2026,paid
+423,13,1,86,2026-04-02,14100.00,Shah Realty Partners,Rent - April 2026,paid
+424,15,1,99,2026-04-02,8200.00,Shah Realty Partners,Rent - April 2026,paid
+425,16,1,106,2026-04-02,12800.00,Mehra Holdings,Rent - April 2026,paid
+426,1,1,43,2026-04-03,26000.00,Gupta Commercial Spaces,Rent - April 2026,paid
+427,2,10,43,2026-04-03,900.00,Stationery Hub,Miscellaneous - April 2026,paid
+428,5,1,43,2026-04-03,32200.00,Mehra Holdings,Rent - April 2026,paid
+429,6,1,43,2026-04-03,39000.00,Gupta Commercial Spaces,Rent - April 2026,paid
+430,12,10,86,2026-04-03,800.00,Stationery Hub,Miscellaneous - April 2026,paid
+431,14,1,99,2026-04-03,6800.00,Nair Estates,Rent - April 2026,paid
+432,3,10,43,2026-04-04,700.00,Office Mart,Miscellaneous - April 2026,paid
+433,8,6,86,2026-04-05,1600.00,RedBrick Outdoor,Marketing and Promotions - April 2026,paid
+434,1,4,43,2026-04-06,3600.00,CleanSweep Housekeeping,Housekeeping and Supplies - April 2026,paid
+435,2,4,43,2026-04-06,4600.00,Kaveri Facility Services,Housekeeping and Supplies - April 2026,paid
+436,3,3,43,2026-04-06,900.00,TechnoFit Services,Equipment Maintenance - April 2026,paid
+437,4,4,43,2026-04-06,4700.00,CleanSweep Housekeeping,Housekeeping and Supplies - April 2026,paid
+438,5,4,43,2026-04-06,5500.00,Anand Supplies,Housekeeping and Supplies - April 2026,paid
+439,8,4,86,2026-04-06,3700.00,Kaveri Facility Services,Housekeeping and Supplies - April 2026,paid
+440,9,10,86,2026-04-06,500.00,Stationery Hub,Miscellaneous - April 2026,paid
+441,10,10,86,2026-04-06,1000.00,Office Mart,Miscellaneous - April 2026,paid
+442,12,3,86,2026-04-06,2200.00,Muscle Care Engineers,Equipment Maintenance - April 2026,paid
+443,13,10,86,2026-04-06,500.00,Stationery Hub,Miscellaneous - April 2026,paid
+444,1,6,43,2026-04-07,3000.00,Spark Social Studio,Marketing and Promotions - April 2026,paid
+445,2,6,43,2026-04-07,2900.00,LocalReach Ads,Marketing and Promotions - April 2026,paid
+446,6,4,43,2026-04-07,6600.00,Anand Supplies,Housekeeping and Supplies - April 2026,paid
+447,7,4,86,2026-04-07,2600.00,Kaveri Facility Services,Housekeeping and Supplies - April 2026,paid
+448,14,3,99,2026-04-07,700.00,FitServe India,Equipment Maintenance - April 2026,paid
+449,14,4,99,2026-04-07,1700.00,CleanSweep Housekeeping,Housekeeping and Supplies - April 2026,approved
+450,15,3,99,2026-04-07,1600.00,FitServe India,Equipment Maintenance - April 2026,paid
+451,16,6,106,2026-04-07,3900.00,LocalReach Ads,Marketing and Promotions - April 2026,paid
+452,1,7,43,2026-04-08,600.00,CloudDesk Software,Software and Internet - April 2026,paid
+453,2,9,43,2026-04-08,12800.00,Floorcraft Contractors,Repairs and Renovation - April 2026,paid
+454,4,6,43,2026-04-08,2800.00,RedBrick Outdoor,Marketing and Promotions - April 2026,paid
+455,12,6,86,2026-04-08,2700.00,RedBrick Outdoor,Marketing and Promotions - April 2026,paid
+456,2,7,43,2026-04-09,1100.00,NetLink Broadband,Software and Internet - April 2026,paid
+457,3,4,43,2026-04-09,5000.00,Kaveri Facility Services,Housekeeping and Supplies - April 2026,paid
+458,3,7,43,2026-04-09,700.00,NetLink Broadband,Software and Internet - April 2026,paid
+459,10,7,86,2026-04-09,700.00,SecureEye CCTV Services,Software and Internet - April 2026,paid
+460,11,4,86,2026-04-09,2700.00,Anand Supplies,Housekeeping and Supplies - April 2026,paid
+461,11,6,86,2026-04-09,5500.00,Spark Social Studio,Marketing and Promotions - April 2026,paid
+462,11,7,86,2026-04-09,900.00,NetLink Broadband,Software and Internet - April 2026,paid
+463,12,4,86,2026-04-09,5100.00,CleanSweep Housekeeping,Housekeeping and Supplies - April 2026,paid
+464,12,7,86,2026-04-09,600.00,CloudDesk Software,Software and Internet - April 2026,paid
+465,13,4,86,2026-04-09,2800.00,Anand Supplies,Housekeeping and Supplies - April 2026,paid
+466,14,7,99,2026-04-09,500.00,SecureEye CCTV Services,Software and Internet - April 2026,paid
+467,2,3,43,2026-04-10,1600.00,Sharma Gym Equipment Repairs,Equipment Maintenance - April 2026,paid
+468,6,2,43,2026-04-10,15300.00,City Water Board,Electricity and Utilities - April 2026,paid
+469,8,7,86,2026-04-10,1100.00,CloudDesk Software,Software and Internet - April 2026,paid
+470,9,4,86,2026-04-10,2700.00,Kaveri Facility Services,Housekeeping and Supplies - April 2026,paid
+471,10,4,86,2026-04-10,2500.00,Kaveri Facility Services,Housekeeping and Supplies - April 2026,paid
+472,15,4,99,2026-04-10,2600.00,Anand Supplies,Housekeeping and Supplies - April 2026,paid
+473,15,10,99,2026-04-10,600.00,Office Mart,Miscellaneous - April 2026,paid
+474,16,4,106,2026-04-10,3000.00,Anand Supplies,Housekeeping and Supplies - April 2026,paid
+475,16,7,106,2026-04-10,1100.00,NetLink Broadband,Software and Internet - April 2026,paid
+476,3,8,43,2026-04-11,1700.00,Municipal Corporation Licensing,Quarterly insurance premium,paid
+477,5,7,43,2026-04-11,1100.00,CloudDesk Software,Software and Internet - April 2026,approved
+478,6,10,43,2026-04-11,800.00,Local Vendor,Miscellaneous - April 2026,paid
+479,7,2,86,2026-04-11,10400.00,Bharat Diesel Supplies,Electricity and Utilities - April 2026,paid
+480,7,6,86,2026-04-11,2300.00,Pixel Print and Media,Marketing and Promotions - April 2026,paid
+481,7,7,86,2026-04-11,1000.00,SecureEye CCTV Services,Software and Internet - April 2026,paid
+482,7,8,86,2026-04-11,1500.00,Municipal Corporation Licensing,Quarterly insurance premium,paid
+483,7,10,86,2026-04-11,500.00,Stationery Hub,Miscellaneous - April 2026,paid
+484,9,2,86,2026-04-11,7400.00,Bharat Diesel Supplies,Electricity and Utilities - April 2026,paid
+485,9,8,86,2026-04-11,1300.00,Municipal Corporation Licensing,Quarterly insurance premium,rejected
+486,14,10,99,2026-04-11,800.00,Stationery Hub,Miscellaneous - April 2026,paid
+487,16,2,106,2026-04-11,9000.00,State Power Distribution Company,Electricity and Utilities - April 2026,paid
+488,5,8,43,2026-04-12,2000.00,Suraksha General Insurance,Quarterly insurance premium,paid
+489,6,7,43,2026-04-12,1400.00,SecureEye CCTV Services,Software and Internet - April 2026,paid
+490,9,7,86,2026-04-12,500.00,NetLink Broadband,Software and Internet - April 2026,paid
+491,12,2,86,2026-04-12,12500.00,State Power Distribution Company,Electricity and Utilities - April 2026,paid
+492,13,7,86,2026-04-12,1000.00,CloudDesk Software,Software and Internet - April 2026,paid
+493,14,6,99,2026-04-12,3700.00,Spark Social Studio,Marketing and Promotions - April 2026,paid
+494,15,2,99,2026-04-12,5800.00,Bharat Diesel Supplies,Electricity and Utilities - April 2026,paid
+495,15,8,99,2026-04-12,1600.00,Suraksha General Insurance,Quarterly insurance premium,paid
+496,1,2,43,2026-04-13,11500.00,Bharat Diesel Supplies,Electricity and Utilities - April 2026,paid
+497,3,2,43,2026-04-13,7800.00,City Water Board,Electricity and Utilities - April 2026,paid
+498,4,7,43,2026-04-13,1300.00,NetLink Broadband,Software and Internet - April 2026,paid
+499,9,6,86,2026-04-13,1300.00,LocalReach Ads,Marketing and Promotions - April 2026,paid
+500,10,2,86,2026-04-13,8500.00,City Water Board,Electricity and Utilities - April 2026,paid
+501,11,3,86,2026-04-13,1800.00,FitServe India,Equipment Maintenance - April 2026,paid
+502,13,2,86,2026-04-13,8700.00,State Power Distribution Company,Electricity and Utilities - April 2026,approved
+503,15,7,99,2026-04-13,1000.00,SecureEye CCTV Services,Software and Internet - April 2026,paid
+504,4,2,43,2026-04-14,11500.00,Bharat Diesel Supplies,Electricity and Utilities - April 2026,paid
+505,5,2,43,2026-04-14,15400.00,State Power Distribution Company,Electricity and Utilities - April 2026,paid
+506,6,3,43,2026-04-14,4900.00,FitServe India,Equipment Maintenance - April 2026,paid
+507,6,6,43,2026-04-14,8900.00,Spark Social Studio,Marketing and Promotions - April 2026,paid
+508,8,2,86,2026-04-14,11900.00,Bharat Diesel Supplies,Electricity and Utilities - April 2026,paid
+509,12,8,86,2026-04-14,1900.00,Municipal Corporation Licensing,Quarterly insurance premium,paid
+510,13,3,86,2026-04-14,2100.00,TechnoFit Services,Equipment Maintenance - April 2026,paid
+511,14,2,99,2026-04-14,5300.00,Bharat Diesel Supplies,Electricity and Utilities - April 2026,paid
+512,2,2,43,2026-04-15,10900.00,City Water Board,Electricity and Utilities - April 2026,paid
+513,10,6,86,2026-04-15,4700.00,LocalReach Ads,Marketing and Promotions - April 2026,paid
+514,11,2,86,2026-04-15,6300.00,Bharat Diesel Supplies,Electricity and Utilities - April 2026,paid
+515,14,9,99,2026-04-15,2900.00,Verma Interiors,Repairs and Renovation - April 2026,paid
+516,8,10,86,2026-04-16,500.00,Local Vendor,Miscellaneous - April 2026,paid
+517,15,6,99,2026-04-16,2400.00,RedBrick Outdoor,Marketing and Promotions - April 2026,paid
+518,4,3,43,2026-04-17,900.00,Sharma Gym Equipment Repairs,Equipment Maintenance - April 2026,paid
+519,4,10,43,2026-04-17,1100.00,Office Mart,Miscellaneous - April 2026,paid
+520,8,3,86,2026-04-17,2200.00,TechnoFit Services,Equipment Maintenance - April 2026,paid
+521,8,8,86,2026-04-17,2000.00,Suraksha General Insurance,Quarterly insurance premium,paid
+522,10,3,86,2026-04-17,1700.00,FitServe India,Equipment Maintenance - April 2026,paid
+523,11,8,86,2026-04-17,1500.00,Suraksha General Insurance,Quarterly insurance premium,paid
+524,1,3,43,2026-04-18,1600.00,TechnoFit Services,Equipment Maintenance - April 2026,paid
+525,1,10,43,2026-04-18,500.00,Stationery Hub,Miscellaneous - April 2026,paid
+526,2,8,43,2026-04-18,2600.00,Municipal Corporation Licensing,Quarterly insurance premium,paid
+527,5,3,43,2026-04-19,3000.00,Muscle Care Engineers,Equipment Maintenance - April 2026,paid
+528,5,6,43,2026-04-19,7700.00,RedBrick Outdoor,Marketing and Promotions - April 2026,paid
+529,10,8,86,2026-04-19,1500.00,Fire Safety Department,Quarterly insurance premium,paid
+530,1,8,43,2026-04-20,1300.00,Fire Safety Department,Quarterly insurance premium,paid
+531,6,8,43,2026-04-20,2700.00,Suraksha General Insurance,Quarterly insurance premium,paid
+532,13,6,86,2026-04-20,4000.00,RedBrick Outdoor,Marketing and Promotions - April 2026,paid
+533,14,8,99,2026-04-20,1400.00,Suraksha General Insurance,Quarterly insurance premium,paid
+534,16,3,106,2026-04-20,1100.00,FitServe India,Equipment Maintenance - April 2026,paid
+535,16,8,106,2026-04-20,1800.00,Municipal Corporation Licensing,Quarterly insurance premium,paid
+536,3,6,43,2026-04-21,5900.00,LocalReach Ads,Marketing and Promotions - April 2026,paid
+537,4,8,43,2026-04-21,1700.00,Suraksha General Insurance,Quarterly insurance premium,paid
+538,11,10,86,2026-04-21,1000.00,Office Mart,Miscellaneous - April 2026,paid
+539,13,8,86,2026-04-21,1300.00,Suraksha General Insurance,Quarterly insurance premium,paid
+540,16,10,106,2026-04-21,500.00,Office Mart,Miscellaneous - April 2026,paid
+541,7,3,86,2026-04-23,2300.00,Muscle Care Engineers,Equipment Maintenance - April 2026,paid
+542,5,10,43,2026-04-24,900.00,Stationery Hub,Miscellaneous - April 2026,paid
+543,9,3,86,2026-04-24,1100.00,Muscle Care Engineers,Equipment Maintenance - April 2026,paid
+544,8,9,86,2026-04-28,7800.00,Floorcraft Contractors,Repairs and Renovation - April 2026,paid
+545,1,5,43,2026-04-30,19400.00,Payroll Run,Monthly payroll - April 2026,paid
+546,2,5,43,2026-04-30,27300.00,Payroll Run,Monthly payroll - April 2026,paid
+547,3,5,43,2026-04-30,16300.00,Payroll Run,Monthly payroll - April 2026,paid
+548,4,5,43,2026-04-30,20100.00,Payroll Run,Monthly payroll - April 2026,paid
+549,5,5,43,2026-04-30,21400.00,Payroll Run,Monthly payroll - April 2026,paid
+550,6,5,43,2026-04-30,29400.00,Payroll Run,Monthly payroll - April 2026,paid
+551,7,5,86,2026-04-30,17100.00,Payroll Run,Monthly payroll - April 2026,paid
+552,8,5,86,2026-04-30,19400.00,Payroll Run,Monthly payroll - April 2026,paid
+553,9,5,86,2026-04-30,11800.00,Payroll Run,Monthly payroll - April 2026,paid
+554,10,5,86,2026-04-30,16800.00,Payroll Run,Monthly payroll - April 2026,paid
+555,11,5,86,2026-04-30,17700.00,Payroll Run,Monthly payroll - April 2026,paid
+556,12,5,86,2026-04-30,20100.00,Payroll Run,Monthly payroll - April 2026,paid
+557,13,5,86,2026-04-30,17500.00,Payroll Run,Monthly payroll - April 2026,paid
+558,14,5,99,2026-04-30,13800.00,Payroll Run,Monthly payroll - April 2026,paid
+559,15,5,99,2026-04-30,17000.00,Payroll Run,Monthly payroll - April 2026,paid
+560,16,5,106,2026-04-30,16600.00,Payroll Run,Monthly payroll - April 2026,paid
+561,1,1,43,2026-05-01,26000.00,Nair Estates,Rent - May 2026,paid
+562,2,1,43,2026-05-01,34700.00,Shah Realty Partners,Rent - May 2026,paid
+563,3,1,43,2026-05-01,31700.00,Shah Realty Partners,Rent - May 2026,paid
+564,4,1,43,2026-05-01,34800.00,Mehra Holdings,Rent - May 2026,paid
+565,5,1,43,2026-05-01,32200.00,Rao Properties LLP,Rent - May 2026,paid
+566,6,1,43,2026-05-01,39000.00,Shah Realty Partners,Rent - May 2026,paid
+567,9,1,86,2026-05-01,28900.00,Gupta Commercial Spaces,Rent - May 2026,paid
+568,10,1,86,2026-05-01,19300.00,Nair Estates,Rent - May 2026,paid
+569,14,1,99,2026-05-01,6800.00,Mehra Holdings,Rent - May 2026,paid
+570,7,1,86,2026-05-02,25100.00,Shah Realty Partners,Rent - May 2026,paid
+571,11,1,86,2026-05-02,21300.00,Rao Properties LLP,Rent - May 2026,paid
+572,12,1,86,2026-05-02,26400.00,Nair Estates,Rent - May 2026,paid
+573,15,1,99,2026-05-02,8200.00,Mehra Holdings,Rent - May 2026,paid
+574,8,1,86,2026-05-03,21200.00,Kapoor Realty and Estates,Rent - May 2026,paid
+575,10,10,86,2026-05-03,500.00,Office Mart,Miscellaneous - May 2026,paid
+576,13,1,86,2026-05-03,14100.00,Nair Estates,Rent - May 2026,paid
+577,16,1,106,2026-05-03,12800.00,Rao Properties LLP,Rent - May 2026,paid
+578,1,6,43,2026-05-05,5300.00,RedBrick Outdoor,Marketing and Promotions - May 2026,paid
+579,2,3,43,2026-05-05,1900.00,TechnoFit Services,Equipment Maintenance - May 2026,paid
+580,9,6,86,2026-05-05,4100.00,Pixel Print and Media,Marketing and Promotions - May 2026,paid
+581,14,10,99,2026-05-05,500.00,Stationery Hub,Miscellaneous - May 2026,paid
+582,2,4,43,2026-05-06,5600.00,Anand Supplies,Housekeeping and Supplies - May 2026,paid
+583,5,3,43,2026-05-06,2300.00,Muscle Care Engineers,Equipment Maintenance - May 2026,paid
+584,6,4,43,2026-05-06,8800.00,Kaveri Facility Services,Housekeeping and Supplies - May 2026,paid
+585,8,4,86,2026-05-06,4300.00,CleanSweep Housekeeping,Housekeeping and Supplies - May 2026,paid
+586,13,4,86,2026-05-06,3600.00,CleanSweep Housekeeping,Housekeeping and Supplies - May 2026,paid
+587,14,4,99,2026-05-06,1600.00,Anand Supplies,Housekeeping and Supplies - May 2026,paid
+588,1,4,43,2026-05-07,3300.00,Anand Supplies,Housekeeping and Supplies - May 2026,paid
+589,2,6,43,2026-05-07,5600.00,Pixel Print and Media,Marketing and Promotions - May 2026,approved
+590,5,4,43,2026-05-07,3700.00,CleanSweep Housekeeping,Housekeeping and Supplies - May 2026,paid
+591,6,10,43,2026-05-07,1100.00,Office Mart,Miscellaneous - May 2026,paid
+592,10,3,86,2026-05-07,2200.00,Sharma Gym Equipment Repairs,Equipment Maintenance - May 2026,paid
+593,10,7,86,2026-05-07,1000.00,CloudDesk Software,Software and Internet - May 2026,paid
+594,12,6,86,2026-05-07,6200.00,Spark Social Studio,Marketing and Promotions - May 2026,paid
+595,16,4,106,2026-05-07,2300.00,Kaveri Facility Services,Housekeeping and Supplies - May 2026,paid
+596,2,7,43,2026-05-08,1600.00,SecureEye CCTV Services,Software and Internet - May 2026,paid
+597,4,4,43,2026-05-08,4000.00,Anand Supplies,Housekeeping and Supplies - May 2026,paid
+598,10,6,86,2026-05-08,5000.00,RedBrick Outdoor,Marketing and Promotions - May 2026,paid
+599,11,7,86,2026-05-08,1000.00,CloudDesk Software,Software and Internet - May 2026,paid
+600,15,7,99,2026-05-08,500.00,NetLink Broadband,Software and Internet - May 2026,paid
+601,3,3,43,2026-05-09,1700.00,FitServe India,Equipment Maintenance - May 2026,paid
+602,3,10,43,2026-05-09,500.00,Local Vendor,Miscellaneous - May 2026,paid
+603,7,4,86,2026-05-09,3400.00,CleanSweep Housekeeping,Housekeeping and Supplies - May 2026,paid
+604,7,7,86,2026-05-09,600.00,NetLink Broadband,Software and Internet - May 2026,paid
+605,9,3,86,2026-05-09,1700.00,Sharma Gym Equipment Repairs,Equipment Maintenance - May 2026,paid
+606,12,7,86,2026-05-09,1000.00,NetLink Broadband,Software and Internet - May 2026,paid
+607,15,4,99,2026-05-09,2500.00,Anand Supplies,Housekeeping and Supplies - May 2026,paid
+608,3,4,43,2026-05-10,2900.00,CleanSweep Housekeeping,Housekeeping and Supplies - May 2026,paid
+609,3,6,43,2026-05-10,5000.00,Pixel Print and Media,Marketing and Promotions - May 2026,paid
+610,4,2,43,2026-05-10,11400.00,City Water Board,Electricity and Utilities - May 2026,approved
+611,4,6,43,2026-05-10,6300.00,Pixel Print and Media,Marketing and Promotions - May 2026,paid
+612,9,4,86,2026-05-10,2500.00,CleanSweep Housekeeping,Housekeeping and Supplies - May 2026,paid
+613,10,4,86,2026-05-10,4300.00,CleanSweep Housekeeping,Housekeeping and Supplies - May 2026,paid
+614,11,2,86,2026-05-10,5600.00,Bharat Diesel Supplies,Electricity and Utilities - May 2026,paid
+615,11,4,86,2026-05-10,2700.00,CleanSweep Housekeeping,Housekeeping and Supplies - May 2026,paid
+616,12,4,86,2026-05-10,3800.00,CleanSweep Housekeeping,Housekeeping and Supplies - May 2026,paid
+617,13,7,86,2026-05-10,500.00,SecureEye CCTV Services,Software and Internet - May 2026,paid
+618,14,2,99,2026-05-10,6600.00,Bharat Diesel Supplies,Electricity and Utilities - May 2026,paid
+619,3,7,43,2026-05-11,600.00,NetLink Broadband,Software and Internet - May 2026,paid
+620,4,7,43,2026-05-11,800.00,NetLink Broadband,Software and Internet - May 2026,paid
+621,6,7,43,2026-05-11,800.00,CloudDesk Software,Software and Internet - May 2026,paid
+622,8,7,86,2026-05-11,600.00,SecureEye CCTV Services,Software and Internet - May 2026,paid
+623,10,2,86,2026-05-11,9300.00,City Water Board,Electricity and Utilities - May 2026,paid
+624,12,2,86,2026-05-11,7000.00,City Water Board,Electricity and Utilities - May 2026,paid
+625,13,2,86,2026-05-11,5100.00,Bharat Diesel Supplies,Electricity and Utilities - May 2026,paid
+626,14,7,99,2026-05-11,800.00,NetLink Broadband,Software and Internet - May 2026,paid
+627,16,2,106,2026-05-11,9500.00,Bharat Diesel Supplies,Electricity and Utilities - May 2026,paid
+628,2,10,43,2026-05-12,1200.00,Office Mart,Miscellaneous - May 2026,paid
+629,6,2,43,2026-05-12,25600.00,Bharat Diesel Supplies,Electricity and Utilities - May 2026,paid
+630,7,2,86,2026-05-12,5500.00,State Power Distribution Company,Electricity and Utilities - May 2026,paid
+631,15,2,99,2026-05-12,4700.00,State Power Distribution Company,Electricity and Utilities - May 2026,paid
+632,1,2,43,2026-05-13,11500.00,Bharat Diesel Supplies,Electricity and Utilities - May 2026,paid
+633,1,7,43,2026-05-13,600.00,SecureEye CCTV Services,Software and Internet - May 2026,approved
+634,5,7,43,2026-05-13,1000.00,SecureEye CCTV Services,Software and Internet - May 2026,paid
+635,8,9,86,2026-05-13,15100.00,Coolbreeze AC Works,Repairs and Renovation - May 2026,paid
+636,9,7,86,2026-05-13,700.00,CloudDesk Software,Software and Internet - May 2026,paid
+637,16,7,106,2026-05-13,500.00,CloudDesk Software,Software and Internet - May 2026,paid
+638,1,10,43,2026-05-14,700.00,Stationery Hub,Miscellaneous - May 2026,paid
+639,2,2,43,2026-05-14,17400.00,City Water Board,Electricity and Utilities - May 2026,paid
+640,8,2,86,2026-05-14,9500.00,City Water Board,Electricity and Utilities - May 2026,paid
+641,9,2,86,2026-05-14,3800.00,City Water Board,Electricity and Utilities - May 2026,paid
+642,11,6,86,2026-05-14,1400.00,LocalReach Ads,Marketing and Promotions - May 2026,paid
+643,12,3,86,2026-05-14,2200.00,TechnoFit Services,Equipment Maintenance - May 2026,paid
+644,13,6,86,2026-05-14,4900.00,LocalReach Ads,Marketing and Promotions - May 2026,paid
+645,13,10,86,2026-05-14,500.00,Stationery Hub,Miscellaneous - May 2026,paid
+646,14,3,99,2026-05-14,1000.00,FitServe India,Equipment Maintenance - May 2026,paid
+647,14,6,99,2026-05-14,1900.00,LocalReach Ads,Marketing and Promotions - May 2026,paid
+648,16,6,106,2026-05-14,3300.00,LocalReach Ads,Marketing and Promotions - May 2026,paid
+649,3,2,43,2026-05-15,7900.00,Bharat Diesel Supplies,Electricity and Utilities - May 2026,paid
+650,5,2,43,2026-05-15,10400.00,State Power Distribution Company,Electricity and Utilities - May 2026,paid
+651,7,10,86,2026-05-15,500.00,Local Vendor,Miscellaneous - May 2026,paid
+652,6,3,43,2026-05-16,3300.00,TechnoFit Services,Equipment Maintenance - May 2026,paid
+653,1,9,43,2026-05-17,4300.00,Floorcraft Contractors,Repairs and Renovation - May 2026,paid
+654,7,6,86,2026-05-17,3500.00,LocalReach Ads,Marketing and Promotions - May 2026,paid
+655,8,3,86,2026-05-17,1400.00,Muscle Care Engineers,Equipment Maintenance - May 2026,paid
+656,4,3,43,2026-05-18,4100.00,FitServe India,Equipment Maintenance - May 2026,paid
+657,6,6,43,2026-05-18,4500.00,LocalReach Ads,Marketing and Promotions - May 2026,paid
+658,13,3,86,2026-05-18,1500.00,TechnoFit Services,Equipment Maintenance - May 2026,paid
+659,15,3,99,2026-05-18,2200.00,FitServe India,Equipment Maintenance - May 2026,paid
+660,15,10,99,2026-05-18,500.00,Local Vendor,Miscellaneous - May 2026,paid
+661,4,10,43,2026-05-19,1100.00,Stationery Hub,Miscellaneous - May 2026,paid
+662,8,6,86,2026-05-19,4900.00,LocalReach Ads,Marketing and Promotions - May 2026,paid
+663,5,6,43,2026-05-20,6900.00,LocalReach Ads,Marketing and Promotions - May 2026,paid
+664,5,10,43,2026-05-20,1200.00,Stationery Hub,Miscellaneous - May 2026,paid
+665,7,3,86,2026-05-20,1000.00,Sharma Gym Equipment Repairs,Equipment Maintenance - May 2026,paid
+666,11,10,86,2026-05-20,600.00,Office Mart,Miscellaneous - May 2026,approved
+667,11,3,86,2026-05-21,2000.00,FitServe India,Equipment Maintenance - May 2026,paid
+668,15,6,99,2026-05-21,6000.00,RedBrick Outdoor,Marketing and Promotions - May 2026,paid
+669,9,10,86,2026-05-22,500.00,Stationery Hub,Miscellaneous - May 2026,paid
+670,1,3,43,2026-05-23,2500.00,FitServe India,Equipment Maintenance - May 2026,paid
+671,8,10,86,2026-05-23,500.00,Local Vendor,Miscellaneous - May 2026,paid
+672,16,3,106,2026-05-23,1200.00,Muscle Care Engineers,Equipment Maintenance - May 2026,approved
+673,16,10,106,2026-05-24,900.00,Stationery Hub,Miscellaneous - May 2026,paid
+674,12,10,86,2026-05-25,700.00,Stationery Hub,Miscellaneous - May 2026,approved
+675,4,9,43,2026-05-28,12000.00,Coolbreeze AC Works,Repairs and Renovation - May 2026,paid
+676,1,5,43,2026-05-31,19400.00,Payroll Run,Monthly payroll - May 2026,paid
+677,2,5,43,2026-05-31,27300.00,Payroll Run,Monthly payroll - May 2026,paid
+678,3,5,43,2026-05-31,16300.00,Payroll Run,Monthly payroll - May 2026,approved
+679,4,5,43,2026-05-31,20100.00,Payroll Run,Monthly payroll - May 2026,paid
+680,5,5,43,2026-05-31,21400.00,Payroll Run,Monthly payroll - May 2026,paid
+681,6,5,43,2026-05-31,29400.00,Payroll Run,Monthly payroll - May 2026,paid
+682,7,5,86,2026-05-31,17100.00,Payroll Run,Monthly payroll - May 2026,paid
+683,8,5,86,2026-05-31,19400.00,Payroll Run,Monthly payroll - May 2026,paid
+684,9,5,86,2026-05-31,11800.00,Payroll Run,Monthly payroll - May 2026,paid
+685,10,5,86,2026-05-31,16800.00,Payroll Run,Monthly payroll - May 2026,paid
+686,11,5,86,2026-05-31,17700.00,Payroll Run,Monthly payroll - May 2026,paid
+687,12,5,86,2026-05-31,20100.00,Payroll Run,Monthly payroll - May 2026,paid
+688,13,5,86,2026-05-31,17500.00,Payroll Run,Monthly payroll - May 2026,paid
+689,14,5,99,2026-05-31,13800.00,Payroll Run,Monthly payroll - May 2026,paid
+690,15,5,99,2026-05-31,17000.00,Payroll Run,Monthly payroll - May 2026,paid
+691,16,5,106,2026-05-31,16600.00,Payroll Run,Monthly payroll - May 2026,paid
+692,2,1,43,2026-06-01,34700.00,Shah Realty Partners,Rent - June 2026,paid
+693,3,1,43,2026-06-01,31700.00,Gupta Commercial Spaces,Rent - June 2026,paid
+694,11,1,86,2026-06-01,21300.00,Nair Estates,Rent - June 2026,paid
+695,13,1,86,2026-06-01,14100.00,Kapoor Realty and Estates,Rent - June 2026,paid
+696,1,1,43,2026-06-02,26000.00,Gupta Commercial Spaces,Rent - June 2026,paid
+697,6,1,43,2026-06-02,39000.00,Gupta Commercial Spaces,Rent - June 2026,paid
+698,7,1,86,2026-06-02,25100.00,Shah Realty Partners,Rent - June 2026,paid
+699,9,1,86,2026-06-02,28900.00,Shah Realty Partners,Rent - June 2026,paid
+700,14,1,99,2026-06-02,6800.00,Kapoor Realty and Estates,Rent - June 2026,paid
+701,15,1,99,2026-06-02,8200.00,Nair Estates,Rent - June 2026,paid
+702,16,1,106,2026-06-02,12800.00,Nair Estates,Rent - June 2026,paid
+703,3,10,43,2026-06-03,700.00,Stationery Hub,Miscellaneous - June 2026,paid
+704,4,1,43,2026-06-03,34800.00,Shah Realty Partners,Rent - June 2026,paid
+705,5,1,43,2026-06-03,32200.00,Kapoor Realty and Estates,Rent - June 2026,paid
+706,8,1,86,2026-06-03,21200.00,Mehra Holdings,Rent - June 2026,paid
+707,10,1,86,2026-06-03,19300.00,Kapoor Realty and Estates,Rent - June 2026,paid
+708,12,1,86,2026-06-03,26400.00,Gupta Commercial Spaces,Rent - June 2026,paid
+709,8,10,86,2026-06-04,1000.00,Stationery Hub,Miscellaneous - June 2026,paid
+710,4,6,43,2026-06-05,2500.00,RedBrick Outdoor,Marketing and Promotions - June 2026,paid
+711,10,9,86,2026-06-05,6200.00,Verma Interiors,Repairs and Renovation - June 2026,paid
+712,12,3,86,2026-06-05,5100.00,FitServe India,Equipment Maintenance - June 2026,paid
+713,13,10,86,2026-06-05,500.00,Local Vendor,Miscellaneous - June 2026,paid
+714,4,9,43,2026-06-06,9900.00,Coolbreeze AC Works,Repairs and Renovation - June 2026,paid
+715,7,3,86,2026-06-06,700.00,Muscle Care Engineers,Equipment Maintenance - June 2026,paid
+716,12,4,86,2026-06-06,5100.00,Anand Supplies,Housekeeping and Supplies - June 2026,paid
+717,14,4,99,2026-06-06,1700.00,Anand Supplies,Housekeeping and Supplies - June 2026,paid
+718,16,6,106,2026-06-06,3800.00,LocalReach Ads,Marketing and Promotions - June 2026,paid
+719,2,7,43,2026-06-07,900.00,CloudDesk Software,Software and Internet - June 2026,paid
+720,9,6,86,2026-06-07,4200.00,RedBrick Outdoor,Marketing and Promotions - June 2026,paid
+721,10,7,86,2026-06-07,1100.00,CloudDesk Software,Software and Internet - June 2026,paid
+722,15,4,99,2026-06-07,2600.00,Anand Supplies,Housekeeping and Supplies - June 2026,paid
+723,4,4,43,2026-06-08,5100.00,CleanSweep Housekeeping,Housekeeping and Supplies - June 2026,paid
+724,5,4,43,2026-06-08,5200.00,CleanSweep Housekeeping,Housekeeping and Supplies - June 2026,paid
+725,5,7,43,2026-06-08,600.00,NetLink Broadband,Software and Internet - June 2026,paid
+726,6,4,43,2026-06-08,8800.00,Kaveri Facility Services,Housekeeping and Supplies - June 2026,paid
+727,7,7,86,2026-06-08,1100.00,CloudDesk Software,Software and Internet - June 2026,paid
+728,8,3,86,2026-06-08,2300.00,Muscle Care Engineers,Equipment Maintenance - June 2026,paid
+729,8,4,86,2026-06-08,3700.00,Anand Supplies,Housekeeping and Supplies - June 2026,paid
+730,11,3,86,2026-06-08,1100.00,TechnoFit Services,Equipment Maintenance - June 2026,paid
+731,11,7,86,2026-06-08,500.00,SecureEye CCTV Services,Software and Internet - June 2026,paid
+732,1,3,43,2026-06-09,1100.00,FitServe India,Equipment Maintenance - June 2026,paid
+733,1,4,43,2026-06-09,3500.00,Anand Supplies,Housekeeping and Supplies - June 2026,paid
+734,2,4,43,2026-06-09,5500.00,CleanSweep Housekeeping,Housekeeping and Supplies - June 2026,paid
+735,9,4,86,2026-06-09,2300.00,CleanSweep Housekeeping,Housekeeping and Supplies - June 2026,paid
+736,10,4,86,2026-06-09,3300.00,Anand Supplies,Housekeeping and Supplies - June 2026,paid
+737,11,4,86,2026-06-09,3300.00,Kaveri Facility Services,Housekeeping and Supplies - June 2026,paid
+738,13,4,86,2026-06-09,3200.00,CleanSweep Housekeeping,Housekeeping and Supplies - June 2026,paid
+739,13,6,86,2026-06-09,5700.00,Pixel Print and Media,Marketing and Promotions - June 2026,paid
+740,14,6,99,2026-06-09,5000.00,RedBrick Outdoor,Marketing and Promotions - June 2026,paid
+741,16,3,106,2026-06-09,800.00,FitServe India,Equipment Maintenance - June 2026,paid
+742,16,4,106,2026-06-09,2600.00,CleanSweep Housekeeping,Housekeeping and Supplies - June 2026,paid
+743,2,6,43,2026-06-10,7100.00,Pixel Print and Media,Marketing and Promotions - June 2026,paid
+744,3,4,43,2026-06-10,4700.00,Kaveri Facility Services,Housekeeping and Supplies - June 2026,paid
+745,3,6,43,2026-06-10,2600.00,Spark Social Studio,Marketing and Promotions - June 2026,paid
+746,4,3,43,2026-06-10,2500.00,Sharma Gym Equipment Repairs,Equipment Maintenance - June 2026,paid
+747,5,2,43,2026-06-10,9700.00,State Power Distribution Company,Electricity and Utilities - June 2026,paid
+748,6,2,43,2026-06-10,15500.00,State Power Distribution Company,Electricity and Utilities - June 2026,paid
+749,6,7,43,2026-06-10,1100.00,NetLink Broadband,Software and Internet - June 2026,approved
+750,7,4,86,2026-06-10,3300.00,Kaveri Facility Services,Housekeeping and Supplies - June 2026,paid
+751,8,7,86,2026-06-10,800.00,CloudDesk Software,Software and Internet - June 2026,paid
+752,9,2,86,2026-06-10,4700.00,State Power Distribution Company,Electricity and Utilities - June 2026,paid
+753,12,2,86,2026-06-10,7100.00,State Power Distribution Company,Electricity and Utilities - June 2026,paid
+754,1,7,43,2026-06-11,900.00,CloudDesk Software,Software and Internet - June 2026,paid
+755,3,7,43,2026-06-11,1100.00,NetLink Broadband,Software and Internet - June 2026,paid
+756,4,7,43,2026-06-11,1200.00,CloudDesk Software,Software and Internet - June 2026,paid
+757,9,10,86,2026-06-11,500.00,Office Mart,Miscellaneous - June 2026,paid
+758,11,2,86,2026-06-11,9200.00,Bharat Diesel Supplies,Electricity and Utilities - June 2026,paid
+759,12,7,86,2026-06-11,700.00,SecureEye CCTV Services,Software and Internet - June 2026,paid
+760,13,2,86,2026-06-11,5000.00,Bharat Diesel Supplies,Electricity and Utilities - June 2026,paid
+761,14,2,99,2026-06-11,6200.00,State Power Distribution Company,Electricity and Utilities - June 2026,paid
+762,14,7,99,2026-06-11,500.00,SecureEye CCTV Services,Software and Internet - June 2026,paid
+763,16,7,106,2026-06-11,800.00,NetLink Broadband,Software and Internet - June 2026,paid
+764,1,6,43,2026-06-12,3100.00,LocalReach Ads,Marketing and Promotions - June 2026,paid
+765,3,3,43,2026-06-12,2100.00,Sharma Gym Equipment Repairs,Equipment Maintenance - June 2026,paid
+766,4,2,43,2026-06-12,12000.00,State Power Distribution Company,Electricity and Utilities - June 2026,approved
+767,7,2,86,2026-06-12,8900.00,Bharat Diesel Supplies,Electricity and Utilities - June 2026,paid
+768,9,7,86,2026-06-12,600.00,CloudDesk Software,Software and Internet - June 2026,paid
+769,10,2,86,2026-06-12,7700.00,City Water Board,Electricity and Utilities - June 2026,paid
+770,12,6,86,2026-06-12,2300.00,LocalReach Ads,Marketing and Promotions - June 2026,paid
+771,13,7,86,2026-06-12,1000.00,CloudDesk Software,Software and Internet - June 2026,paid
+772,16,2,106,2026-06-12,5900.00,State Power Distribution Company,Electricity and Utilities - June 2026,paid
+773,1,2,43,2026-06-13,8700.00,State Power Distribution Company,Electricity and Utilities - June 2026,paid
+774,5,6,43,2026-06-13,2300.00,Pixel Print and Media,Marketing and Promotions - June 2026,paid
+775,7,6,86,2026-06-13,1400.00,Pixel Print and Media,Marketing and Promotions - June 2026,paid
+776,12,10,86,2026-06-13,700.00,Office Mart,Miscellaneous - June 2026,paid
+777,13,3,86,2026-06-13,1800.00,Muscle Care Engineers,Equipment Maintenance - June 2026,paid
+778,15,7,99,2026-06-13,900.00,NetLink Broadband,Software and Internet - June 2026,paid
+779,15,2,99,2026-06-14,6400.00,City Water Board,Electricity and Utilities - June 2026,approved
+780,2,2,43,2026-06-15,12400.00,Bharat Diesel Supplies,Electricity and Utilities - June 2026,paid
+781,3,2,43,2026-06-15,10800.00,Bharat Diesel Supplies,Electricity and Utilities - June 2026,paid
+782,6,9,43,2026-06-15,23800.00,Coolbreeze AC Works,Repairs and Renovation - June 2026,paid
+783,8,2,86,2026-06-15,12000.00,Bharat Diesel Supplies,Electricity and Utilities - June 2026,rejected
+784,2,10,43,2026-06-16,500.00,Stationery Hub,Miscellaneous - June 2026,paid
+785,14,3,99,2026-06-16,1200.00,Muscle Care Engineers,Equipment Maintenance - June 2026,paid
+786,15,6,99,2026-06-16,4700.00,LocalReach Ads,Marketing and Promotions - June 2026,paid
+787,4,10,43,2026-06-17,500.00,Local Vendor,Miscellaneous - June 2026,paid
+788,6,10,43,2026-06-17,1500.00,Office Mart,Miscellaneous - June 2026,paid
+789,10,3,86,2026-06-17,1000.00,TechnoFit Services,Equipment Maintenance - June 2026,paid
+790,13,9,86,2026-06-17,6200.00,Coolbreeze AC Works,Repairs and Renovation - June 2026,paid
+791,5,3,43,2026-06-18,2300.00,FitServe India,Equipment Maintenance - June 2026,paid
+792,8,6,86,2026-06-18,3200.00,RedBrick Outdoor,Marketing and Promotions - June 2026,paid
+793,15,10,99,2026-06-18,500.00,Office Mart,Miscellaneous - June 2026,paid
+794,6,6,43,2026-06-19,5300.00,Spark Social Studio,Marketing and Promotions - June 2026,paid
+795,9,3,86,2026-06-19,900.00,FitServe India,Equipment Maintenance - June 2026,paid
+796,10,6,86,2026-06-19,2900.00,RedBrick Outdoor,Marketing and Promotions - June 2026,paid
+797,11,6,86,2026-06-19,5100.00,Pixel Print and Media,Marketing and Promotions - June 2026,paid
+798,1,9,43,2026-06-20,14300.00,Floorcraft Contractors,Repairs and Renovation - June 2026,paid
+799,5,10,43,2026-06-20,1100.00,Local Vendor,Miscellaneous - June 2026,paid
+800,11,10,86,2026-06-20,500.00,Office Mart,Miscellaneous - June 2026,paid
+801,14,10,99,2026-06-20,700.00,Local Vendor,Miscellaneous - June 2026,paid
+802,2,9,43,2026-06-22,12700.00,Floorcraft Contractors,Repairs and Renovation - June 2026,paid
+803,6,3,43,2026-06-22,2200.00,TechnoFit Services,Equipment Maintenance - June 2026,paid
+804,10,10,86,2026-06-22,1000.00,Office Mart,Miscellaneous - June 2026,paid
+805,15,3,99,2026-06-22,1900.00,Sharma Gym Equipment Repairs,Equipment Maintenance - June 2026,paid
+806,2,3,43,2026-06-23,1100.00,Muscle Care Engineers,Equipment Maintenance - June 2026,paid
+807,7,10,86,2026-06-23,600.00,Office Mart,Miscellaneous - June 2026,paid
+808,16,10,106,2026-06-23,500.00,Local Vendor,Miscellaneous - June 2026,paid
+809,10,9,86,2026-06-25,12400.00,Verma Interiors,Repairs and Renovation - June 2026,paid
+810,1,10,43,2026-06-26,700.00,Stationery Hub,Miscellaneous - June 2026,paid
+811,1,5,43,2026-06-30,19400.00,Payroll Run,Monthly payroll - June 2026,paid
+812,2,5,43,2026-06-30,27300.00,Payroll Run,Monthly payroll - June 2026,paid
+813,3,5,43,2026-06-30,16300.00,Payroll Run,Monthly payroll - June 2026,paid
+814,4,5,43,2026-06-30,20100.00,Payroll Run,Monthly payroll - June 2026,paid
+815,5,5,43,2026-06-30,21400.00,Payroll Run,Monthly payroll - June 2026,paid
+816,6,5,43,2026-06-30,29400.00,Payroll Run,Monthly payroll - June 2026,paid
+817,7,5,86,2026-06-30,17100.00,Payroll Run,Monthly payroll - June 2026,paid
+818,8,5,86,2026-06-30,19400.00,Payroll Run,Monthly payroll - June 2026,paid
+819,9,5,86,2026-06-30,11800.00,Payroll Run,Monthly payroll - June 2026,paid
+820,10,5,86,2026-06-30,16800.00,Payroll Run,Monthly payroll - June 2026,paid
+821,11,5,86,2026-06-30,17700.00,Payroll Run,Monthly payroll - June 2026,paid
+822,12,5,86,2026-06-30,20100.00,Payroll Run,Monthly payroll - June 2026,paid
+823,13,5,86,2026-06-30,17500.00,Payroll Run,Monthly payroll - June 2026,paid
+824,14,5,99,2026-06-30,13800.00,Payroll Run,Monthly payroll - June 2026,paid
+825,15,5,99,2026-06-30,17000.00,Payroll Run,Monthly payroll - June 2026,paid
+826,16,5,106,2026-06-30,16600.00,Payroll Run,Monthly payroll - June 2026,paid
+827,3,1,43,2026-07-01,31700.00,Gupta Commercial Spaces,Rent - July 2026,paid
+828,4,1,43,2026-07-01,34800.00,Kapoor Realty and Estates,Rent - July 2026,paid
+829,6,1,43,2026-07-01,39000.00,Nair Estates,Rent - July 2026,paid
+830,10,1,86,2026-07-01,19300.00,Nair Estates,Rent - July 2026,paid
+831,14,1,99,2026-07-01,6800.00,Gupta Commercial Spaces,Rent - July 2026,paid
+832,1,1,43,2026-07-02,26000.00,Kapoor Realty and Estates,Rent - July 2026,paid
+833,2,1,43,2026-07-02,34700.00,Kapoor Realty and Estates,Rent - July 2026,paid
+834,5,1,43,2026-07-02,32200.00,Mehra Holdings,Rent - July 2026,paid
+835,7,1,86,2026-07-02,25100.00,Mehra Holdings,Rent - July 2026,paid
+836,8,1,86,2026-07-02,21200.00,Shah Realty Partners,Rent - July 2026,paid
+837,12,1,86,2026-07-02,26400.00,Nair Estates,Rent - July 2026,paid
+838,15,1,99,2026-07-02,8200.00,Kapoor Realty and Estates,Rent - July 2026,paid
+839,16,1,106,2026-07-02,12800.00,Gupta Commercial Spaces,Rent - July 2026,paid
+840,9,1,86,2026-07-03,28900.00,Kapoor Realty and Estates,Rent - July 2026,paid
+841,11,1,86,2026-07-03,21300.00,Rao Properties LLP,Rent - July 2026,paid
+842,13,1,86,2026-07-03,14100.00,Gupta Commercial Spaces,Rent - July 2026,paid
+843,1,6,43,2026-07-04,4500.00,Pixel Print and Media,Marketing and Promotions - July 2026,paid
+844,8,10,86,2026-07-04,500.00,Stationery Hub,Miscellaneous - July 2026,paid
+845,16,9,106,2026-07-04,10300.00,Verma Interiors,Repairs and Renovation - July 2026,paid
+846,8,3,86,2026-07-05,2200.00,TechnoFit Services,Equipment Maintenance - July 2026,paid
+847,9,6,86,2026-07-05,1800.00,Pixel Print and Media,Marketing and Promotions - July 2026,paid
+848,15,6,99,2026-07-05,5100.00,Spark Social Studio,Marketing and Promotions - July 2026,paid
+849,1,4,43,2026-07-06,3000.00,Kaveri Facility Services,Housekeeping and Supplies - July 2026,paid
+850,6,4,43,2026-07-06,8600.00,Anand Supplies,Housekeeping and Supplies - July 2026,paid
+851,9,4,86,2026-07-06,2500.00,Kaveri Facility Services,Housekeeping and Supplies - July 2026,paid
+852,10,4,86,2026-07-06,3900.00,Anand Supplies,Housekeeping and Supplies - July 2026,paid
+853,14,4,99,2026-07-06,1500.00,CleanSweep Housekeeping,Housekeeping and Supplies - July 2026,paid
+854,16,3,106,2026-07-06,1000.00,Sharma Gym Equipment Repairs,Equipment Maintenance - July 2026,paid
+855,1,7,43,2026-07-07,700.00,SecureEye CCTV Services,Software and Internet - July 2026,paid
+856,4,3,43,2026-07-07,1400.00,Sharma Gym Equipment Repairs,Equipment Maintenance - July 2026,paid
+857,4,4,43,2026-07-07,4200.00,CleanSweep Housekeeping,Housekeeping and Supplies - July 2026,paid
+858,5,4,43,2026-07-07,3200.00,Anand Supplies,Housekeeping and Supplies - July 2026,paid
+859,6,3,43,2026-07-07,4000.00,Muscle Care Engineers,Equipment Maintenance - July 2026,paid
+860,6,10,43,2026-07-07,1200.00,Local Vendor,Miscellaneous - July 2026,paid
+861,7,4,86,2026-07-07,2400.00,Anand Supplies,Housekeeping and Supplies - July 2026,paid
+862,7,10,86,2026-07-07,700.00,Stationery Hub,Miscellaneous - July 2026,paid
+863,10,7,86,2026-07-07,1100.00,NetLink Broadband,Software and Internet - July 2026,paid
+864,11,4,86,2026-07-07,3800.00,Anand Supplies,Housekeeping and Supplies - July 2026,paid
+865,12,4,86,2026-07-07,3300.00,Kaveri Facility Services,Housekeeping and Supplies - July 2026,paid
+866,13,4,86,2026-07-07,2700.00,Kaveri Facility Services,Housekeeping and Supplies - July 2026,paid
+867,13,9,86,2026-07-07,5200.00,Verma Interiors,Repairs and Renovation - July 2026,paid
+868,15,7,99,2026-07-07,800.00,CloudDesk Software,Software and Internet - July 2026,paid
+869,3,4,43,2026-07-08,3200.00,Kaveri Facility Services,Housekeeping and Supplies - July 2026,paid
+870,3,7,43,2026-07-08,500.00,CloudDesk Software,Software and Internet - July 2026,rejected
+871,9,7,86,2026-07-08,500.00,CloudDesk Software,Software and Internet - July 2026,paid
+872,10,6,86,2026-07-08,4000.00,RedBrick Outdoor,Marketing and Promotions - July 2026,paid
+873,13,7,86,2026-07-08,800.00,CloudDesk Software,Software and Internet - July 2026,paid
+874,16,4,106,2026-07-08,3500.00,Anand Supplies,Housekeeping and Supplies - July 2026,paid
+875,16,7,106,2026-07-08,700.00,NetLink Broadband,Software and Internet - July 2026,paid
+876,4,6,43,2026-07-09,5000.00,RedBrick Outdoor,Marketing and Promotions - July 2026,paid
+877,4,7,43,2026-07-09,800.00,NetLink Broadband,Software and Internet - July 2026,paid
+878,8,4,86,2026-07-09,5100.00,Anand Supplies,Housekeeping and Supplies - July 2026,paid
+879,15,4,99,2026-07-09,3000.00,CleanSweep Housekeeping,Housekeeping and Supplies - July 2026,paid
+880,2,4,43,2026-07-10,4000.00,Anand Supplies,Housekeeping and Supplies - July 2026,paid
+881,2,7,43,2026-07-10,1500.00,CloudDesk Software,Software and Internet - July 2026,paid
+882,3,2,43,2026-07-10,11300.00,City Water Board,Electricity and Utilities - July 2026,paid
+883,3,3,43,2026-07-10,1600.00,TechnoFit Services,Equipment Maintenance - July 2026,paid
+884,10,10,86,2026-07-10,600.00,Local Vendor,Miscellaneous - July 2026,paid
+885,11,7,86,2026-07-10,1100.00,NetLink Broadband,Software and Internet - July 2026,paid
+886,14,6,99,2026-07-10,3100.00,Pixel Print and Media,Marketing and Promotions - July 2026,paid
+887,14,7,99,2026-07-10,700.00,SecureEye CCTV Services,Software and Internet - July 2026,paid
+888,15,10,99,2026-07-10,900.00,Office Mart,Miscellaneous - July 2026,paid
+889,1,10,43,2026-07-11,500.00,Stationery Hub,Miscellaneous - July 2026,paid
+890,2,2,43,2026-07-11,12400.00,State Power Distribution Company,Electricity and Utilities - July 2026,rejected
+891,5,6,43,2026-07-11,4700.00,Pixel Print and Media,Marketing and Promotions - July 2026,rejected
+892,5,7,43,2026-07-11,900.00,NetLink Broadband,Software and Internet - July 2026,paid
+893,7,3,86,2026-07-11,1700.00,Sharma Gym Equipment Repairs,Equipment Maintenance - July 2026,approved
+894,8,2,86,2026-07-11,11300.00,City Water Board,Electricity and Utilities - July 2026,paid
+895,9,2,86,2026-07-11,6000.00,City Water Board,Electricity and Utilities - July 2026,paid
+896,11,2,86,2026-07-11,5500.00,State Power Distribution Company,Electricity and Utilities - July 2026,paid
+897,12,2,86,2026-07-11,13200.00,State Power Distribution Company,Electricity and Utilities - July 2026,paid
+898,12,6,86,2026-07-11,2500.00,RedBrick Outdoor,Marketing and Promotions - July 2026,paid
+899,12,7,86,2026-07-11,900.00,CloudDesk Software,Software and Internet - July 2026,paid
+900,14,3,99,2026-07-11,600.00,Sharma Gym Equipment Repairs,Equipment Maintenance - July 2026,paid
+901,14,8,99,2026-07-11,1000.00,Municipal Corporation Licensing,Quarterly insurance premium,paid
+902,16,2,106,2026-07-11,6100.00,Bharat Diesel Supplies,Electricity and Utilities - July 2026,paid
+903,1,2,43,2026-07-12,8700.00,City Water Board,Electricity and Utilities - July 2026,paid
+904,6,7,43,2026-07-12,800.00,NetLink Broadband,Software and Internet - July 2026,paid
+905,7,7,86,2026-07-12,900.00,SecureEye CCTV Services,Software and Internet - July 2026,paid
+906,7,8,86,2026-07-12,1900.00,Fire Safety Department,Quarterly insurance premium,paid
+907,11,6,86,2026-07-12,4600.00,Spark Social Studio,Marketing and Promotions - July 2026,paid
+908,14,2,99,2026-07-12,5600.00,Bharat Diesel Supplies,Electricity and Utilities - July 2026,paid
+909,1,8,43,2026-07-13,2100.00,Fire Safety Department,Quarterly insurance premium,paid
+910,2,3,43,2026-07-13,1200.00,FitServe India,Equipment Maintenance - July 2026,paid
+911,4,8,43,2026-07-13,1400.00,Suraksha General Insurance,Quarterly insurance premium,paid
+912,5,10,43,2026-07-13,800.00,Office Mart,Miscellaneous - July 2026,paid
+913,8,7,86,2026-07-13,1000.00,CloudDesk Software,Software and Internet - July 2026,paid
+914,8,9,86,2026-07-13,13800.00,Verma Interiors,Repairs and Renovation - July 2026,paid
+915,9,3,86,2026-07-13,1500.00,TechnoFit Services,Equipment Maintenance - July 2026,paid
+916,12,3,86,2026-07-13,3100.00,TechnoFit Services,Equipment Maintenance - July 2026,paid
+917,12,8,86,2026-07-13,1800.00,Fire Safety Department,Quarterly insurance premium,paid
+918,13,2,86,2026-07-13,8900.00,Bharat Diesel Supplies,Electricity and Utilities - July 2026,paid
+919,4,2,43,2026-07-14,9900.00,City Water Board,Electricity and Utilities - July 2026,paid
+920,6,2,43,2026-07-14,22900.00,State Power Distribution Company,Electricity and Utilities - July 2026,paid
+921,6,6,43,2026-07-14,5700.00,RedBrick Outdoor,Marketing and Promotions - July 2026,paid
+922,9,10,86,2026-07-14,500.00,Local Vendor,Miscellaneous - July 2026,paid
+923,10,2,86,2026-07-14,6800.00,Bharat Diesel Supplies,Electricity and Utilities - July 2026,paid
+924,12,10,86,2026-07-14,1100.00,Local Vendor,Miscellaneous - July 2026,paid
+925,15,3,99,2026-07-14,2100.00,Sharma Gym Equipment Repairs,Equipment Maintenance - July 2026,paid
+926,16,8,106,2026-07-14,1400.00,Fire Safety Department,Quarterly insurance premium,paid
+927,5,2,43,2026-07-15,9200.00,City Water Board,Electricity and Utilities - July 2026,paid
+928,7,2,86,2026-07-15,6200.00,Bharat Diesel Supplies,Electricity and Utilities - July 2026,paid
+929,8,8,86,2026-07-15,1500.00,Municipal Corporation Licensing,Quarterly insurance premium,paid
+930,10,8,86,2026-07-15,1700.00,Municipal Corporation Licensing,Quarterly insurance premium,paid
+931,11,3,86,2026-07-15,2500.00,TechnoFit Services,Equipment Maintenance - July 2026,paid
+932,11,10,86,2026-07-15,500.00,Stationery Hub,Miscellaneous - July 2026,paid
+933,13,8,86,2026-07-15,1600.00,Suraksha General Insurance,Quarterly insurance premium,paid
+934,14,10,99,2026-07-15,500.00,Local Vendor,Miscellaneous - July 2026,paid
+935,15,2,99,2026-07-15,4500.00,City Water Board,Electricity and Utilities - July 2026,paid
+936,2,8,43,2026-07-16,2700.00,Suraksha General Insurance,Quarterly insurance premium,paid
+937,3,10,43,2026-07-16,500.00,Stationery Hub,Miscellaneous - July 2026,paid
+938,4,10,43,2026-07-16,900.00,Office Mart,Miscellaneous - July 2026,paid
+939,5,8,43,2026-07-16,2200.00,Suraksha General Insurance,Quarterly insurance premium,paid
+940,6,8,43,2026-07-16,2300.00,Fire Safety Department,Quarterly insurance premium,paid
+941,13,3,86,2026-07-16,1500.00,Sharma Gym Equipment Repairs,Equipment Maintenance - July 2026,paid
+942,15,8,99,2026-07-16,1400.00,Fire Safety Department,Quarterly insurance premium,paid
+943,7,6,86,2026-07-17,4300.00,Spark Social Studio,Marketing and Promotions - July 2026,paid
+944,16,6,106,2026-07-17,5000.00,Spark Social Studio,Marketing and Promotions - July 2026,paid
+945,3,8,43,2026-07-18,1200.00,Municipal Corporation Licensing,Quarterly insurance premium,paid
+946,1,3,43,2026-07-19,5000.00,Sharma Gym Equipment Repairs,Equipment Maintenance - July 2026,paid
+947,2,6,43,2026-07-19,6700.00,Spark Social Studio,Marketing and Promotions - July 2026,paid
+948,3,6,43,2026-07-19,2600.00,RedBrick Outdoor,Marketing and Promotions - July 2026,paid
+949,8,6,86,2026-07-19,4500.00,Pixel Print and Media,Marketing and Promotions - July 2026,paid
+950,13,6,86,2026-07-19,4400.00,RedBrick Outdoor,Marketing and Promotions - July 2026,paid
+951,9,8,86,2026-07-21,1200.00,Municipal Corporation Licensing,Quarterly insurance premium,paid
+952,10,3,86,2026-07-21,1400.00,Sharma Gym Equipment Repairs,Equipment Maintenance - July 2026,paid
+953,11,8,86,2026-07-21,1600.00,Suraksha General Insurance,Quarterly insurance premium,paid
+954,2,10,43,2026-07-22,1400.00,Stationery Hub,Miscellaneous - July 2026,paid
+955,5,3,43,2026-07-22,1600.00,TechnoFit Services,Equipment Maintenance - July 2026,paid
+956,12,9,86,2026-07-22,10900.00,Verma Interiors,Repairs and Renovation - July 2026,paid
+957,16,10,106,2026-07-23,500.00,Office Mart,Miscellaneous - July 2026,paid
+958,13,10,86,2026-07-24,700.00,Stationery Hub,Miscellaneous - July 2026,paid
+959,15,9,99,2026-07-24,4200.00,Verma Interiors,Repairs and Renovation - July 2026,paid
+960,5,9,43,2026-07-25,7100.00,Floorcraft Contractors,Repairs and Renovation - July 2026,paid
+961,1,5,43,2026-07-31,19400.00,Payroll Run,Monthly payroll - July 2026,paid
+962,2,5,43,2026-07-31,27300.00,Payroll Run,Monthly payroll - July 2026,paid
+963,3,5,43,2026-07-31,16300.00,Payroll Run,Monthly payroll - July 2026,paid
+964,4,5,43,2026-07-31,20100.00,Payroll Run,Monthly payroll - July 2026,paid
+965,5,5,43,2026-07-31,21400.00,Payroll Run,Monthly payroll - July 2026,paid
+966,6,5,43,2026-07-31,29400.00,Payroll Run,Monthly payroll - July 2026,paid
+967,7,5,86,2026-07-31,17100.00,Payroll Run,Monthly payroll - July 2026,paid
+968,8,5,86,2026-07-31,19400.00,Payroll Run,Monthly payroll - July 2026,paid
+969,9,5,86,2026-07-31,11800.00,Payroll Run,Monthly payroll - July 2026,paid
+970,10,5,86,2026-07-31,16800.00,Payroll Run,Monthly payroll - July 2026,paid
+971,11,5,86,2026-07-31,17700.00,Payroll Run,Monthly payroll - July 2026,paid
+972,12,5,86,2026-07-31,20100.00,Payroll Run,Monthly payroll - July 2026,paid
+973,13,5,86,2026-07-31,17500.00,Payroll Run,Monthly payroll - July 2026,paid
+974,14,5,99,2026-07-31,13800.00,Payroll Run,Monthly payroll - July 2026,paid
+975,15,5,99,2026-07-31,17000.00,Payroll Run,Monthly payroll - July 2026,paid
+976,16,5,106,2026-07-31,16600.00,Payroll Run,Monthly payroll - July 2026,paid
+977,7,1,86,2026-08-01,25100.00,Rao Properties LLP,Rent - August 2026,paid
+978,9,1,86,2026-08-01,28900.00,Kapoor Realty and Estates,Rent - August 2026,paid
+979,11,1,86,2026-08-01,21300.00,Mehra Holdings,Rent - August 2026,paid
+980,1,1,43,2026-08-02,26000.00,Mehra Holdings,Rent - August 2026,paid
+981,2,1,43,2026-08-02,34700.00,Nair Estates,Rent - August 2026,paid
+982,3,1,43,2026-08-02,31700.00,Gupta Commercial Spaces,Rent - August 2026,paid
+983,6,9,43,2026-08-02,19000.00,Coolbreeze AC Works,Repairs and Renovation - August 2026,paid
+984,12,1,86,2026-08-02,26400.00,Shah Realty Partners,Rent - August 2026,paid
+985,4,1,43,2026-08-03,34800.00,Rao Properties LLP,Rent - August 2026,approved
+986,5,1,43,2026-08-03,32200.00,Shah Realty Partners,Rent - August 2026,paid
+987,6,1,43,2026-08-03,39000.00,Rao Properties LLP,Rent - August 2026,paid
+988,6,10,43,2026-08-03,1600.00,Office Mart,Miscellaneous - August 2026,paid
+989,7,10,86,2026-08-03,1000.00,Stationery Hub,Miscellaneous - August 2026,paid
+990,8,1,86,2026-08-03,21200.00,Kapoor Realty and Estates,Rent - August 2026,paid
+991,10,1,86,2026-08-03,19300.00,Gupta Commercial Spaces,Rent - August 2026,paid
+992,13,1,86,2026-08-03,14100.00,Gupta Commercial Spaces,Rent - August 2026,paid
+993,14,1,99,2026-08-03,6800.00,Gupta Commercial Spaces,Rent - August 2026,paid
+994,15,1,99,2026-08-03,8200.00,Gupta Commercial Spaces,Rent - August 2026,paid
+995,16,1,106,2026-08-03,12800.00,Rao Properties LLP,Rent - August 2026,approved
+996,7,3,86,2026-08-05,1300.00,FitServe India,Equipment Maintenance - August 2026,paid
+997,9,10,86,2026-08-05,500.00,Local Vendor,Miscellaneous - August 2026,paid
+998,12,6,86,2026-08-05,4700.00,Pixel Print and Media,Marketing and Promotions - August 2026,paid
+999,1,10,43,2026-08-06,600.00,Stationery Hub,Miscellaneous - August 2026,paid
+1000,2,4,43,2026-08-06,3700.00,Kaveri Facility Services,Housekeeping and Supplies - August 2026,paid
+1001,4,4,43,2026-08-06,4900.00,Anand Supplies,Housekeeping and Supplies - August 2026,paid
+1002,14,6,99,2026-08-06,3700.00,RedBrick Outdoor,Marketing and Promotions - August 2026,paid
+1003,15,6,99,2026-08-06,4200.00,LocalReach Ads,Marketing and Promotions - August 2026,approved
+1004,15,10,99,2026-08-06,900.00,Office Mart,Miscellaneous - August 2026,paid
+1005,4,3,43,2026-08-07,900.00,Sharma Gym Equipment Repairs,Equipment Maintenance - August 2026,paid
+1006,6,6,43,2026-08-07,3300.00,RedBrick Outdoor,Marketing and Promotions - August 2026,paid
+1007,7,7,86,2026-08-07,600.00,CloudDesk Software,Software and Internet - August 2026,paid
+1008,12,10,86,2026-08-07,500.00,Stationery Hub,Miscellaneous - August 2026,paid
+1009,13,4,86,2026-08-07,2800.00,Anand Supplies,Housekeeping and Supplies - August 2026,paid
+1010,15,4,99,2026-08-07,1600.00,CleanSweep Housekeeping,Housekeeping and Supplies - August 2026,paid
+1011,1,6,43,2026-08-08,6800.00,Pixel Print and Media,Marketing and Promotions - August 2026,paid
+1012,2,10,43,2026-08-08,700.00,Local Vendor,Miscellaneous - August 2026,paid
+1013,5,4,43,2026-08-08,3600.00,CleanSweep Housekeeping,Housekeeping and Supplies - August 2026,paid
+1014,6,3,43,2026-08-08,3100.00,TechnoFit Services,Equipment Maintenance - August 2026,paid
+1015,6,4,43,2026-08-08,7100.00,Anand Supplies,Housekeeping and Supplies - August 2026,paid
+1016,9,4,86,2026-08-08,1800.00,CleanSweep Housekeeping,Housekeeping and Supplies - August 2026,paid
+1017,1,4,43,2026-08-09,4400.00,CleanSweep Housekeeping,Housekeeping and Supplies - August 2026,paid
+1018,1,7,43,2026-08-09,700.00,SecureEye CCTV Services,Software and Internet - August 2026,paid
+1019,2,6,43,2026-08-09,3100.00,Spark Social Studio,Marketing and Promotions - August 2026,paid
+1020,3,4,43,2026-08-09,3800.00,Kaveri Facility Services,Housekeeping and Supplies - August 2026,paid
+1021,3,7,43,2026-08-09,900.00,SecureEye CCTV Services,Software and Internet - August 2026,paid
+1022,3,10,43,2026-08-09,500.00,Office Mart,Miscellaneous - August 2026,paid
+1023,5,6,43,2026-08-09,4000.00,LocalReach Ads,Marketing and Promotions - August 2026,paid
+1024,7,4,86,2026-08-09,3000.00,Kaveri Facility Services,Housekeeping and Supplies - August 2026,paid
+1025,11,4,86,2026-08-09,2300.00,Kaveri Facility Services,Housekeeping and Supplies - August 2026,paid
+1026,12,4,86,2026-08-09,3900.00,Kaveri Facility Services,Housekeeping and Supplies - August 2026,paid
+1027,12,7,86,2026-08-09,1000.00,CloudDesk Software,Software and Internet - August 2026,paid
+1028,13,7,86,2026-08-09,500.00,SecureEye CCTV Services,Software and Internet - August 2026,paid
+1029,14,4,99,2026-08-09,1900.00,CleanSweep Housekeeping,Housekeeping and Supplies - August 2026,paid
+1030,16,4,106,2026-08-09,3100.00,Kaveri Facility Services,Housekeeping and Supplies - August 2026,paid
+1031,1,3,43,2026-08-10,1700.00,Muscle Care Engineers,Equipment Maintenance - August 2026,paid
+1032,2,7,43,2026-08-10,1500.00,SecureEye CCTV Services,Software and Internet - August 2026,paid
+1033,5,2,43,2026-08-10,12800.00,State Power Distribution Company,Electricity and Utilities - August 2026,paid
+1034,8,4,86,2026-08-10,4100.00,CleanSweep Housekeeping,Housekeeping and Supplies - August 2026,paid
+1035,10,4,86,2026-08-10,3300.00,CleanSweep Housekeeping,Housekeeping and Supplies - August 2026,approved
+1036,12,2,86,2026-08-10,12200.00,State Power Distribution Company,Electricity and Utilities - August 2026,paid
+1037,14,7,99,2026-08-10,600.00,CloudDesk Software,Software and Internet - August 2026,paid
+1038,16,2,106,2026-08-10,8900.00,City Water Board,Electricity and Utilities - August 2026,paid
+1039,4,2,43,2026-08-11,7300.00,City Water Board,Electricity and Utilities - August 2026,paid
+1040,5,3,43,2026-08-11,1000.00,Muscle Care Engineers,Equipment Maintenance - August 2026,paid
+1041,5,7,43,2026-08-11,1400.00,CloudDesk Software,Software and Internet - August 2026,paid
+1042,8,2,86,2026-08-11,12400.00,State Power Distribution Company,Electricity and Utilities - August 2026,paid
+1043,9,2,86,2026-08-11,6200.00,State Power Distribution Company,Electricity and Utilities - August 2026,paid
+1044,9,7,86,2026-08-11,500.00,SecureEye CCTV Services,Software and Internet - August 2026,paid
+1045,10,3,86,2026-08-11,4300.00,Sharma Gym Equipment Repairs,Equipment Maintenance - August 2026,paid
+1046,10,7,86,2026-08-11,600.00,NetLink Broadband,Software and Internet - August 2026,paid
+1047,15,2,99,2026-08-11,6300.00,City Water Board,Electricity and Utilities - August 2026,paid
+1048,15,3,99,2026-08-11,1100.00,Muscle Care Engineers,Equipment Maintenance - August 2026,paid
+1049,16,6,106,2026-08-11,3900.00,RedBrick Outdoor,Marketing and Promotions - August 2026,paid
+1050,16,10,106,2026-08-11,500.00,Local Vendor,Miscellaneous - August 2026,paid
+1051,6,7,43,2026-08-12,1400.00,CloudDesk Software,Software and Internet - August 2026,paid
+1052,8,7,86,2026-08-12,1000.00,NetLink Broadband,Software and Internet - August 2026,paid
+1053,8,10,86,2026-08-12,500.00,Local Vendor,Miscellaneous - August 2026,paid
+1054,10,6,86,2026-08-12,4200.00,RedBrick Outdoor,Marketing and Promotions - August 2026,paid
+1055,13,2,86,2026-08-12,8400.00,State Power Distribution Company,Electricity and Utilities - August 2026,paid
+1056,14,10,99,2026-08-12,500.00,Stationery Hub,Miscellaneous - August 2026,paid
+1057,16,7,106,2026-08-12,500.00,CloudDesk Software,Software and Internet - August 2026,paid
+1058,4,7,43,2026-08-13,500.00,SecureEye CCTV Services,Software and Internet - August 2026,paid
+1059,11,6,86,2026-08-13,2900.00,Spark Social Studio,Marketing and Promotions - August 2026,paid
+1060,11,7,86,2026-08-13,600.00,SecureEye CCTV Services,Software and Internet - August 2026,paid
+1061,13,3,86,2026-08-13,1100.00,Muscle Care Engineers,Equipment Maintenance - August 2026,paid
+1062,14,2,99,2026-08-13,4000.00,State Power Distribution Company,Electricity and Utilities - August 2026,paid
+1063,14,3,99,2026-08-13,1800.00,Muscle Care Engineers,Equipment Maintenance - August 2026,paid
+1064,15,7,99,2026-08-13,900.00,SecureEye CCTV Services,Software and Internet - August 2026,paid
+1065,2,2,43,2026-08-14,13300.00,City Water Board,Electricity and Utilities - August 2026,paid
+1066,6,2,43,2026-08-14,13300.00,City Water Board,Electricity and Utilities - August 2026,paid
+1067,7,2,86,2026-08-14,5300.00,City Water Board,Electricity and Utilities - August 2026,paid
+1068,10,2,86,2026-08-14,9600.00,State Power Distribution Company,Electricity and Utilities - August 2026,paid
+1069,11,2,86,2026-08-14,8300.00,City Water Board,Electricity and Utilities - August 2026,paid
+1070,1,2,43,2026-08-15,9500.00,Bharat Diesel Supplies,Electricity and Utilities - August 2026,paid
+1071,3,2,43,2026-08-15,11300.00,Bharat Diesel Supplies,Electricity and Utilities - August 2026,paid
+1072,7,6,86,2026-08-15,6100.00,Spark Social Studio,Marketing and Promotions - August 2026,paid
+1073,10,10,86,2026-08-15,500.00,Local Vendor,Miscellaneous - August 2026,paid
+1074,3,6,43,2026-08-16,2000.00,Spark Social Studio,Marketing and Promotions - August 2026,paid
+1075,5,10,43,2026-08-16,1200.00,Office Mart,Miscellaneous - August 2026,paid
+1076,11,10,86,2026-08-17,1000.00,Local Vendor,Miscellaneous - August 2026,paid
+1077,16,3,106,2026-08-17,800.00,TechnoFit Services,Equipment Maintenance - August 2026,paid
+1078,13,6,86,2026-08-18,1500.00,Spark Social Studio,Marketing and Promotions - August 2026,paid
+1079,4,6,43,2026-08-19,3800.00,Pixel Print and Media,Marketing and Promotions - August 2026,paid
+1080,9,3,86,2026-08-19,1400.00,Sharma Gym Equipment Repairs,Equipment Maintenance - August 2026,paid
+1081,12,3,86,2026-08-19,700.00,Muscle Care Engineers,Equipment Maintenance - August 2026,paid
+1082,2,3,43,2026-08-20,10400.00,TechnoFit Services,Equipment Maintenance - August 2026,paid
+1083,8,6,86,2026-08-20,3800.00,Pixel Print and Media,Marketing and Promotions - August 2026,paid
+1084,9,6,86,2026-08-20,2000.00,Spark Social Studio,Marketing and Promotions - August 2026,paid
+1085,13,10,86,2026-08-22,500.00,Local Vendor,Miscellaneous - August 2026,paid
+1086,8,3,86,2026-08-23,1700.00,Sharma Gym Equipment Repairs,Equipment Maintenance - August 2026,paid
+1087,3,3,43,2026-08-24,1700.00,TechnoFit Services,Equipment Maintenance - August 2026,paid
+1088,11,3,86,2026-08-24,900.00,Muscle Care Engineers,Equipment Maintenance - August 2026,paid
+1089,4,10,43,2026-08-26,500.00,Stationery Hub,Miscellaneous - August 2026,approved
+1090,1,5,43,2026-08-31,19400.00,Payroll Run,Monthly payroll - August 2026,paid
+1091,2,5,43,2026-08-31,27300.00,Payroll Run,Monthly payroll - August 2026,paid
+1092,3,5,43,2026-08-31,16300.00,Payroll Run,Monthly payroll - August 2026,rejected
+1093,4,5,43,2026-08-31,20100.00,Payroll Run,Monthly payroll - August 2026,paid
+1094,5,5,43,2026-08-31,21400.00,Payroll Run,Monthly payroll - August 2026,paid
+1095,6,5,43,2026-08-31,29400.00,Payroll Run,Monthly payroll - August 2026,paid
+1096,7,5,86,2026-08-31,17100.00,Payroll Run,Monthly payroll - August 2026,paid
+1097,8,5,86,2026-08-31,19400.00,Payroll Run,Monthly payroll - August 2026,paid
+1098,9,5,86,2026-08-31,11800.00,Payroll Run,Monthly payroll - August 2026,paid
+1099,10,5,86,2026-08-31,16800.00,Payroll Run,Monthly payroll - August 2026,paid
+1100,11,5,86,2026-08-31,17700.00,Payroll Run,Monthly payroll - August 2026,paid
+1101,12,5,86,2026-08-31,20100.00,Payroll Run,Monthly payroll - August 2026,paid
+1102,13,5,86,2026-08-31,17500.00,Payroll Run,Monthly payroll - August 2026,paid
+1103,14,5,99,2026-08-31,13800.00,Payroll Run,Monthly payroll - August 2026,paid
+1104,15,5,99,2026-08-31,17000.00,Payroll Run,Monthly payroll - August 2026,paid
+1105,16,5,106,2026-08-31,16600.00,Payroll Run,Monthly payroll - August 2026,paid
+1106,1,1,43,2026-09-01,26000.00,Shah Realty Partners,Rent - September 2026,paid
+1107,3,1,43,2026-09-01,31700.00,Shah Realty Partners,Rent - September 2026,paid
+1108,4,1,43,2026-09-01,34800.00,Rao Properties LLP,Rent - September 2026,paid
+1109,6,1,43,2026-09-01,39000.00,Nair Estates,Rent - September 2026,paid
+1110,10,1,86,2026-09-01,19300.00,Nair Estates,Rent - September 2026,paid
+1111,12,1,86,2026-09-01,26400.00,Kapoor Realty and Estates,Rent - September 2026,paid
+1112,13,1,86,2026-09-01,14100.00,Kapoor Realty and Estates,Rent - September 2026,paid
+1113,14,1,99,2026-09-01,6800.00,Gupta Commercial Spaces,Rent - September 2026,paid
+1114,2,1,43,2026-09-02,34700.00,Kapoor Realty and Estates,Rent - September 2026,paid
+1115,5,1,43,2026-09-02,32200.00,Nair Estates,Rent - September 2026,paid
+1116,9,1,86,2026-09-02,28900.00,Kapoor Realty and Estates,Rent - September 2026,paid
+1117,11,1,86,2026-09-02,21300.00,Kapoor Realty and Estates,Rent - September 2026,paid
+1118,7,1,86,2026-09-03,25100.00,Kapoor Realty and Estates,Rent - September 2026,paid
+1119,8,1,86,2026-09-03,21200.00,Shah Realty Partners,Rent - September 2026,paid
+1120,15,1,99,2026-09-03,8200.00,Mehra Holdings,Rent - September 2026,paid
+1121,16,1,106,2026-09-03,12800.00,Rao Properties LLP,Rent - September 2026,paid
+1122,5,10,43,2026-09-04,800.00,Stationery Hub,Miscellaneous - September 2026,paid
+1123,15,10,99,2026-09-04,800.00,Stationery Hub,Miscellaneous - September 2026,paid
+1124,3,6,43,2026-09-05,2600.00,Spark Social Studio,Marketing and Promotions - September 2026,paid
+1125,8,10,86,2026-09-05,600.00,Office Mart,Miscellaneous - September 2026,paid
+1126,1,6,43,2026-09-06,5200.00,RedBrick Outdoor,Marketing and Promotions - September 2026,paid
+1127,4,6,43,2026-09-06,3900.00,LocalReach Ads,Marketing and Promotions - September 2026,paid
+1128,5,4,43,2026-09-06,3500.00,CleanSweep Housekeeping,Housekeeping and Supplies - September 2026,paid
+1129,6,4,43,2026-09-06,5500.00,Anand Supplies,Housekeeping and Supplies - September 2026,paid
+1130,13,4,86,2026-09-06,2700.00,CleanSweep Housekeeping,Housekeeping and Supplies - September 2026,paid
+1131,13,6,86,2026-09-06,2800.00,Spark Social Studio,Marketing and Promotions - September 2026,paid
+1132,16,4,106,2026-09-06,2900.00,Anand Supplies,Housekeeping and Supplies - September 2026,paid
+1133,3,4,43,2026-09-07,4300.00,Anand Supplies,Housekeeping and Supplies - September 2026,paid
+1134,4,4,43,2026-09-07,4500.00,Kaveri Facility Services,Housekeeping and Supplies - September 2026,paid
+1135,7,7,86,2026-09-07,600.00,NetLink Broadband,Software and Internet - September 2026,paid
+1136,8,4,86,2026-09-07,4400.00,CleanSweep Housekeeping,Housekeeping and Supplies - September 2026,paid
+1137,9,4,86,2026-09-07,2500.00,CleanSweep Housekeeping,Housekeeping and Supplies - September 2026,paid
+1138,10,3,86,2026-09-07,1500.00,Muscle Care Engineers,Equipment Maintenance - September 2026,paid
+1139,10,4,86,2026-09-07,3700.00,CleanSweep Housekeeping,Housekeeping and Supplies - September 2026,paid
+1140,11,7,86,2026-09-07,600.00,CloudDesk Software,Software and Internet - September 2026,paid
+1141,12,4,86,2026-09-07,3600.00,Anand Supplies,Housekeeping and Supplies - September 2026,paid
+1142,14,7,99,2026-09-07,700.00,SecureEye CCTV Services,Software and Internet - September 2026,paid
+1143,1,4,43,2026-09-08,4600.00,Anand Supplies,Housekeeping and Supplies - September 2026,approved
+1144,5,6,43,2026-09-08,6900.00,Pixel Print and Media,Marketing and Promotions - September 2026,paid
+1145,7,6,86,2026-09-08,6100.00,Spark Social Studio,Marketing and Promotions - September 2026,paid
+1146,9,6,86,2026-09-08,3100.00,RedBrick Outdoor,Marketing and Promotions - September 2026,approved
+1147,12,7,86,2026-09-08,1300.00,NetLink Broadband,Software and Internet - September 2026,paid
+1148,13,7,86,2026-09-08,800.00,NetLink Broadband,Software and Internet - September 2026,paid
+1149,2,3,43,2026-09-09,2700.00,FitServe India,Equipment Maintenance - September 2026,paid
+1150,2,6,43,2026-09-09,4600.00,RedBrick Outdoor,Marketing and Promotions - September 2026,paid
+1151,4,7,43,2026-09-09,1000.00,CloudDesk Software,Software and Internet - September 2026,paid
+1152,5,7,43,2026-09-09,900.00,NetLink Broadband,Software and Internet - September 2026,paid
+1153,7,4,86,2026-09-09,2700.00,Anand Supplies,Housekeeping and Supplies - September 2026,paid
+1154,12,3,86,2026-09-09,1600.00,Muscle Care Engineers,Equipment Maintenance - September 2026,paid
+1155,15,4,99,2026-09-09,2900.00,Anand Supplies,Housekeeping and Supplies - September 2026,paid
+1156,16,7,106,2026-09-09,1100.00,CloudDesk Software,Software and Internet - September 2026,paid
+1157,2,4,43,2026-09-10,6300.00,CleanSweep Housekeeping,Housekeeping and Supplies - September 2026,paid
+1158,4,3,43,2026-09-10,1400.00,Sharma Gym Equipment Repairs,Equipment Maintenance - September 2026,paid
+1159,6,7,43,2026-09-10,1400.00,NetLink Broadband,Software and Internet - September 2026,paid
+1160,9,2,86,2026-09-10,5200.00,City Water Board,Electricity and Utilities - September 2026,paid
+1161,10,2,86,2026-09-10,5300.00,Bharat Diesel Supplies,Electricity and Utilities - September 2026,paid
+1162,11,2,86,2026-09-10,9400.00,Bharat Diesel Supplies,Electricity and Utilities - September 2026,paid
+1163,11,4,86,2026-09-10,2600.00,Kaveri Facility Services,Housekeeping and Supplies - September 2026,paid
+1164,12,2,86,2026-09-10,12200.00,City Water Board,Electricity and Utilities - September 2026,paid
+1165,12,10,86,2026-09-10,1100.00,Local Vendor,Miscellaneous - September 2026,paid
+1166,14,2,99,2026-09-10,6600.00,State Power Distribution Company,Electricity and Utilities - September 2026,paid
+1167,14,4,99,2026-09-10,2600.00,Anand Supplies,Housekeeping and Supplies - September 2026,paid
+1168,16,3,106,2026-09-10,2200.00,TechnoFit Services,Equipment Maintenance - September 2026,paid
+1169,16,10,106,2026-09-10,500.00,Stationery Hub,Miscellaneous - September 2026,paid
+1170,2,9,43,2026-09-11,5000.00,Coolbreeze AC Works,Repairs and Renovation - September 2026,paid
+1171,3,3,43,2026-09-11,900.00,FitServe India,Equipment Maintenance - September 2026,paid
+1172,10,6,86,2026-09-11,2000.00,Pixel Print and Media,Marketing and Promotions - September 2026,paid
+1173,10,7,86,2026-09-11,600.00,SecureEye CCTV Services,Software and Internet - September 2026,paid
+1174,10,10,86,2026-09-11,500.00,Office Mart,Miscellaneous - September 2026,paid
+1175,14,6,99,2026-09-11,2500.00,RedBrick Outdoor,Marketing and Promotions - September 2026,paid
+1176,1,7,43,2026-09-12,1000.00,NetLink Broadband,Software and Internet - September 2026,paid
+1177,1,10,43,2026-09-12,1000.00,Local Vendor,Miscellaneous - September 2026,paid
+1178,6,6,43,2026-09-12,2900.00,LocalReach Ads,Marketing and Promotions - September 2026,paid
+1179,15,7,99,2026-09-12,600.00,NetLink Broadband,Software and Internet - September 2026,paid
+1180,2,7,43,2026-09-13,1700.00,SecureEye CCTV Services,Software and Internet - September 2026,paid
+1181,2,10,43,2026-09-13,700.00,Local Vendor,Miscellaneous - September 2026,paid
+1182,3,2,43,2026-09-13,6200.00,City Water Board,Electricity and Utilities - September 2026,paid
+1183,3,7,43,2026-09-13,900.00,NetLink Broadband,Software and Internet - September 2026,paid
+1184,4,10,43,2026-09-13,500.00,Office Mart,Miscellaneous - September 2026,paid
+1185,6,2,43,2026-09-13,24900.00,Bharat Diesel Supplies,Electricity and Utilities - September 2026,paid
+1186,7,9,86,2026-09-13,6700.00,Floorcraft Contractors,Repairs and Renovation - September 2026,paid
+1187,8,2,86,2026-09-13,12600.00,State Power Distribution Company,Electricity and Utilities - September 2026,paid
+1188,8,7,86,2026-09-13,700.00,CloudDesk Software,Software and Internet - September 2026,paid
+1189,9,7,86,2026-09-13,600.00,NetLink Broadband,Software and Internet - September 2026,paid
+1190,11,3,86,2026-09-13,1900.00,TechnoFit Services,Equipment Maintenance - September 2026,paid
+1191,15,2,99,2026-09-13,5400.00,City Water Board,Electricity and Utilities - September 2026,paid
+1192,16,2,106,2026-09-13,8000.00,City Water Board,Electricity and Utilities - September 2026,paid
+1193,16,6,106,2026-09-13,5100.00,Spark Social Studio,Marketing and Promotions - September 2026,paid
+1194,14,10,99,2026-09-14,500.00,Office Mart,Miscellaneous - September 2026,paid
+1195,15,6,99,2026-09-14,4100.00,RedBrick Outdoor,Marketing and Promotions - September 2026,paid
+1196,1,2,43,2026-09-15,8400.00,City Water Board,Electricity and Utilities - September 2026,paid
+1197,2,2,43,2026-09-15,7700.00,State Power Distribution Company,Electricity and Utilities - September 2026,paid
+1198,4,2,43,2026-09-15,13400.00,Bharat Diesel Supplies,Electricity and Utilities - September 2026,paid
+1199,5,2,43,2026-09-15,8900.00,City Water Board,Electricity and Utilities - September 2026,paid
+1200,7,2,86,2026-09-15,8200.00,City Water Board,Electricity and Utilities - September 2026,paid
+1201,8,6,86,2026-09-15,1600.00,Pixel Print and Media,Marketing and Promotions - September 2026,approved
+1202,13,2,86,2026-09-15,5500.00,State Power Distribution Company,Electricity and Utilities - September 2026,paid
+1203,11,10,86,2026-09-16,500.00,Local Vendor,Miscellaneous - September 2026,paid
+1204,15,3,99,2026-09-16,1300.00,Muscle Care Engineers,Equipment Maintenance - September 2026,paid
+1205,12,6,86,2026-09-17,6100.00,RedBrick Outdoor,Marketing and Promotions - September 2026,approved
+1206,6,3,43,2026-09-18,3700.00,TechnoFit Services,Equipment Maintenance - September 2026,paid
+1207,7,3,86,2026-09-18,2100.00,Muscle Care Engineers,Equipment Maintenance - September 2026,paid
+1208,8,3,86,2026-09-18,4700.00,FitServe India,Equipment Maintenance - September 2026,paid
+1209,9,3,86,2026-09-19,1600.00,Muscle Care Engineers,Equipment Maintenance - September 2026,paid
+1210,9,10,86,2026-09-20,500.00,Stationery Hub,Miscellaneous - September 2026,paid
+1211,13,3,86,2026-09-20,1500.00,TechnoFit Services,Equipment Maintenance - September 2026,paid
+1212,13,10,86,2026-09-20,800.00,Stationery Hub,Miscellaneous - September 2026,paid
+1213,15,9,99,2026-09-20,7800.00,Verma Interiors,Repairs and Renovation - September 2026,paid
+1214,1,3,43,2026-09-21,1400.00,TechnoFit Services,Equipment Maintenance - September 2026,paid
+1215,11,6,86,2026-09-21,4900.00,RedBrick Outdoor,Marketing and Promotions - September 2026,paid
+1216,5,3,43,2026-09-22,1300.00,Sharma Gym Equipment Repairs,Equipment Maintenance - September 2026,paid
+1217,14,3,99,2026-09-22,1600.00,FitServe India,Equipment Maintenance - September 2026,paid
+1218,3,10,43,2026-09-24,800.00,Stationery Hub,Miscellaneous - September 2026,paid
+1219,5,9,43,2026-09-24,4800.00,Floorcraft Contractors,Repairs and Renovation - September 2026,paid
+1220,6,10,43,2026-09-26,700.00,Stationery Hub,Miscellaneous - September 2026,paid
+1221,7,10,86,2026-09-26,1000.00,Stationery Hub,Miscellaneous - September 2026,paid
+1222,9,9,86,2026-09-28,9400.00,Coolbreeze AC Works,Repairs and Renovation - September 2026,paid
+1223,1,5,43,2026-09-30,19400.00,Payroll Run,Monthly payroll - September 2026,approved
+1224,2,5,43,2026-09-30,27300.00,Payroll Run,Monthly payroll - September 2026,paid
+1225,3,5,43,2026-09-30,16300.00,Payroll Run,Monthly payroll - September 2026,paid
+1226,4,5,43,2026-09-30,20100.00,Payroll Run,Monthly payroll - September 2026,paid
+1227,5,5,43,2026-09-30,21400.00,Payroll Run,Monthly payroll - September 2026,paid
+1228,6,5,43,2026-09-30,29400.00,Payroll Run,Monthly payroll - September 2026,paid
+1229,7,5,86,2026-09-30,17100.00,Payroll Run,Monthly payroll - September 2026,paid
+1230,8,5,86,2026-09-30,19400.00,Payroll Run,Monthly payroll - September 2026,paid
+1231,9,5,86,2026-09-30,11800.00,Payroll Run,Monthly payroll - September 2026,paid
+1232,10,5,86,2026-09-30,16800.00,Payroll Run,Monthly payroll - September 2026,paid
+1233,11,5,86,2026-09-30,17700.00,Payroll Run,Monthly payroll - September 2026,paid
+1234,12,5,86,2026-09-30,20100.00,Payroll Run,Monthly payroll - September 2026,paid
+1235,13,5,86,2026-09-30,17500.00,Payroll Run,Monthly payroll - September 2026,paid
+1236,14,5,99,2026-09-30,13800.00,Payroll Run,Monthly payroll - September 2026,paid
+1237,15,5,99,2026-09-30,17000.00,Payroll Run,Monthly payroll - September 2026,approved
+1238,16,5,106,2026-09-30,16600.00,Payroll Run,Monthly payroll - September 2026,paid
+1239,1,1,43,2026-10-01,26000.00,Kapoor Realty and Estates,Rent - October 2026,paid
+1240,3,1,43,2026-10-01,31700.00,Mehra Holdings,Rent - October 2026,paid
+1241,7,1,86,2026-10-01,25100.00,Nair Estates,Rent - October 2026,paid
+1242,9,1,86,2026-10-01,28900.00,Nair Estates,Rent - October 2026,paid
+1243,10,1,86,2026-10-01,19300.00,Shah Realty Partners,Rent - October 2026,paid
+1244,12,1,86,2026-10-01,26400.00,Mehra Holdings,Rent - October 2026,paid
+1245,13,1,86,2026-10-01,14100.00,Shah Realty Partners,Rent - October 2026,paid
+1246,16,1,106,2026-10-01,12800.00,Gupta Commercial Spaces,Rent - October 2026,paid
+1247,4,1,43,2026-10-02,34800.00,Kapoor Realty and Estates,Rent - October 2026,paid
+1248,5,1,43,2026-10-02,32200.00,Gupta Commercial Spaces,Rent - October 2026,paid
+1249,2,1,43,2026-10-03,34700.00,Nair Estates,Rent - October 2026,paid
+1250,6,1,43,2026-10-03,39000.00,Rao Properties LLP,Rent - October 2026,paid
+1251,7,10,86,2026-10-03,500.00,Local Vendor,Miscellaneous - October 2026,rejected
+1252,8,1,86,2026-10-03,21200.00,Shah Realty Partners,Rent - October 2026,paid
+1253,11,1,86,2026-10-03,21300.00,Rao Properties LLP,Rent - October 2026,paid
+1254,14,1,99,2026-10-03,6800.00,Mehra Holdings,Rent - October 2026,paid
+1255,15,1,99,2026-10-03,8200.00,Nair Estates,Rent - October 2026,paid
+1256,3,9,43,2026-10-05,9100.00,Coolbreeze AC Works,Repairs and Renovation - October 2026,paid
+1257,4,3,43,2026-10-05,7100.00,Muscle Care Engineers,Equipment Maintenance - October 2026,paid
+1258,9,10,86,2026-10-05,500.00,Stationery Hub,Miscellaneous - October 2026,paid
+1259,11,3,86,2026-10-05,1500.00,TechnoFit Services,Equipment Maintenance - October 2026,paid
+1260,11,6,86,2026-10-05,4800.00,Pixel Print and Media,Marketing and Promotions - October 2026,paid
+1261,16,10,106,2026-10-05,500.00,Local Vendor,Miscellaneous - October 2026,paid
+1262,7,6,86,2026-10-06,4000.00,Pixel Print and Media,Marketing and Promotions - October 2026,paid
+1263,9,3,86,2026-10-06,800.00,TechnoFit Services,Equipment Maintenance - October 2026,paid
+1264,13,4,86,2026-10-06,2800.00,Anand Supplies,Housekeeping and Supplies - October 2026,paid
+1265,1,4,43,2026-10-07,2900.00,CleanSweep Housekeeping,Housekeeping and Supplies - October 2026,paid
+1266,3,7,43,2026-10-07,900.00,CloudDesk Software,Software and Internet - October 2026,paid
+1267,4,7,43,2026-10-07,600.00,CloudDesk Software,Software and Internet - October 2026,paid
+1268,7,7,86,2026-10-07,700.00,SecureEye CCTV Services,Software and Internet - October 2026,paid
+1269,8,4,86,2026-10-07,4300.00,Kaveri Facility Services,Housekeeping and Supplies - October 2026,paid
+1270,10,4,86,2026-10-07,3700.00,CleanSweep Housekeeping,Housekeeping and Supplies - October 2026,paid
+1271,11,4,86,2026-10-07,3200.00,CleanSweep Housekeeping,Housekeeping and Supplies - October 2026,paid
+1272,12,7,86,2026-10-07,700.00,CloudDesk Software,Software and Internet - October 2026,paid
+1273,13,3,86,2026-10-07,1800.00,TechnoFit Services,Equipment Maintenance - October 2026,paid
+1274,13,7,86,2026-10-07,800.00,SecureEye CCTV Services,Software and Internet - October 2026,paid
+1275,14,4,99,2026-10-07,2300.00,CleanSweep Housekeeping,Housekeeping and Supplies - October 2026,paid
+1276,14,6,99,2026-10-07,3000.00,Pixel Print and Media,Marketing and Promotions - October 2026,paid
+1277,14,7,99,2026-10-07,500.00,CloudDesk Software,Software and Internet - October 2026,paid
+1278,15,4,99,2026-10-07,2800.00,Kaveri Facility Services,Housekeeping and Supplies - October 2026,paid
+1279,16,4,106,2026-10-07,2100.00,CleanSweep Housekeeping,Housekeeping and Supplies - October 2026,paid
+1280,16,6,106,2026-10-07,2900.00,Pixel Print and Media,Marketing and Promotions - October 2026,paid
+1281,4,4,43,2026-10-08,3000.00,Anand Supplies,Housekeeping and Supplies - October 2026,paid
+1282,7,4,86,2026-10-08,3600.00,CleanSweep Housekeeping,Housekeeping and Supplies - October 2026,paid
+1283,12,4,86,2026-10-08,3600.00,Kaveri Facility Services,Housekeeping and Supplies - October 2026,paid
+1284,14,10,99,2026-10-08,600.00,Local Vendor,Miscellaneous - October 2026,paid
+1285,1,7,43,2026-10-09,700.00,SecureEye CCTV Services,Software and Internet - October 2026,paid
+1286,2,4,43,2026-10-09,5200.00,Kaveri Facility Services,Housekeeping and Supplies - October 2026,paid
+1287,6,7,43,2026-10-09,1500.00,SecureEye CCTV Services,Software and Internet - October 2026,paid
+1288,8,3,86,2026-10-09,2200.00,Muscle Care Engineers,Equipment Maintenance - October 2026,paid
+1289,9,6,86,2026-10-09,1400.00,RedBrick Outdoor,Marketing and Promotions - October 2026,paid
+1290,11,10,86,2026-10-09,700.00,Local Vendor,Miscellaneous - October 2026,paid
+1291,12,6,86,2026-10-09,5200.00,Spark Social Studio,Marketing and Promotions - October 2026,paid
+1292,13,6,86,2026-10-09,3900.00,Spark Social Studio,Marketing and Promotions - October 2026,paid
+1293,16,7,106,2026-10-09,500.00,CloudDesk Software,Software and Internet - October 2026,paid
+1294,3,4,43,2026-10-10,3300.00,Kaveri Facility Services,Housekeeping and Supplies - October 2026,approved
+1295,4,2,43,2026-10-10,9700.00,Bharat Diesel Supplies,Electricity and Utilities - October 2026,approved
+1296,5,4,43,2026-10-10,4500.00,CleanSweep Housekeeping,Housekeeping and Supplies - October 2026,paid
+1297,5,7,43,2026-10-10,1200.00,SecureEye CCTV Services,Software and Internet - October 2026,paid
+1298,6,2,43,2026-10-10,11700.00,State Power Distribution Company,Electricity and Utilities - October 2026,paid
+1299,6,4,43,2026-10-10,8400.00,Kaveri Facility Services,Housekeeping and Supplies - October 2026,approved
+1300,9,2,86,2026-10-10,2600.00,City Water Board,Electricity and Utilities - October 2026,pending
+1301,9,4,86,2026-10-10,1800.00,CleanSweep Housekeeping,Housekeeping and Supplies - October 2026,approved
+1302,10,6,86,2026-10-10,6000.00,LocalReach Ads,Marketing and Promotions - October 2026,approved
+1303,1,2,43,2026-10-11,8400.00,Bharat Diesel Supplies,Electricity and Utilities - October 2026,pending
+1304,7,2,86,2026-10-11,5100.00,Bharat Diesel Supplies,Electricity and Utilities - October 2026,paid
+1305,8,2,86,2026-10-11,6200.00,City Water Board,Electricity and Utilities - October 2026,pending
+1306,9,7,86,2026-10-11,500.00,NetLink Broadband,Software and Internet - October 2026,paid
+1307,10,7,86,2026-10-11,600.00,NetLink Broadband,Software and Internet - October 2026,paid
+1308,11,7,86,2026-10-11,1200.00,SecureEye CCTV Services,Software and Internet - October 2026,approved
+1309,14,2,99,2026-10-11,4500.00,City Water Board,Electricity and Utilities - October 2026,approved
+1310,15,3,99,2026-10-11,1800.00,FitServe India,Equipment Maintenance - October 2026,paid
+1311,15,7,99,2026-10-11,500.00,NetLink Broadband,Software and Internet - October 2026,paid
+1312,2,7,43,2026-10-12,1100.00,NetLink Broadband,Software and Internet - October 2026,paid
+1313,8,7,86,2026-10-12,1100.00,SecureEye CCTV Services,Software and Internet - October 2026,approved
+1314,10,8,86,2026-10-12,1200.00,Municipal Corporation Licensing,Quarterly insurance premium,paid
+1315,14,8,99,2026-10-12,1400.00,Suraksha General Insurance,Quarterly insurance premium,approved
+1316,16,2,106,2026-10-12,6200.00,State Power Distribution Company,Electricity and Utilities - October 2026,approved
+1317,16,3,106,2026-10-12,900.00,FitServe India,Equipment Maintenance - October 2026,paid
+1318,1,8,43,2026-10-13,1500.00,Suraksha General Insurance,Quarterly insurance premium,approved
+1319,10,2,86,2026-10-13,7000.00,State Power Distribution Company,Electricity and Utilities - October 2026,paid
+1320,12,10,86,2026-10-13,900.00,Stationery Hub,Miscellaneous - October 2026,paid
+1321,13,8,86,2026-10-13,1500.00,Municipal Corporation Licensing,Quarterly insurance premium,pending
+1322,15,9,99,2026-10-13,4800.00,Coolbreeze AC Works,Repairs and Renovation - October 2026,approved
+1323,16,9,106,2026-10-13,11100.00,Coolbreeze AC Works,Repairs and Renovation - October 2026,approved
+1324,2,2,43,2026-10-14,6700.00,Bharat Diesel Supplies,Electricity and Utilities - October 2026,approved
+1325,11,2,86,2026-10-14,5800.00,Bharat Diesel Supplies,Electricity and Utilities - October 2026,approved
+1326,13,2,86,2026-10-14,5900.00,City Water Board,Electricity and Utilities - October 2026,pending
+1327,16,8,106,2026-10-14,1700.00,Fire Safety Department,Quarterly insurance premium,pending
+1328,2,3,43,2026-10-15,2200.00,Sharma Gym Equipment Repairs,Equipment Maintenance - October 2026,approved
+1329,3,2,43,2026-10-15,9100.00,Bharat Diesel Supplies,Electricity and Utilities - October 2026,paid
+1330,3,10,43,2026-10-15,500.00,Office Mart,Miscellaneous - October 2026,approved
+1331,5,2,43,2026-10-15,11300.00,City Water Board,Electricity and Utilities - October 2026,approved
+1332,6,3,43,2026-10-15,2300.00,Sharma Gym Equipment Repairs,Equipment Maintenance - October 2026,pending
+1333,8,10,86,2026-10-15,500.00,Stationery Hub,Miscellaneous - October 2026,pending
+1334,9,8,86,2026-10-15,900.00,Suraksha General Insurance,Quarterly insurance premium,paid
+1335,11,8,86,2026-10-15,2000.00,Fire Safety Department,Quarterly insurance premium,approved
+1336,12,2,86,2026-10-15,6700.00,State Power Distribution Company,Electricity and Utilities - October 2026,paid
+1337,15,2,99,2026-10-15,3700.00,City Water Board,Electricity and Utilities - October 2026,paid
+1338,15,10,99,2026-10-15,500.00,Local Vendor,Miscellaneous - October 2026,paid
+1339,4,8,43,2026-10-16,1800.00,Suraksha General Insurance,Quarterly insurance premium,paid
+1340,6,6,43,2026-10-16,8100.00,Pixel Print and Media,Marketing and Promotions - October 2026,approved
+1341,2,6,43,2026-10-17,5100.00,Spark Social Studio,Marketing and Promotions - October 2026,paid
+1342,5,3,43,2026-10-17,800.00,Sharma Gym Equipment Repairs,Equipment Maintenance - October 2026,paid
+1343,5,8,43,2026-10-17,2200.00,Fire Safety Department,Quarterly insurance premium,approved
+1344,10,3,86,2026-10-17,1700.00,FitServe India,Equipment Maintenance - October 2026,approved
+1345,12,8,86,2026-10-17,1500.00,Fire Safety Department,Quarterly insurance premium,paid
+1346,1,6,43,2026-10-18,3800.00,Spark Social Studio,Marketing and Promotions - October 2026,approved
+1347,3,6,43,2026-10-18,5900.00,RedBrick Outdoor,Marketing and Promotions - October 2026,paid
+1348,8,6,86,2026-10-18,5300.00,Pixel Print and Media,Marketing and Promotions - October 2026,approved
+1349,12,3,86,2026-10-18,1700.00,FitServe India,Equipment Maintenance - October 2026,paid
+1350,2,10,43,2026-10-19,1400.00,Stationery Hub,Miscellaneous - October 2026,paid
+1351,3,3,43,2026-10-19,1500.00,Muscle Care Engineers,Equipment Maintenance - October 2026,approved
+1352,6,8,43,2026-10-19,2500.00,Municipal Corporation Licensing,Quarterly insurance premium,approved
+1353,7,8,86,2026-10-19,1400.00,Suraksha General Insurance,Quarterly insurance premium,approved
+1354,13,10,86,2026-10-19,900.00,Local Vendor,Miscellaneous - October 2026,approved
+1355,14,3,99,2026-10-19,800.00,FitServe India,Equipment Maintenance - October 2026,pending
+1356,15,8,99,2026-10-19,1800.00,Suraksha General Insurance,Quarterly insurance premium,paid
+1357,5,6,43,2026-10-20,3300.00,RedBrick Outdoor,Marketing and Promotions - October 2026,pending
+1358,5,10,43,2026-10-20,1200.00,Local Vendor,Miscellaneous - October 2026,paid
+1359,7,3,86,2026-10-20,1300.00,Sharma Gym Equipment Repairs,Equipment Maintenance - October 2026,paid
+1360,10,10,86,2026-10-20,600.00,Office Mart,Miscellaneous - October 2026,paid
+1361,1,10,43,2026-10-21,500.00,Office Mart,Miscellaneous - October 2026,paid
+1362,2,8,43,2026-10-21,3000.00,Fire Safety Department,Quarterly insurance premium,paid
+1363,3,8,43,2026-10-21,1800.00,Suraksha General Insurance,Quarterly insurance premium,paid
+1364,4,6,43,2026-10-21,7100.00,Spark Social Studio,Marketing and Promotions - October 2026,approved
+1365,8,8,86,2026-10-21,2100.00,Fire Safety Department,Quarterly insurance premium,pending
+1366,15,6,99,2026-10-21,4000.00,RedBrick Outdoor,Marketing and Promotions - October 2026,paid
+1367,1,3,43,2026-10-24,2200.00,FitServe India,Equipment Maintenance - October 2026,pending
+1368,4,10,43,2026-10-25,1100.00,Office Mart,Miscellaneous - October 2026,paid
+1369,6,10,43,2026-10-25,500.00,Stationery Hub,Miscellaneous - October 2026,approved
+1370,1,5,43,2026-10-30,19400.00,Payroll Run,Monthly payroll - October 2026,approved
+1371,2,5,43,2026-10-30,27300.00,Payroll Run,Monthly payroll - October 2026,paid
+1372,3,5,43,2026-10-30,16300.00,Payroll Run,Monthly payroll - October 2026,paid
+1373,4,5,43,2026-10-30,20100.00,Payroll Run,Monthly payroll - October 2026,approved
+1374,5,5,43,2026-10-30,21400.00,Payroll Run,Monthly payroll - October 2026,approved
+1375,6,5,43,2026-10-30,29400.00,Payroll Run,Monthly payroll - October 2026,approved
+1376,7,5,86,2026-10-30,17100.00,Payroll Run,Monthly payroll - October 2026,pending
+1377,8,5,86,2026-10-30,19400.00,Payroll Run,Monthly payroll - October 2026,paid
+1378,9,5,86,2026-10-30,11800.00,Payroll Run,Monthly payroll - October 2026,paid
+1379,10,5,86,2026-10-30,16800.00,Payroll Run,Monthly payroll - October 2026,pending
+1380,11,5,86,2026-10-30,17700.00,Payroll Run,Monthly payroll - October 2026,approved
+1381,12,5,86,2026-10-30,20100.00,Payroll Run,Monthly payroll - October 2026,paid
+1382,13,5,86,2026-10-30,17500.00,Payroll Run,Monthly payroll - October 2026,approved
+1383,14,5,99,2026-10-30,13800.00,Payroll Run,Monthly payroll - October 2026,paid
+1384,15,5,99,2026-10-30,17000.00,Payroll Run,Monthly payroll - October 2026,paid
+1385,16,5,106,2026-10-30,16600.00,Payroll Run,Monthly payroll - October 2026,paid

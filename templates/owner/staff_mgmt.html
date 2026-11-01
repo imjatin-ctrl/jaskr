@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Staff & Permissions{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+    <div>
+      <span class="badge badge-coral">Role Delegation</span>
+      <h1>Staff & Permissions Management</h1>
+      <p style="color: var(--ink-muted);">Manage employee job roles, branch assignments, and system credentials for {{ org.name }}.</p>
+    </div>
+    <button onclick="document.getElementById('inviteStaffModal').style.display='flex'" class="btn btn-primary">
+      + Add Staff Member
+    </button>
+  </div>
+
+  <div class="card" style="margin-bottom: 2.5rem;">
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Staff ID</th>
+            <th>Employee Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Job Role</th>
+            <th>Branch Scope</th>
+            <th>Hired Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in staff_list %}
+            <tr>
+              <td class="mono-num">#{{ s.staff_id }}</td>
+              <td><strong>{{ s.full_name }}</strong></td>
+              <td>{{ s.email }}</td>
+              <td>{{ s.phone }}</td>
+              <td>
+                <span class="badge {% if s.job_role == 'OWNER' %}badge-coral{% elif s.job_role == 'BRANCH_MANAGER' %}badge-yellow{% elif s.job_role == 'FINANCE' %}badge-mint{% else %}badge-blue{% endif %}">
+                  {{ s.job_role }}
+                </span>
+              </td>
+              <td>
+                {% if s.branch_name %}
+                  {{ s.branch_name }} ({{ s.city }})
+                {% else %}
+                  <span class="badge" style="background: #F1F5F9;">Org-Wide Scope</span>
+                {% endif %}
+              </td>
+              <td class="mono-num">{{ s.hired_date }}</td>
+              <td><span class="badge badge-mint">{{ s.status|upper }}</span></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Add Staff Modal -->
+  <div id="inviteStaffModal" style="display: none; position: fixed; inset: 0; background: rgba(20, 18, 31, 0.6); z-index: 1200; align-items: center; justify-content: center;">
+    <div class="card" style="width: 90%; max-width: 520px; background: #fff;">
+      <h3 style="margin-bottom: 1rem;">Add Staff Account</h3>
+      <form method="POST" action="{{ url_for('owner.staff_mgmt') }}">
+        <div style="margin-bottom: 0.75rem;">
+          <label style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem;">Full Name</label>
+          <input type="text" name="full_name" required placeholder="e.g. Sahil Sharma" 
+                 style="width: 100%; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm);">
+        </div>
+
+        <div style="margin-bottom: 0.75rem;">
+          <label style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem;">Work Email</label>
+          <input type="email" name="email" required placeholder="sahil@brand.example" 
+                 style="width: 100%; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm);">
+        </div>
+
+        <div style="margin-bottom: 0.75rem;">
+          <label style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem;">Phone</label>
+          <input type="tel" name="phone" required placeholder="+91 98765 00000" 
+                 style="width: 100%; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm);">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.25rem;">
+          <div>
+            <label style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem;">Job Role</label>
+            <select name="job_role" required style="width: 100%; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm); background: #fff;">
+              <option value="FRONT_DESK">FRONT_DESK</option>
+              <option value="TRAINER">TRAINER</option>
+              <option value="FINANCE">FINANCE</option>
+              <option value="BRANCH_MANAGER">BRANCH_MANAGER</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem;">Branch Scope</label>
+            <select name="branch_id" style="width: 100%; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm); background: #fff;">
+              <option value="">Org-Wide (Finance only)</option>
+              {% for b in branches %}
+                <option value="{{ b.branch_id }}">{{ b.name }} ({{ b.city }})</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+          <button type="button" class="btn btn-sm" onclick="document.getElementById('inviteStaffModal').style.display='none'">Cancel</button>
+          <button type="submit" class="btn btn-sm btn-primary">Create Staff User</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}About the Project{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 860px;">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-yellow">Academic Capstone</span>
+    <h1 style="margin-bottom: 0.5rem;">About Jaskr GymGrid</h1>
+    <p style="color: var(--ink-muted); font-size: 1.1rem;">
+      University Database Management Systems (DBMS) Group Project: A Multi-Tenant City-Wide Gym Discovery, Smart Access & Financial Platform.
+    </p>
+  </div>
+
+  <!-- Project Team Members Placeholders -->
+  <div class="card" style="margin-bottom: 2rem; border-top: 6px solid var(--electric-blue);">
+    <h3 style="margin-bottom: 1rem;">Project Team Members</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+      <div style="border: var(--border-thin); border-radius: var(--radius-sm); padding: 1rem; background: var(--bg-canvas);">
+        <span class="badge badge-yellow" style="margin-bottom: 0.25rem;">Lead Architect</span>
+        <div style="font-size: 1.1rem; font-weight: 800;">Jatin Singh</div>
+        <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-muted);">Roll No: [Roll No - Placeholder]</div>
+        <div style="font-size: 0.85rem; color: var(--electric-blue); font-weight: 600;">Full-Stack & Database Design</div>
+      </div>
+
+      <div style="border: var(--border-thin); border-radius: var(--radius-sm); padding: 1rem; background: var(--bg-canvas);">
+        <span class="badge badge-blue" style="margin-bottom: 0.25rem;">Backend & Security</span>
+        <div style="font-size: 1.1rem; font-weight: 800;">[Team Member 2]</div>
+        <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-muted);">Roll No: [Roll No - Placeholder]</div>
+        <div style="font-size: 0.85rem; color: var(--electric-blue); font-weight: 600;">Stored Procs & Isolation</div>
+      </div>
+
+      <div style="border: var(--border-thin); border-radius: var(--radius-sm); padding: 1rem; background: var(--bg-canvas);">
+        <span class="badge badge-mint" style="margin-bottom: 0.25rem;">UI/UX & Analytics</span>
+        <div style="font-size: 1.1rem; font-weight: 800;">[Team Member 3]</div>
+        <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-muted);">Roll No: [Roll No - Placeholder]</div>
+        <div style="font-size: 0.85rem; color: var(--electric-blue); font-weight: 600;">Crowd Heat Grid & Bento</div>
+      </div>
+    </div>
+    <small style="display: block; margin-top: 0.75rem; color: var(--ink-subtle);">
+      * Team entries can be customized in <code>templates/public/about.html</code> before final submission.
+    </small>
+  </div>
+
+  <!-- Evaluator Technical Architecture Overview -->
+  <div class="card" style="margin-bottom: 2rem;">
+    <h3 style="margin-bottom: 1rem;">DBMS Concepts Demonstrated</h3>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+      <div style="font-size: 0.9rem; line-height: 1.6;">
+        <p>• <strong>DDL:</strong> 24 Tables with strict PK/FK, ON DELETE CASCADE/SET NULL, and CHECK constraints.</p>
+        <p>• <strong>DML:</strong> Parameterized INSERT, UPDATE, DELETE queries protecting against SQL injection.</p>
+        <p>• <strong>Joins:</strong> Inner, Left Outer, and Multi-table joins across 5+ relations.</p>
+        <p>• <strong>Aggregation:</strong> GROUP BY with HAVING thresholds on financial summaries.</p>
+      </div>
+      <div style="font-size: 0.9rem; line-height: 1.6;">
+        <p>• <strong>Views:</strong> 5 Relational views (<code>v_active_memberships</code>, <code>v_public_branch_directory</code>, etc.).</p>
+        <p>• <strong>Transactions:</strong> Stored procedures with ACID isolation, exception handlers, and ROLLBACK.</p>
+        <p>• <strong>DCL:</strong> Dedicated MySQL users (<code>gg_public</code>, <code>gg_member</code>, etc.) with least privilege.</p>
+        <p>• <strong>Indexes:</strong> B-Tree composite indexes justified for timestamp ranges and foreign keys.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 1rem;">
+    <a href="{{ url_for('lab.index') }}" class="btn btn-primary btn-lg">
+      🔬 Launch Interactive DBMS Lab
+    </a>
+  </div>
+</div>
+{% endblock %}

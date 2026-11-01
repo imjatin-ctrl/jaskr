@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Constraint Lab{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-coral">Integrity & Triggers</span>
+    <h1>Database Constraint & Trigger Lab</h1>
+    <p style="color: var(--ink-muted);">
+      Test schema CHECK constraints, foreign key referential integrity, and trigger validations by deliberately attempting invalid data entries.
+    </p>
+  </div>
+
+  <!-- Interactive Test Buttons Grid -->
+  <div class="bento-grid" style="margin-bottom: 2.5rem;">
+    <!-- Test 1: Negative Amount -->
+    <div class="card" style="border-top: 6px solid var(--hot-coral);">
+      <span class="badge badge-coral" style="margin-bottom: 0.5rem;">CHECK chk_pay_amount</span>
+      <h3>1. Negative Payment Amount</h3>
+      <p style="font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 1rem;">
+        Attempts to insert a payment of <code>-₹2,500.00</code>. Expected to fire <code>chk_pay_amount CHECK (amount > 0)</code>.
+      </p>
+      <form method="POST" action="{{ url_for('lab.constraint_lab') }}">
+        <input type="hidden" name="test_case" value="negative_amount">
+        <button type="submit" class="btn btn-sm btn-danger" style="width: 100%;">
+          ⚡ Attempt Negative Payment
+        </button>
+      </form>
+    </div>
+
+    <!-- Test 2: Inverted Dates -->
+    <div class="card" style="border-top: 6px solid #F59E0B;">
+      <span class="badge badge-yellow" style="margin-bottom: 0.5rem;">CHECK chk_ms_dates</span>
+      <h3>2. End Date Before Start Date</h3>
+      <p style="font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 1rem;">
+        Attempts to create a membership starting <code>2026-12-01</code> but ending <code>2026-10-01</code>.
+      </p>
+      <form method="POST" action="{{ url_for('lab.constraint_lab') }}">
+        <input type="hidden" name="test_case" value="end_before_start">
+        <button type="submit" class="btn btn-sm btn-primary" style="width: 100%;">
+          ⚡ Attempt Inverted Dates
+        </button>
+      </form>
+    </div>
+
+    <!-- Test 3: Over-Refund Trigger -->
+    <div class="card" style="border-top: 6px solid var(--electric-blue);">
+      <span class="badge badge-blue" style="margin-bottom: 0.5rem;">Trigger trg_prevent_excess_refund</span>
+      <h3>3. Over-Refund Attempt</h3>
+      <p style="font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 1rem;">
+        Attempts to refund <code>₹9,99,999.00</code> against a payment of <code>₹15,635.00</code>. Trigger prevents excess refund.
+      </p>
+      <form method="POST" action="{{ url_for('lab.constraint_lab') }}">
+        <input type="hidden" name="test_case" value="over_refund">
+        <button type="submit" class="btn btn-sm btn-accent" style="width: 100%;">
+          ⚡ Attempt Excessive Refund
+        </button>
+      </form>
+    </div>
+
+    <!-- Test 4: Orphan Foreign Key -->
+    <div class="card" style="border-top: 6px solid var(--violet-royal);">
+      <span class="badge badge-violet" style="margin-bottom: 0.5rem;">FOREIGN KEY Constraint</span>
+      <h3>4. Orphan Foreign Key</h3>
+      <p style="font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 1rem;">
+        Attempts to insert a member referencing nonexistent <code>home_branch_id = 99999</code>.
+      </p>
+      <form method="POST" action="{{ url_for('lab.constraint_lab') }}">
+        <input type="hidden" name="test_case" value="orphan_fk">
+        <button type="submit" class="btn btn-sm" style="width: 100%; background: var(--violet-royal); color: #fff;">
+          ⚡ Attempt Orphan FK Row
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Test Result Inspection Output -->
+  {% if test_result %}
+    <div class="card" style="border-left: 10px solid {% if test_result.passed %}var(--mint-green){% else %}var(--hot-coral){% endif %}; background: #FFFFFF; margin-bottom: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <span class="badge {% if test_result.passed %}badge-mint{% else %}badge-coral{% endif %}">
+          {{ "VERIFIED: Constraint Fired" if test_result.passed else "FAILED" }}
+        </span>
+        <span style="font-family: var(--font-mono); font-size: 0.85rem;">
+          {{ test_result.constraint }}
+        </span>
+      </div>
+
+      <h3 style="margin-bottom: 0.5rem; color: {% if test_result.passed %}var(--mint-green){% else %}var(--hot-coral){% endif %};">
+        {% if test_result.passed %}
+          ✓ Database Engine Rejected Invalid Data
+        {% else %}
+          ✕ Constraint Check Failed
+        {% endif %}
+      </h3>
+
+      <div style="background: var(--bg-canvas); border: var(--border-thin); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1rem;">
+        <strong style="display: block; font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 0.25rem;">Captured Raw Database Error:</strong>
+        <code style="font-family: var(--font-mono); font-size: 0.9rem; color: #991B1B;">{{ test_result.error }}</code>
+      </div>
+
+      <p style="font-size: 0.95rem; color: var(--ink-muted);">
+        💡 <strong>Evaluator Explanation:</strong> {{ test_result.explanation }}
+      </p>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

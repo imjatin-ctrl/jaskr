@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}Front Desk Console{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-blue">Staff Console</span>
+    <h1>Front Desk Operations</h1>
+    <p style="color: var(--ink-muted);">
+      Branch: <strong>{{ branch.name }}</strong> ({{ branch.city }}) • Capacity: <strong>{{ branch.capacity }}</strong>
+    </p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1.2fr 1.8fr; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start;">
+    <!-- Left: Member Scan & Instant Lookup -->
+    <div>
+      <div class="card" style="margin-bottom: 1.5rem; border-top: 6px solid var(--electric-blue);">
+        <h3 style="margin-bottom: 1rem;">Member Scan / Lookup</h3>
+        <form method="GET" action="{{ url_for('staff.front_desk') }}" style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+          <input type="text" name="search" value="{{ search_query }}" placeholder="Scan barcode, ID or phone..." 
+                 style="flex: 1; padding: 0.65rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.95rem;">
+          <button type="submit" class="btn btn-accent btn-sm">Scan / Search</button>
+        </form>
+
+        {% if lookup_member %}
+          <div style="border: var(--border-thin); border-radius: var(--radius-sm); padding: 1rem; background: var(--bg-canvas);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+              <div>
+                <strong style="font-size: 1.15rem; display: block;">{{ lookup_member.full_name }}</strong>
+                <span style="font-size: 0.8rem; color: var(--ink-muted);">Member #{{ lookup_member.member_id }} • {{ lookup_member.phone }}</span>
+              </div>
+              <span class="badge {% if lookup_ms and lookup_ms.status == 'active' %}badge-mint{% else %}badge-coral{% endif %}">
+                {{ lookup_ms.status|upper if lookup_ms else "NO PLAN" }}
+              </span>
+            </div>
+
+            <div style="font-size: 0.85rem; margin-bottom: 1rem;">
+              <div>Plan: <strong>{{ lookup_ms.plan_name if lookup_ms else "N/A" }}</strong></div>
+              <div>Home Branch: <strong>{{ lookup_member.home_branch_name }}</strong> ({{ lookup_member.home_branch_city }})</div>
+              {% if lookup_ms %}
+                <div>Validity: {{ lookup_ms.start_date }} to {{ lookup_ms.end_date }}</div>
+              {% endif %}
+            </div>
+
+            {% if lookup_ms and lookup_ms.status == 'active' %}
+              <form method="POST" action="{{ url_for('staff.desk_checkin') }}">
+                <input type="hidden" name="member_id" value="{{ lookup_member.member_id }}">
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                  ✓ Grant Floor Access & Check In
+                </button>
+              </form>
+            {% else %}
+              <div style="color: var(--hot-coral); font-weight: 700; font-size: 0.85rem; text-align: center;">
+                Cannot Check In: Inactive or Expired Membership
+              </div>
+            {% endif %}
+          </div>
+        {% elif search_query %}
+          <p style="color: var(--hot-coral); font-size: 0.9rem;">No member found matching '{{ search_query }}'.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Right: Currently Inside Live Floor List -->
+    <div>
+      <div class="card" style="border-top: 6px solid var(--mint-green);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <div>
+            <span class="badge badge-mint" style="margin-bottom: 0.25rem;">Live Occupancy</span>
+            <h3>Currently Inside Branch ({{ inside_athletes|length }} Active)</h3>
+          </div>
+          <div class="mono-num" style="font-size: 1.25rem; font-weight: 900; color: var(--mint-green);">
+            {{ inside_athletes|length }} / {{ branch.capacity }}
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table-custom">
+            <thead>
+              <tr>
+                <th>Member</th>
+                <th>Check-in Time</th>
+                <th>Plan Tier</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for a in inside_athletes %}
+                <tr>
+                  <td>
+                    <strong>{{ a.full_name }}</strong>
+                    <div style="font-size: 0.75rem; color: var(--ink-muted);">#{{ a.member_id }} • {{ a.phone }}</div>
+                  </td>
+                  <td class="mono-num">{{ a.check_in[11:16] }}</td>
+                  <td><span class="badge badge-yellow" style="font-size: 0.65rem;">{{ a.plan_name or 'Standard' }}</span></td>
+                  <td>
+                    <form method="POST" action="{{ url_for('staff.desk_checkout', attendance_id=a.attendance_id) }}">
+                      <button type="submit" class="btn btn-sm btn-danger" style="font-size: 0.7rem; padding: 0.25rem 0.5rem;">
+                        Check Out
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+              {% else %}
+                <tr><td colspan="4" style="text-align: center; color: var(--ink-muted);">Floor is currently empty. No athletes checked in.</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Show SQL Drawer -->
+  {{ sql_comp.sql_drawer(
+      "Front Desk Live Floor Occupancy Query",
+      "SELECT a.attendance_id, a.check_in, m.full_name, m.phone, p.plan_name\nFROM attendance a\nJOIN members m ON a.member_id = m.member_id\nLEFT JOIN memberships ms ON m.member_id = ms.member_id AND ms.status = 'active'\nLEFT JOIN membership_plans p ON ms.plan_id = p.plan_id\nWHERE a.branch_id = " ~ branch.branch_id ~ " AND a.check_out IS NULL\nORDER BY a.check_in DESC;",
+      ["JOIN", "LEFT JOIN", "NULL-CHECK", "INDEXED-RANGE"],
+      "Identifies athletes currently inside via attendance rows with NULL check_out timestamp."
+  ) }}
+</div>
+{% endblock %}

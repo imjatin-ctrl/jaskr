@@ -1,0 +1,58 @@
+<footer class="global-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand-lockup" style="margin-bottom: 0.75rem;">
+          <img src="{{ url_for('static', filename='img/logo_full.svg') }}" alt="Jaskr GymGrid" style="height: 32px;">
+        </div>
+        <p style="font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 1rem;">
+          The unified, city-wide gym discovery, smart access, and financial management platform for fitness centres across India.
+        </p>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="badge badge-yellow">MySQL 8.x</span>
+          <span class="badge badge-blue">Python Flask</span>
+          <span class="badge badge-mint">3NF Relational DB</span>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="margin-bottom: 0.75rem;">Discovery & Access</h4>
+        <ul style="list-style: none; font-size: 0.9rem; display: flex; flex-direction: column; gap: 0.4rem; color: var(--ink-muted);">
+          <li><a href="{{ url_for('public.discover') }}" style="text-decoration: underline;">Browse 17 Branches</a></li>
+          <li><a href="{{ url_for('public.compare') }}" style="text-decoration: underline;">Side-by-Side Gym Comparison</a></li>
+          <li><a href="{{ url_for('public.crowd') }}" style="text-decoration: underline;">Crowd Explorer Heat Grid</a></li>
+          <li><a href="{{ url_for('public.plans') }}" style="text-decoration: underline;">Membership Plans Directory</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="margin-bottom: 0.75rem;">DBMS Evaluator Lab</h4>
+        <ul style="list-style: none; font-size: 0.9rem; display: flex; flex-direction: column; gap: 0.4rem; color: var(--ink-muted);">
+          <li><a href="{{ url_for('lab.index') }}" style="text-decoration: underline;">Under the Hood Overview</a></li>
+          <li><a href="{{ url_for('lab.er_explorer') }}" style="text-decoration: underline;">Interactive ER Diagram Explorer</a></li>
+          <li><a href="{{ url_for('lab.query_lab') }}" style="text-decoration: underline;">Live SQL Query Lab</a></li>
+          <li><a href="{{ url_for('lab.transaction_theater') }}" style="text-decoration: underline;">Transaction Theater (ACID & Rollback)</a></li>
+          <li><a href="{{ url_for('lab.isolation_lab') }}" style="text-decoration: underline;">Multi-Tenant Isolation Lab (D6)</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="margin-bottom: 0.75rem;">Project & Governance</h4>
+        <ul style="list-style: none; font-size: 0.9rem; display: flex; flex-direction: column; gap: 0.4rem; color: var(--ink-muted);">
+          <li><a href="{{ url_for('public.gap_analysis') }}" style="text-decoration: underline;">Gap Analysis & Market Comparison</a></li>
+          <li><a href="{{ url_for('public.about') }}" style="text-decoration: underline;">About Project & Team Members</a></li>
+          <li><a href="{{ url_for('auth.list_gym') }}" style="text-decoration: underline;">List Your Gym (Owner Onboarding)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>
+        <strong>Jaskr GymGrid - academic DBMS prototype. All data is fictional; payments are simulated.</strong>
+      </div>
+      <div>
+        <span>Snapshot Time: 2026-10-30 10:00:00 IST | Currency: INR (₹)</span>
+      </div>
+    </div>
+  </div>
+</footer>

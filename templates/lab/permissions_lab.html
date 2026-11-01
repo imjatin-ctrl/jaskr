@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}Permissions Lab (DCL){% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-yellow">Data Control Language</span>
+    <h1>Permissions (DCL) & Least Privilege Lab</h1>
+    <p style="color: var(--ink-muted);">
+      MySQL 8.x database accounts configured with minimal privileges. Demonstrating separation of privileges between public discovery, members, staff, owners, and administrators.
+    </p>
+  </div>
+
+  <!-- Role Matrix Table -->
+  <div class="card" style="margin-bottom: 2.5rem;">
+    <h3 style="margin-bottom: 1rem;">MySQL Accounts & Privilege Matrix</h3>
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Database Role Account</th>
+            <th>Authorized Views</th>
+            <th>Accessible Tables</th>
+            <th>Stored Procedures</th>
+            <th>DCL Privilege Scope</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in roles_matrix %}
+            <tr>
+              <td>
+                <code style="font-family: var(--font-mono); font-weight: 800; font-size: 0.95rem; color: var(--electric-blue);">
+                  {{ r.role }}@'%'
+                </code>
+              </td>
+              <td style="font-size: 0.85rem;">{{ r.views }}</td>
+              <td style="font-size: 0.85rem;">{{ r.tables }}</td>
+              <td style="font-family: var(--font-mono); font-size: 0.8rem;">{{ r.procedures }}</td>
+              <td style="font-size: 0.85rem; color: var(--ink-muted);">{{ r.privileges }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Show SQL Drawer for DCL Statements -->
+  {{ sql_comp.sql_drawer(
+      "DCL GRANT & REVOKE Script (db/dcl.sql)",
+      "CREATE USER 'gg_public'@'%' IDENTIFIED BY '...';\nGRANT SELECT ON gymgrid.v_public_branch_directory TO 'gg_public'@'%';\nGRANT SELECT ON gymgrid.v_branch_crowd_hourly TO 'gg_public'@'%';\n\nCREATE USER 'gg_member'@'%' IDENTIFIED BY '...';\nGRANT SELECT, UPDATE (full_name, phone) ON gymgrid.members TO 'gg_member'@'%';\nGRANT EXECUTE ON PROCEDURE gymgrid.sp_record_payment TO 'gg_member'@'%';\n\nCREATE USER 'gg_owner'@'%' IDENTIFIED BY '...';\nGRANT SELECT, INSERT, UPDATE, DELETE ON gymgrid.branches TO 'gg_owner'@'%';\nGRANT EXECUTE ON PROCEDURE gymgrid.sp_process_refund TO 'gg_owner'@'%';\nFLUSH PRIVILEGES;",
+      ["DCL", "GRANT", "REVOKE", "LEAST-PRIVILEGE", "SECURITY"],
+      "Database-level enforcement: connecting with a specific role account restricts operations even if application logic were bypassed."
+  ) }}
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Crowd Explorer Heat Grid{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-yellow">Differentiator D3</span>
+    <h1>Crowd Density Explorer</h1>
+    <p style="color: var(--ink-muted);">
+      Explore historical attendance distributions to pick quiet times for your workouts. Always labeled honestly with sample sizes.
+    </p>
+  </div>
+
+  <!-- Selection Controls -->
+  <div class="card" style="margin-bottom: 2rem;">
+    <form method="GET" action="{{ url_for('public.crowd') }}" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;">
+      <div style="flex: 2; min-width: 240px;">
+        <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Select Fitness Branch</label>
+        <select name="branch_id" style="width: 100%; padding: 0.65rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.95rem; background: #fff;">
+          {% for b in all_branches %}
+            <option value="{{ b.branch_id }}" {% if selected_branch_id == b.branch_id %}selected{% endif %}>
+              {{ b.name }} ({{ b.city }})
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div style="flex: 1; min-width: 180px;">
+        <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Day of Week</label>
+        <select name="day" style="width: 100%; padding: 0.65rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.95rem; background: #fff;">
+          {% set day_names = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %}
+          {% for d in range(7) %}
+            <option value="{{ d }}" {% if selected_day == d %}selected{% endif %}>{{ day_names[d] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="padding: 0.65rem 1.5rem;">View Estimates</button>
+    </form>
+  </div>
+
+  <!-- Analytics Banner & Honest Disclosure -->
+  <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 2rem; align-items: stretch;">
+    <div class="card" style="border-left: 8px solid var(--brand-yellow); display: flex; flex-direction: column; justify-content: center;">
+      <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
+        <span class="badge" style="background: #FEF3C7; color: #92400E; font-size: 0.75rem;">Estimate - Not live occupancy</span>
+        <span class="badge badge-blue">8-Week Historical Model</span>
+      </div>
+      <h2>{{ branch.name }} on {{ ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][selected_day] }}s</h2>
+      <p style="color: var(--ink-muted); font-size: 0.95rem;">
+        Sample size: <strong>{{ total_samples }} historical check-ins</strong> analyzed between August 3, 2026 and October 30, 2026.
+      </p>
+    </div>
+
+    <div class="card" style="background: var(--mint-green-subtle); border-left: 8px solid var(--mint-green); display: flex; flex-direction: column; justify-content: center;">
+      <span class="badge badge-mint" style="margin-bottom: 0.3rem; align-self: flex-start;">💡 Recommendation</span>
+      <div style="font-size: 0.85rem; font-weight: 700; color: var(--ink-muted);">BEST TIME TO VISIT</div>
+      <div style="font-size: 1.35rem; font-weight: 900; color: var(--ink-primary); margin: 0.25rem 0;">{{ best_time }}</div>
+      <div style="font-size: 0.8rem; color: var(--ink-muted);">Lowest historical floor traffic</div>
+    </div>
+  </div>
+
+  <!-- Hourly Bar Chart Visualizer -->
+  <div class="card" style="margin-bottom: 2rem;">
+    <h3 style="margin-bottom: 1.25rem;">Estimated Occupancy Pattern by Hour (06:00 - 22:00)</h3>
+    <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+      {% set max_v = hours_data.values()|max or 1 %}
+      {% for h in range(6, 23) %}
+        {% set visits = hours_data.get(h, 0) %}
+        {% set pct = (visits / max_v * 100)|round %}
+        <div style="display: grid; grid-template-columns: 80px 1fr 60px; gap: 1rem; align-items: center;">
+          <span class="mono-num" style="font-weight: 700; font-size: 0.9rem;">{{ "%02d:00"|format(h) }}</span>
+          <div style="background: #F1F5F9; border: var(--border-thin); border-radius: var(--radius-sm); height: 26px; overflow: hidden; position: relative;">
+            <div style="width: {{ pct }}%; height: 100%; background: {% if pct > 75 %}var(--hot-coral){% elif pct > 40 %}var(--brand-yellow){% else %}var(--mint-green){% endif %}; transition: width 0.3s ease;"></div>
+          </div>
+          <span class="mono-num" style="font-size: 0.85rem; text-align: right; color: var(--ink-muted);">{{ visits }} visits</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

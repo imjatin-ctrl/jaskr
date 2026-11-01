@@ -1,0 +1,18 @@
+branch_id,organization_id,name,address,city,state,pincode,latitude,longitude,phone,description,capacity
+1,1,IronPulse Saket,"Plot 14, Press Enclave Road, Saket",Delhi,Delhi,110017,28.525190,77.205856,+91 61195 89017,"IronPulse Saket - a flagship fitness centre in Saket, Delhi.",140
+2,1,IronPulse Dwarka,"Sector 12 Market Complex, Dwarka",Delhi,Delhi,110075,28.591491,77.046857,+91 65045 66145,"IronPulse Dwarka - a fitness centre in Dwarka, Delhi.",120
+3,1,IronPulse Gurugram Sector 29,"Leisure Valley Road, Sector 29",Gurugram,Haryana,122001,28.467793,77.068265,+91 93023 52842,"IronPulse Gurugram Sector 29 - a flagship fitness centre in Sector 29, Gurugram.",150
+4,1,IronPulse Andheri West,"Veera Desai Road, Andheri West",Mumbai,Maharashtra,400053,19.136100,72.827959,+91 97020 58773,"IronPulse Andheri West - a fitness centre in Andheri West, Mumbai.",130
+5,1,IronPulse Indiranagar,"100 Feet Road, Indiranagar",Bengaluru,Karnataka,560038,12.978829,77.640805,+91 71753 63800,"IronPulse Indiranagar - a fitness centre in Indiranagar, Bengaluru.",135
+6,1,IronPulse Gachibowli,"Financial District Road, Gachibowli",Hyderabad,Telangana,500032,17.440590,78.349852,+91 69534 66109,"IronPulse Gachibowli - a flagship fitness centre in Gachibowli, Hyderabad.",160
+7,2,FlexNation Rohini,"Sector 7 Community Centre, Rohini",Delhi,Delhi,110085,28.716321,77.113732,+91 90982 35367,"FlexNation Rohini - a fitness centre in Rohini, Delhi.",110
+8,2,FlexNation Noida Sector 18,"Atta Market Road, Sector 18",Noida,Uttar Pradesh,201301,28.569902,77.326588,+91 94778 87821,"FlexNation Noida Sector 18 - a flagship fitness centre in Sector 18, Noida.",145
+9,2,FlexNation Bandra West,"Hill Road, Bandra West",Mumbai,Maharashtra,400050,19.059461,72.830433,+91 73620 81396,"FlexNation Bandra West - a fitness centre in Bandra West, Mumbai.",110
+10,2,FlexNation Baner,"Baner Road, near Balewadi Phata",Pune,Maharashtra,411045,18.559781,73.785941,+91 75088 23679,"FlexNation Baner - a fitness centre in near Balewadi Phata, Pune.",125
+11,2,FlexNation Kothrud,"Paud Road, Kothrud",Pune,Maharashtra,411038,18.507993,73.807373,+91 99064 60526,"FlexNation Kothrud - a fitness centre in Kothrud, Pune.",115
+12,2,FlexNation Koramangala,"80 Feet Road, 4th Block, Koramangala",Bengaluru,Karnataka,560034,12.935053,77.624489,+91 98479 61358,"FlexNation Koramangala - a fitness centre in Koramangala, Bengaluru.",130
+13,2,FlexNation Adyar,"Lattice Bridge Road, Adyar",Chennai,Tamil Nadu,600020,13.006262,80.257882,+91 65485 31903,"FlexNation Adyar - a fitness centre in Adyar, Chennai.",120
+14,3,Aarogya Active Club C-Scheme,"Ashok Marg, C-Scheme",Jaipur,Rajasthan,302001,26.910446,75.799452,+91 80197 80221,"Aarogya Active Club C-Scheme - a fitness centre in C-Scheme, Jaipur.",100
+15,3,Aarogya Active Club Vaishali Nagar,"Gandhi Path West, Vaishali Nagar",Jaipur,Rajasthan,302021,26.912070,75.726116,+91 80996 99482,"Aarogya Active Club Vaishali Nagar - a fitness centre in Vaishali Nagar, Jaipur.",90
+16,4,Sundarban Strength House,"Sector V, Salt Lake City",Kolkata,West Bengal,700091,22.574377,88.432754,+91 94704 87212,"Sundarban Strength House - a fitness centre in Salt Lake City, Kolkata.",110
+17,5,Zenith Strength Lab Sector 17,Sector 17 Plaza,Chandigarh,Chandigarh,160017,30.739846,76.782250,+91 83214 80209,"Zenith Strength Lab Sector 17 - a fitness centre in Sector 17 Plaza, Chandigarh.",100

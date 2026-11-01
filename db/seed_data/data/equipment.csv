@@ -1,0 +1,240 @@
+equipment_id,branch_id,equipment_name,quantity,condition_status,last_serviced_on
+1,1,Dumbbell Set (2.5-50 kg),2,good,2026-09-23
+2,1,Squat Rack,3,good,2026-10-22
+3,1,Treadmill,15,good,2026-06-04
+4,1,Yoga Mats,43,good,2026-04-13
+5,1,Leg Press,1,good,2026-09-16
+6,1,Spin Bike,9,good,2026-08-04
+7,1,Flat Bench,5,good,2026-04-27
+8,1,Olympic Barbell,14,good,2026-06-02
+9,1,Smith Machine,2,good,2026-10-10
+10,1,Cable Crossover,3,good,2026-05-16
+11,1,Kettlebell Set,1,good,2026-08-15
+12,1,Punching Bag,3,good,2026-08-26
+13,1,Elliptical Cross-Trainer,5,good,2026-09-01
+14,1,Medicine Balls,14,good,2026-04-30
+15,1,Rowing Machine,5,good,2026-10-19
+16,2,Treadmill,10,good,2026-05-05
+17,2,Medicine Balls,7,good,2026-03-28
+18,2,Rowing Machine,3,good,2026-09-04
+19,2,Flat Bench,8,good,2026-08-14
+20,2,Assault Bike,4,good,2026-06-17
+21,2,Dumbbell Set (2.5-50 kg),1,good,2026-07-01
+22,2,Spin Bike,12,good,2026-03-04
+23,2,Cable Crossover,1,good,2026-03-26
+24,2,Squat Rack,5,good,2026-09-18
+25,2,Lat Pulldown,3,good,2026-06-15
+26,2,Leg Press,1,good,2026-03-08
+27,2,Battle Ropes,3,good,2026-04-15
+28,2,Olympic Barbell,9,good,2026-06-21
+29,2,Yoga Mats,30,good,2026-08-01
+30,2,Kettlebell Set,2,good,2026-08-05
+31,2,Punching Bag,3,good,2026-07-16
+32,2,Elliptical Cross-Trainer,4,out_of_order,2026-09-23
+33,3,Battle Ropes,2,good,2026-10-25
+34,3,Squat Rack,2,needs_service,2026-03-31
+35,3,Assault Bike,6,good,2026-07-16
+36,3,Punching Bag,3,good,2026-09-28
+37,3,Elliptical Cross-Trainer,3,good,2026-06-01
+38,3,Flat Bench,10,needs_service,2026-07-09
+39,3,Yoga Mats,26,good,2026-08-29
+40,3,Spin Bike,20,needs_service,2026-08-06
+41,3,Leg Press,2,good,2026-09-10
+42,3,Medicine Balls,17,good,2026-09-04
+43,3,Olympic Barbell,16,good,2026-04-10
+44,3,Treadmill,7,needs_service,2026-06-03
+45,3,Smith Machine,2,good,2026-08-28
+46,3,Dumbbell Set (2.5-50 kg),1,out_of_order,2026-08-10
+47,3,Lat Pulldown,1,out_of_order,2026-09-15
+48,4,Dumbbell Set (2.5-50 kg),1,good,2026-04-29
+49,4,Rowing Machine,2,good,2026-08-21
+50,4,Battle Ropes,4,needs_service,2026-04-30
+51,4,Punching Bag,6,good,2026-10-22
+52,4,Squat Rack,3,needs_service,2026-04-09
+53,4,Lat Pulldown,2,good,2026-07-21
+54,4,Smith Machine,1,good,2026-06-24
+55,4,Kettlebell Set,1,out_of_order,2026-08-28
+56,4,Yoga Mats,33,out_of_order,2026-09-10
+57,4,Cable Crossover,3,good,2026-04-13
+58,4,Leg Press,1,good,2026-08-10
+59,4,Elliptical Cross-Trainer,4,good,2026-06-18
+60,4,Spin Bike,10,good,2026-08-16
+61,4,Treadmill,10,good,2026-09-04
+62,5,Punching Bag,6,good,2026-03-11
+63,5,Olympic Barbell,13,good,2026-09-07
+64,5,Flat Bench,6,good,2026-08-23
+65,5,Squat Rack,2,good,2026-05-30
+66,5,Medicine Balls,12,good,2026-09-20
+67,5,Leg Press,2,good,2026-08-04
+68,5,Treadmill,12,good,2026-08-29
+69,5,Smith Machine,3,good,2026-04-07
+70,5,Dumbbell Set (2.5-50 kg),2,good,2026-06-03
+71,5,Spin Bike,19,good,2026-08-25
+72,5,Rowing Machine,5,good,2026-08-12
+73,5,Assault Bike,5,good,2026-03-04
+74,5,Yoga Mats,34,good,2026-06-29
+75,5,Battle Ropes,4,good,2026-03-27
+76,5,Cable Crossover,2,good,2026-03-31
+77,6,Leg Press,1,good,2026-08-23
+78,6,Squat Rack,2,good,2026-03-20
+79,6,Yoga Mats,40,good,2026-09-09
+80,6,Flat Bench,8,good,2026-06-07
+81,6,Medicine Balls,9,good,2026-04-11
+82,6,Punching Bag,4,good,2026-04-10
+83,6,Kettlebell Set,2,needs_service,2026-08-11
+84,6,Smith Machine,2,good,2026-05-25
+85,6,Cable Crossover,4,good,2026-08-17
+86,6,Lat Pulldown,4,good,2026-04-07
+87,6,Spin Bike,25,needs_service,2026-03-28
+88,6,Assault Bike,4,good,2026-09-18
+89,6,Rowing Machine,2,out_of_order,2026-07-12
+90,6,Treadmill,18,good,2026-10-25
+91,7,Spin Bike,18,good,2026-06-02
+92,7,Dumbbell Set (2.5-50 kg),1,good,2026-04-25
+93,7,Smith Machine,1,good,2026-08-22
+94,7,Squat Rack,4,good,2026-04-11
+95,7,Assault Bike,1,good,2026-06-04
+96,7,Kettlebell Set,1,good,2026-03-27
+97,7,Punching Bag,3,good,2026-03-29
+98,7,Flat Bench,7,good,2026-05-12
+99,7,Lat Pulldown,1,good,2026-04-10
+100,7,Elliptical Cross-Trainer,6,needs_service,2026-05-13
+101,7,Rowing Machine,3,good,2026-03-19
+102,7,Treadmill,11,good,2026-07-19
+103,7,Leg Press,2,good,2026-08-28
+104,7,Medicine Balls,13,good,2026-03-03
+105,7,Olympic Barbell,7,good,2026-08-17
+106,8,Cable Crossover,2,out_of_order,2026-10-06
+107,8,Battle Ropes,3,good,2026-07-13
+108,8,Leg Press,3,good,2026-07-01
+109,8,Treadmill,7,good,2026-10-24
+110,8,Yoga Mats,25,good,2026-07-16
+111,8,Medicine Balls,13,good,2026-08-28
+112,8,Elliptical Cross-Trainer,7,good,2026-08-27
+113,8,Assault Bike,6,good,2026-03-10
+114,8,Dumbbell Set (2.5-50 kg),2,needs_service,2026-09-21
+115,8,Olympic Barbell,9,good,2026-06-12
+116,8,Kettlebell Set,1,good,2026-07-31
+117,8,Rowing Machine,2,good,2026-07-04
+118,8,Squat Rack,4,good,2026-03-16
+119,8,Flat Bench,6,good,2026-04-20
+120,8,Punching Bag,7,good,2026-06-26
+121,9,Leg Press,1,good,2026-04-17
+122,9,Squat Rack,1,good,2026-07-20
+123,9,Battle Ropes,2,out_of_order,2026-08-25
+124,9,Dumbbell Set (2.5-50 kg),1,good,2026-08-11
+125,9,Elliptical Cross-Trainer,6,good,2026-08-19
+126,9,Punching Bag,3,good,2026-10-13
+127,9,Lat Pulldown,1,good,2026-04-26
+128,9,Kettlebell Set,1,good,2026-06-24
+129,9,Assault Bike,2,good,2026-08-10
+130,9,Yoga Mats,29,good,2026-04-11
+131,9,Olympic Barbell,6,good,2026-06-01
+132,9,Rowing Machine,2,good,2026-08-14
+133,9,Spin Bike,16,good,2026-04-23
+134,9,Cable Crossover,2,good,2026-08-22
+135,9,Smith Machine,1,needs_service,2026-08-19
+136,9,Medicine Balls,13,good,2026-05-20
+137,9,Treadmill,7,good,2026-10-12
+138,10,Yoga Mats,22,good,2026-04-14
+139,10,Kettlebell Set,3,good,2026-04-11
+140,10,Elliptical Cross-Trainer,8,good,2026-08-04
+141,10,Dumbbell Set (2.5-50 kg),1,good,2026-10-01
+142,10,Lat Pulldown,1,needs_service,2026-04-10
+143,10,Cable Crossover,3,good,2026-08-15
+144,10,Medicine Balls,8,good,2026-05-01
+145,10,Leg Press,2,good,2026-06-10
+146,10,Treadmill,9,good,2026-04-07
+147,10,Olympic Barbell,14,good,2026-10-06
+148,10,Rowing Machine,2,good,2026-07-04
+149,10,Squat Rack,3,good,2026-06-18
+150,10,Flat Bench,4,needs_service,2026-03-28
+151,10,Assault Bike,3,good,2026-05-17
+152,10,Battle Ropes,2,good,2026-08-30
+153,10,Punching Bag,5,needs_service,2026-09-28
+154,10,Spin Bike,13,out_of_order,2026-10-08
+155,11,Squat Rack,3,out_of_order,2026-07-30
+156,11,Elliptical Cross-Trainer,3,needs_service,2026-06-24
+157,11,Leg Press,2,good,2026-05-22
+158,11,Spin Bike,13,good,2026-05-30
+159,11,Olympic Barbell,8,good,2026-03-24
+160,11,Flat Bench,3,needs_service,2026-07-24
+161,11,Lat Pulldown,1,good,2026-06-26
+162,11,Assault Bike,1,good,2026-04-21
+163,11,Medicine Balls,11,good,2026-04-14
+164,11,Dumbbell Set (2.5-50 kg),1,out_of_order,2026-08-14
+165,11,Rowing Machine,4,needs_service,2026-10-18
+166,11,Kettlebell Set,1,good,2026-10-16
+167,11,Yoga Mats,29,out_of_order,2026-08-31
+168,11,Cable Crossover,2,good,2026-05-17
+169,12,Cable Crossover,1,good,2026-09-28
+170,12,Kettlebell Set,1,needs_service,2026-08-03
+171,12,Battle Ropes,4,good,2026-10-13
+172,12,Flat Bench,8,needs_service,2026-07-18
+173,12,Spin Bike,15,good,2026-05-07
+174,12,Leg Press,2,good,2026-09-09
+175,12,Lat Pulldown,3,needs_service,2026-07-25
+176,12,Elliptical Cross-Trainer,6,good,2026-07-19
+177,12,Squat Rack,3,good,2026-05-08
+178,12,Treadmill,15,good,2026-05-18
+179,12,Punching Bag,6,good,2026-03-29
+180,12,Medicine Balls,13,out_of_order,2026-03-09
+181,12,Yoga Mats,24,good,2026-06-06
+182,13,Elliptical Cross-Trainer,8,good,2026-03-24
+183,13,Dumbbell Set (2.5-50 kg),2,good,2026-04-05
+184,13,Smith Machine,1,good,2026-09-02
+185,13,Leg Press,2,good,2026-05-04
+186,13,Yoga Mats,17,good,2026-10-15
+187,13,Punching Bag,3,needs_service,2026-06-06
+188,13,Squat Rack,4,good,2026-07-06
+189,13,Cable Crossover,2,good,2026-10-06
+190,13,Flat Bench,4,good,2026-03-16
+191,13,Assault Bike,5,good,2026-08-17
+192,13,Treadmill,11,good,2026-04-28
+193,13,Battle Ropes,3,good,2026-05-24
+194,13,Lat Pulldown,2,good,2026-05-08
+195,13,Spin Bike,14,good,2026-10-20
+196,13,Medicine Balls,15,good,2026-10-17
+197,14,Medicine Balls,10,good,2026-08-28
+198,14,Yoga Mats,25,needs_service,2026-06-07
+199,14,Olympic Barbell,11,good,2026-06-23
+200,14,Battle Ropes,3,needs_service,2026-03-24
+201,14,Rowing Machine,4,good,2026-04-16
+202,14,Leg Press,1,good,2026-06-01
+203,14,Treadmill,10,out_of_order,2026-08-23
+204,14,Cable Crossover,1,good,2026-06-03
+205,14,Dumbbell Set (2.5-50 kg),1,out_of_order,2026-05-11
+206,14,Spin Bike,15,needs_service,2026-04-13
+207,14,Smith Machine,1,out_of_order,2026-03-13
+208,14,Kettlebell Set,1,good,2026-05-13
+209,14,Assault Bike,3,good,2026-10-17
+210,15,Cable Crossover,2,good,2026-10-25
+211,15,Spin Bike,8,good,2026-08-26
+212,15,Leg Press,1,good,2026-05-20
+213,15,Yoga Mats,21,good,2026-09-10
+214,15,Smith Machine,1,needs_service,2026-10-03
+215,15,Lat Pulldown,1,good,2026-09-20
+216,15,Punching Bag,3,good,2026-03-04
+217,15,Dumbbell Set (2.5-50 kg),1,good,2026-03-29
+218,15,Olympic Barbell,8,good,2026-06-05
+219,15,Battle Ropes,3,needs_service,2026-08-29
+220,15,Medicine Balls,7,good,2026-03-09
+221,15,Flat Bench,6,out_of_order,2026-04-21
+222,15,Kettlebell Set,1,good,2026-09-18
+223,15,Squat Rack,3,good,2026-09-06
+224,15,Elliptical Cross-Trainer,3,out_of_order,2026-03-06
+225,15,Treadmill,6,good,2026-07-31
+226,15,Assault Bike,1,good,2026-03-15
+227,16,Lat Pulldown,1,out_of_order,2026-03-01
+228,16,Smith Machine,2,needs_service,2026-04-20
+229,16,Battle Ropes,2,good,2026-05-19
+230,16,Olympic Barbell,9,good,2026-03-25
+231,16,Assault Bike,2,good,2026-07-06
+232,16,Dumbbell Set (2.5-50 kg),1,needs_service,2026-03-08
+233,16,Leg Press,2,good,2026-06-06
+234,16,Cable Crossover,2,out_of_order,2026-09-28
+235,16,Kettlebell Set,1,good,2026-09-27
+236,16,Rowing Machine,2,good,2026-08-24
+237,16,Spin Bike,13,good,2026-05-26
+238,16,Flat Bench,3,good,2026-04-24
+239,16,Punching Bag,4,needs_service,2026-04-13

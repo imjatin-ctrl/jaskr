@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}Organization Audit Trail{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-coral">Security & Governance</span>
+    <h1>{{ org.name }} Immutable Audit Trail</h1>
+    <p style="color: var(--ink-muted);">Automated relational audit log recording state transitions, refund approvals, and operational changes.</p>
+  </div>
+
+  <div class="card" style="margin-bottom: 2.5rem;">
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Audit ID</th>
+            <th>Action</th>
+            <th>Target Table</th>
+            <th>Record ID</th>
+            <th>User</th>
+            <th>Timestamp</th>
+            <th>Change Metadata</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for log in logs %}
+            <tr>
+              <td class="mono-num">#{{ log.audit_id }}</td>
+              <td><span class="badge badge-yellow" style="font-size: 0.65rem;">{{ log.action }}</span></td>
+              <td class="mono-num"><strong>{{ log.table_name }}</strong></td>
+              <td class="mono-num">#{{ log.record_id }}</td>
+              <td>{{ log.email }}</td>
+              <td class="mono-num">{{ log.created_at }}</td>
+              <td style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-muted); max-width: 320px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                {{ log.new_value }}
+              </td>
+            </tr>
+          {% else %}
+            <tr><td colspan="7" style="text-align: center; color: var(--ink-muted);">No audit log entries recorded.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Show SQL Drawer -->
+  {{ sql_comp.sql_drawer(
+      "Owner Audit Trail Scoped Query",
+      "SELECT a.*, u.email FROM audit_log a\nJOIN users u ON a.user_id = u.user_id\nJOIN staff s ON u.user_id = s.user_id\nWHERE s.organization_id = " ~ org.organization_id ~ "\nORDER BY a.created_at DESC LIMIT 50;",
+      ["JOIN", "AUDIT", "MULTI-TENANT", "IMMUTABLE-LEDGER"],
+      "Retrieves audit records scoped to the logged-in owner's organization."
+  ) }}
+</div>
+{% endblock %}

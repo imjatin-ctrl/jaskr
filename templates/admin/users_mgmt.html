@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}User Management{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-violet">Identity Management</span>
+    <h1>Platform Users Directory</h1>
+    <p style="color: var(--ink-muted);">Manage platform users, roles, and suspension states.</p>
+  </div>
+
+  <!-- Filter Toolbar -->
+  <div class="card" style="margin-bottom: 2rem;">
+    <form method="GET" action="{{ url_for('admin.users_mgmt') }}" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <input type="text" name="q" value="{{ search_q }}" placeholder="Search email or user ID..." 
+             style="flex: 2; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.9rem;">
+      <select name="role" style="flex: 1; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.9rem; background: #fff;">
+        <option value="">All Roles</option>
+        <option value="member" {% if role_filter == 'member' %}selected{% endif %}>Member</option>
+        <option value="staff" {% if role_filter == 'staff' %}selected{% endif %}>Staff</option>
+        <option value="owner" {% if role_filter == 'owner' %}selected{% endif %}>Owner</option>
+        <option value="admin" {% if role_filter == 'admin' %}selected{% endif %}>Admin</option>
+      </select>
+      <button type="submit" class="btn btn-sm btn-primary">Filter Users</button>
+      <a href="{{ url_for('admin.users_mgmt') }}" class="btn btn-sm">Reset</a>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Created At</th>
+            <th>Last Login</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for u in users %}
+            <tr>
+              <td class="mono-num">#{{ u.user_id }}</td>
+              <td><strong>{{ u.email }}</strong></td>
+              <td>
+                <span class="badge {% if u.role == 'admin' %}badge-violet{% elif u.role == 'owner' %}badge-coral{% elif u.role == 'staff' %}badge-blue{% else %}badge-mint{% endif %}">
+                  {{ u.role|upper }}
+                </span>
+              </td>
+              <td class="mono-num" style="font-size: 0.8rem;">{{ u.created_at }}</td>
+              <td class="mono-num" style="font-size: 0.8rem;">{{ u.last_login or '-' }}</td>
+              <td>
+                <span class="badge {% if u.is_active %}badge-mint{% else %}badge-coral{% endif %}">
+                  {{ "Active" if u.is_active else "Suspended" }}
+                </span>
+              </td>
+              <td>
+                <form method="POST" action="{{ url_for('admin.toggle_user_active', user_id=u.user_id) }}">
+                  <button type="submit" class="btn btn-sm {% if u.is_active %}btn-danger{% else %}btn-primary{% endif %}" style="font-size: 0.7rem; padding: 0.2rem 0.5rem;">
+                    {{ "Suspend" if u.is_active else "Activate" }}
+                  </button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Trainer Console{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-blue">Trainer Console</span>
+    <h1>Personal Training Roster</h1>
+    <p style="color: var(--ink-muted);">Manage upcoming personal coaching clients, mark session completions, and log attendance.</p>
+  </div>
+
+  <div class="card" style="margin-bottom: 2.5rem;">
+    <h3 style="margin-bottom: 1rem;">Assigned Coaching Sessions</h3>
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Session ID</th>
+            <th>Member Client</th>
+            <th>Workout Focus</th>
+            <th>Branch</th>
+            <th>Start Time</th>
+            <th>Duration</th>
+            <th>Status</th>
+            <th>Update Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in sessions %}
+            <tr>
+              <td class="mono-num">#{{ s.session_id }}</td>
+              <td>
+                <strong>{{ s.member_name }}</strong>
+                <div style="font-size: 0.75rem; color: var(--ink-muted);">{{ s.member_phone }}</div>
+              </td>
+              <td>{{ s.focus }}</td>
+              <td>{{ s.branch_name }}</td>
+              <td class="mono-num">{{ s.session_start }}</td>
+              <td class="mono-num">{{ s.duration_minutes }}m</td>
+              <td>
+                <span class="badge {% if s.status == 'completed' %}badge-mint{% elif s.status == 'scheduled' %}badge-blue{% elif s.status == 'no_show' %}badge-coral{% else %}badge-yellow{% endif %}">
+                  {{ s.status|upper }}
+                </span>
+              </td>
+              <td>
+                {% if s.status == 'scheduled' %}
+                  <div style="display: flex; gap: 0.35rem;">
+                    <form method="POST" action="{{ url_for('staff.update_session', session_id=s.session_id) }}">
+                      <input type="hidden" name="status" value="completed">
+                      <button type="submit" class="btn btn-sm btn-success" style="font-size: 0.7rem; padding: 0.2rem 0.5rem;">✓ Complete</button>
+                    </form>
+                    <form method="POST" action="{{ url_for('staff.update_session', session_id=s.session_id) }}">
+                      <input type="hidden" name="status" value="no_show">
+                      <button type="submit" class="btn btn-sm btn-danger" style="font-size: 0.7rem; padding: 0.2rem 0.5rem;">✕ No Show</button>
+                    </form>
+                  </div>
+                {% else %}
+                  <span style="font-size: 0.8rem; color: var(--ink-muted);">Closed</span>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

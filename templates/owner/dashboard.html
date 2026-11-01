@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}Owner Dashboard Bento{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
+      <span class="badge badge-coral">Executive Management</span>
+      <span class="badge badge-yellow">{{ org.name }}</span>
+      <span class="badge" style="background: #F1F5F9;">HQ: {{ org.headquarters_city }}</span>
+    </div>
+    <h1>Executive Operations Bento</h1>
+    <p style="color: var(--ink-muted);">Organization-wide financial and operational intelligence scoped strictly to {{ org.name }}.</p>
+  </div>
+
+  <!-- Bento KPI Grid -->
+  <div class="bento-grid" style="margin-bottom: 2.5rem;">
+    <div class="card" style="border-left: 8px solid var(--mint-green);">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Net Receipts (YTD 2026)</div>
+      <div class="mono-num" style="font-size: 2.2rem; font-weight: 900; color: var(--mint-green);">
+        ₹{{ "{:,.2f}".format(kpi.net_receipts) }}
+      </div>
+      <div style="font-size: 0.75rem; color: var(--ink-subtle);">Gross ₹{{ "{:,.0f}".format(kpi.gross_receipts) }} - Refunds ₹{{ "{:,.0f}".format(kpi.completed_refunds) }}</div>
+    </div>
+
+    <div class="card" style="border-left: 8px solid var(--electric-blue);">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Active Passholders</div>
+      <div class="mono-num" style="font-size: 2.2rem; font-weight: 900; color: var(--electric-blue);">
+        {{ active_members }}
+      </div>
+      <div style="font-size: 0.75rem; color: var(--ink-subtle);">Subscribed to active plans</div>
+    </div>
+
+    <div class="card" style="border-left: 8px solid #F59E0B;">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Operating Expenses</div>
+      <div class="mono-num" style="font-size: 2.2rem; font-weight: 900; color: var(--ink-primary);">
+        ₹{{ "{:,.2f}".format(total_expenses) }}
+      </div>
+      <div style="font-size: 0.75rem; color: var(--ink-subtle);">Vouchers paid or approved</div>
+    </div>
+
+    <div class="card" style="border-left: 8px solid var(--hot-coral);">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Floor Check-ins</div>
+      <div class="mono-num" style="font-size: 2.2rem; font-weight: 900; color: var(--ink-primary);">
+        {{ "{:,}".format(total_checkins) }}
+      </div>
+      <div style="font-size: 0.75rem; color: var(--ink-subtle);">Total visits across all branches</div>
+    </div>
+  </div>
+
+  <!-- Branch Leaderboard Table -->
+  <div class="card" style="margin-bottom: 2.5rem;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+      <h3>Branch Performance Leaderboard</h3>
+      <a href="{{ url_for('owner.branches') }}" class="btn btn-sm">Manage Branches →</a>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Branch Name</th>
+            <th>City</th>
+            <th>Gross Receipts</th>
+            <th>Home Members</th>
+            <th>Check-in Volume</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for b in leaderboard %}
+            <tr>
+              <td class="mono-num"><strong>#{{ loop.index }}</strong></td>
+              <td><strong>{{ b.name }}</strong></td>
+              <td>{{ b.city }}</td>
+              <td class="mono-num" style="font-weight: 700;">₹{{ "{:,.2f}".format(b.gross) }}</td>
+              <td class="mono-num">{{ b.home_members }}</td>
+              <td class="mono-num">{{ "{:,}".format(b.checkins) }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Show SQL Drawer -->
+  {{ sql_comp.sql_drawer(
+      "Owner Dashboard Scoped Query",
+      "SELECT b.branch_id, b.name, b.city, SUM(p.amount) AS gross\nFROM branches b\nLEFT JOIN payments p ON b.branch_id = p.branch_id\nWHERE b.organization_id = " ~ org.organization_id ~ "\nGROUP BY b.branch_id, b.name, b.city\nORDER BY gross DESC;",
+      ["GROUP BY", "SUM", "MULTI-TENANT", "ORG-SCOPED"],
+      "Strictly isolates data to organization_id derived from verified owner session."
+  ) }}
+</div>
+{% endblock %}

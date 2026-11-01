@@ -1,0 +1,84 @@
+refund_id,payment_id,refund_amount,refund_date,reason,status
+1,814,5522.40,2026-09-15,Duplicate payment,requested
+2,995,1858.50,2025-06-22,Duplicate payment,completed
+3,246,5192.00,2026-02-14,Dissatisfied with facilities,completed
+4,275,1699.20,2026-10-27,Work travel commitments,approved
+5,627,14160.00,2026-04-30,Duplicate payment,completed
+6,740,2832.00,2026-09-10,Cancelled within cooling-off period,approved
+7,989,5664.00,2026-01-14,Cancelled within cooling-off period,completed
+8,1218,3964.80,2025-09-03,Duplicate payment,completed
+9,930,21830.00,2026-01-10,Plan changed to a different tier,completed
+10,970,6254.00,2026-01-12,Dissatisfied with facilities,completed
+11,1339,3068.00,2026-06-04,Relocated to another city,completed
+12,1052,8496.00,2026-04-22,Duplicate payment,completed
+13,1107,5522.40,2026-08-03,Duplicate payment,rejected
+14,343,1321.60,2026-04-24,Plan changed to a different tier,completed
+15,941,4012.00,2026-09-19,Dissatisfied with facilities,completed
+16,94,6416.25,2026-08-02,Plan changed to a different tier,completed
+17,549,1445.50,2026-06-18,Plan changed to a different tier,completed
+18,193,4189.00,2025-06-14,Medical reasons,rejected
+19,832,2832.00,2025-11-13,Medical reasons,approved
+20,746,8732.00,2025-12-07,Dissatisfied with facilities,requested
+21,31,1947.00,2026-06-13,Work travel commitments,approved
+22,189,5168.40,2026-02-09,Duplicate payment,requested
+23,137,1416.00,2026-08-26,Dissatisfied with facilities,completed
+24,123,8968.00,2026-07-20,Plan changed to a different tier,approved
+25,794,4602.00,2026-10-30,Dissatisfied with facilities,rejected
+26,182,6962.00,2026-05-02,Dissatisfied with facilities,completed
+27,116,14160.00,2026-08-30,Relocated to another city,completed
+28,332,2787.75,2026-10-19,Dissatisfied with facilities,completed
+29,590,1062.00,2026-03-04,Cancelled within cooling-off period,completed
+30,695,8614.00,2026-08-07,Dissatisfied with facilities,completed
+31,1180,25370.00,2025-11-22,Duplicate payment,completed
+32,552,1416.00,2026-09-20,Duplicate payment,completed
+33,157,885.00,2025-12-19,Dissatisfied with facilities,completed
+34,1344,531.00,2026-09-05,Cancelled within cooling-off period,completed
+35,862,1652.00,2026-09-22,Cancelled within cooling-off period,completed
+36,1196,8496.00,2026-09-03,Medical reasons,completed
+37,369,13098.00,2026-09-05,Work travel commitments,completed
+38,825,15399.00,2026-01-30,Plan changed to a different tier,requested
+39,102,3304.00,2026-05-15,Relocated to another city,requested
+40,169,4177.20,2026-01-01,Plan changed to a different tier,completed
+41,1102,1699.20,2026-09-08,Relocated to another city,completed
+42,484,6962.00,2026-09-08,Duplicate payment,completed
+43,978,7434.00,2026-03-24,Duplicate payment,completed
+44,115,5605.00,2026-10-28,Plan changed to a different tier,approved
+45,975,2596.00,2025-11-29,Relocated to another city,completed
+46,233,3717.00,2026-10-23,Duplicate payment,completed
+47,1101,1504.50,2026-05-24,Plan changed to a different tier,completed
+48,1326,13629.00,2026-08-27,Work travel commitments,rejected
+49,629,2643.20,2026-02-11,Duplicate payment,completed
+50,409,14868.00,2026-04-17,Dissatisfied with facilities,approved
+51,1243,826.00,2026-05-09,Cancelled within cooling-off period,completed
+52,1004,15399.00,2026-03-29,Duplicate payment,requested
+53,1039,8024.00,2026-08-27,Dissatisfied with facilities,completed
+54,36,8496.00,2026-03-26,Medical reasons,completed
+55,868,2124.00,2026-08-10,Relocated to another city,completed
+56,836,3717.00,2026-03-09,Cancelled within cooling-off period,completed
+57,657,4484.00,2026-06-11,Dissatisfied with facilities,completed
+58,1309,4012.00,2026-07-03,Dissatisfied with facilities,completed
+59,811,9676.00,2026-02-02,Duplicate payment,rejected
+60,564,1652.00,2026-08-25,Plan changed to a different tier,completed
+61,255,14868.00,2026-08-31,Cancelled within cooling-off period,completed
+62,320,11044.80,2026-05-10,Plan changed to a different tier,completed
+63,539,8496.00,2026-03-25,Plan changed to a different tier,requested
+64,305,6195.00,2026-09-07,Medical reasons,completed
+65,1308,1982.40,2026-07-13,Duplicate payment,completed
+66,119,6490.00,2025-07-27,Relocated to another city,completed
+67,714,24780.00,2026-10-09,Dissatisfied with facilities,completed
+68,519,1982.40,2026-06-26,Work travel commitments,completed
+69,947,5457.50,2026-09-03,Plan changed to a different tier,completed
+70,357,15930.00,2026-04-21,Relocated to another city,completed
+71,1041,3540.00,2026-05-26,Dissatisfied with facilities,rejected
+72,490,6814.50,2025-05-25,Dissatisfied with facilities,completed
+73,490,6814.50,2025-06-03,Relocated to another city,completed
+74,899,849.60,2026-07-04,Work travel commitments,completed
+75,899,849.60,2026-07-13,Work travel commitments,completed
+76,620,3894.00,2026-05-05,Work travel commitments,completed
+77,620,3894.00,2026-05-14,Medical reasons,completed
+78,453,7788.00,2025-12-21,Medical reasons,completed
+79,453,7788.00,2025-12-30,Medical reasons,completed
+80,174,5133.00,2025-11-21,Dissatisfied with facilities,completed
+81,174,5133.00,2025-11-30,Plan changed to a different tier,completed
+82,309,885.00,2026-07-09,Dissatisfied with facilities,completed
+83,309,885.00,2026-07-18,Plan changed to a different tier,completed

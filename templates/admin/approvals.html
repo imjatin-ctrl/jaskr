@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Organization Approvals Queue{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-violet">Compliance & Onboarding</span>
+    <h1>Organization Onboarding Approvals</h1>
+    <p style="color: var(--ink-muted);">Review pending gym registrations before granting access to create branches and sell memberships.</p>
+  </div>
+
+  <!-- Pending Queue -->
+  <div class="card" style="margin-bottom: 2.5rem; border-top: 8px solid var(--hot-coral);">
+    <h3 style="margin-bottom: 1rem; color: var(--hot-coral);">Pending Review ({{ pending|length }})</h3>
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Org ID</th>
+            <th>Brand Name</th>
+            <th>Structure</th>
+            <th>HQ City</th>
+            <th>Contact Email</th>
+            <th>Application Date</th>
+            <th>Decision Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in pending %}
+            <tr>
+              <td class="mono-num">#{{ p.organization_id }}</td>
+              <td><strong>{{ p.name }}</strong></td>
+              <td>{{ p.brand_type|capitalize }}</td>
+              <td>{{ p.headquarters_city }}</td>
+              <td>{{ p.contact_email }}</td>
+              <td class="mono-num">{{ p.created_at }}</td>
+              <td>
+                <form method="POST" action="{{ url_for('admin.approve_org', organization_id=p.organization_id) }}">
+                  <button type="submit" class="btn btn-sm btn-primary">
+                    ✓ Approve & Activate
+                  </button>
+                </form>
+              </td>
+            </tr>
+          {% else %}
+            <tr><td colspan="7" style="text-align: center; color: var(--ink-muted);">No pending applications in queue.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Active Organizations -->
+  <div class="card">
+    <h3 style="margin-bottom: 1rem;">Active Gym Organizations ({{ active|length }})</h3>
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Org ID</th>
+            <th>Brand Name</th>
+            <th>Structure</th>
+            <th>HQ City</th>
+            <th>Contact Email</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for a in active %}
+            <tr>
+              <td class="mono-num">#{{ a.organization_id }}</td>
+              <td><strong>{{ a.name }}</strong></td>
+              <td>{{ a.brand_type|capitalize }}</td>
+              <td>{{ a.headquarters_city }}</td>
+              <td>{{ a.contact_email }}</td>
+              <td><span class="badge badge-mint">{{ a.status|upper }}</span></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

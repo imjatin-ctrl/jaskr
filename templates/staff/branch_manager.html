@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Branch Manager Console{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-blue">Branch Management</span>
+    <h1>{{ branch.name }} Operations</h1>
+    <p style="color: var(--ink-muted);">
+      Managerial oversight: Equipment maintenance logs, staff duty rosters, operational hours, and floor traffic.
+    </p>
+  </div>
+
+  <!-- Manager KPIs Bento -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem;">
+    <div class="card" style="border-left: 8px solid var(--brand-yellow);">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Home Members</div>
+      <div class="mono-num" style="font-size: 2.2rem; font-weight: 900;">{{ stats.members }}</div>
+      <div style="font-size: 0.75rem; color: var(--ink-subtle);">Registered to this branch</div>
+    </div>
+
+    <div class="card" style="border-left: 8px solid var(--mint-green);">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Today's Check-ins</div>
+      <div class="mono-num" style="font-size: 2.2rem; font-weight: 900;">{{ stats.checkins_today }}</div>
+      <div style="font-size: 0.75rem; color: var(--ink-subtle);">Floor activity snapshot</div>
+    </div>
+
+    <div class="card" style="border-left: 8px solid var(--electric-blue);">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Equipment Units</div>
+      <div class="mono-num" style="font-size: 2.2rem; font-weight: 900;">{{ stats.equipment_count }}</div>
+      <div style="font-size: 0.75rem; color: var(--ink-subtle);">Tracked gym inventory</div>
+    </div>
+
+    <div class="card" style="border-left: 8px solid {% if stats.needs_service > 0 %}var(--hot-coral){% else %}var(--mint-green){% endif %};">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Service Required</div>
+      <div class="mono-num" style="font-size: 2.2rem; font-weight: 900; color: {% if stats.needs_service > 0 %}var(--hot-coral){% else %}var(--mint-green){% endif %};">
+        {{ stats.needs_service }}
+      </div>
+      <div style="font-size: 0.75rem; color: var(--ink-subtle);">Needs maintenance</div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start;">
+    <!-- Equipment Inventory Table -->
+    <div class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3>Workout Equipment Health</h3>
+        <span class="badge badge-yellow">{{ equipment|length }} Types</span>
+      </div>
+      <div class="table-responsive">
+        <table class="table-custom">
+          <thead>
+            <tr>
+              <th>Equipment</th>
+              <th>Quantity</th>
+              <th>Condition</th>
+              <th>Last Serviced</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for eq in equipment %}
+              <tr>
+                <td><strong>{{ eq.equipment_name }}</strong></td>
+                <td class="mono-num">{{ eq.quantity }}</td>
+                <td>
+                  <span class="badge {% if eq.condition_status == 'good' %}badge-mint{% elif eq.condition_status == 'needs_service' %}badge-yellow{% else %}badge-coral{% endif %}">
+                    {{ eq.condition_status|replace('_', ' ')|upper }}
+                  </span>
+                </td>
+                <td class="mono-num">{{ eq.last_serviced_on }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Staff Roster on Branch Duty -->
+    <div class="card">
+      <h3 style="margin-bottom: 1rem;">Branch Staff Roster ({{ staff_roster|length }})</h3>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        {% for s in staff_roster %}
+          <div style="border: var(--border-thin); border-radius: var(--radius-sm); padding: 0.75rem; background: var(--bg-canvas); display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <strong style="font-size: 0.95rem; display: block;">{{ s.full_name }}</strong>
+              <span style="font-size: 0.75rem; color: var(--ink-muted);">Phone: {{ s.phone }}</span>
+            </div>
+            <span class="badge {% if s.job_role == 'BRANCH_MANAGER' %}badge-coral{% elif s.job_role == 'FRONT_DESK' %}badge-yellow{% else %}badge-blue{% endif %}">
+              {{ s.job_role }}
+            </span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

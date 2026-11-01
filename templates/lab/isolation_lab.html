@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}Multi-Tenant Isolation Lab (D6){% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-mint">Differentiator D6</span>
+    <h1>Multi-Tenant & Member Isolation Lab</h1>
+    <p style="color: var(--ink-muted);">
+      Verify that Organization A cannot inspect or modify Organization B's confidential financials, and Member #1 cannot read Member #2's billing receipts.
+    </p>
+  </div>
+
+  <!-- Interactive Simulated Attack Buttons -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start;">
+    <!-- Test Attack 1: Cross-Tenant Owner Attack -->
+    <div class="card" style="border-top: 6px solid var(--hot-coral);">
+      <span class="badge badge-coral" style="margin-bottom: 0.5rem;">Attack Vector #1: Cross-Tenant IDOR</span>
+      <h3>Cross-Organization Financial Snooping</h3>
+      <p style="font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 1.25rem;">
+        Simulate an authenticated Owner of <strong>Organization #1 (IronPulse Fitness)</strong> attempting to query branch expenses and financial records of <strong>Organization #2 (FlexNation Gyms)</strong>.
+      </p>
+      <form method="POST" action="{{ url_for('lab.isolation_lab') }}">
+        <input type="hidden" name="attack_type" value="cross_tenant_owner">
+        <button type="submit" class="btn btn-danger" style="width: 100%;">
+          ⚡ Simulate Cross-Tenant Exploit
+        </button>
+      </form>
+    </div>
+
+    <!-- Test Attack 2: Cross-Member Privacy Attack -->
+    <div class="card" style="border-top: 6px solid var(--electric-blue);">
+      <span class="badge badge-blue" style="margin-bottom: 0.5rem;">Attack Vector #2: Member IDOR</span>
+      <h3>Cross-Member Private Invoice Access</h3>
+      <p style="font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 1.25rem;">
+        Simulate <strong>Member #1 (Rohan Malhotra)</strong> attempting to view or download the confidential tax invoice belonging to <strong>Member #2 (Priya Deshmukh)</strong>.
+      </p>
+      <form method="POST" action="{{ url_for('lab.isolation_lab') }}">
+        <input type="hidden" name="attack_type" value="cross_member_invoice">
+        <button type="submit" class="btn btn-accent" style="width: 100%;">
+          ⚡ Simulate Member Data Leak
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Attack Verification Output -->
+  {% if test_report %}
+    <div class="card" style="border-left: 10px solid var(--mint-green); background: #FFFFFF; margin-bottom: 2.5rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <span class="badge badge-mint" style="font-size: 0.85rem;">SECURITY VERIFICATION PASSED</span>
+        <span class="badge badge-coral">{{ test_report.status }}</span>
+      </div>
+
+      <h3 style="color: var(--mint-green); margin-bottom: 0.5rem;">
+        ✓ Exploit Attempt Neutralized
+      </h3>
+
+      <div style="background: var(--bg-canvas); border: var(--border-thin); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1rem; font-size: 0.9rem;">
+        <div>🎯 <strong>Simulated Target:</strong> {{ test_report.attack }}</div>
+        <div style="margin-top: 0.25rem;">🛡️ <strong>Defense Layer:</strong> {{ test_report.guard }}</div>
+        <div style="margin-top: 0.25rem;">📝 <strong>Audit Evidence:</strong> {{ test_report.evidence }}</div>
+      </div>
+
+      <p style="font-size: 0.85rem; color: var(--ink-muted);">
+        💡 In Jaskr GymGrid, resource identifiers supplied in HTTP parameters are never trusted blindly; the server extracts the user's authorized scoping context from cryptographically signed session cookies.
+      </p>
+    </div>
+  {% endif %}
+
+  <!-- Show SQL Drawer -->
+  {{ sql_comp.sql_drawer(
+      "Multi-Tenant Scoping Enforcement Logic",
+      "def check_org_scoping(target_org_id):\n    user = get_current_user()\n    if user['role'] == 'admin': return True\n    if str(user.get('organization_id')) != str(target_org_id):\n        abort(403) # Strict 403 Forbidden\n    return True",
+      ["MULTI-TENANT", "IDOR-GUARD", "LEAST-PRIVILEGE", "SECURITY"],
+      "Shows programmatic verification preventing unauthorized cross-tenant data traversal."
+  ) }}
+</div>
+{% endblock %}

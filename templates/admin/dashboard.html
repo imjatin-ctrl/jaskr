@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}Platform Administrator Dashboard{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-violet">Superuser Control</span>
+    <h1>Platform Administrator Overview</h1>
+    <p style="color: var(--ink-muted);">System governance, gym organization approvals, user directories, and database monitoring.</p>
+  </div>
+
+  <!-- Admin Platform Stats Bento -->
+  <div class="bento-grid" style="margin-bottom: 2.5rem;">
+    <div class="card" style="border-left: 8px solid var(--violet-royal);">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Total Organizations</div>
+      <div class="mono-num" style="font-size: 2.2rem; font-weight: 900; color: var(--violet-royal);">{{ stats.orgs }}</div>
+      <div style="font-size: 0.75rem; color: var(--ink-subtle);">{{ stats.pending_orgs }} pending review</div>
+    </div>
+
+    <div class="card" style="border-left: 8px solid var(--brand-yellow);">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Active Branches</div>
+      <div class="mono-num" style="font-size: 2.2rem; font-weight: 900;">{{ stats.branches }}</div>
+      <div style="font-size: 0.75rem; color: var(--ink-subtle);">In 11 Indian cities</div>
+    </div>
+
+    <div class="card" style="border-left: 8px solid var(--mint-green);">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Platform Users</div>
+      <div class="mono-num" style="font-size: 2.2rem; font-weight: 900; color: var(--mint-green);">{{ stats.users }}</div>
+      <div style="font-size: 0.75rem; color: var(--ink-subtle);">{{ stats.members }} athletes + staff</div>
+    </div>
+
+    <div class="card" style="border-left: 8px solid var(--electric-blue);">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Gross Network Revenue</div>
+      <div class="mono-num" style="font-size: 2.2rem; font-weight: 900; color: var(--ink-primary);">
+        ₹{{ "{:,.2f}".format(stats.gross_revenue) }}
+      </div>
+      <div style="font-size: 0.75rem; color: var(--ink-subtle);">Cumulative payments settled</div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start;">
+    <!-- Pending Approvals Queue -->
+    <div class="card" style="border-top: 6px solid var(--hot-coral);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <div>
+          <span class="badge badge-coral" style="margin-bottom: 0.25rem;">Action Required</span>
+          <h3>Pending Gym Approvals ({{ pending_list|length }})</h3>
+        </div>
+        <a href="{{ url_for('admin.approvals') }}" class="btn btn-sm">Full Queue →</a>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        {% for p in pending_list %}
+          <div style="border: var(--border-thin); border-radius: var(--radius-sm); padding: 0.85rem; background: var(--bg-canvas); display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <strong style="display: block; font-size: 1rem;">{{ p.name }}</strong>
+              <span style="font-size: 0.8rem; color: var(--ink-muted);">HQ: {{ p.headquarters_city }} • Applied: {{ p.created_at }}</span>
+            </div>
+            <form method="POST" action="{{ url_for('admin.approve_org', organization_id=p.organization_id) }}">
+              <button type="submit" class="btn btn-sm btn-primary">Approve Organization</button>
+            </form>
+          </div>
+        {% else %}
+          <p style="color: var(--ink-muted); font-size: 0.9rem; text-align: center; padding: 1.5rem 0;">No organizations pending approval.</p>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Recent User Registrations -->
+    <div class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3>Recent Accounts</h3>
+        <a href="{{ url_for('admin.users_mgmt') }}" class="btn btn-sm">All Users →</a>
+      </div>
+      <div class="table-responsive">
+        <table class="table-custom" style="font-size: 0.85rem;">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for u in recent_users %}
+              <tr>
+                <td class="mono-num">#{{ u.user_id }}</td>
+                <td>{{ u.email }}</td>
+                <td><span class="badge badge-yellow" style="font-size: 0.65rem;">{{ u.role|upper }}</span></td>
+                <td>
+                  <span class="badge {% if u.is_active %}badge-mint{% else %}badge-coral{% endif %}" style="font-size: 0.65rem;">
+                    {{ "Active" if u.is_active else "Suspended" }}
+                  </span>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

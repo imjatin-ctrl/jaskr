@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block title %}Compare Gym Branches{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-yellow">Differentiator D1</span>
+    <h1>Side-by-Side Gym Comparison</h1>
+    <p style="color: var(--ink-muted);">Compare up to 4 fitness branches side by side across Indian cities, pricing tiers, and amenities.</p>
+  </div>
+
+  <!-- Branch Selection Toolbar -->
+  <div class="card" style="margin-bottom: 2rem; background: #FFFFFF;">
+    <h4 style="margin-bottom: 0.75rem;">Modify Compared Branches:</h4>
+    <form method="GET" action="{{ url_for('public.compare') }}" style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+      {% for slot in range(4) %}
+        <select name="id" style="padding: 0.5rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.85rem; background: #fff;">
+          <option value="">-- Choose Branch {{ slot + 1 }} --</option>
+          {% for b in all_branches %}
+            <option value="{{ b.branch_id }}" {% if selected_ids|length > slot and selected_ids[slot] == b.branch_id %}selected{% endif %}>
+              {{ b.name }} ({{ b.city }})
+            </option>
+          {% endfor %}
+        </select>
+      {% endfor %}
+      <button type="submit" class="btn btn-sm btn-primary">Update Comparison</button>
+    </form>
+  </div>
+
+  <!-- Comparison Matrix Table -->
+  <div class="table-responsive" style="margin-bottom: 2.5rem;">
+    <table class="table-custom">
+      <thead>
+        <tr>
+          <th style="min-width: 200px;">Metric / Feature</th>
+          {% for b in compared %}
+            <th style="min-width: 240px; background: var(--bg-canvas);">
+              <span class="badge badge-yellow" style="margin-bottom: 0.25rem;">Branch #{{ b.branch_id }}</span>
+              <div style="font-size: 1.1rem; font-weight: 800;">{{ b.name }}</div>
+              <div style="font-size: 0.8rem; font-weight: 500; color: var(--ink-muted);">{{ b.organization_name }}</div>
+            </th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        <!-- City & State -->
+        <tr>
+          <td><strong>Location & City</strong></td>
+          {% for b in compared %}
+            <td><strong>📍 {{ b.city }}</strong>, {{ b.state }}</td>
+          {% endfor %}
+        </tr>
+
+        <!-- Starting Price -->
+        <tr>
+          <td><strong>Starting Monthly Fee</strong></td>
+          {% for b in compared %}
+            <td>
+              <div class="mono-num" style="font-size: 1.35rem; font-weight: 800; color: var(--ink-primary);">
+                ₹{{ "{:,.0f}".format(b.starting_price) }}
+              </div>
+              <small style="color: var(--ink-muted);">ex-GST base plan</small>
+            </td>
+          {% endfor %}
+        </tr>
+
+        <!-- Capacity -->
+        <tr>
+          <td><strong>Branch Capacity</strong></td>
+          {% for b in compared %}
+            <td class="mono-num"><strong>{{ b.capacity }}</strong> simultaneous athletes</td>
+          {% endfor %}
+        </tr>
+
+        <!-- Facilities Count -->
+        <tr>
+          <td><strong>Amenities & Zones</strong></td>
+          {% for b in compared %}
+            <td>
+              <span class="badge badge-mint" style="margin-bottom: 0.4rem;">{{ b.facilities_list|length }} Zones</span>
+              <ul style="font-size: 0.8rem; color: var(--ink-muted); padding-left: 1rem;">
+                {% for f in b.facilities_list[:5] %}
+                  <li>{{ f }}</li>
+                {% endfor %}
+                {% if b.facilities_list|length > 5 %}
+                  <li><em>+{{ b.facilities_list|length - 5 }} more</em></li>
+                {% endif %}
+              </ul>
+            </td>
+          {% endfor %}
+        </tr>
+
+        <!-- Hours (Monday) -->
+        <tr>
+          <td><strong>Weekday Operating Hours</strong></td>
+          {% for b in compared %}
+            <td class="mono-num" style="font-size: 0.85rem;">
+              {% if b.hours %}
+                {{ b.hours[0].open_time[:5] }} - {{ b.hours[0].close_time[:5] }}
+              {% else %}
+                06:00 - 23:00
+              {% endif %}
+            </td>
+          {% endfor %}
+        </tr>
+
+        <!-- Phone & Contact -->
+        <tr>
+          <td><strong>Contact Information</strong></td>
+          {% for b in compared %}
+            <td style="font-size: 0.85rem;">{{ b.phone }}</td>
+          {% endfor %}
+        </tr>
+
+        <!-- Action Row -->
+        <tr>
+          <td><strong>Action</strong></td>
+          {% for b in compared %}
+            <td>
+              <a href="{{ url_for('public.branch_detail', branch_id=b.branch_id) }}" class="btn btn-sm btn-primary" style="width: 100%;">
+                View Full Details →
+              </a>
+            </td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

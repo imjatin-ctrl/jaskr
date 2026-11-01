@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}Owner Finance & Refunds Queue{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-coral">Financial Authority</span>
+    <h1>{{ org.name }} Financial Ledger & Refund Queue</h1>
+    <p style="color: var(--ink-muted);">Executive approval queue for refund vouchers, invoice reconciliation, and operating expenditure.</p>
+  </div>
+
+  <!-- Refund Approval Queue -->
+  <div class="card" style="margin-bottom: 2.5rem; border-top: 8px solid var(--hot-coral);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+      <div>
+        <span class="badge badge-coral" style="margin-bottom: 0.25rem;">Action Required</span>
+        <h3>Refunds Pending Owner Approval ({{ pending_refunds|length }})</h3>
+      </div>
+      <span style="font-size: 0.85rem; color: var(--ink-muted);">Enforces SUM(refunds) ≤ original payment</span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Refund ID</th>
+            <th>Member</th>
+            <th>Branch</th>
+            <th>Payment Ref</th>
+            <th>Original Paid</th>
+            <th>Refund Requested</th>
+            <th>Reason</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in pending_refunds %}
+            <tr>
+              <td class="mono-num">#{{ r.refund_id }}</td>
+              <td><strong>{{ r.full_name }}</strong></td>
+              <td>{{ r.branch_name }}</td>
+              <td class="mono-num">{{ r.transaction_ref }}</td>
+              <td class="mono-num">₹{{ "{:,.2f}".format(r.payment_amount) }}</td>
+              <td class="mono-num" style="color: var(--hot-coral); font-weight: 800;">
+                ₹{{ "{:,.2f}".format(r.refund_amount) }}
+              </td>
+              <td>{{ r.reason }}</td>
+              <td>
+                <form method="POST" action="{{ url_for('owner.approve_refund', refund_id=r.refund_id) }}">
+                  <button type="submit" class="btn btn-sm btn-danger" style="font-size: 0.75rem;">
+                    Approve & Complete
+                  </button>
+                </form>
+              </td>
+            </tr>
+          {% else %}
+            <tr><td colspan="8" style="text-align: center; color: var(--ink-muted);">No pending refund requests awaiting approval.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Invoices vs Operating Expenses Split -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start;">
+    <!-- Invoices List -->
+    <div class="card">
+      <h3 style="margin-bottom: 1rem;">Recent Tax Invoices</h3>
+      <div class="table-responsive">
+        <table class="table-custom" style="font-size: 0.85rem;">
+          <thead>
+            <tr>
+              <th>Invoice #</th>
+              <th>Member</th>
+              <th>Total</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for inv in invoices %}
+              <tr>
+                <td class="mono-num"><strong>{{ inv.invoice_number }}</strong></td>
+                <td>{{ inv.full_name }}</td>
+                <td class="mono-num">₹{{ "{:,.2f}".format(inv.total) }}</td>
+                <td>
+                  <span class="badge {% if inv.status == 'paid' %}badge-mint{% else %}badge-coral{% endif %}" style="font-size: 0.65rem;">
+                    {{ inv.status|upper }}
+                  </span>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Operating Expenses List -->
+    <div class="card">
+      <h3 style="margin-bottom: 1rem;">Operating Expenses Vouchers</h3>
+      <div class="table-responsive">
+        <table class="table-custom" style="font-size: 0.85rem;">
+          <thead>
+            <tr>
+              <th>Branch</th>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for exp in expenses %}
+              <tr>
+                <td><strong>{{ exp.branch_name }}</strong></td>
+                <td>{{ exp.category_name }}</td>
+                <td class="mono-num">₹{{ "{:,.2f}".format(exp.amount) }}</td>
+                <td>
+                  <span class="badge {% if exp.status == 'paid' %}badge-mint{% else %}badge-yellow{% endif %}" style="font-size: 0.65rem;">
+                    {{ exp.status|upper }}
+                  </span>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

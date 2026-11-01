@@ -1,0 +1,23 @@
+[PASS] User count within 500-1000 (866)
+[PASS] Emails unique 
+[PASS] members.user_id FK 
+[PASS] staff.user_id FK 
+[PASS] refunds.payment_id FK 
+[PASS] memberships.member_id/plan FK 
+[PASS] memberships: end >= start 
+[PASS] No overlapping memberships per member 
+[PASS] invoice total = SUM(items) 
+[PASS] SUM(refunds) <= payment amount 
+[PASS] amounts > 0 
+[PASS] attendance check_out > check_in 
+[PASS] attendance only inside an active/expired membership period 
+[PASS] attendance inside branch opening hours 
+[PASS] sessions trainer/branch consistent 
+[PASS] expenses.recorded_by FK 
+[PASS] budget (branch, category, period) unique 
+[PASS] every live org has a finance user 
+Membership status mix: active=490, cancelled=36, expired=776, pending=11
+Members currently inside (NULL check_out): 2
+Budget rows overspent: 267 of 1482
+Gross receipts Rs 13,960,580; completed refunds Rs 373,659; net receipts Rs 13,586,921
+OVERALL: ALL CHECKS PASSED

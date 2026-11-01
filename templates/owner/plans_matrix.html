@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}Access Matrix (D2){% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-yellow">Differentiator D2</span>
+    <h1>Cross-Branch Access Control Matrix</h1>
+    <p style="color: var(--ink-muted);">
+      Relational grid mapping <strong>Plans × Branches</strong> for {{ org.name }}. Click on any matrix cell to modify access privileges and plain-English contract rules.
+    </p>
+  </div>
+
+  <!-- Matrix Legend -->
+  <div class="card" style="margin-bottom: 1.5rem; background: #FFFFFF; display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
+    <span style="font-weight: 700; font-size: 0.85rem;">Access Types:</span>
+    <span class="badge badge-mint" style="font-size: 0.75rem;">FULL (All Branches)</span>
+    <span class="badge badge-blue" style="font-size: 0.75rem;">SAME_CITY (City Wide)</span>
+    <span class="badge badge-yellow" style="font-size: 0.75rem;">WEEKDAYS_ONLY (Mon-Fri)</span>
+    <span class="badge" style="background: #E2E8F0; font-size: 0.75rem;">HOME_ONLY (Single Branch)</span>
+  </div>
+
+  <!-- Interactive Matrix Grid Table -->
+  <div class="table-responsive" style="margin-bottom: 2.5rem;">
+    <table class="table-custom">
+      <thead>
+        <tr>
+          <th style="min-width: 220px; background: var(--bg-canvas);">Membership Plan</th>
+          {% for b in branches %}
+            <th style="min-width: 160px; text-align: center;">
+              <span class="badge badge-yellow" style="font-size: 0.65rem;">Branch #{{ b.branch_id }}</span>
+              <div style="font-size: 0.95rem; font-weight: 800;">{{ b.name }}</div>
+              <div style="font-size: 0.75rem; color: var(--ink-muted);">📍 {{ b.city }}</div>
+            </th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in plans %}
+          <tr>
+            <td>
+              <div style="font-weight: 800; font-size: 1rem;">{{ p.plan_name }}</div>
+              <div style="font-size: 0.8rem; color: var(--ink-muted);">
+                {{ p.duration_months }}m • ₹{{ "{:,.0f}".format(p.price) }}
+              </div>
+            </td>
+            {% for b in branches %}
+              {% set rule = matrix.get((p.plan_id, b.branch_id)) %}
+              <td style="text-align: center; vertical-align: middle;">
+                {% if rule %}
+                  <div onclick="editCell({{ rule.access_rule_id }}, '{{ p.plan_name }}', '{{ b.name }}', '{{ rule.access_type }}', '{{ rule.conditions }}')"
+                       style="cursor: pointer; padding: 0.5rem 0.25rem; border-radius: 4px; transition: background 0.15s ease;"
+                       title="Click to edit rule"
+                       onmouseover="this.style.background='#FEF9C3'" onmouseout="this.style.background='transparent'">
+                    <span class="badge {% if rule.access_type == 'FULL' %}badge-mint{% elif rule.access_type == 'SAME_CITY' %}badge-blue{% elif rule.access_type == 'WEEKDAYS_ONLY' %}badge-yellow{% else %}badge{% endif %}" style="font-size: 0.7rem;">
+                      {{ rule.access_type }}
+                    </span>
+                    <div style="font-size: 0.7rem; color: var(--ink-muted); margin-top: 0.2rem; max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                      {{ rule.conditions }}
+                    </div>
+                  </div>
+                {% else %}
+                  <span style="color: var(--ink-subtle); font-size: 0.8rem;">-</span>
+                {% endif %}
+              </td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Edit Cell Modal Dialog -->
+  <div id="editRuleModal" style="display: none; position: fixed; inset: 0; background: rgba(20, 18, 31, 0.6); z-index: 1200; align-items: center; justify-content: center;">
+    <div class="card" style="width: 90%; max-width: 520px; background: #fff;">
+      <h3 style="margin-bottom: 0.5rem;">Edit Branch Access Rule</h3>
+      <p id="ruleModalSubtitle" style="font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 1rem;"></p>
+
+      <form method="POST" action="{{ url_for('owner.plans_matrix') }}">
+        <input type="hidden" name="access_rule_id" id="modalRuleId">
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Access Type:</label>
+          <select name="access_type" id="modalAccessType" style="width: 100%; padding: 0.65rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.95rem; background: #fff;">
+            <option value="FULL">FULL (Valid at all branches during operating hours)</option>
+            <option value="SAME_CITY">SAME_CITY (Valid at branches within member home city)</option>
+            <option value="WEEKDAYS_ONLY">WEEKDAYS_ONLY (Valid Monday to Friday only)</option>
+            <option value="HOME_ONLY">HOME_ONLY (Restricted to registered home branch)</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Contract Conditions (Plain-English):</label>
+          <textarea name="conditions" id="modalConditions" rows="3" style="width: 100%; padding: 0.65rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.9rem;"></textarea>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+          <button type="button" class="btn btn-sm" onclick="document.getElementById('editRuleModal').style.display='none'">Cancel</button>
+          <button type="submit" class="btn btn-sm btn-primary">Save Matrix Rule</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Show SQL Drawer -->
+  {{ sql_comp.sql_drawer(
+      "D2 Access Matrix Relational Mapping Query",
+      "SELECT r.access_rule_id, p.plan_name, b.name AS branch_name, r.access_type, r.conditions\nFROM branch_access_rules r\nJOIN membership_plans p ON r.plan_id = p.plan_id\nJOIN branches b ON r.branch_id = b.branch_id\nWHERE p.organization_id = " ~ org.organization_id ~ ";",
+      ["JOIN", "MATRIX", "RELATIONAL-RULES", "MULTI-TENANT"],
+      "Powers the dynamic 2D access matrix. Updates write directly to branch_access_rules table."
+  ) }}
+</div>
+
+<script>
+  function editCell(ruleId, planName, branchName, accessType, conditions) {
+    document.getElementById("modalRuleId").value = ruleId;
+    document.getElementById("ruleModalSubtitle").innerText = `Plan: ${planName} → Branch: ${branchName}`;
+    document.getElementById("modalAccessType").value = accessType;
+    document.getElementById("modalConditions").value = conditions;
+    document.getElementById("editRuleModal").style.display = "flex";
+  }
+</script>
+{% endblock %}

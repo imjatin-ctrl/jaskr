@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Membership Plans & Pricing{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="text-align: center; max-width: 720px; margin: 0 auto 2.5rem;">
+    <span class="badge badge-yellow">Transparent Pricing</span>
+    <h1 style="margin-bottom: 0.5rem;">Gym Plans Across All Networks</h1>
+    <p style="color: var(--ink-muted);">
+      Choose from monthly flexibility, quarterly savers, or annual all-access passports. All membership prices are ex-GST (GST @ 18% computed at checkout).
+    </p>
+  </div>
+
+  {% for o in orgs %}
+    <div class="card" style="margin-bottom: 2.5rem; border-top: 6px solid var(--electric-blue);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.5rem;">
+        <div>
+          <h2>{{ o.name }}</h2>
+          <span style="font-size: 0.9rem; color: var(--ink-muted);">HQ: {{ o.headquarters_city }} • {{ o.brand_type|capitalize }}</span>
+        </div>
+        <a href="{{ url_for('public.brand_detail', organization_id=o.organization_id) }}" class="btn btn-sm">
+          View Brand Branches →
+        </a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;">
+        {% for p in plans_by_org[o.organization_id] %}
+          <div style="border: var(--border-thick); border-radius: var(--radius-md); padding: 1.25rem; background: var(--bg-canvas); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                <span class="badge badge-yellow">{{ p.duration_months }} Month{{ 's' if p.duration_months > 1 else '' }}</span>
+                <span class="badge" style="background: #fff; font-size: 0.65rem;">Plan #{{ p.plan_id }}</span>
+              </div>
+              <h3 style="margin-bottom: 0.5rem;">{{ p.plan_name }}</h3>
+              <div class="mono-num" style="font-size: 1.8rem; font-weight: 900; color: var(--ink-primary); margin-bottom: 0.5rem;">
+                ₹{{ "{:,.0f}".format(p.price) }}
+              </div>
+              <p style="font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 1rem;">
+                {{ p.description }}
+              </p>
+            </div>
+
+            <div>
+              <!-- Expandable Access Scope Details -->
+              <div style="border-top: 1px dashed rgba(20, 18, 31, 0.2); padding-top: 0.75rem; margin-bottom: 1rem;">
+                <strong style="font-size: 0.8rem; text-transform: uppercase; color: var(--ink-subtle); display: block; margin-bottom: 0.4rem;">Branch Access Rules:</strong>
+                <ul style="font-size: 0.8rem; color: var(--ink-primary); list-style: none; display: flex; flex-direction: column; gap: 0.25rem;">
+                  {% for r in p.access_rules[:3] %}
+                    <li>• <span style="font-weight: 700;">{{ r.access_type }}</span> at {{ r.branch_name }}</li>
+                  {% endfor %}
+                  {% if p.access_rules|length > 3 %}
+                    <li style="color: var(--ink-muted);"><em>+{{ p.access_rules|length - 3 }} more branches reachable</em></li>
+                  {% endif %}
+                </ul>
+              </div>
+
+              <a href="{{ url_for('auth.register') }}" class="btn btn-sm btn-primary" style="width: 100%;">
+                Select & Join
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

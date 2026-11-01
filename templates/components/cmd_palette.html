@@ -1,0 +1,11 @@
+<!-- Global Command Palette Modal (Cmd+K) -->
+<div id="cmdPaletteBackdrop" class="cmd-palette-backdrop">
+  <div class="cmd-palette-modal">
+    <div style="background: var(--brand-yellow); padding: 0.6rem 1.25rem; border-bottom: var(--border-thick); display: flex; align-items: center; justify-content: space-between;">
+      <span style="font-family: var(--font-display); font-weight: 800; font-size: 0.85rem; text-transform: uppercase;">⚡ Quick Command Palette</span>
+      <span style="font-family: var(--font-mono); font-size: 0.75rem; background: #fff; padding: 2px 6px; border: 1.5px solid #14121F; border-radius: 4px;">ESC to close</span>
+    </div>
+    <input type="text" id="cmdPaletteInput" class="cmd-palette-input" placeholder="Type a page, lab, or role name..." autocomplete="off">
+    <ul id="cmdPaletteResults" class="cmd-palette-results"></ul>
+  </div>
+</div>

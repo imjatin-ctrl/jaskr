@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}Simulated Checkout{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 820px;">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-yellow">Simulated Payment Gateway</span>
+    <h1>Membership Checkout</h1>
+    <p style="color: var(--ink-muted);">
+      Complete your simulated payment. All card numbers and UPI handles are mock-only; no actual banking infrastructure is contacted.
+    </p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: flex-start; margin-bottom: 2rem;">
+    <!-- Left: Order Summary & Invoice Line Items (with GST) -->
+    <div class="card" style="border-top: 8px solid var(--electric-blue);">
+      <h3 style="margin-bottom: 1rem; border-bottom: var(--border-thin); padding-bottom: 0.5rem;">Order Summary</h3>
+      
+      <div style="margin-bottom: 1rem;">
+        <span class="badge badge-blue">{{ plan.plan_name }}</span>
+        <div style="font-size: 1.1rem; font-weight: 800; margin-top: 0.25rem;">{{ member.organization_name }}</div>
+        <p style="font-size: 0.85rem; color: var(--ink-muted);">Validity: {{ plan.duration_months }} Month{{ 's' if plan.duration_months > 1 else '' }}</p>
+      </div>
+
+      <!-- Line Items Breakdown -->
+      <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem; margin-bottom: 1rem; border-bottom: var(--border-thin); padding-bottom: 1rem;">
+        <div style="display: flex; justify-content: space-between;">
+          <span>Plan Base Fee</span>
+          <span class="mono-num">₹{{ "{:,.2f}".format(base_price) }}</span>
+        </div>
+        {% if joining_fee > 0 %}
+          <div style="display: flex; justify-content: space-between;">
+            <span>One-Time Joining Fee</span>
+            <span class="mono-num">₹{{ "{:,.2f}".format(joining_fee) }}</span>
+          </div>
+        {% endif %}
+        <div style="display: flex; justify-content: space-between; color: var(--electric-blue); font-weight: 700;">
+          <span>GST @ 18%</span>
+          <span class="mono-num">+₹{{ "{:,.2f}".format(gst_amount) }}</span>
+        </div>
+      </div>
+
+      <!-- Grand Total -->
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <strong style="font-size: 1.1rem;">Total Payable (INR):</strong>
+        <div class="mono-num" style="font-size: 1.8rem; font-weight: 900; color: var(--ink-primary);">
+          ₹{{ "{:,.2f}".format(grand_total) }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Simulated Payment Form -->
+    <div class="card" style="border-top: 8px solid var(--brand-yellow);">
+      <h3 style="margin-bottom: 1rem; border-bottom: var(--border-thin); padding-bottom: 0.5rem;">Simulated Gateway</h3>
+
+      <form method="POST" action="{{ url_for('member.checkout', plan_id=plan.plan_id) }}">
+        <!-- Payment Method Selector -->
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.5rem;">Select Payment Method:</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+            <label style="display: flex; align-items: center; gap: 0.4rem; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.85rem; cursor: pointer; background: #fff;">
+              <input type="radio" name="payment_method" value="UPI" checked>
+              <span>📱 UPI (GPay/PhonePe)</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.4rem; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.85rem; cursor: pointer; background: #fff;">
+              <input type="radio" name="payment_method" value="Credit Card">
+              <span>💳 Credit Card</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.4rem; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.85rem; cursor: pointer; background: #fff;">
+              <input type="radio" name="payment_method" value="Debit Card">
+              <span>💳 Debit Card</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.4rem; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.85rem; cursor: pointer; background: #fff;">
+              <input type="radio" name="payment_method" value="Net Banking">
+              <span>🏛️ Net Banking</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Academic Evaluator: ACID Rollback Demonstration Switch -->
+        <div style="background: var(--bg-canvas); border: 2px dashed var(--hot-coral); border-radius: var(--radius-sm); padding: 0.75rem; margin-bottom: 1.25rem;">
+          <strong style="color: var(--hot-coral); font-size: 0.85rem; display: block; margin-bottom: 0.25rem;">
+            🔬 Transaction Theater Mode:
+          </strong>
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer;">
+            <input type="checkbox" name="simulate_failure" value="1">
+            <span>Force Transaction Failure (Demonstrates ACID Rollback in <code>sp_record_payment</code>)</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+          ⚡ Authorize Simulated Payment of ₹{{ "{:,.2f}".format(grand_total) }}
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Show SQL Drawer -->
+  {{ sql_comp.sql_drawer(
+      "ACID Checkout Transaction (sp_record_payment)",
+      "START TRANSACTION;\nINSERT INTO payments (membership_id, invoice_id, amount, payment_status) VALUES (...);\nUPDATE invoices SET status = 'paid' WHERE invoice_id = ...;\nUPDATE memberships SET status = 'active' WHERE membership_id = ...;\nINSERT INTO audit_log (...) VALUES (...);\nCOMMIT; -- (or ROLLBACK on failure)",
+      ["TRANSACTION", "ATOMICITY", "CONSISTENCY", "STORED-PROCEDURE", "ROLLBACK"],
+      "Demonstrates multi-table atomic update: if payment fails or constraint violates, entire state is rolled back cleanly."
+  ) }}
+</div>
+{% endblock %}

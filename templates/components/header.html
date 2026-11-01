@@ -1,0 +1,201 @@
+<header>
+  <!-- 1. Top Evaluator Demo Bar -->
+  <div class="demo-bar">
+    <div class="demo-title">
+      <span class="badge badge-yellow">DEMO SNAPSHOT</span>
+      <span>⏰ 2026-10-30 10:00:00 IST</span>
+    </div>
+    <div class="demo-chips">
+      <span style="font-size: 0.75rem; color: #CBD5E1;">Quick Switch:</span>
+      <a href="{{ url_for('auth.quick_login', email='member.demo@jaskrgymgrid.example') }}" class="demo-chip" title="Rohan - Annual All-Access (FULL)">👤 Rohan (Member)</a>
+      <a href="{{ url_for('auth.quick_login', email='member.monthly.demo@jaskrgymgrid.example') }}" class="demo-chip" title="Priya - Monthly Flex (HOME_ONLY)">👤 Priya (Home Only)</a>
+      <a href="{{ url_for('auth.quick_login', email='member.expired.demo@jaskrgymgrid.example') }}" class="demo-chip" title="Imran - Expired">👤 Imran (Expired)</a>
+      <a href="{{ url_for('auth.quick_login', email='frontdesk.demo@jaskrgymgrid.example') }}" class="demo-chip" title="Front Desk Saket">📋 Front Desk</a>
+      <a href="{{ url_for('auth.quick_login', email='trainer.demo@jaskrgymgrid.example') }}" class="demo-chip" title="Trainer Saket">🏋️ Trainer</a>
+      <a href="{{ url_for('auth.quick_login', email='finance.demo@jaskrgymgrid.example') }}" class="demo-chip" title="Finance Desk">💰 Finance</a>
+      <a href="{{ url_for('auth.quick_login', email='manager.demo@jaskrgymgrid.example') }}" class="demo-chip" title="Branch Manager Saket">🏢 Manager</a>
+      <a href="{{ url_for('auth.quick_login', email='owner.ironpulse.demo@jaskrgymgrid.example') }}" class="demo-chip" title="IronPulse Owner">👑 IronPulse Owner</a>
+      <a href="{{ url_for('auth.quick_login', email='owner.flexnation.demo@jaskrgymgrid.example') }}" class="demo-chip" title="FlexNation Owner (Cross-Tenant)">🛡️ FlexNation Owner</a>
+      <a href="{{ url_for('auth.quick_login', email='admin.demo@jaskrgymgrid.example') }}" class="demo-chip" title="Platform Administrator">⚡ Platform Admin</a>
+    </div>
+  </div>
+
+  <!-- 2. Main Navigation Bar -->
+  <nav class="header-nav">
+    <div class="container nav-container">
+      <a href="{{ url_for('public.home') }}" class="brand-lockup">
+        <img src="{{ url_for('static', filename='img/logo_full.svg') }}" alt="Jaskr GymGrid">
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="{{ url_for('public.discover') }}" class="nav-link">Discover Gyms</a></li>
+        <li><a href="{{ url_for('public.compare') }}" class="nav-link">Compare</a></li>
+        <li><a href="{{ url_for('public.crowd') }}" class="nav-link">Crowd Heat Grid</a></li>
+        <li><a href="{{ url_for('public.plans') }}" class="nav-link">Plans</a></li>
+        <li><a href="{{ url_for('lab.index') }}" class="nav-link" style="color: var(--violet-royal);"><strong style="background: var(--violet-subtle); padding: 2px 6px; border-radius: 4px; border: 1.5px solid var(--violet-royal);">🔬 DBMS Lab</strong></a></li>
+        <li><a href="{{ url_for('public.gap_analysis') }}" class="nav-link">Gap Analysis</a></li>
+      </ul>
+
+      <div style="display: flex; align-items: center; gap: 0.5rem; position: relative;">
+        <!-- Command Palette Trigger -->
+        <button class="btn btn-sm" onclick="document.getElementById('cmdPaletteBackdrop').style.display='flex'; document.getElementById('cmdPaletteInput').focus();" title="Command Palette (Cmd+K)">
+          <span>⌘K</span>
+        </button>
+
+        <!-- Keyboard Shortcuts Trigger -->
+        <button class="btn btn-sm" onclick="document.getElementById('shortcutsBackdrop').style.display='flex';" title="Keyboard Shortcuts (?)">
+          <span>?</span>
+        </button>
+
+        <!-- Notification Bell Dropdown -->
+        <div style="position: relative;">
+          <button class="btn btn-sm" id="notifBellBtn" onclick="const p = document.getElementById('notifDropdown'); p.style.display = p.style.display === 'block' ? 'none' : 'block';" title="System Notifications" style="position: relative;">
+            <span>🔔</span>
+            <span style="position: absolute; top: -6px; right: -6px; background: var(--hot-coral); color: #fff; font-size: 0.65rem; font-weight: 800; padding: 1px 5px; border-radius: 10px; border: 1.5px solid #14121F;">3</span>
+          </button>
+          
+          <div id="notifDropdown" class="card" style="display: none; position: absolute; right: 0; top: 120%; width: 320px; z-index: 1000; padding: 0.75rem; box-shadow: var(--shadow-hard); background: #fff;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: var(--border-thin); padding-bottom: 0.4rem; margin-bottom: 0.5rem;">
+              <strong style="font-size: 0.85rem; text-transform: uppercase;">🔔 Notifications</strong>
+              <span class="badge badge-yellow" style="font-size: 0.65rem;">Demo Snapshot</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.8rem;">
+              <div style="background: var(--bg-canvas); padding: 0.5rem; border-radius: 4px; border-left: 3px solid var(--hot-coral);">
+                <strong>⚠️ Overspent Budget Alert:</strong><br>
+                <span>Saket Maintenance overspent by ₹14,200 for period 2026-10.</span>
+              </div>
+              <div style="background: var(--bg-canvas); padding: 0.5rem; border-radius: 4px; border-left: 3px solid var(--brand-yellow);">
+                <strong>⚡ Listing Pending Approval:</strong><br>
+                <span>Zenith Strength Lab submitted registration for admin review.</span>
+              </div>
+              <div style="background: var(--bg-canvas); padding: 0.5rem; border-radius: 4px; border-left: 3px solid var(--mint-green);">
+                <strong>💰 Refund Approved:</strong><br>
+                <span>Refund #12 for ₹2,500 approved by IronPulse Owner.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% if session.user_id %}
+          <!-- User Profile & Portal Pill -->
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            {% if session.role == 'member' %}
+              <a href="{{ url_for('member.dashboard') }}" class="btn btn-sm btn-primary">Member Portal</a>
+              <span class="badge badge-mint">Member</span>
+            {% elif session.role == 'owner' %}
+              <a href="{{ url_for('owner.dashboard') }}" class="btn btn-sm btn-danger">Owner Portal</a>
+              <span class="badge badge-coral">{{ session.organization_name or 'Owner' }}</span>
+            {% elif session.role == 'admin' %}
+              <a href="{{ url_for('admin.dashboard') }}" class="btn btn-sm" style="background: var(--violet-royal); color: #fff;">Admin Portal</a>
+              <span class="badge badge-violet">Platform Admin</span>
+            {% elif session.role == 'staff' %}
+              {% if session.job_role == 'FRONT_DESK' %}
+                <a href="{{ url_for('staff.front_desk') }}" class="btn btn-sm btn-accent">Front Desk</a>
+              {% elif session.job_role == 'TRAINER' %}
+                <a href="{{ url_for('staff.trainer_console') }}" class="btn btn-sm btn-accent">Trainer Console</a>
+              {% elif session.job_role == 'FINANCE' %}
+                <a href="{{ url_for('staff.finance_desk') }}" class="btn btn-sm btn-accent">Finance Desk</a>
+              {% else %}
+                <a href="{{ url_for('staff.branch_manager') }}" class="btn btn-sm btn-accent">Manager Console</a>
+              {% endif %}
+              <span class="badge badge-blue">{{ session.job_role }}</span>
+            {% endif %}
+
+            <a href="{{ url_for('auth.logout') }}" class="btn btn-sm" title="Sign Out">Sign Out</a>
+          </div>
+        {% else %}
+          <a href="{{ url_for('auth.list_gym') }}" class="btn btn-sm">List Your Gym</a>
+          <a href="{{ url_for('auth.login') }}" class="btn btn-sm btn-primary">Sign In</a>
+          <a href="{{ url_for('auth.register') }}" class="btn btn-sm btn-accent">Join</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <!-- 3. Dynamic Sub-Nav according to Portal context -->
+  {% if portal_context == 'member' %}
+    <div class="role-subnav" style="background: var(--mint-green-subtle);">
+      <div class="container subnav-inner">
+        <div class="subnav-tabs">
+          <a href="{{ url_for('member.dashboard') }}" class="subnav-tab {% if active_tab == 'dashboard' %}active{% endif %}">Dashboard</a>
+          <a href="{{ url_for('member.access_checker') }}" class="subnav-tab {% if active_tab == 'access_checker' %}active{% endif %}">Access Checker (D2)</a>
+          <a href="{{ url_for('member.check_in') }}" class="subnav-tab {% if active_tab == 'check_in' %}active{% endif %}">Check-In & Streak</a>
+          <a href="{{ url_for('member.memberships') }}" class="subnav-tab {% if active_tab == 'memberships' %}active{% endif %}">My Memberships</a>
+          <a href="{{ url_for('member.billing') }}" class="subnav-tab {% if active_tab == 'billing' %}active{% endif %}">Invoices & Refunds</a>
+          <a href="{{ url_for('member.training') }}" class="subnav-tab {% if active_tab == 'training' %}active{% endif %}">Training Sessions</a>
+          <a href="{{ url_for('member.profile') }}" class="subnav-tab {% if active_tab == 'profile' %}active{% endif %}">Profile & Data Export</a>
+        </div>
+        <div style="font-size: 0.8rem; font-weight: 700;">
+          👤 {{ session.full_name }} (Member #{{ session.member_id }})
+        </div>
+      </div>
+    </div>
+  {% elif portal_context == 'staff' %}
+    <div class="role-subnav" style="background: var(--electric-blue-subtle);">
+      <div class="container subnav-inner">
+        <div class="subnav-tabs">
+          <a href="{{ url_for('staff.front_desk') }}" class="subnav-tab {% if active_tab == 'front_desk' %}active{% endif %}">Front Desk</a>
+          <a href="{{ url_for('staff.trainer_console') }}" class="subnav-tab {% if active_tab == 'trainer' %}active{% endif %}">Trainer Roster</a>
+          <a href="{{ url_for('staff.finance_desk') }}" class="subnav-tab {% if active_tab == 'finance' %}active{% endif %}">Finance Desk</a>
+          <a href="{{ url_for('staff.branch_manager') }}" class="subnav-tab {% if active_tab == 'manager' %}active{% endif %}">Branch Manager</a>
+        </div>
+        <div style="font-size: 0.8rem; font-weight: 700;">
+          🏢 {{ session.full_name }} ({{ session.job_role }})
+        </div>
+      </div>
+    </div>
+  {% elif portal_context == 'owner' %}
+    <div class="role-subnav" style="background: var(--hot-coral-subtle);">
+      <div class="container subnav-inner">
+        <div class="subnav-tabs">
+          <a href="{{ url_for('owner.dashboard') }}" class="subnav-tab {% if active_tab == 'dashboard' %}active{% endif %}">Overview Bento</a>
+          <a href="{{ url_for('owner.branches') }}" class="subnav-tab {% if active_tab == 'branches' %}active{% endif %}">Branches</a>
+          <a href="{{ url_for('owner.plans_matrix') }}" class="subnav-tab {% if active_tab == 'matrix' %}active{% endif %}">Access Matrix (D2)</a>
+          <a href="{{ url_for('owner.members') }}" class="subnav-tab {% if active_tab == 'members' %}active{% endif %}">Members Directory</a>
+          <a href="{{ url_for('owner.staff_mgmt') }}" class="subnav-tab {% if active_tab == 'staff' %}active{% endif %}">Staff & Scoping</a>
+          <a href="{{ url_for('owner.finance') }}" class="subnav-tab {% if active_tab == 'finance' %}active{% endif %}">Financials & Budgets</a>
+          <a href="{{ url_for('owner.attendance_analytics') }}" class="subnav-tab {% if active_tab == 'analytics' %}active{% endif %}">Attendance & Crowd</a>
+          <a href="{{ url_for('owner.reports') }}" class="subnav-tab {% if active_tab == 'reports' %}active{% endif %}">Reports Center</a>
+          <a href="{{ url_for('owner.audit_log') }}" class="subnav-tab {% if active_tab == 'audit' %}active{% endif %}">Org Audit Log</a>
+        </div>
+        <div style="font-size: 0.8rem; font-weight: 700;">
+          👑 Org: {{ session.organization_name }}
+        </div>
+      </div>
+    </div>
+  {% elif portal_context == 'admin' %}
+    <div class="role-subnav" style="background: var(--violet-subtle);">
+      <div class="container subnav-inner">
+        <div class="subnav-tabs">
+          <a href="{{ url_for('admin.dashboard') }}" class="subnav-tab {% if active_tab == 'dashboard' %}active{% endif %}">Platform Overview</a>
+          <a href="{{ url_for('admin.approvals') }}" class="subnav-tab {% if active_tab == 'approvals' %}active{% endif %}">Org Approvals Queue</a>
+          <a href="{{ url_for('admin.users_mgmt') }}" class="subnav-tab {% if active_tab == 'users' %}active{% endif %}">Users Management</a>
+          <a href="{{ url_for('admin.health') }}" class="subnav-tab {% if active_tab == 'health' %}active{% endif %}">Database Health</a>
+          <a href="{{ url_for('admin.platform_audit') }}" class="subnav-tab {% if active_tab == 'audit' %}active{% endif %}">Global Audit Trail</a>
+        </div>
+        <div style="font-size: 0.8rem; font-weight: 700;">
+          ⚡ Platform Super-Admin
+        </div>
+      </div>
+    </div>
+  {% elif portal_context == 'lab' %}
+    <div class="role-subnav" style="background: #1E1B2E; color: #FFFFFF;">
+      <div class="container subnav-inner">
+        <div class="subnav-tabs">
+          <a href="{{ url_for('lab.index') }}" class="subnav-tab {% if active_tab == 'overview' %}active{% endif %}" style="background:#2A263D; color:#fff;">Overview</a>
+          <a href="{{ url_for('lab.er_explorer') }}" class="subnav-tab {% if active_tab == 'er' %}active{% endif %}" style="background:#2A263D; color:#fff;">ER Explorer</a>
+          <a href="{{ url_for('lab.query_lab') }}" class="subnav-tab {% if active_tab == 'query' %}active{% endif %}" style="background:#2A263D; color:#fff;">Query Lab</a>
+          <a href="{{ url_for('lab.constraint_lab') }}" class="subnav-tab {% if active_tab == 'constraints' %}active{% endif %}" style="background:#2A263D; color:#fff;">Constraint Lab</a>
+          <a href="{{ url_for('lab.transaction_theater') }}" class="subnav-tab {% if active_tab == 'transactions' %}active{% endif %}" style="background:#2A263D; color:#fff;">Transaction Theater</a>
+          <a href="{{ url_for('lab.permissions_lab') }}" class="subnav-tab {% if active_tab == 'permissions' %}active{% endif %}" style="background:#2A263D; color:#fff;">Permissions (DCL)</a>
+          <a href="{{ url_for('lab.isolation_lab') }}" class="subnav-tab {% if active_tab == 'isolation' %}active{% endif %}" style="background:#2A263D; color:#fff;">Isolation Lab (D6)</a>
+          <a href="{{ url_for('lab.index_lab') }}" class="subnav-tab {% if active_tab == 'indexes' %}active{% endif %}" style="background:#2A263D; color:#fff;">Index Lab (EXPLAIN)</a>
+          <a href="{{ url_for('lab.data_dictionary') }}" class="subnav-tab {% if active_tab == 'dictionary' %}active{% endif %}" style="background:#2A263D; color:#fff;">Data Dictionary (3NF)</a>
+        </div>
+        <div style="font-size: 0.8rem; font-weight: 700; color: var(--brand-yellow);">
+          🔬 DBMS Academic Evaluator Lab
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</header>

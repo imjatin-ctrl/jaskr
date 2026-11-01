@@ -1,0 +1,6 @@
+organization_id,name,contact_email,status,brand_type,headquarters_city,created_at
+1,IronPulse Fitness,hello@ironpulsefit.example,active,chain,Delhi,2019-04-12
+2,FlexNation Gyms,care@flexnation.example,active,chain,Mumbai,2020-01-20
+3,Aarogya Active Club,contact@aarogyaactive.example,active,independent,Jaipur,2018-08-05
+4,Sundarban Strength House,desk@sundarbanstrength.example,active,independent,Kolkata,2021-03-15
+5,Zenith Strength Lab,info@zenithlab.example,pending,independent,Chandigarh,2026-10-18

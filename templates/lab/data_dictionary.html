@@ -1,0 +1,305 @@
+{% extends "base.html" %}
+{% block title %}Data Dictionary & 3NF Normalization{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge" style="background: var(--violet-royal); color: #fff; margin-bottom: 0.5rem;">Relational Integrity</span>
+    <h1 style="margin-bottom: 0.5rem;">Data Dictionary & 3NF Normalization</h1>
+    <p style="color: var(--ink-muted); font-size: 1.1rem;">
+      Exhaustive relational schema specification across all 24 tables, including Primary Keys, Foreign Keys, CHECK constraints, and formal Third Normal Form (3NF) proofs.
+    </p>
+  </div>
+
+  <!-- Normalization Proof Bento -->
+  <div class="bento-grid" style="margin-bottom: 2.5rem;">
+    <div class="card" style="border-top: 5px solid var(--brand-yellow);">
+      <span class="badge badge-yellow" style="margin-bottom: 0.5rem;">1NF</span>
+      <h3>First Normal Form</h3>
+      <p style="font-size: 0.88rem; color: var(--ink-muted); line-height: 1.6;">
+        <strong>Atomicity Guaranteed:</strong> Every column contains atomic (indivisible) values. No comma-separated equipment, hours, or facilities lists. Multi-valued amenities and operational days are decomposed into independent child tables (<code>branch_facilities</code>, <code>branch_hours</code>).
+      </p>
+    </div>
+
+    <div class="card" style="border-top: 5px solid var(--electric-blue);">
+      <span class="badge badge-blue" style="margin-bottom: 0.5rem;">2NF</span>
+      <h3>Second Normal Form</h3>
+      <p style="font-size: 0.88rem; color: var(--ink-muted); line-height: 1.6;">
+        <strong>Full Functional Dependency:</strong> No non-prime attribute depends on a partial subset of any candidate key. In composite-key relations like <code>branch_hours(branch_id, day_of_week)</code> and <code>branch_access_rules(plan_id, branch_id)</code>, attributes depend strictly on the whole key.
+      </p>
+    </div>
+
+    <div class="card" style="border-top: 5px solid var(--mint-green);">
+      <span class="badge badge-mint" style="margin-bottom: 0.5rem;">3NF</span>
+      <h3>Third Normal Form</h3>
+      <p style="font-size: 0.88rem; color: var(--ink-muted); line-height: 1.6;">
+        <strong>No Transitive Dependencies:</strong> Zero non-key transitive dependencies ($X \to Y$). Member profiles reference <code>home_branch_id</code> without duplicating branch address or city; cash transactions in <code>payments</code> link to <code>invoice_id</code> without duplicating line-item tax details.
+      </p>
+    </div>
+  </div>
+
+  <!-- Quick Filter & Actions -->
+  <div class="card" style="margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;">
+    <div style="display: flex; align-items: center; gap: 0.75rem; flex: 1; max-width: 480px;">
+      <span style="font-weight: 700; font-size: 0.9rem;">Filter Table:</span>
+      <input type="text" id="tableFilterInput" placeholder="Type table name (e.g. payments, attendance, staff)..." 
+             onkeyup="filterDictionaryTables()" 
+             style="flex: 1; padding: 0.5rem 0.75rem; border: var(--border-thin); border-radius: var(--radius-sm); font-family: var(--font-body);">
+    </div>
+    <div style="display: flex; gap: 0.5rem;">
+      <button class="btn btn-sm" onclick="exportTableToCsv('dictionarySummaryTable', 'jaskr_gymgrid_data_dictionary.csv')">
+        📥 Export Dictionary as CSV
+      </button>
+      <a href="{{ url_for('lab.er_explorer') }}" class="btn btn-sm btn-primary">
+        🗺️ View in ER Explorer →
+      </a>
+    </div>
+  </div>
+
+  <!-- Master Schema Table -->
+  <div class="table-responsive" style="margin-bottom: 3rem;">
+    <table class="table-custom" id="dictionarySummaryTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Table Name</th>
+          <th>Module</th>
+          <th>Primary Key</th>
+          <th>Foreign Keys (Referenced Relations)</th>
+          <th>Key Constraints & Rules</th>
+          <th>3NF Justification</th>
+        </tr>
+      </thead>
+      <tbody id="dictionaryTableBody">
+        <tr>
+          <td>1</td>
+          <td><strong>organizations</strong></td>
+          <td><span class="badge badge-yellow">Core</span></td>
+          <td><code>organization_id</code></td>
+          <td>—</td>
+          <td><code>status ENUM</code> ('active', 'pending', 'suspended')</td>
+          <td>Independent entity storing gym brand attributes only.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>branches</strong></td>
+          <td><span class="badge badge-yellow">Core</span></td>
+          <td><code>branch_id</code></td>
+          <td><code>organization_id → organizations</code></td>
+          <td><code>CHECK (capacity > 0)</code>, GIS coordinates</td>
+          <td>References org; does not duplicate brand email/status.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>branch_hours</strong></td>
+          <td><span class="badge badge-yellow">Core</span></td>
+          <td><code>(branch_id, day_of_week)</code></td>
+          <td><code>branch_id → branches</code> (CASCADE)</td>
+          <td><code>CHECK (day_of_week BETWEEN 0 AND 6)</code></td>
+          <td>Atomic schedule per day; eliminates repeating columns.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>facilities</strong></td>
+          <td><span class="badge badge-blue">Amenities</span></td>
+          <td><code>facility_id</code></td>
+          <td>—</td>
+          <td><code>UNIQUE (facility_name)</code></td>
+          <td>Normalized amenity dictionary.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>branch_facilities</strong></td>
+          <td><span class="badge badge-blue">Amenities</span></td>
+          <td><code>(branch_id, facility_id)</code></td>
+          <td><code>branch_id → branches</code>, <code>facility_id → facilities</code></td>
+          <td>Composite PK; ON DELETE CASCADE</td>
+          <td>M:N associative mapping; prevents repeating facility arrays.</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><strong>users</strong></td>
+          <td><span class="badge badge-coral">Auth</span></td>
+          <td><code>user_id</code></td>
+          <td>—</td>
+          <td><code>UNIQUE (email)</code>, Bcrypt password hash</td>
+          <td>Central security credentials; separated from role profile details.</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><strong>staff</strong></td>
+          <td><span class="badge badge-coral">Auth</span></td>
+          <td><code>staff_id</code></td>
+          <td><code>user_id → users</code>, <code>organization_id</code>, <code>branch_id</code></td>
+          <td><code>job_role ENUM</code> (6 roles), ON DELETE SET NULL</td>
+          <td>Unifies employee scoping; null branch for corporate officers.</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><strong>trainers</strong></td>
+          <td><span class="badge badge-mint">Training</span></td>
+          <td><code>trainer_id</code></td>
+          <td><code>organization_id</code>, <code>staff_id</code>, <code>user_id</code></td>
+          <td>ON DELETE CASCADE</td>
+          <td>Subtype specialization inheriting staff profile without duplication.</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><strong>trainer_assignments</strong></td>
+          <td><span class="badge badge-mint">Training</span></td>
+          <td><code>(trainer_id, branch_id)</code></td>
+          <td><code>trainer_id → trainers</code>, <code>branch_id → branches</code></td>
+          <td>Composite PK; multi-branch scheduling</td>
+          <td>Decomposes multi-branch trainer allocations cleanly.</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><strong>members</strong></td>
+          <td><span class="badge badge-yellow">Members</span></td>
+          <td><code>member_id</code></td>
+          <td><code>user_id → users</code>, <code>home_branch_id → branches</code></td>
+          <td>ON DELETE CASCADE</td>
+          <td>Stores member demographics; home gym references branches.</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td><strong>membership_plans</strong></td>
+          <td><span class="badge badge-yellow">Plans</span></td>
+          <td><code>plan_id</code></td>
+          <td><code>organization_id → organizations</code></td>
+          <td><code>CHECK (duration_months > 0, price >= 0)</code></td>
+          <td>Plan definitions independent of individual subscriber purchases.</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td><strong>branch_access_rules</strong></td>
+          <td><span class="badge badge-yellow">Plans</span></td>
+          <td><code>access_rule_id</code></td>
+          <td><code>plan_id → plans</code>, <code>branch_id → branches</code></td>
+          <td><code>access_type ENUM</code> (HOME_ONLY, SAME_CITY, WEEKDAYS, FULL)</td>
+          <td>Configurable access rights per branch; eliminates hardcoded if/else logic.</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td><strong>memberships</strong></td>
+          <td><span class="badge badge-yellow">Members</span></td>
+          <td><code>membership_id</code></td>
+          <td><code>member_id → members</code>, <code>plan_id → plans</code></td>
+          <td><code>CHECK (end_date >= start_date)</code></td>
+          <td>Links subscriber to plan tier with temporal bounds.</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td><strong>invoices</strong></td>
+          <td><span class="badge badge-mint">Finance</span></td>
+          <td><code>invoice_id</code></td>
+          <td><code>member_id → members</code>, <code>membership_id → memberships</code></td>
+          <td><code>UNIQUE (invoice_number)</code>, <code>CHECK (total >= 0)</code></td>
+          <td>Sequential tax invoice accounting; separate from cash receipts.</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td><strong>invoice_items</strong></td>
+          <td><span class="badge badge-mint">Finance</span></td>
+          <td><code>invoice_item_id</code></td>
+          <td><code>invoice_id → invoices</code> (CASCADE)</td>
+          <td><code>CHECK (quantity > 0)</code></td>
+          <td>Decomposes base fee, GST 18%, and addons into 1NF line items.</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td><strong>payments</strong></td>
+          <td><span class="badge badge-mint">Finance</span></td>
+          <td><code>payment_id</code></td>
+          <td><code>membership_id</code>, <code>invoice_id</code>, <code>branch_id</code></td>
+          <td><code>CHECK (amount > 0)</code>, unique transaction_ref</td>
+          <td>Actual settled cash ledger; reconciles against invoices.</td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td><strong>refunds</strong></td>
+          <td><span class="badge badge-mint">Finance</span></td>
+          <td><code>refund_id</code></td>
+          <td><code>payment_id → payments</code> (RESTRICT)</td>
+          <td><code>CHECK (refund_amount > 0)</code>, cumulative limit</td>
+          <td>Preserves payment history while tracking reversals separately.</td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td><strong>expense_categories</strong></td>
+          <td><span class="badge badge-mint">Finance</span></td>
+          <td><code>expense_category_id</code></td>
+          <td>—</td>
+          <td><code>UNIQUE (category_name)</code></td>
+          <td>Master chart of operating expense cost categories.</td>
+        </tr>
+        <tr>
+          <td>19</td>
+          <td><strong>expenses</strong></td>
+          <td><span class="badge badge-mint">Finance</span></td>
+          <td><code>expense_id</code></td>
+          <td><code>branch_id</code>, <code>expense_category_id</code>, <code>recorded_by → users</code></td>
+          <td><code>CHECK (amount > 0)</code>, status ENUM</td>
+          <td>Disbursements assigned to branch cost centers with audit link.</td>
+        </tr>
+        <tr>
+          <td>20</td>
+          <td><strong>branch_budgets</strong></td>
+          <td><span class="badge badge-mint">Finance</span></td>
+          <td><code>budget_id</code></td>
+          <td><code>branch_id</code>, <code>expense_category_id</code></td>
+          <td><code>UNIQUE (branch_id, category_id, period)</code></td>
+          <td>Monthly spending cap; compares budgeted vs actual spent.</td>
+        </tr>
+        <tr>
+          <td>21</td>
+          <td><strong>attendance</strong></td>
+          <td><span class="badge badge-blue">Operations</span></td>
+          <td><code>attendance_id</code></td>
+          <td><code>member_id → members</code>, <code>branch_id → branches</code></td>
+          <td><code>CHECK (check_out IS NULL OR check_out >= check_in)</code></td>
+          <td>Atomic biometric scan timestamps; feeds D3 crowd estimates.</td>
+        </tr>
+        <tr>
+          <td>22</td>
+          <td><strong>training_sessions</strong></td>
+          <td><span class="badge badge-mint">Training</span></td>
+          <td><code>session_id</code></td>
+          <td><code>member_id</code>, <code>trainer_id</code>, <code>branch_id</code></td>
+          <td><code>CHECK (duration_minutes > 0)</code></td>
+          <td>One-on-one coaching appointments with attendance states.</td>
+        </tr>
+        <tr>
+          <td>23</td>
+          <td><strong>equipment</strong></td>
+          <td><span class="badge badge-blue">Operations</span></td>
+          <td><code>equipment_id</code></td>
+          <td><code>branch_id → branches</code> (CASCADE)</td>
+          <td><code>CHECK (quantity > 0)</code></td>
+          <td>Inventory apparatus tracking maintenance dates.</td>
+        </tr>
+        <tr>
+          <td>24</td>
+          <td><strong>audit_log</strong></td>
+          <td><span class="badge badge-violet">Security</span></td>
+          <td><code>audit_id</code></td>
+          <td><code>user_id → users</code></td>
+          <td>Structured JSON old_value & new_value diffs</td>
+          <td>Immutable database trigger journal capturing before/after states.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+function filterDictionaryTables() {
+  const q = document.getElementById("tableFilterInput").value.toLowerCase().trim();
+  const rows = document.querySelectorAll("#dictionaryTableBody tr");
+  rows.forEach(r => {
+    const text = r.innerText.toLowerCase();
+    r.style.display = text.includes(q) ? "" : "none";
+  });
+}
+</script>
+{% endblock %}

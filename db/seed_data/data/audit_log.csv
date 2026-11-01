@@ -1,0 +1,87 @@
+audit_id,user_id,action,table_name,record_id,old_value,new_value,created_at
+1,3,REFUND_COMPLETED,REFUNDS,72,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""6814.50""}",2025-05-25 15:00:00
+2,3,REFUND_COMPLETED,REFUNDS,73,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""6814.50""}",2025-06-03 15:00:00
+3,2,REFUND_REJECTED,REFUNDS,18,"{""status"": ""requested""}","{""status"": ""rejected"", ""amount"": ""4189.00""}",2025-06-14 15:00:00
+4,3,REFUND_COMPLETED,REFUNDS,2,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""1858.50""}",2025-06-22 15:00:00
+5,3,REFUND_COMPLETED,REFUNDS,66,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""6490.00""}",2025-07-27 15:00:00
+6,3,REFUND_COMPLETED,REFUNDS,8,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""3964.80""}",2025-09-03 15:00:00
+7,3,REFUND_APPROVED,REFUNDS,19,"{""status"": ""requested""}","{""status"": ""approved"", ""amount"": ""2832.00""}",2025-11-13 15:00:00
+8,5,REFUND_COMPLETED,REFUNDS,80,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""5133.00""}",2025-11-21 15:00:00
+9,2,REFUND_COMPLETED,REFUNDS,31,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""25370.00""}",2025-11-22 15:00:00
+10,2,REFUND_COMPLETED,REFUNDS,45,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""2596.00""}",2025-11-29 15:00:00
+11,5,REFUND_COMPLETED,REFUNDS,81,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""5133.00""}",2025-11-30 15:00:00
+12,4,REFUND_COMPLETED,REFUNDS,33,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""885.00""}",2025-12-19 15:00:00
+13,2,REFUND_COMPLETED,REFUNDS,78,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""7788.00""}",2025-12-21 15:00:00
+14,2,REFUND_COMPLETED,REFUNDS,79,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""7788.00""}",2025-12-30 15:00:00
+15,2,REFUND_COMPLETED,REFUNDS,40,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""4177.20""}",2026-01-01 15:00:00
+16,3,REFUND_COMPLETED,REFUNDS,9,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""21830.00""}",2026-01-10 15:00:00
+17,5,REFUND_COMPLETED,REFUNDS,10,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""6254.00""}",2026-01-12 15:00:00
+18,3,REFUND_COMPLETED,REFUNDS,7,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""5664.00""}",2026-01-14 15:00:00
+19,2,REFUND_REJECTED,REFUNDS,59,"{""status"": ""requested""}","{""status"": ""rejected"", ""amount"": ""9676.00""}",2026-02-02 15:00:00
+20,3,EXPENSE_REJECTED,EXPENSES,154,"{""status"": ""pending""}","{""status"": ""rejected""}",2026-02-03 11:00:00
+21,3,REFUND_COMPLETED,REFUNDS,49,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""2643.20""}",2026-02-11 15:00:00
+22,4,REFUND_COMPLETED,REFUNDS,3,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""5192.00""}",2026-02-14 15:00:00
+23,4,REFUND_COMPLETED,REFUNDS,29,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""1062.00""}",2026-03-04 15:00:00
+24,3,REFUND_COMPLETED,REFUNDS,56,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""3717.00""}",2026-03-09 15:00:00
+25,4,EXPENSE_REJECTED,EXPENSES,328,"{""status"": ""pending""}","{""status"": ""rejected""}",2026-03-10 11:00:00
+26,2,EXPENSE_REJECTED,EXPENSES,330,"{""status"": ""pending""}","{""status"": ""rejected""}",2026-03-11 11:00:00
+27,3,EXPENSE_REJECTED,EXPENSES,389,"{""status"": ""pending""}","{""status"": ""rejected""}",2026-03-23 11:00:00
+28,3,REFUND_COMPLETED,REFUNDS,43,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""7434.00""}",2026-03-24 15:00:00
+29,2,REFUND_COMPLETED,REFUNDS,54,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""8496.00""}",2026-03-26 15:00:00
+30,3,EXPENSE_REJECTED,EXPENSES,485,"{""status"": ""pending""}","{""status"": ""rejected""}",2026-04-13 11:00:00
+31,4,REFUND_APPROVED,REFUNDS,50,"{""status"": ""requested""}","{""status"": ""approved"", ""amount"": ""14868.00""}",2026-04-17 15:00:00
+32,2,REFUND_COMPLETED,REFUNDS,70,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""15930.00""}",2026-04-21 15:00:00
+33,2,REFUND_COMPLETED,REFUNDS,12,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""8496.00""}",2026-04-22 15:00:00
+34,2,REFUND_COMPLETED,REFUNDS,14,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""1321.60""}",2026-04-24 15:00:00
+35,4,REFUND_COMPLETED,REFUNDS,5,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""14160.00""}",2026-04-30 15:00:00
+36,2,REFUND_COMPLETED,REFUNDS,26,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""6962.00""}",2026-05-02 15:00:00
+37,3,REFUND_COMPLETED,REFUNDS,76,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""3894.00""}",2026-05-05 15:00:00
+38,2,REFUND_COMPLETED,REFUNDS,51,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""826.00""}",2026-05-09 15:00:00
+39,2,REFUND_COMPLETED,REFUNDS,62,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""11044.80""}",2026-05-10 15:00:00
+40,3,REFUND_COMPLETED,REFUNDS,77,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""3894.00""}",2026-05-14 15:00:00
+41,3,REFUND_COMPLETED,REFUNDS,47,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""1504.50""}",2026-05-24 15:00:00
+42,4,REFUND_REJECTED,REFUNDS,71,"{""status"": ""requested""}","{""status"": ""rejected"", ""amount"": ""3540.00""}",2026-05-26 15:00:00
+43,3,REFUND_COMPLETED,REFUNDS,11,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""3068.00""}",2026-06-04 15:00:00
+44,2,REFUND_COMPLETED,REFUNDS,57,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""4484.00""}",2026-06-11 15:00:00
+45,2,REFUND_APPROVED,REFUNDS,21,"{""status"": ""requested""}","{""status"": ""approved"", ""amount"": ""1947.00""}",2026-06-13 15:00:00
+46,3,EXPENSE_REJECTED,EXPENSES,783,"{""status"": ""pending""}","{""status"": ""rejected""}",2026-06-17 11:00:00
+47,4,REFUND_COMPLETED,REFUNDS,17,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""1445.50""}",2026-06-18 15:00:00
+48,2,REFUND_COMPLETED,REFUNDS,68,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""1982.40""}",2026-06-26 15:00:00
+49,3,REFUND_COMPLETED,REFUNDS,58,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""4012.00""}",2026-07-03 15:00:00
+50,3,REFUND_COMPLETED,REFUNDS,74,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""849.60""}",2026-07-04 15:00:00
+51,4,REFUND_COMPLETED,REFUNDS,82,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""885.00""}",2026-07-09 15:00:00
+52,2,EXPENSE_REJECTED,EXPENSES,890,"{""status"": ""pending""}","{""status"": ""rejected""}",2026-07-13 11:00:00
+53,2,EXPENSE_REJECTED,EXPENSES,891,"{""status"": ""pending""}","{""status"": ""rejected""}",2026-07-13 11:00:00
+54,2,REFUND_COMPLETED,REFUNDS,65,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""1982.40""}",2026-07-13 15:00:00
+55,3,REFUND_COMPLETED,REFUNDS,75,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""849.60""}",2026-07-13 15:00:00
+56,4,REFUND_COMPLETED,REFUNDS,83,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""885.00""}",2026-07-18 15:00:00
+57,3,REFUND_APPROVED,REFUNDS,24,"{""status"": ""requested""}","{""status"": ""approved"", ""amount"": ""8968.00""}",2026-07-20 15:00:00
+58,2,REFUND_COMPLETED,REFUNDS,16,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""6416.25""}",2026-08-02 15:00:00
+59,2,REFUND_REJECTED,REFUNDS,13,"{""status"": ""requested""}","{""status"": ""rejected"", ""amount"": ""5522.40""}",2026-08-03 15:00:00
+60,3,REFUND_COMPLETED,REFUNDS,30,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""8614.00""}",2026-08-07 15:00:00
+61,2,REFUND_COMPLETED,REFUNDS,55,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""2124.00""}",2026-08-10 15:00:00
+62,2,REFUND_COMPLETED,REFUNDS,60,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""1652.00""}",2026-08-25 15:00:00
+63,3,REFUND_COMPLETED,REFUNDS,23,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""1416.00""}",2026-08-26 15:00:00
+64,3,REFUND_REJECTED,REFUNDS,48,"{""status"": ""requested""}","{""status"": ""rejected"", ""amount"": ""13629.00""}",2026-08-27 15:00:00
+65,3,REFUND_COMPLETED,REFUNDS,53,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""8024.00""}",2026-08-27 15:00:00
+66,3,REFUND_COMPLETED,REFUNDS,27,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""14160.00""}",2026-08-30 15:00:00
+67,2,REFUND_COMPLETED,REFUNDS,61,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""14868.00""}",2026-08-31 15:00:00
+68,2,EXPENSE_REJECTED,EXPENSES,1092,"{""status"": ""pending""}","{""status"": ""rejected""}",2026-09-02 11:00:00
+69,2,REFUND_COMPLETED,REFUNDS,36,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""8496.00""}",2026-09-03 15:00:00
+70,3,REFUND_COMPLETED,REFUNDS,69,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""5457.50""}",2026-09-03 15:00:00
+71,5,REFUND_COMPLETED,REFUNDS,34,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""531.00""}",2026-09-05 15:00:00
+72,3,REFUND_COMPLETED,REFUNDS,37,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""13098.00""}",2026-09-05 15:00:00
+73,2,REFUND_COMPLETED,REFUNDS,64,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""6195.00""}",2026-09-07 15:00:00
+74,3,REFUND_COMPLETED,REFUNDS,41,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""1699.20""}",2026-09-08 15:00:00
+75,2,REFUND_COMPLETED,REFUNDS,42,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""6962.00""}",2026-09-08 15:00:00
+76,3,REFUND_APPROVED,REFUNDS,6,"{""status"": ""requested""}","{""status"": ""approved"", ""amount"": ""2832.00""}",2026-09-10 15:00:00
+77,3,REFUND_COMPLETED,REFUNDS,15,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""4012.00""}",2026-09-19 15:00:00
+78,3,REFUND_COMPLETED,REFUNDS,32,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""1416.00""}",2026-09-20 15:00:00
+79,2,REFUND_COMPLETED,REFUNDS,35,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""1652.00""}",2026-09-22 15:00:00
+80,3,EXPENSE_REJECTED,EXPENSES,1251,"{""status"": ""pending""}","{""status"": ""rejected""}",2026-10-05 11:00:00
+81,2,REFUND_COMPLETED,REFUNDS,67,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""24780.00""}",2026-10-09 15:00:00
+82,3,REFUND_COMPLETED,REFUNDS,28,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""2787.75""}",2026-10-19 15:00:00
+83,3,REFUND_COMPLETED,REFUNDS,46,"{""status"": ""requested""}","{""status"": ""completed"", ""amount"": ""3717.00""}",2026-10-23 15:00:00
+84,3,REFUND_APPROVED,REFUNDS,4,"{""status"": ""requested""}","{""status"": ""approved"", ""amount"": ""1699.20""}",2026-10-27 15:00:00
+85,3,REFUND_APPROVED,REFUNDS,44,"{""status"": ""requested""}","{""status"": ""approved"", ""amount"": ""5605.00""}",2026-10-28 15:00:00
+86,4,REFUND_REJECTED,REFUNDS,25,"{""status"": ""requested""}","{""status"": ""rejected"", ""amount"": ""4602.00""}",2026-10-30 15:00:00

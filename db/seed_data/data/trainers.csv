@@ -1,0 +1,49 @@
+trainer_id,organization_id,staff_id,user_id,full_name,specialization,phone
+1,1,10,10,Harpreet Bansal,Yoga and Mobility,+91 79993 84000
+2,1,11,11,Karan Joshi,Pilates,+91 97855 93269
+3,1,12,12,Imran Saxena,Yoga and Mobility,+91 60041 84650
+4,1,16,16,Ramya Nair,Strength and Conditioning,+91 85045 73847
+5,1,17,17,Ravi Singh,Strength and Conditioning,+91 64582 97507
+6,1,18,18,Sandeep Verma,Weight Loss Coaching,+91 78820 70185
+7,1,22,22,Jaspreet Dhillon,Boxing and Combat Fitness,+91 68724 75225
+8,1,23,23,Neha Bhatia,Functional Training,+91 82954 80867
+9,1,24,24,Ritu Gupta,Strength and Conditioning,+91 87325 29214
+10,1,28,28,Sagar Thakkar,Bodybuilding,+91 97814 23532
+11,1,29,29,Pranav Trivedi,Zumba and Dance Fitness,+91 95633 24030
+12,1,30,30,Aishwarya Raju,CrossFit,+91 79637 54629
+13,1,34,34,Viraj Deshmukh,Functional Training,+91 97482 02471
+14,1,35,35,Balaji Shetty,Zumba and Dance Fitness,+91 88794 33273
+15,1,36,36,Mahesh Babu,Weight Loss Coaching,+91 76649 37955
+16,1,40,40,Nandini Raju,Boxing and Combat Fitness,+91 81950 74593
+17,1,41,41,Divya Venkatesh,Zumba and Dance Fitness,+91 75928 76178
+18,1,42,42,Suresh Srinivasan,Zumba and Dance Fitness,+91 87657 96841
+19,2,47,47,Sandeep Yadav,Bodybuilding,+91 97719 13023
+20,2,48,48,Shreya Pandey,Boxing and Combat Fitness,+91 91153 34423
+21,2,49,49,Sneha Kohli,CrossFit,+91 67125 75814
+22,2,53,53,Riya Sethi,Weight Loss Coaching,+91 73502 43197
+23,2,54,54,Tejinder Mathur,CrossFit,+91 85696 48415
+24,2,55,55,Riya Khan,Strength and Conditioning,+91 76761 59626
+25,2,59,59,Gauri Gaikwad,Boxing and Combat Fitness,+91 61824 04859
+26,2,60,60,Anirban Sengupta,Rehabilitation and Mobility,+91 91020 30904
+27,2,61,61,Bhakti Bhosale,Strength and Conditioning,+91 95359 93906
+28,2,65,65,Pavithra Chowdary,Zumba and Dance Fitness,+91 93217 69325
+29,2,66,66,Prerna Chavan,Pilates,+91 81730 34955
+30,2,67,67,Chirag Kadam,Bodybuilding,+91 73937 20761
+31,2,71,71,Vedant Patel,Yoga and Mobility,+91 92802 05229
+32,2,72,72,Mansi Kulkarni,Yoga and Mobility,+91 92442 73775
+33,2,73,73,Ira Shinde,Rehabilitation and Mobility,+91 74316 03638
+34,2,77,77,Chaitra Natarajan,CrossFit,+91 88197 02189
+35,2,78,78,Barnali Bose,Zumba and Dance Fitness,+91 68380 80172
+36,2,79,79,Sagar Sawant,Weight Loss Coaching,+91 97706 52311
+37,2,83,83,Meenakshi Sundaram,CrossFit,+91 85571 08155
+38,2,84,84,Mahesh Varma,Functional Training,+91 60993 68380
+39,2,85,85,Neha Kamath,Bodybuilding,+91 97577 72656
+40,3,90,90,Varun Tiwari,CrossFit,+91 92013 77757
+41,3,91,91,Tanvi Tiwari,Zumba and Dance Fitness,+91 69571 63428
+42,3,92,92,Sakshi Pandey,Yoga and Mobility,+91 95605 75355
+43,3,96,96,Gaurav Bhatia,Boxing and Combat Fitness,+91 74898 49872
+44,3,97,97,Ankit Agarwal,Yoga and Mobility,+91 67307 16394
+45,3,98,98,Vivaan Khanna,Weight Loss Coaching,+91 68018 31274
+46,4,103,103,Pooja Fernandes,Weight Loss Coaching,+91 76611 15406
+47,4,104,104,Piyali Bhattacharya,CrossFit,+91 97967 10676
+48,4,105,105,Yash Khan,Yoga and Mobility,+91 80322 56650

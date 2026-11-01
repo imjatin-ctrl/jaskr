@@ -1,0 +1,11 @@
+expense_category_id,category_name,description
+1,Rent,Monthly premises rent
+2,Electricity and Utilities,"Power, water and generator fuel"
+3,Equipment Maintenance,Servicing and spares for gym equipment
+4,Housekeeping and Supplies,"Cleaning, towels, consumables"
+5,Staff Salaries,Monthly payroll
+6,Marketing and Promotions,"Ads, local promotions, referral rewards"
+7,Software and Internet,"Internet, CCTV and software subscriptions"
+8,Insurance and Licences,"Insurance premiums, trade and fire licences"
+9,Repairs and Renovation,"Civil, flooring, air-conditioning repairs"
+10,Miscellaneous,Small unclassified costs

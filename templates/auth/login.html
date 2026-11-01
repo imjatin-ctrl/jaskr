@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 540px; padding: 2rem 1.25rem;">
+  <div class="card">
+    <div style="text-align: center; margin-bottom: 1.5rem;">
+      <span class="badge badge-yellow" style="margin-bottom: 0.5rem;">Multi-Portal Access</span>
+      <h2>Sign in to Jaskr GymGrid</h2>
+      <p style="color: var(--ink-muted); font-size: 0.95rem;">Members, Gym Staff, Owners & Platform Administrators</p>
+    </div>
+
+    <form method="POST" action="{{ url_for('auth.login', next=request.args.get('next', '')) }}">
+      <div style="margin-bottom: 1.25rem;">
+        <label style="display: block; font-family: var(--font-display); font-weight: 700; margin-bottom: 0.4rem;">Email Address</label>
+        <input type="email" name="email" value="{{ email or '' }}" required placeholder="e.g. member.demo@jaskrgymgrid.example" 
+               style="width: 100%; padding: 0.75rem 1rem; border: var(--border-thick); border-radius: var(--radius-md); font-family: var(--font-body); font-size: 1rem;">
+      </div>
+
+      <div style="margin-bottom: 1.5rem;">
+        <label style="display: block; font-family: var(--font-display); font-weight: 700; margin-bottom: 0.4rem;">Password</label>
+        <input type="password" name="password" required placeholder="Enter password (Demo@1234 for demo accounts)" 
+               style="width: 100%; padding: 0.75rem 1rem; border: var(--border-thick); border-radius: var(--radius-md); font-family: var(--font-body); font-size: 1rem;">
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: 1rem;">
+        Sign In to Portal
+      </button>
+    </form>
+
+    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; border-top: 1.5px solid rgba(20, 18, 31, 0.1); padding-top: 1rem;">
+      <span>New member? <a href="{{ url_for('auth.register') }}" style="color: var(--electric-blue); font-weight: 700; text-decoration: underline;">Create Account</a></span>
+      <span>Gym Owner? <a href="{{ url_for('auth.list_gym') }}" style="color: var(--hot-coral); font-weight: 700; text-decoration: underline;">List your Gym</a></span>
+    </div>
+
+    {% if demo_mode %}
+      <div style="margin-top: 1.5rem; background: var(--bg-canvas); border: var(--border-thin); border-radius: var(--radius-md); padding: 1rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+          <strong style="font-size: 0.85rem; text-transform: uppercase;">🎯 1-Click Demo Login Personas</strong>
+          <span class="badge badge-mint" style="font-size: 0.65rem;">Pass: Demo@1234</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+          <a href="{{ url_for('auth.quick_login', email='member.demo@jaskrgymgrid.example') }}" class="btn btn-sm" style="justify-content: flex-start; text-align: left; background: #fff;">
+            <span>🟢</span> <strong>Rohan Malhotra (Member)</strong> - Annual All-Access (FULL)
+          </a>
+          <a href="{{ url_for('auth.quick_login', email='member.monthly.demo@jaskrgymgrid.example') }}" class="btn btn-sm" style="justify-content: flex-start; text-align: left; background: #fff;">
+            <span>🟡</span> <strong>Priya Deshmukh (Member)</strong> - Monthly Flex (HOME_ONLY Baner)
+          </a>
+          <a href="{{ url_for('auth.quick_login', email='member.expired.demo@jaskrgymgrid.example') }}" class="btn btn-sm" style="justify-content: flex-start; text-align: left; background: #fff;">
+            <span>🔴</span> <strong>Imran Qureshi (Member)</strong> - Membership Expired
+          </a>
+          <a href="{{ url_for('auth.quick_login', email='frontdesk.demo@jaskrgymgrid.example') }}" class="btn btn-sm" style="justify-content: flex-start; text-align: left; background: #fff;">
+            <span>📋</span> <strong>Front Desk Saket (Staff)</strong> - Check-in & Payments
+          </a>
+          <a href="{{ url_for('auth.quick_login', email='trainer.demo@jaskrgymgrid.example') }}" class="btn btn-sm" style="justify-content: flex-start; text-align: left; background: #fff;">
+            <span>🏋️</span> <strong>Trainer Saket (Staff)</strong> - Training Sessions
+          </a>
+          <a href="{{ url_for('auth.quick_login', email='finance.demo@jaskrgymgrid.example') }}" class="btn btn-sm" style="justify-content: flex-start; text-align: left; background: #fff;">
+            <span>💰</span> <strong>Finance Desk (Staff)</strong> - Org Invoices & Expenses
+          </a>
+          <a href="{{ url_for('auth.quick_login', email='manager.demo@jaskrgymgrid.example') }}" class="btn btn-sm" style="justify-content: flex-start; text-align: left; background: #fff;">
+            <span>🏢</span> <strong>Branch Manager (Staff)</strong> - Saket Operations
+          </a>
+          <a href="{{ url_for('auth.quick_login', email='owner.ironpulse.demo@jaskrgymgrid.example') }}" class="btn btn-sm" style="justify-content: flex-start; text-align: left; background: #fff;">
+            <span>👑</span> <strong>IronPulse Owner</strong> - 6 Branches Access
+          </a>
+          <a href="{{ url_for('auth.quick_login', email='owner.flexnation.demo@jaskrgymgrid.example') }}" class="btn btn-sm" style="justify-content: flex-start; text-align: left; background: #fff;">
+            <span>🛡️</span> <strong>FlexNation Owner</strong> - For Cross-Tenant Isolation Tests
+          </a>
+          <a href="{{ url_for('auth.quick_login', email='admin.demo@jaskrgymgrid.example') }}" class="btn btn-sm" style="justify-content: flex-start; text-align: left; background: #fff;">
+            <span>⚡</span> <strong>Platform Administrator</strong> - Superuser & Approvals
+          </a>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

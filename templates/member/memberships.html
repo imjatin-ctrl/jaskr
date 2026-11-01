@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}My Memberships{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-mint">Membership Passport</span>
+    <h1>My Memberships & Pass History</h1>
+    <p style="color: var(--ink-muted);">View all past, current, and renewed plans associated with your account.</p>
+  </div>
+
+  <!-- Active Pass Highlight -->
+  {% if active_ms %}
+    <div class="card" style="border-left: 8px solid var(--mint-green); margin-bottom: 2.5rem; background: #FFFFFF;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <span class="badge badge-mint" style="margin-bottom: 0.5rem;">ACTIVE PASS</span>
+          <h2 style="font-size: 1.8rem; margin-bottom: 0.25rem;">{{ active_ms.plan_name }}</h2>
+          <p style="color: var(--ink-muted); margin-bottom: 0.75rem;">{{ active_ms.description }}</p>
+          <div style="font-size: 0.9rem;">
+            📅 Duration: <strong>{{ active_ms.start_date }}</strong> to <strong>{{ active_ms.end_date }}</strong>
+          </div>
+        </div>
+        <div style="text-align: right;">
+          <div class="mono-num" style="font-size: 2rem; font-weight: 900; color: var(--ink-primary);">
+            ₹{{ "{:,.2f}".format(active_ms.price) }}
+          </div>
+          <span style="font-size: 0.8rem; color: var(--ink-muted);">ex-GST base fee</span>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Membership History Table -->
+  <div class="card" style="margin-bottom: 2.5rem;">
+    <h3 style="margin-bottom: 1rem;">Membership Lifecycle History</h3>
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Membership ID</th>
+            <th>Plan Name</th>
+            <th>Duration</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Price (INR)</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ms in all_ms %}
+            <tr>
+              <td class="mono-num">#{{ ms.membership_id }}</td>
+              <td><strong>{{ ms.plan_name }}</strong></td>
+              <td>{{ ms.duration_months }} Month{{ 's' if ms.duration_months > 1 else '' }}</td>
+              <td class="mono-num">{{ ms.start_date }}</td>
+              <td class="mono-num">{{ ms.end_date }}</td>
+              <td class="mono-num">₹{{ "{:,.2f}".format(ms.price) }}</td>
+              <td>
+                <span class="badge {% if ms.status == 'active' %}badge-mint{% elif ms.status == 'expired' %}badge-coral{% else %}badge-yellow{% endif %}">
+                  {{ ms.status|upper }}
+                </span>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Available Plans to Purchase / Renew -->
+  <div class="card">
+    <h2 style="margin-bottom: 1rem;">Renew or Switch Plan ({{ member.organization_name }})</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;">
+      {% for p in available_plans %}
+        <div style="border: var(--border-thin); border-radius: var(--radius-md); padding: 1.25rem; background: var(--bg-canvas); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span class="badge badge-yellow" style="margin-bottom: 0.5rem;">{{ p.duration_months }} Months</span>
+            <h3 style="margin-bottom: 0.25rem;">{{ p.plan_name }}</h3>
+            <div class="mono-num" style="font-size: 1.5rem; font-weight: 900; color: var(--ink-primary); margin-bottom: 0.5rem;">
+              ₹{{ "{:,.0f}".format(p.price) }}
+            </div>
+            <p style="font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 1rem;">{{ p.description }}</p>
+          </div>
+          <a href="{{ url_for('member.checkout', plan_id=p.plan_id) }}" class="btn btn-sm btn-primary" style="width: 100%;">
+            ⚡ Buy / Renew Plan →
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

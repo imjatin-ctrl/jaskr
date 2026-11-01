@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}Billing & Invoices{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-mint">Financial Records</span>
+    <h1>Billing, Invoices & Refunds</h1>
+    <p style="color: var(--ink-muted);">View GST tax invoices, transaction settlement references, and refund lifecycle statuses.</p>
+  </div>
+
+  <!-- Invoices Table -->
+  <div class="card" style="margin-bottom: 2rem;">
+    <h3 style="margin-bottom: 1rem;">GST Invoices History</h3>
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Invoice Number</th>
+            <th>Invoice Date</th>
+            <th>Due Date</th>
+            <th>Amount (INR)</th>
+            <th>Status</th>
+            <th>Receipt</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for inv in invoices %}
+            <tr>
+              <td class="mono-num"><strong>{{ inv.invoice_number }}</strong></td>
+              <td class="mono-num">{{ inv.invoice_date }}</td>
+              <td class="mono-num">{{ inv.due_date }}</td>
+              <td class="mono-num">₹{{ "{:,.2f}".format(inv.total) }}</td>
+              <td>
+                <span class="badge {% if inv.status == 'paid' %}badge-mint{% elif inv.status == 'refunded' %}badge-blue{% else %}badge-coral{% endif %}">
+                  {{ inv.status|upper }}
+                </span>
+              </td>
+              <td>
+                {% if inv.status == 'paid' %}
+                  <a href="{{ url_for('member.receipt', payment_id=inv.invoice_id) }}" class="btn btn-sm">
+                    View Receipt 🖨️
+                  </a>
+                {% else %}
+                  <span style="color: var(--ink-muted); font-size: 0.8rem;">Pending</span>
+                {% endif %}
+              </td>
+            </tr>
+          {% else %}
+            <tr><td colspan="6" style="text-align: center; color: var(--ink-muted);">No invoices found.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Payments & Refund Action Table -->
+  <div class="card" style="margin-bottom: 2rem;">
+    <h3 style="margin-bottom: 1rem;">Settled Payments & Request Refund</h3>
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Payment ID</th>
+            <th>Transaction Ref</th>
+            <th>Date & Time</th>
+            <th>Method</th>
+            <th>Amount Paid</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in payments %}
+            <tr>
+              <td class="mono-num">#{{ p.payment_id }}</td>
+              <td class="mono-num"><strong>{{ p.transaction_ref }}</strong></td>
+              <td class="mono-num">{{ p.payment_date }}</td>
+              <td>{{ p.payment_method }}</td>
+              <td class="mono-num">₹{{ "{:,.2f}".format(p.amount) }}</td>
+              <td>
+                <span class="badge {% if p.payment_status == 'successful' %}badge-mint{% else %}badge-coral{% endif %}">
+                  {{ p.payment_status|upper }}
+                </span>
+              </td>
+              <td>
+                {% if p.payment_status == 'successful' %}
+                  <button class="btn btn-sm" onclick="openRefundModal({{ p.payment_id }}, {{ p.amount }})" style="font-size: 0.75rem;">
+                    Request Refund
+                  </button>
+                {% else %}
+                  -
+                {% endif %}
+              </td>
+            </tr>
+          {% else %}
+            <tr><td colspan="7" style="text-align: center; color: var(--ink-muted);">No payment records found.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Refunds History -->
+  {% if refunds %}
+    <div class="card" style="margin-bottom: 2rem;">
+      <h3 style="margin-bottom: 1rem;">Processed & Requested Refunds</h3>
+      <div class="table-responsive">
+        <table class="table-custom">
+          <thead>
+            <tr>
+              <th>Refund ID</th>
+              <th>Original Payment Ref</th>
+              <th>Refund Amount</th>
+              <th>Requested Date</th>
+              <th>Reason</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for r in refunds %}
+              <tr>
+                <td class="mono-num">#{{ r.refund_id }}</td>
+                <td class="mono-num">{{ r.transaction_ref }}</td>
+                <td class="mono-num" style="color: var(--hot-coral); font-weight: 700;">
+                  -₹{{ "{:,.2f}".format(r.refund_amount) }}
+                </td>
+                <td class="mono-num">{{ r.refund_date }}</td>
+                <td>{{ r.reason }}</td>
+                <td>
+                  <span class="badge {% if r.status == 'completed' %}badge-mint{% elif r.status == 'approved' %}badge-yellow{% elif r.status == 'requested' %}badge-blue{% else %}badge-coral{% endif %}">
+                    {{ r.status|upper }}
+                  </span>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Refund Request Modal Dialog -->
+  <div id="refundModal" style="display: none; position: fixed; inset: 0; background: rgba(20, 18, 31, 0.6); z-index: 1200; align-items: center; justify-content: center;">
+    <div class="card" style="width: 90%; max-width: 480px; background: #fff;">
+      <h3 style="margin-bottom: 0.5rem;">Request Payment Refund</h3>
+      <p style="font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 1rem;">
+        Partial and full refunds are supported. Full refund automatically cancels the active pass.
+      </p>
+
+      <form method="POST" action="{{ url_for('member.request_refund') }}">
+        <input type="hidden" name="payment_id" id="modalPaymentId">
+        
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Refund Amount (INR):</label>
+          <input type="number" step="0.01" name="refund_amount" id="modalRefundAmount" required
+                 style="width: 100%; padding: 0.65rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 1rem;">
+        </div>
+
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.3rem;">Reason for Refund:</label>
+          <select name="reason" style="width: 100%; padding: 0.65rem; border: var(--border-thin); border-radius: var(--radius-sm); font-size: 0.9rem; background: #fff;">
+            <option value="Relocated to another city">Relocated to another city</option>
+            <option value="Medical reasons">Medical reasons</option>
+            <option value="Duplicate payment">Duplicate payment</option>
+            <option value="Plan changed to a different tier">Plan changed to a different tier</option>
+            <option value="Dissatisfied with facilities">Dissatisfied with facilities</option>
+          </select>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+          <button type="button" class="btn btn-sm" onclick="closeRefundModal()">Cancel</button>
+          <button type="submit" class="btn btn-sm btn-danger">Submit Request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openRefundModal(paymentId, maxAmount) {
+    document.getElementById("modalPaymentId").value = paymentId;
+    document.getElementById("modalRefundAmount").value = maxAmount;
+    document.getElementById("modalRefundAmount").max = maxAmount;
+    document.getElementById("refundModal").style.display = "flex";
+  }
+  function closeRefundModal() {
+    document.getElementById("refundModal").style.display = "none";
+  }
+</script>
+{% endblock %}

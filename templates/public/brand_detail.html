@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}{{ org.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="card" style="margin-bottom: 2rem; border-top: 8px solid var(--electric-blue);">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
+          <span class="badge badge-blue">Organization #{{ org.organization_id }}</span>
+          <span class="badge badge-yellow">{{ org.brand_type|capitalize }}</span>
+          <span class="badge badge-mint">{{ org.status|capitalize }}</span>
+        </div>
+        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">{{ org.name }}</h1>
+        <p style="color: var(--ink-muted); font-size: 1.05rem;">
+          Headquartered in <strong>{{ org.headquarters_city }}</strong> • Operating <strong>{{ branches|length }} branches</strong> in the Jaskr GymGrid network
+        </p>
+        <p style="font-size: 0.9rem; color: var(--ink-muted); margin-top: 0.25rem;">
+          📧 Contact: {{ org.contact_email }} • Partner since {{ org.created_at }}
+        </p>
+      </div>
+
+      <a href="{{ url_for('public.discover', brand=org.organization_id) }}" class="btn btn-primary">
+        Explore {{ org.name }} Branches →
+      </a>
+    </div>
+  </div>
+
+  <!-- Branches Grid -->
+  <div style="margin-bottom: 2.5rem;">
+    <h2 style="margin-bottom: 1rem;">All Branches ({{ branches|length }})</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+      {% for b in branches %}
+        <div class="card card-interactive">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+            <span class="badge" style="background: #F1F5F9;">📍 {{ b.city }}</span>
+            <span class="badge badge-mint">Cap: {{ b.capacity }}</span>
+          </div>
+          <h3 style="margin-bottom: 0.5rem;">{{ b.name }}</h3>
+          <p style="font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 1rem;">
+            {{ b.address }}, {{ b.city }}
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1.5px solid rgba(20, 18, 31, 0.1); padding-top: 0.75rem;">
+            <a href="{{ url_for('public.branch_detail', branch_id=b.branch_id) }}" class="btn btn-sm btn-primary">Branch Page →</a>
+            <a href="{{ url_for('public.compare', id=b.branch_id) }}" class="btn btn-sm">+ Compare</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Shared Membership Plans -->
+  <div class="card">
+    <h2 style="margin-bottom: 1rem;">Network Membership Tiers</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+      {% for p in plans %}
+        <div style="border: var(--border-thin); border-radius: var(--radius-sm); padding: 1rem; background: var(--bg-canvas);">
+          <span class="badge badge-yellow" style="margin-bottom: 0.25rem;">{{ p.duration_months }} Months</span>
+          <h3 style="font-size: 1.1rem; margin-bottom: 0.25rem;">{{ p.plan_name }}</h3>
+          <div class="mono-num" style="font-size: 1.4rem; font-weight: 800; color: var(--ink-primary); margin-bottom: 0.5rem;">
+            ₹{{ "{:,.0f}".format(p.price) }}
+          </div>
+          <p style="font-size: 0.85rem; color: var(--ink-muted);">{{ p.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

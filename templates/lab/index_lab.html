@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% import "components/show_sql_drawer.html" as sql_comp %}
+{% block title %}Index Performance Lab{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-yellow">Query Optimization</span>
+    <h1>B-Tree Index Performance Lab (EXPLAIN)</h1>
+    <p style="color: var(--ink-muted);">
+      Inspect the relational query planner's execution plan on heavy attendance range scans (~20,546 rows) using composite B-Tree indexes.
+    </p>
+  </div>
+
+  <div class="card" style="margin-bottom: 2rem; border-top: 6px solid var(--brand-yellow);">
+    <h3 style="margin-bottom: 0.75rem;">Optimized Query</h3>
+    <code style="font-family: var(--font-mono); font-size: 0.95rem; background: #1E1B2E; color: #FEF08A; padding: 1rem; border-radius: var(--radius-sm); display: block; margin-bottom: 1rem;">
+      SELECT * FROM attendance WHERE branch_id = 1 AND check_in >= '2026-08-03 00:00:00';
+    </code>
+    <p style="font-size: 0.9rem; color: var(--ink-muted);">
+      Index utilized: <code>idx_attendance_branch_checkin (branch_id, check_in)</code>. Eliminates full-table scan and directly seeks matching branch timestamp ranges.
+    </p>
+  </div>
+
+  <!-- EXPLAIN Output Table -->
+  <div class="card" style="margin-bottom: 2.5rem;">
+    <h3 style="margin-bottom: 1rem;">Query Execution Plan (EXPLAIN Output)</h3>
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            {% if explain_plan %}
+              {% for k in explain_plan[0].keys() %}
+                <th>{{ k }}</th>
+              {% endfor %}
+            {% else %}
+              <th>Execution Steps</th>
+            {% endif %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in explain_plan %}
+            <tr>
+              {% for v in r.values() %}
+                <td class="mono-num">{{ v }}</td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Show SQL Drawer -->
+  {{ sql_comp.sql_drawer(
+      "Index Creation Definition",
+      "CREATE INDEX idx_attendance_branch_checkin ON attendance (branch_id, check_in);\nCREATE INDEX idx_expenses_branch_date ON expenses (branch_id, expense_date);\nCREATE INDEX idx_payments_membership ON payments (membership_id, payment_status);",
+      ["B-TREE", "COMPOSITE-INDEX", "EXPLAIN", "QUERY-OPTIMIZATION"],
+      "Composite index on (branch_id, check_in) allows the database engine to perform range scans in O(log N) time rather than O(N) full table scans."
+  ) }}
+</div>
+{% endblock %}

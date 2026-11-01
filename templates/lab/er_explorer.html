@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block title %}Interactive ER Explorer{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="margin-bottom: 2rem;">
+    <span class="badge badge-violet">Database Architecture</span>
+    <h1>Interactive Entity-Relationship (ER) Explorer</h1>
+    <p style="color: var(--ink-muted);">Inspect the relational schema, foreign key linkages, constraints, and live sample rows across all 24 tables.</p>
+  </div>
+
+  <!-- Interactive SVG Schema Map -->
+  <div class="card" style="margin-bottom: 2.5rem; background: #FFFFFF; overflow-x: auto;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+      <span class="badge badge-yellow">Relational Topology Map</span>
+      <span style="font-size: 0.8rem; color: var(--ink-muted);">Click any entity node to inspect its columns & sample tuples</span>
+    </div>
+
+    <!-- Stylized Topology Diagram -->
+    <div style="background: #F8FAFC; border: var(--border-thin); border-radius: var(--radius-sm); padding: 1.5rem; text-align: center;">
+      <svg viewBox="0 0 940 380" style="width: 100%; height: auto; max-height: 380px;">
+        <!-- Core Relations Group -->
+        <g transform="translate(40, 40)">
+          <!-- Organizations -->
+          <rect width="160" height="60" rx="8" fill="#FEF08A" stroke="#14121F" stroke-width="2.5" />
+          <text x="80" y="35" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13">ORGANIZATIONS</text>
+          
+          <!-- Line to Branches -->
+          <line x1="80" y1="60" x2="80" y2="120" stroke="#14121F" stroke-width="2" stroke-dasharray="4" />
+
+          <!-- Branches -->
+          <rect y="120" width="160" height="60" rx="8" fill="#BFDBFE" stroke="#14121F" stroke-width="2.5" />
+          <text x="80" y="155" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13">BRANCHES</text>
+
+          <!-- Line to Facilities -->
+          <line x1="160" y1="150" x2="220" y2="150" stroke="#14121F" stroke-width="2" />
+          <!-- Branch Facilities -->
+          <rect x="220" y="120" width="160" height="60" rx="8" fill="#F1F5F9" stroke="#14121F" stroke-width="2" />
+          <text x="300" y="155" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11">BRANCH_FACILITIES</text>
+        </g>
+
+        <!-- Member & Membership Group -->
+        <g transform="translate(440, 40)">
+          <!-- Users -->
+          <rect width="150" height="60" rx="8" fill="#DDD6FE" stroke="#14121F" stroke-width="2.5" />
+          <text x="75" y="35" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13">USERS</text>
+
+          <!-- Line to Members -->
+          <line x1="75" y1="60" x2="75" y2="120" stroke="#14121F" stroke-width="2" />
+          <!-- Members -->
+          <rect y="120" width="150" height="60" rx="8" fill="#A7F3D0" stroke="#14121F" stroke-width="2.5" />
+          <text x="75" y="155" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13">MEMBERS</text>
+
+          <!-- Line to Memberships -->
+          <line x1="75" y1="180" x2="75" y2="240" stroke="#14121F" stroke-width="2" />
+          <!-- Memberships -->
+          <rect y="240" width="150" height="60" rx="8" fill="#FEF08A" stroke="#14121F" stroke-width="2.5" />
+          <text x="75" y="275" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13">MEMBERSHIPS</text>
+        </g>
+
+        <!-- Finance Relations Group -->
+        <g transform="translate(720, 160)">
+          <!-- Invoices -->
+          <rect width="150" height="60" rx="8" fill="#FED7AA" stroke="#14121F" stroke-width="2.5" />
+          <text x="75" y="35" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13">INVOICES</text>
+
+          <!-- Line to Payments -->
+          <line x1="75" y1="60" x2="75" y2="120" stroke="#14121F" stroke-width="2" />
+          <!-- Payments -->
+          <rect y="120" width="150" height="60" rx="8" fill="#BAE6FD" stroke="#14121F" stroke-width="2.5" />
+          <text x="75" y="155" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13">PAYMENTS</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 280px 1fr; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem;">
+    <!-- Left: Table Selector -->
+    <div class="card">
+      <h3 style="margin-bottom: 1rem; border-bottom: var(--border-thin); padding-bottom: 0.5rem;">Tables (24 Total)</h3>
+      <div style="max-height: 480px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.35rem;">
+        {% for tbl, meta in tables_meta.items() %}
+          <a href="{{ url_for('lab.er_explorer', table=tbl) }}" 
+             class="btn btn-sm" 
+             style="justify-content: space-between; text-align: left; background: {% if selected_table == tbl %}var(--brand-yellow){% else %}#fff{% endif %};">
+            <span style="font-family: var(--font-mono); font-size: 0.8rem;">{{ tbl }}</span>
+            <span class="badge" style="font-size: 0.6rem; padding: 1px 4px;">{{ meta.module }}</span>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Right: Selected Table Schema & Live Tuples -->
+    <div>
+      <div class="card" style="margin-bottom: 1.5rem; border-top: 6px solid var(--violet-royal);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <div>
+            <span class="badge badge-violet">{{ tables_meta[selected_table].module }} Module</span>
+            <h2 style="font-family: var(--font-mono); margin-top: 0.25rem;">{{ selected_table }}</h2>
+          </div>
+          <span style="font-size: 0.85rem; color: var(--ink-muted);">Third Normal Form (3NF) Verified</span>
+        </div>
+
+        <h4 style="margin-bottom: 0.5rem;">Column Attributes & Keys:</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
+          {% for col in tables_meta[selected_table].cols %}
+            <span class="badge" style="background: var(--bg-canvas); font-size: 0.8rem; padding: 0.35rem 0.65rem;">
+              {{ col }}
+            </span>
+          {% endfor %}
+        </div>
+
+        <!-- Live Sample Tuples from DB -->
+        <h4 style="margin-bottom: 0.5rem;">Live Database Records (First 5 Rows):</h4>
+        <div class="table-responsive">
+          <table class="table-custom" style="font-size: 0.8rem;">
+            <thead>
+              <tr>
+                {% if sample_rows %}
+                  {% for k in sample_rows[0].keys() %}
+                    <th>{{ k }}</th>
+                  {% endfor %}
+                {% else %}
+                  <th>Records</th>
+                {% endif %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for r in sample_rows %}
+                <tr>
+                  {% for val in r.values() %}
+                    <td class="mono-num" style="max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                      {{ val }}
+                    </td>
+                  {% endfor %}
+                </tr>
+              {% else %}
+                <tr><td colspan="5" style="text-align: center; color: var(--ink-muted);">Table is empty.</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

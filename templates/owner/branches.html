@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}Manage Branches{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+    <div>
+      <span class="badge badge-coral">Network Locations</span>
+      <h1>Manage {{ org.name }} Branches</h1>
+      <p style="color: var(--ink-muted);">Operating {{ branches|length }} branches across India</p>
+    </div>
+    <button onclick="document.getElementById('addBranchModal').style.display='flex'" class="btn btn-primary">
+      + Add New Branch
+    </button>
+  </div>
+
+  <!-- Branches Table -->
+  <div class="card" style="margin-bottom: 2.5rem;">
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Branch ID</th>
+            <th>Name</th>
+            <th>City / State</th>
+            <th>Address</th>
+            <th>Capacity</th>
+            <th>Members</th>
+            <th>Staff</th>
+            <th>Facilities</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for b in branches %}
+            <tr>
+              <td class="mono-num">#{{ b.branch_id }}</td>
+              <td><strong>{{ b.name }}</strong></td>
+              <td>{{ b.city }}, {{ b.state }}</td>
+              <td style="font-size: 0.85rem; color: var(--ink-muted);">{{ b.address }}</td>
+              <td class="mono-num">{{ b.capacity }}</td>
+              <td class="mono-num">{{ b.member_count }}</td>
+              <td class="mono-num">{{ b.staff_count }}</td>
+              <td class="mono-num">{{ b.facility_count }} zones</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Add Branch Modal Dialog -->
+  <div id="addBranchModal" style="display: none; position: fixed; inset: 0; background: rgba(20, 18, 31, 0.6); z-index: 1200; align-items: center; justify-content: center;">
+    <div class="card" style="width: 90%; max-width: 580px; background: #fff;">
+      <h3 style="margin-bottom: 1rem;">Add New Gym Branch</h3>
+      <form method="POST" action="{{ url_for('owner.branches') }}">
+        <div style="margin-bottom: 0.75rem;">
+          <label style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem;">Branch Name</label>
+          <input type="text" name="name" required placeholder="e.g. IronPulse Whitefield" 
+                 style="width: 100%; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm);">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <div>
+            <label style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem;">City</label>
+            <input type="text" name="city" required placeholder="Bengaluru" 
+                   style="width: 100%; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm);">
+          </div>
+          <div>
+            <label style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem;">State</label>
+            <input type="text" name="state" required placeholder="Karnataka" 
+                   style="width: 100%; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm);">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <div>
+            <label style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem;">Pincode</label>
+            <input type="text" name="pincode" required placeholder="560066" 
+                   style="width: 100%; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm);">
+          </div>
+          <div>
+            <label style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem;">Floor Capacity</label>
+            <input type="number" name="capacity" value="120" required 
+                   style="width: 100%; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm);">
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.75rem;">
+          <label style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem;">Address</label>
+          <input type="text" name="address" required placeholder="Plot 10, ITPL Main Road" 
+                 style="width: 100%; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm);">
+        </div>
+
+        <div style="margin-bottom: 0.75rem;">
+          <label style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem;">Contact Phone</label>
+          <input type="tel" name="phone" required placeholder="+91 80 4123 4567" 
+                 style="width: 100%; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm);">
+        </div>
+
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem;">Description</label>
+          <textarea name="description" rows="2" style="width: 100%; padding: 0.6rem; border: var(--border-thin); border-radius: var(--radius-sm);"></textarea>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+          <button type="button" class="btn btn-sm" onclick="document.getElementById('addBranchModal').style.display='none'">Cancel</button>
+          <button type="submit" class="btn btn-sm btn-primary">Create Branch</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
