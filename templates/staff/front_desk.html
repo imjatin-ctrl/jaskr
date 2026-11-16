@@ -92,7 +92,7 @@
                     <strong>{{ a.full_name }}</strong>
                     <div style="font-size: 0.75rem; color: var(--ink-muted);">#{{ a.member_id }} • {{ a.phone }}</div>
                   </td>
-                  <td class="mono-num">{{ a.check_in[11:16] }}</td>
+                  <td class="mono-num">{{ (a.check_in|string)[11:16] }}</td>
                   <td><span class="badge badge-yellow" style="font-size: 0.65rem;">{{ a.plan_name or 'Standard' }}</span></td>
                   <td>
                     <form method="POST" action="{{ url_for('staff.desk_checkout', attendance_id=a.attendance_id) }}">

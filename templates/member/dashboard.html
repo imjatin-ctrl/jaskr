@@ -67,7 +67,7 @@
           <strong style="color: var(--mint-green);">CURRENTLY INSIDE</strong>
         </div>
         <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">
-          Checked in at <strong>{{ currently_inside.branch_name }}</strong> since {{ currently_inside.check_in[11:16] }}.
+          Checked in at <strong>{{ currently_inside.branch_name }}</strong> since {{ (currently_inside.check_in|string)[11:16] }}.
         </p>
         <form method="POST" action="{{ url_for('member.check_in') }}">
           <input type="hidden" name="action" value="check_out">
@@ -128,7 +128,7 @@
             {% for a in recent_attendance %}
               <tr>
                 <td><strong>{{ a.branch_name }}</strong></td>
-                <td class="mono-num">{{ a.check_in[5:16] }}</td>
+                <td class="mono-num">{{ (a.check_in|string)[5:16] }}</td>
                 <td class="mono-num">
                   {% if a.check_out %}
                     Completed

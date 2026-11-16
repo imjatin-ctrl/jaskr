@@ -96,7 +96,7 @@
           {% for b in compared %}
             <td class="mono-num" style="font-size: 0.85rem;">
               {% if b.hours %}
-                {{ b.hours[0].open_time[:5] }} - {{ b.hours[0].close_time[:5] }}
+                {{ (b.hours[0].open_time|string)[:5] }} - {{ (b.hours[0].close_time|string)[:5] }}
               {% else %}
                 06:00 - 23:00
               {% endif %}

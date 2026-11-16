@@ -112,7 +112,7 @@ def execute_query(sql, params=(), role="admin", fetch="all"):
     """
     conn = get_connection(role=role)
     try:
-        cur = conn.cursor()
+        cur = conn.cursor(buffered=True) if is_mysql() else conn.cursor()
         exec_sql = sql
         exec_params = params
         if not is_mysql():
@@ -244,14 +244,8 @@ def sp_process_refund(payment_id, refund_amount, reason, user_id=1, refund_id=No
     When refund_id is provided, approves/completes the existing refund request.
     Only sums COMPLETED or APPROVED refunds to avoid double-counting pending requests.
     """
-    # Use MySQL or SQLite compatible cursor
-    if is_mysql():
-        conn = get_connection(role="owner")
-        ph = "%s"
-    else:
-        conn = get_connection(role="admin")
-        ph = "?"
-
+    conn = get_connection(role="admin")
+    ph = "%s" if is_mysql() else "?"
     try:
         cur = conn.cursor(dictionary=True) if is_mysql() else conn.cursor()
         cur.execute(f"SELECT amount, membership_id, invoice_id FROM payments WHERE payment_id = {ph} AND payment_status = 'successful'", (payment_id,))

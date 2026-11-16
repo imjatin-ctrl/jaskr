@@ -4,7 +4,7 @@ Handles Home, Search & Discover, Branch Profile, Brand Profile,
 Side-by-Side Gym Comparison, Crowd Explorer, Gap Analysis, and About Page.
 """
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for
-from app.database import query_all, query_one
+from app.database import query_all, query_one, is_mysql
 from app.config import Config
 import json
 
@@ -163,15 +163,26 @@ def branch_detail(branch_id):
     
     # Crowd Heat Grid Data (Day of Week x Hour of Day)
     # Using 8-week lookback
-    crowd_data = query_all(
-        "SELECT "
-        "  CAST(strftime('%w', check_in) AS INTEGER) AS dow, "
-        "  CAST(strftime('%H', check_in) AS INTEGER) AS hour, "
-        "  COUNT(*) AS visits "
-        "FROM attendance "
-        "WHERE branch_id = %s AND check_in >= '2026-08-03' "
-        "GROUP BY dow, hour;", (branch_id,)
-    )
+    if is_mysql():
+        crowd_data = query_all(
+            "SELECT "
+            "  (DAYOFWEEK(check_in) - 1) AS dow, "
+            "  HOUR(check_in) AS hour, "
+            "  COUNT(*) AS visits "
+            "FROM attendance "
+            "WHERE branch_id = %s AND check_in >= '2026-08-03' "
+            "GROUP BY dow, hour;", (branch_id,)
+        )
+    else:
+        crowd_data = query_all(
+            "SELECT "
+            "  CAST(strftime('%w', check_in) AS INTEGER) AS dow, "
+            "  CAST(strftime('%H', check_in) AS INTEGER) AS hour, "
+            "  COUNT(*) AS visits "
+            "FROM attendance "
+            "WHERE branch_id = %s AND check_in >= '2026-08-03' "
+            "GROUP BY dow, hour;", (branch_id,)
+        )
     total_samples = sum(c["visits"] for c in crowd_data)
     
     # Construct 7x24 matrix
@@ -287,16 +298,28 @@ def crowd():
     all_branches = query_all("SELECT branch_id, name, city FROM branches WHERE organization_id != 5 ORDER BY city, name;")
     branch = query_one("SELECT * FROM branches WHERE branch_id = %s;", (branch_id,))
     
-    # SQLite strftime weekday: 0=Sunday, 1=Monday...
-    sqlite_dow = (day_of_week + 1) % 7
-    hourly_rows = query_all(
-        "SELECT "
-        "  CAST(strftime('%H', check_in) AS INTEGER) AS hour, "
-        "  COUNT(*) AS visits "
-        "FROM attendance "
-        "WHERE branch_id = %s AND CAST(strftime('%w', check_in) AS INTEGER) = %s "
-        "GROUP BY hour ORDER BY hour;", (branch_id, sqlite_dow)
-    )
+    if is_mysql():
+        # MySQL DAYOFWEEK: 1=Sunday, 2=Monday, ..., 7=Saturday
+        # Target day_of_week: 0=Monday ... 6=Sunday
+        mysql_dow = (day_of_week + 1) % 7 + 1
+        hourly_rows = query_all(
+            "SELECT "
+            "  HOUR(check_in) AS hour, "
+            "  COUNT(*) AS visits "
+            "FROM attendance "
+            "WHERE branch_id = %s AND DAYOFWEEK(check_in) = %s "
+            "GROUP BY hour ORDER BY hour;", (branch_id, mysql_dow)
+        )
+    else:
+        sqlite_dow = (day_of_week + 1) % 7
+        hourly_rows = query_all(
+            "SELECT "
+            "  CAST(strftime('%H', check_in) AS INTEGER) AS hour, "
+            "  COUNT(*) AS visits "
+            "FROM attendance "
+            "WHERE branch_id = %s AND CAST(strftime('%w', check_in) AS INTEGER) = %s "
+            "GROUP BY hour ORDER BY hour;", (branch_id, sqlite_dow)
+        )
     
     total_samples = sum(r["visits"] for r in hourly_rows)
     hours_dict = {h: 0 for h in range(5, 23)}

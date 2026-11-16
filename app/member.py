@@ -51,8 +51,16 @@ def dashboard():
     # Days remaining calculation against DEMO_TODAY (2026-10-30)
     today = Config.get_app_today()
     days_left = 0
-    if active_ms:
-        end_d = dt.datetime.strptime(active_ms["end_date"], "%Y-%m-%d").date()
+    if active_ms and active_ms.get("end_date"):
+        end_val = active_ms["end_date"]
+        if isinstance(end_val, dt.datetime):
+            end_d = end_val.date()
+        elif isinstance(end_val, dt.date):
+            end_d = end_val
+        elif isinstance(end_val, str):
+            end_d = dt.datetime.strptime(end_val[:10], "%Y-%m-%d").date()
+        else:
+            end_d = today
         days_left = max(0, (end_d - today).days)
 
     # Next scheduled training session

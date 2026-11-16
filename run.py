@@ -26,6 +26,7 @@ if __name__ == "__main__":
     print(f"\n==================================================")
     print(f"  Jaskr GymGrid Web Server Starting")
     print(f"  Access URL: http://127.0.0.1:{port}")
-    print(f"  Demo Clock: 2026-10-30 10:00:00 (DEMO_MODE=true)")
+    from app.config import Config
+    print(f"  System Clock: {Config.get_app_now().strftime('%Y-%m-%d %H:%M:%S')} (Live Real-Time Sync)")
     print(f"==================================================\n")
     app.run(host="0.0.0.0", port=port, debug=True)

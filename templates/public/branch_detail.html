@@ -181,7 +181,7 @@
                 {% if h.is_closed %}
                   <span class="badge badge-coral" style="font-size: 0.65rem;">Closed</span>
                 {% else %}
-                  {{ h.open_time[:5] }} - {{ h.close_time[:5] }}
+                  {{ (h.open_time|string)[:5] }} - {{ (h.close_time|string)[:5] }}
                 {% endif %}
               </span>
             </li>
