@@ -40,7 +40,7 @@ def client(app):
 def test_access_rule_full_allowed_across_cities():
     """member.demo (Rohan Malhotra) holds Annual All-Access (FULL) -> Allowed at branches in other cities."""
     member = query_one("SELECT m.*, b.name AS home_branch_name, b.city AS home_branch_city, o.name AS organization_name FROM members m JOIN branches b ON m.home_branch_id = b.branch_id JOIN organizations o ON b.organization_id = o.organization_id WHERE m.member_id = 1;")
-    active_ms = query_one("SELECT ms.*, p.plan_name FROM memberships ms JOIN membership_plans p ON ms.plan_id = p.plan_id WHERE ms.member_id = 1 AND ms.status = 'active';")
+    active_ms = query_one("SELECT ms.*, p.plan_name FROM memberships ms JOIN membership_plans p ON ms.plan_id = p.plan_id WHERE ms.member_id = 1 AND ms.status = 'active' ORDER BY ms.end_date DESC;")
     
     # Target branch in another city: Branch 4 (IronPulse Andheri West, Mumbai)
     target_branch = query_one("SELECT b.*, o.name AS organization_name FROM branches b JOIN organizations o ON b.organization_id = o.organization_id WHERE b.branch_id = 4;")
@@ -79,7 +79,7 @@ def test_access_rule_expired_denied_everywhere():
 def test_access_rule_cross_organization_denied():
     """IronPulse member cannot access a FlexNation branch."""
     member = query_one("SELECT m.*, b.name AS home_branch_name, b.city AS home_branch_city, o.name AS organization_name FROM members m JOIN branches b ON m.home_branch_id = b.branch_id JOIN organizations o ON b.organization_id = o.organization_id WHERE m.member_id = 1;")
-    active_ms = query_one("SELECT ms.*, p.plan_name FROM memberships ms JOIN membership_plans p ON ms.plan_id = p.plan_id WHERE ms.member_id = 1 AND ms.status = 'active';")
+    active_ms = query_one("SELECT ms.*, p.plan_name FROM memberships ms JOIN membership_plans p ON ms.plan_id = p.plan_id WHERE ms.member_id = 1 AND ms.status = 'active' ORDER BY ms.end_date DESC;")
     
     # Target branch in FlexNation (Org 2)
     target_branch = query_one("SELECT b.*, o.name AS organization_name FROM branches b JOIN organizations o ON b.organization_id = o.organization_id WHERE b.branch_id = 7;")
