@@ -328,10 +328,10 @@ def approve_refund(refund_id):
         payment_id=refund["payment_id"],
         refund_amount=refund["refund_amount"],
         reason=refund["reason"],
-        user_id=session["user_id"]
+        user_id=session["user_id"],
+        refund_id=refund_id
     )
     if res["success"]:
-        execute_commit("UPDATE refunds SET status = 'completed' WHERE refund_id = %s;", (refund_id,))
         flash("Refund approved and marked completed successfully.", "success")
     else:
         flash(f"Refund processing failed: {res['message']}", "error")

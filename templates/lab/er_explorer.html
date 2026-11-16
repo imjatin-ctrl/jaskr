@@ -11,67 +11,424 @@
 
   <!-- Interactive SVG Schema Map -->
   <div class="card" style="margin-bottom: 2.5rem; background: #FFFFFF; overflow-x: auto;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-      <span class="badge badge-yellow">Relational Topology Map</span>
-      <span style="font-size: 0.8rem; color: var(--ink-muted);">Click any entity node to inspect its columns & sample tuples</span>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+      <div>
+        <span class="badge badge-yellow">Relational Topology Map</span>
+        <strong style="margin-left: 0.5rem; font-size: 0.95rem;">24 Normalized Tables (3NF) &bull; 5 Logical Views</strong>
+      </div>
+      <div style="font-size: 0.8rem; color: var(--ink-muted);">
+        Click any entity box to inspect schema &amp; live rows below
+      </div>
     </div>
 
-    <!-- Stylized Topology Diagram -->
-    <div style="background: #F8FAFC; border: var(--border-thin); border-radius: var(--radius-sm); padding: 1.5rem; text-align: center;">
-      <svg viewBox="0 0 940 380" style="width: 100%; height: auto; max-height: 380px;">
-        <!-- Core Relations Group -->
-        <g transform="translate(40, 40)">
-          <!-- Organizations -->
-          <rect width="160" height="60" rx="8" fill="#FEF08A" stroke="#14121F" stroke-width="2.5" />
-          <text x="80" y="35" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13">ORGANIZATIONS</text>
-          
-          <!-- Line to Branches -->
-          <line x1="80" y1="60" x2="80" y2="120" stroke="#14121F" stroke-width="2" stroke-dasharray="4" />
+    <!-- Interactive Module Filter Bar -->
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; align-items: center;">
+      <span style="font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">Filter by Domain:</span>
+      <button type="button" class="btn btn-sm er-filter-btn" onclick="filterER('all', this)" style="background: var(--brand-yellow); font-weight: 700;">Show All (24)</button>
+      <button type="button" class="btn btn-sm er-filter-btn" onclick="filterER('mod-gym', this)" style="background: #E0F2FE;">🏛️ Gym &amp; Branches (8)</button>
+      <button type="button" class="btn btn-sm er-filter-btn" onclick="filterER('mod-users', this)" style="background: #F3E8FF;">👥 Users &amp; Staff (5)</button>
+      <button type="button" class="btn btn-sm er-filter-btn" onclick="filterER('mod-activity', this)" style="background: #DCFCE7;">🏋️ Members &amp; Activity (4)</button>
+      <button type="button" class="btn btn-sm er-filter-btn" onclick="filterER('mod-finance', this)" style="background: #FFEDD5;">💳 Finance &amp; Budgets (7)</button>
+      <button type="button" class="btn btn-sm er-filter-btn" onclick="filterER('mod-views', this)" style="background: #E0E7FF;">👁️ Views (5)</button>
+    </div>
 
-          <!-- Branches -->
-          <rect y="120" width="160" height="60" rx="8" fill="#BFDBFE" stroke="#14121F" stroke-width="2.5" />
-          <text x="80" y="155" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13">BRANCHES</text>
+    <!-- Complete Clean Modular ER SVG Diagram -->
+    <div style="background: #F8FAFC; border: var(--border-thick); border-radius: var(--radius-md); padding: 1.5rem; overflow-x: auto;">
+      <svg id="erSvg" viewBox="0 0 1520 960" style="width: 100%; min-width: 1100px; height: auto; transition: all 0.3s ease;">
+        <defs>
+          <marker id="arr-dark" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+            <polygon points="0,1 8,4.5 0,8" fill="#1E293B"/>
+          </marker>
+          <marker id="arr-blue" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+            <polygon points="0,1 8,4.5 0,8" fill="#0284C7"/>
+          </marker>
+          <marker id="arr-purple" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+            <polygon points="0,1 8,4.5 0,8" fill="#7C3AED"/>
+          </marker>
+          <marker id="arr-green" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+            <polygon points="0,1 8,4.5 0,8" fill="#16A34A"/>
+          </marker>
+          <marker id="arr-coral" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+            <polygon points="0,1 8,4.5 0,8" fill="#EA580C"/>
+          </marker>
+          <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%">
+            <feDropShadow dx="2" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+          </filter>
+        </defs>
 
-          <!-- Line to Facilities -->
-          <line x1="160" y1="150" x2="220" y2="150" stroke="#14121F" stroke-width="2" />
-          <!-- Branch Facilities -->
-          <rect x="220" y="120" width="160" height="60" rx="8" fill="#F1F5F9" stroke="#14121F" stroke-width="2" />
-          <text x="300" y="155" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11">BRANCH_FACILITIES</text>
+        <!-- ========================================================================= -->
+        <!-- QUADRANT 1: GYM & BRANCH INFRASTRUCTURE (TOP-LEFT)                       -->
+        <!-- ========================================================================= -->
+        <g id="grp-mod-gym" class="er-group">
+          <!-- Domain Boundary Container -->
+          <rect x="20" y="20" width="690" height="420" rx="14" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="2"/>
+          <rect x="35" y="30" width="220" height="26" rx="6" fill="#0284C7"/>
+          <text x="145" y="48" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12" fill="#FFFFFF">🏛️ 1. GYM &amp; INFRASTRUCTURE</text>
+
+          <!-- 1.1 ORGANIZATIONS -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='organizations') }}'" style="cursor: pointer;">
+            <rect x="50" y="75" width="180" height="60" rx="8" fill="#FEF08A" stroke="#1E293B" stroke-width="2.5" filter="url(#card-shadow)"/>
+            <text x="140" y="98" text-anchor="middle" font-family="monospace" font-weight="800" font-size="12" fill="#1E293B">ORGANIZATIONS</text>
+            <rect x="60" y="108" width="60" height="18" rx="4" fill="#FDE047"/>
+            <text x="90" y="121" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#854D0E">🔑 org_id</text>
+            <text x="180" y="121" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748B">7 columns</text>
+          </g>
+
+          <!-- 1.2 BRANCHES -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='branches') }}'" style="cursor: pointer;">
+            <rect x="50" y="190" width="180" height="64" rx="8" fill="#BAE6FD" stroke="#1E293B" stroke-width="2.5" filter="url(#card-shadow)"/>
+            <text x="140" y="213" text-anchor="middle" font-family="monospace" font-weight="800" font-size="12" fill="#1E293B">BRANCHES</text>
+            <rect x="60" y="224" width="70" height="18" rx="4" fill="#38BDF8"/>
+            <text x="95" y="237" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#0C4A6E">🔑 branch_id</text>
+            <text x="175" y="237" text-anchor="middle" font-family="monospace" font-size="9" fill="#0369A1">🔗 org_id</text>
+          </g>
+
+          <!-- ORGANIZATIONS -> BRANCHES -->
+          <line x1="140" y1="135" x2="140" y2="185" stroke="#1E293B" stroke-width="2" marker-end="url(#arr-dark)"/>
+          <text x="148" y="162" font-family="monospace" font-size="10" font-weight="700" fill="#0284C7">1:N</text>
+
+          <!-- 1.3 MEMBERSHIP_PLANS -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='membership_plans') }}'" style="cursor: pointer;">
+            <rect x="50" y="315" width="180" height="64" rx="8" fill="#FEF08A" stroke="#1E293B" stroke-width="2.5" filter="url(#card-shadow)"/>
+            <text x="140" y="338" text-anchor="middle" font-family="monospace" font-weight="800" font-size="11" fill="#1E293B">MEMBERSHIP_PLANS</text>
+            <rect x="60" y="348" width="60" height="18" rx="4" fill="#FDE047"/>
+            <text x="90" y="361" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#854D0E">🔑 plan_id</text>
+            <text x="175" y="361" text-anchor="middle" font-family="monospace" font-size="9" fill="#854D0E">🔗 org_id</text>
+          </g>
+
+          <!-- ORGANIZATIONS -> MEMBERSHIP_PLANS (Side bus) -->
+          <path d="M 50 105 L 35 105 L 35 345 L 45 345" fill="none" stroke="#64748B" stroke-width="2" marker-end="url(#arr-dark)"/>
+          <text x="38" y="260" font-family="monospace" font-size="9" font-weight="700" fill="#64748B">1:N</text>
+
+          <!-- 1.4 BRANCH_HOURS -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='branch_hours') }}'" style="cursor: pointer;">
+            <rect x="290" y="75" width="180" height="52" rx="8" fill="#E0F2FE" stroke="#0284C7" stroke-width="2" filter="url(#card-shadow)"/>
+            <text x="380" y="97" text-anchor="middle" font-family="monospace" font-weight="800" font-size="11" fill="#0C4A6E">BRANCH_HOURS</text>
+            <text x="380" y="115" text-anchor="middle" font-family="monospace" font-size="9" fill="#0369A1">🔑 PK: branch_id + day</text>
+          </g>
+          <!-- BRANCHES -> BRANCH_HOURS -->
+          <path d="M 230 205 L 260 205 L 260 101 L 285 101" fill="none" stroke="#0284C7" stroke-width="2" marker-end="url(#arr-blue)"/>
+          <text x="263" y="145" font-family="monospace" font-size="9" fill="#0284C7">1:7</text>
+
+          <!-- 1.5 BRANCH_FACILITIES (Junction) -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='branch_facilities') }}'" style="cursor: pointer;">
+            <rect x="290" y="160" width="180" height="54" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="2" stroke-dasharray="4" filter="url(#card-shadow)"/>
+            <text x="380" y="182" text-anchor="middle" font-family="monospace" font-weight="800" font-size="11" fill="#0C4A6E">BRANCH_FACILITIES</text>
+            <text x="380" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748B">🔑 branch_id + facility_id</text>
+          </g>
+          <!-- BRANCHES -> BRANCH_FACILITIES -->
+          <line x1="230" y1="215" x2="285" y2="187" stroke="#0284C7" stroke-width="2" marker-end="url(#arr-blue)"/>
+
+          <!-- 1.6 FACILITIES -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='facilities') }}'" style="cursor: pointer;">
+            <rect x="520" y="160" width="170" height="54" rx="8" fill="#E0F2FE" stroke="#0284C7" stroke-width="2" filter="url(#card-shadow)"/>
+            <text x="605" y="182" text-anchor="middle" font-family="monospace" font-weight="800" font-size="11" fill="#0C4A6E">FACILITIES</text>
+            <text x="605" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#0369A1">🔑 facility_id (UQ: name)</text>
+          </g>
+          <!-- FACILITIES -> BRANCH_FACILITIES -->
+          <line x1="520" y1="187" x2="475" y2="187" stroke="#0284C7" stroke-width="2" marker-end="url(#arr-blue)"/>
+          <text x="495" y="180" font-family="monospace" font-size="9" font-weight="700" fill="#0284C7">M:N</text>
+
+          <!-- 1.7 EQUIPMENT -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='equipment') }}'" style="cursor: pointer;">
+            <rect x="290" y="245" width="180" height="52" rx="8" fill="#E0F2FE" stroke="#0284C7" stroke-width="2" filter="url(#card-shadow)"/>
+            <text x="380" y="267" text-anchor="middle" font-family="monospace" font-weight="800" font-size="11" fill="#0C4A6E">EQUIPMENT</text>
+            <text x="380" y="285" text-anchor="middle" font-family="monospace" font-size="9" fill="#0369A1">🔑 equip_id &bull; 🔗 branch_id</text>
+          </g>
+          <!-- BRANCHES -> EQUIPMENT -->
+          <path d="M 230 225 L 260 225 L 260 271 L 285 271" fill="none" stroke="#0284C7" stroke-width="2" marker-end="url(#arr-blue)"/>
+
+          <!-- 1.8 BRANCH_ACCESS_RULES (Rule Matrix) -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='branch_access_rules') }}'" style="cursor: pointer;">
+            <rect x="290" y="325" width="180" height="54" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="2" filter="url(#card-shadow)"/>
+            <text x="380" y="347" text-anchor="middle" font-family="monospace" font-weight="800" font-size="11" fill="#0C4A6E">BRANCH_ACCESS_RULES</text>
+            <text x="380" y="365" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748B">🔗 plan_id + branch_id</text>
+          </g>
+          <!-- MEMBERSHIP_PLANS -> BRANCH_ACCESS_RULES -->
+          <line x1="230" y1="352" x2="285" y2="352" stroke="#0284C7" stroke-width="2" marker-end="url(#arr-blue)"/>
+          <text x="250" y="346" font-family="monospace" font-size="9" fill="#0284C7">1:N</text>
         </g>
 
-        <!-- Member & Membership Group -->
-        <g transform="translate(440, 40)">
-          <!-- Users -->
-          <rect width="150" height="60" rx="8" fill="#DDD6FE" stroke="#14121F" stroke-width="2.5" />
-          <text x="75" y="35" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13">USERS</text>
+        <!-- ========================================================================= -->
+        <!-- QUADRANT 2: USERS, STAFF & ROLES (TOP-RIGHT)                              -->
+        <!-- ========================================================================= -->
+        <g id="grp-mod-users" class="er-group">
+          <!-- Domain Boundary Container -->
+          <rect x="740" y="20" width="760" height="420" rx="14" fill="#FAF5FF" stroke="#E9D5FF" stroke-width="2"/>
+          <rect x="755" y="30" width="220" height="26" rx="6" fill="#7C3AED"/>
+          <text x="865" y="48" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12" fill="#FFFFFF">👥 2. USERS &amp; STAFF IDENTITY</text>
 
-          <!-- Line to Members -->
-          <line x1="75" y1="60" x2="75" y2="120" stroke="#14121F" stroke-width="2" />
-          <!-- Members -->
-          <rect y="120" width="150" height="60" rx="8" fill="#A7F3D0" stroke="#14121F" stroke-width="2.5" />
-          <text x="75" y="155" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13">MEMBERS</text>
+          <!-- 2.1 USERS -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='users') }}'" style="cursor: pointer;">
+            <rect x="770" y="75" width="180" height="64" rx="8" fill="#DDD6FE" stroke="#1E293B" stroke-width="2.5" filter="url(#card-shadow)"/>
+            <text x="860" y="98" text-anchor="middle" font-family="monospace" font-weight="800" font-size="12" fill="#1E293B">USERS</text>
+            <rect x="780" y="108" width="60" height="18" rx="4" fill="#C4B5FD"/>
+            <text x="810" y="121" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#4C1D95">🔑 user_id</text>
+            <text x="895" y="121" text-anchor="middle" font-family="monospace" font-size="9" fill="#5B21B6">UQ: email</text>
+          </g>
 
-          <!-- Line to Memberships -->
-          <line x1="75" y1="180" x2="75" y2="240" stroke="#14121F" stroke-width="2" />
-          <!-- Memberships -->
-          <rect y="240" width="150" height="60" rx="8" fill="#FEF08A" stroke="#14121F" stroke-width="2.5" />
-          <text x="75" y="275" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13">MEMBERSHIPS</text>
+          <!-- 2.2 STAFF -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='staff') }}'" style="cursor: pointer;">
+            <rect x="770" y="190" width="180" height="64" rx="8" fill="#DDD6FE" stroke="#1E293B" stroke-width="2.5" filter="url(#card-shadow)"/>
+            <text x="860" y="213" text-anchor="middle" font-family="monospace" font-weight="800" font-size="12" fill="#1E293B">STAFF</text>
+            <rect x="780" y="224" width="60" height="18" rx="4" fill="#C4B5FD"/>
+            <text x="810" y="237" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#4C1D95">🔑 staff_id</text>
+            <text x="895" y="237" text-anchor="middle" font-family="monospace" font-size="9" fill="#5B21B6">🔗 user, org, branch</text>
+          </g>
+          <!-- USERS -> STAFF -->
+          <line x1="860" y1="139" x2="860" y2="185" stroke="#7C3AED" stroke-width="2.5" marker-end="url(#arr-purple)"/>
+          <text x="868" y="165" font-family="monospace" font-size="10" font-weight="700" fill="#7C3AED">1:1</text>
+
+          <!-- 2.3 TRAINERS -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='trainers') }}'" style="cursor: pointer;">
+            <rect x="770" y="315" width="180" height="64" rx="8" fill="#DDD6FE" stroke="#1E293B" stroke-width="2.5" filter="url(#card-shadow)"/>
+            <text x="860" y="338" text-anchor="middle" font-family="monospace" font-weight="800" font-size="12" fill="#1E293B">TRAINERS</text>
+            <rect x="780" y="348" width="70" height="18" rx="4" fill="#C4B5FD"/>
+            <text x="815" y="361" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#4C1D95">🔑 trainer_id</text>
+            <text x="900" y="361" text-anchor="middle" font-family="monospace" font-size="9" fill="#5B21B6">🔗 staff_id</text>
+          </g>
+          <!-- STAFF -> TRAINERS -->
+          <line x1="860" y1="254" x2="860" y2="310" stroke="#7C3AED" stroke-width="2.5" marker-end="url(#arr-purple)"/>
+          <text x="868" y="285" font-family="monospace" font-size="10" font-weight="700" fill="#7C3AED">1:1</text>
+
+          <!-- 2.4 MEMBERS -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='members') }}'" style="cursor: pointer;">
+            <rect x="1030" y="190" width="200" height="64" rx="8" fill="#A7F3D0" stroke="#1E293B" stroke-width="2.5" filter="url(#card-shadow)"/>
+            <text x="1130" y="213" text-anchor="middle" font-family="monospace" font-weight="800" font-size="12" fill="#1E293B">MEMBERS</text>
+            <rect x="1040" y="224" width="70" height="18" rx="4" fill="#6EE7B7"/>
+            <text x="1075" y="237" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#065F46">🔑 member_id</text>
+            <text x="1170" y="237" text-anchor="middle" font-family="monospace" font-size="9" fill="#047857">🔗 user_id, branch</text>
+          </g>
+          <!-- USERS -> MEMBERS -->
+          <path d="M 950 107 L 1130 107 L 1130 185" fill="none" stroke="#7C3AED" stroke-width="2.5" marker-end="url(#arr-purple)"/>
+          <text x="1040" y="100" font-family="monospace" font-size="10" font-weight="700" fill="#7C3AED">1:1 (Role: Member)</text>
+
+          <!-- 2.5 AUDIT_LOG -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='audit_log') }}'" style="cursor: pointer;">
+            <rect x="1290" y="75" width="180" height="60" rx="8" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2" filter="url(#card-shadow)"/>
+            <text x="1380" y="98" text-anchor="middle" font-family="monospace" font-weight="800" font-size="11" fill="#334155">AUDIT_LOG</text>
+            <text x="1380" y="120" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748B">🔑 audit_id &bull; 🔗 user_id</text>
+          </g>
+          <!-- USERS -> AUDIT_LOG -->
+          <line x1="950" y1="90" x2="1285" y2="90" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#arr-dark)"/>
+          <text x="1100" y="85" font-family="monospace" font-size="9" fill="#94A3B8">Audits user actions</text>
         </g>
 
-        <!-- Finance Relations Group -->
-        <g transform="translate(720, 160)">
-          <!-- Invoices -->
-          <rect width="150" height="60" rx="8" fill="#FED7AA" stroke="#14121F" stroke-width="2.5" />
-          <text x="75" y="35" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13">INVOICES</text>
+        <!-- ========================================================================= -->
+        <!-- QUADRANT 3: MEMBERSHIPS & ACTIVITY (BOTTOM-RIGHT)                         -->
+        <!-- ========================================================================= -->
+        <g id="grp-mod-activity" class="er-group">
+          <!-- Domain Boundary Container -->
+          <rect x="740" y="460" width="760" height="480" rx="14" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="2"/>
+          <rect x="755" y="470" width="240" height="26" rx="6" fill="#16A34A"/>
+          <text x="875" y="488" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12" fill="#FFFFFF">🏋️ 3. MEMBERSHIPS &amp; ACTIVITY</text>
 
-          <!-- Line to Payments -->
-          <line x1="75" y1="60" x2="75" y2="120" stroke="#14121F" stroke-width="2" />
-          <!-- Payments -->
-          <rect y="120" width="150" height="60" rx="8" fill="#BAE6FD" stroke="#14121F" stroke-width="2.5" />
-          <text x="75" y="155" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13">PAYMENTS</text>
+          <!-- 3.1 MEMBERSHIPS -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='memberships') }}'" style="cursor: pointer;">
+            <rect x="1030" y="520" width="200" height="66" rx="8" fill="#FEF08A" stroke="#1E293B" stroke-width="2.5" filter="url(#card-shadow)"/>
+            <text x="1130" y="543" text-anchor="middle" font-family="monospace" font-weight="800" font-size="12" fill="#1E293B">MEMBERSHIPS</text>
+            <rect x="1040" y="555" width="90" height="18" rx="4" fill="#FDE047"/>
+            <text x="1085" y="568" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#854D0E">🔑 membership_id</text>
+            <text x="1175" y="568" text-anchor="middle" font-family="monospace" font-size="9" fill="#854D0E">🔗 member, plan</text>
+          </g>
+          <!-- MEMBERS -> MEMBERSHIPS -->
+          <line x1="1130" y1="254" x2="1130" y2="515" stroke="#16A34A" stroke-width="2.5" marker-end="url(#arr-green)"/>
+          <text x="1138" y="380" font-family="monospace" font-size="10" font-weight="700" fill="#16A34A">1:N (Purchases)</text>
+
+          <!-- 3.2 ATTENDANCE -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='attendance') }}'" style="cursor: pointer;">
+            <rect x="1290" y="520" width="185" height="64" rx="8" fill="#A7F3D0" stroke="#1E293B" stroke-width="2.5" filter="url(#card-shadow)"/>
+            <text x="1382" y="543" text-anchor="middle" font-family="monospace" font-weight="800" font-size="12" fill="#1E293B">ATTENDANCE</text>
+            <rect x="1300" y="555" width="80" height="18" rx="4" fill="#6EE7B7"/>
+            <text x="1340" y="568" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#065F46">🔑 attendance_id</text>
+            <text x="1425" y="568" text-anchor="middle" font-family="monospace" font-size="9" fill="#047857">🔗 member, branch</text>
+          </g>
+          <!-- MEMBERS -> ATTENDANCE -->
+          <path d="M 1230 222 L 1382 222 L 1382 515" fill="none" stroke="#16A34A" stroke-width="2" marker-end="url(#arr-green)"/>
+          <text x="1300" y="215" font-family="monospace" font-size="9" font-weight="700" fill="#16A34A">1:N (Visits)</text>
+
+          <!-- 3.3 TRAINER_ASSIGNMENTS -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='trainer_assignments') }}'" style="cursor: pointer;">
+            <rect x="770" y="520" width="180" height="64" rx="8" fill="#FFFFFF" stroke="#16A34A" stroke-width="2" filter="url(#card-shadow)"/>
+            <text x="860" y="543" text-anchor="middle" font-family="monospace" font-weight="800" font-size="11" fill="#14532D">TRAINER_ASSIGNMENTS</text>
+            <text x="860" y="565" text-anchor="middle" font-family="monospace" font-size="9" fill="#15803D">🔗 trainer_id + branch_id</text>
+          </g>
+          <!-- TRAINERS -> TRAINER_ASSIGNMENTS -->
+          <line x1="860" y1="379" x2="860" y2="515" stroke="#16A34A" stroke-width="2" marker-end="url(#arr-green)"/>
+          <text x="868" y="440" font-family="monospace" font-size="9" font-weight="700" fill="#16A34A">1:N</text>
+
+          <!-- 3.4 TRAINING_SESSIONS -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='training_sessions') }}'" style="cursor: pointer;">
+            <rect x="880" y="640" width="220" height="64" rx="8" fill="#A7F3D0" stroke="#1E293B" stroke-width="2.5" filter="url(#card-shadow)"/>
+            <text x="990" y="663" text-anchor="middle" font-family="monospace" font-weight="800" font-size="12" fill="#1E293B">TRAINING_SESSIONS</text>
+            <rect x="890" y="675" width="70" height="18" rx="4" fill="#6EE7B7"/>
+            <text x="925" y="688" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#065F46">🔑 session_id</text>
+            <text x="1030" y="688" text-anchor="middle" font-family="monospace" font-size="9" fill="#047857">🔗 member, trainer, branch</text>
+          </g>
+          <!-- MEMBERS -> TRAINING_SESSIONS -->
+          <path d="M 1080 254 L 1080 635" fill="none" stroke="#16A34A" stroke-width="2" marker-end="url(#arr-green)"/>
+          <text x="1088" y="440" font-family="monospace" font-size="9" font-weight="700" fill="#16A34A">1:N</text>
+          <!-- TRAINERS -> TRAINING_SESSIONS -->
+          <path d="M 860 379 L 860 672 L 875 672" fill="none" stroke="#16A34A" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#arr-green)"/>
+        </g>
+
+        <!-- ========================================================================= -->
+        <!-- QUADRANT 4: BILLING, PAYMENTS & EXPENSES (BOTTOM-LEFT)                    -->
+        <!-- ========================================================================= -->
+        <g id="grp-mod-finance" class="er-group">
+          <!-- Domain Boundary Container -->
+          <rect x="20" y="460" width="690" height="480" rx="14" fill="#FFF7ED" stroke="#FED7AA" stroke-width="2"/>
+          <rect x="35" y="470" width="230" height="26" rx="6" fill="#EA580C"/>
+          <text x="150" y="488" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12" fill="#FFFFFF">💳 4. BILLING &amp; EXPENSES</text>
+
+          <!-- 4.1 INVOICES -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='invoices') }}'" style="cursor: pointer;">
+            <rect x="420" y="520" width="180" height="64" rx="8" fill="#FED7AA" stroke="#1E293B" stroke-width="2.5" filter="url(#card-shadow)"/>
+            <text x="510" y="543" text-anchor="middle" font-family="monospace" font-weight="800" font-size="12" fill="#1E293B">INVOICES</text>
+            <rect x="430" y="555" width="70" height="18" rx="4" fill="#FDBA74"/>
+            <text x="465" y="568" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#7C2D12">🔑 invoice_id</text>
+            <text x="550" y="568" text-anchor="middle" font-family="monospace" font-size="9" fill="#9A3412">🔗 member, mbship</text>
+          </g>
+
+          <!-- CROSS-MODULE HIGHWAY: MEMBERSHIPS -> INVOICES -->
+          <path d="M 1030 552 L 605 552" fill="none" stroke="#EA580C" stroke-width="2.5" marker-end="url(#arr-coral)"/>
+          <text x="730" y="544" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#EA580C">1:N (Generates Invoice)</text>
+
+          <!-- 4.2 INVOICE_ITEMS -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='invoice_items') }}'" style="cursor: pointer;">
+            <rect x="420" y="625" width="180" height="52" rx="8" fill="#FED7AA" stroke="#1E293B" stroke-width="2" filter="url(#card-shadow)"/>
+            <text x="510" y="647" text-anchor="middle" font-family="monospace" font-weight="800" font-size="11" fill="#7C2D12">INVOICE_ITEMS</text>
+            <text x="510" y="665" text-anchor="middle" font-family="monospace" font-size="9" fill="#9A3412">🔑 item_id &bull; 🔗 invoice_id</text>
+          </g>
+          <!-- INVOICES -> INVOICE_ITEMS -->
+          <line x1="510" y1="584" x2="510" y2="620" stroke="#EA580C" stroke-width="2" marker-end="url(#arr-coral)"/>
+          <text x="518" y="605" font-family="monospace" font-size="9" fill="#EA580C">1:N</text>
+
+          <!-- 4.3 PAYMENTS -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='payments') }}'" style="cursor: pointer;">
+            <rect x="420" y="715" width="180" height="64" rx="8" fill="#BAE6FD" stroke="#1E293B" stroke-width="2.5" filter="url(#card-shadow)"/>
+            <text x="510" y="738" text-anchor="middle" font-family="monospace" font-weight="800" font-size="12" fill="#1E293B">PAYMENTS</text>
+            <rect x="430" y="750" width="70" height="18" rx="4" fill="#38BDF8"/>
+            <text x="465" y="763" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#0C4A6E">🔑 payment_id</text>
+            <text x="550" y="763" text-anchor="middle" font-family="monospace" font-size="9" fill="#0369A1">🔗 invoice, branch</text>
+          </g>
+          <!-- INVOICES -> PAYMENTS -->
+          <path d="M 600 552 L 620 552 L 620 747 L 605 747" fill="none" stroke="#EA580C" stroke-width="2" marker-end="url(#arr-coral)"/>
+          <text x="625" y="650" font-family="monospace" font-size="9" fill="#EA580C">1:N</text>
+
+          <!-- 4.4 REFUNDS -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='refunds') }}'" style="cursor: pointer;">
+            <rect x="420" y="825" width="180" height="58" rx="8" fill="#BAE6FD" stroke="#1E293B" stroke-width="2.5" filter="url(#card-shadow)"/>
+            <text x="510" y="848" text-anchor="middle" font-family="monospace" font-weight="800" font-size="12" fill="#1E293B">REFUNDS</text>
+            <text x="510" y="870" text-anchor="middle" font-family="monospace" font-size="9" fill="#0C4A6E">🔑 refund_id &bull; 🔗 payment_id</text>
+          </g>
+          <!-- PAYMENTS -> REFUNDS -->
+          <line x1="510" y1="779" x2="510" y2="820" stroke="#0284C7" stroke-width="2" marker-end="url(#arr-blue)"/>
+          <text x="518" y="802" font-family="monospace" font-size="9" fill="#0284C7">1:N</text>
+
+          <!-- 4.5 EXPENSE_CATEGORIES -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='expense_categories') }}'" style="cursor: pointer;">
+            <rect x="60" y="520" width="190" height="55" rx="8" fill="#FED7AA" stroke="#1E293B" stroke-width="2" filter="url(#card-shadow)"/>
+            <text x="155" y="543" text-anchor="middle" font-family="monospace" font-weight="800" font-size="11" fill="#7C2D12">EXPENSE_CATEGORIES</text>
+            <text x="155" y="563" text-anchor="middle" font-family="monospace" font-size="9" fill="#9A3412">🔑 exp_cat_id (UQ: name)</text>
+          </g>
+
+          <!-- 4.6 EXPENSES -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='expenses') }}'" style="cursor: pointer;">
+            <rect x="60" y="630" width="190" height="64" rx="8" fill="#FED7AA" stroke="#1E293B" stroke-width="2.5" filter="url(#card-shadow)"/>
+            <text x="155" y="653" text-anchor="middle" font-family="monospace" font-weight="800" font-size="12" fill="#1E293B">EXPENSES</text>
+            <rect x="70" y="664" width="70" height="18" rx="4" fill="#FDBA74"/>
+            <text x="105" y="677" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#7C2D12">🔑 expense_id</text>
+            <text x="195" y="677" text-anchor="middle" font-family="monospace" font-size="9" fill="#9A3412">🔗 branch, cat, user</text>
+          </g>
+          <!-- EXPENSE_CATEGORIES -> EXPENSES -->
+          <line x1="155" y1="575" x2="155" y2="625" stroke="#EA580C" stroke-width="2" marker-end="url(#arr-coral)"/>
+          <text x="163" y="602" font-family="monospace" font-size="9" fill="#EA580C">1:N</text>
+
+          <!-- 4.7 BRANCH_BUDGETS -->
+          <g class="er-node" onclick="window.location.href='{{ url_for('lab.er_explorer', table='branch_budgets') }}'" style="cursor: pointer;">
+            <rect x="60" y="750" width="190" height="60" rx="8" fill="#FFFFFF" stroke="#EA580C" stroke-width="2" filter="url(#card-shadow)"/>
+            <text x="155" y="773" text-anchor="middle" font-family="monospace" font-weight="800" font-size="11" fill="#7C2D12">BRANCH_BUDGETS</text>
+            <text x="155" y="795" text-anchor="middle" font-family="monospace" font-size="9" fill="#9A3412">🔑 budget_id &bull; 🔗 branch, cat</text>
+          </g>
+          <!-- EXPENSE_CATEGORIES -> BRANCH_BUDGETS -->
+          <path d="M 60 547 L 45 547 L 45 780 L 55 780" fill="none" stroke="#EA580C" stroke-width="1.5" marker-end="url(#arr-coral)"/>
+        </g>
+
+        <!-- ========================================================================= -->
+        <!-- 5. DATABASE VIEWS (LOGICAL ABSTRACTION PANEL)                              -->
+        <!-- ========================================================================= -->
+        <g id="grp-mod-views" class="er-group">
+          <!-- Views Container at the Bottom of Right Section -->
+          <rect x="740" y="745" width="760" height="195" rx="14" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="2" stroke-dasharray="6"/>
+          <rect x="755" y="755" width="220" height="24" rx="6" fill="#4F46E5"/>
+          <text x="865" y="772" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#FFFFFF">👁️ 5. LOGICAL VIEWS (5)</text>
+
+          <g transform="translate(760, 795)">
+            <!-- View 1 -->
+            <rect x="0" y="0" width="230" height="42" rx="6" fill="#FFFFFF" stroke="#6366F1" stroke-width="1.5"/>
+            <text x="115" y="18" text-anchor="middle" font-family="monospace" font-weight="700" font-size="10" fill="#312E81">v_public_branch_directory</text>
+            <text x="115" y="32" text-anchor="middle" font-family="monospace" font-size="8" fill="#6B7280">branches + orgs + facilities</text>
+
+            <!-- View 2 -->
+            <rect x="245" y="0" width="230" height="42" rx="6" fill="#FFFFFF" stroke="#6366F1" stroke-width="1.5"/>
+            <text x="360" y="18" text-anchor="middle" font-family="monospace" font-weight="700" font-size="10" fill="#312E81">v_branch_crowd_hourly</text>
+            <text x="360" y="32" text-anchor="middle" font-family="monospace" font-size="8" fill="#6B7280">attendance hourly aggregation</text>
+
+            <!-- View 3 -->
+            <rect x="490" y="0" width="230" height="42" rx="6" fill="#FFFFFF" stroke="#6366F1" stroke-width="1.5"/>
+            <text x="605" y="18" text-anchor="middle" font-family="monospace" font-weight="700" font-size="10" fill="#312E81">v_branch_financial_summary</text>
+            <text x="605" y="32" text-anchor="middle" font-family="monospace" font-size="8" fill="#6B7280">invoices + payments ledger</text>
+
+            <!-- View 4 -->
+            <rect x="120" y="52" width="230" height="42" rx="6" fill="#FFFFFF" stroke="#6366F1" stroke-width="1.5"/>
+            <text x="235" y="70" text-anchor="middle" font-family="monospace" font-weight="700" font-size="10" fill="#312E81">v_active_memberships</text>
+            <text x="235" y="84" text-anchor="middle" font-family="monospace" font-size="8" fill="#6B7280">members + active pass validity</text>
+
+            <!-- View 5 -->
+            <rect x="375" y="52" width="230" height="42" rx="6" fill="#FFFFFF" stroke="#6366F1" stroke-width="1.5"/>
+            <text x="490" y="70" text-anchor="middle" font-family="monospace" font-weight="700" font-size="10" fill="#312E81">v_upcoming_invoices</text>
+            <text x="490" y="84" text-anchor="middle" font-family="monospace" font-size="8" fill="#6B7280">unpaid &amp; due invoice alerts</text>
+          </g>
+
+          <text x="1120" y="925" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#6366F1" font-weight="700">
+            &bull; Computed views decouple application presentation from relational storage &bull;
+          </text>
         </g>
       </svg>
     </div>
+
+    <!-- Script for Dynamic ER Domain Filtering -->
+    <script>
+      function filterER(domain, btn) {
+        // Update active button state
+        document.querySelectorAll('.er-filter-btn').forEach(b => {
+          b.style.opacity = '0.7';
+          b.style.fontWeight = 'normal';
+          b.style.outline = 'none';
+        });
+        btn.style.opacity = '1';
+        btn.style.fontWeight = 'bold';
+        btn.style.outline = '2px solid var(--ink-primary)';
+
+        const groups = document.querySelectorAll('.er-group');
+        if (domain === 'all') {
+          groups.forEach(g => {
+            g.style.opacity = '1';
+            g.style.transition = 'opacity 0.3s ease';
+          });
+        } else {
+          groups.forEach(g => {
+            if (g.id === 'grp-' + domain) {
+              g.style.opacity = '1';
+            } else {
+              g.style.opacity = '0.15';
+            }
+            g.style.transition = 'opacity 0.3s ease';
+          });
+        }
+      }
+    </script>
   </div>
 
   <div style="display: grid; grid-template-columns: 280px 1fr; gap: 2rem; align-items: flex-start; margin-bottom: 2.5rem;">

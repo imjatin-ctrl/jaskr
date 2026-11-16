@@ -11,6 +11,13 @@ import json
 public_bp = Blueprint("public", __name__)
 
 
+@public_bp.route("/portals")
+def portals():
+    """Portal Hub - lets users choose Member, Staff, Owner, Admin or DBMS Lab portals."""
+    return render_template("portals.html", portal_context=None)
+
+
+
 @public_bp.route("/")
 def home():
     """Home landing page with animated hero, live search bar, city pins, and DB counters."""

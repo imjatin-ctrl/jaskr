@@ -10,6 +10,12 @@ import json
 from contextlib import contextmanager
 
 try:
+    from dotenv import load_dotenv
+    load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'))
+except ImportError:
+    pass
+
+try:
     import mysql.connector
     from mysql.connector import pooling
     HAS_MYSQL = True
@@ -58,6 +64,10 @@ def check_mysql_connection():
     except Exception:
         _is_mysql_active = False
         return False
+
+
+# Initial probe on module load
+check_mysql_connection()
 
 
 def is_mysql():
@@ -228,14 +238,23 @@ def sp_record_payment(membership_id, invoice_id, branch_id, amount, payment_meth
             conn.close()
 
 
-def sp_process_refund(payment_id, refund_amount, reason, user_id=1):
+def sp_process_refund(payment_id, refund_amount, reason, user_id=1, refund_id=None):
     """
     Executes refund transaction with limit check and audit logging.
+    When refund_id is provided, approves/completes the existing refund request.
+    Only sums COMPLETED or APPROVED refunds to avoid double-counting pending requests.
     """
-    conn = get_connection(role="admin")
+    # Use MySQL or SQLite compatible cursor
+    if is_mysql():
+        conn = get_connection(role="owner")
+        ph = "%s"
+    else:
+        conn = get_connection(role="admin")
+        ph = "?"
+
     try:
-        cur = conn.cursor()
-        cur.execute("SELECT amount, membership_id, invoice_id FROM payments WHERE payment_id = ? AND payment_status = 'successful'", (payment_id,))
+        cur = conn.cursor(dictionary=True) if is_mysql() else conn.cursor()
+        cur.execute(f"SELECT amount, membership_id, invoice_id FROM payments WHERE payment_id = {ph} AND payment_status = 'successful'", (payment_id,))
         p = cur.fetchone()
         if not p:
             return {"success": False, "refund_id": 0, "status_code": "PAYMENT_INVALID", "message": "Payment record not found"}
@@ -244,8 +263,19 @@ def sp_process_refund(payment_id, refund_amount, reason, user_id=1):
         ms_id = p["membership_id"]
         inv_id = p["invoice_id"]
         
-        cur.execute("SELECT COALESCE(SUM(refund_amount), 0.0) AS s FROM refunds WHERE payment_id = ? AND status != 'rejected'", (payment_id,))
-        existing_refunds = float(cur.fetchone()["s"])
+        # Calculate existing completed/approved refunds (exclude current refund_id if approving existing request)
+        if refund_id:
+            cur.execute(
+                f"SELECT COALESCE(SUM(refund_amount), 0.0) AS s FROM refunds WHERE payment_id = {ph} AND status IN ('completed', 'approved') AND refund_id != {ph}",
+                (payment_id, refund_id)
+            )
+        else:
+            cur.execute(
+                f"SELECT COALESCE(SUM(refund_amount), 0.0) AS s FROM refunds WHERE payment_id = {ph} AND status IN ('completed', 'approved')",
+                (payment_id,)
+            )
+        row = cur.fetchone()
+        existing_refunds = float(row["s"] if isinstance(row, dict) else row[0])
         
         if (existing_refunds + float(refund_amount)) > orig_amount + 0.001:
             return {"success": False, "refund_id": 0, "status_code": "EXCEEDS_PAYMENT", "message": f"Total refund cannot exceed payment amount (₹{orig_amount:,.2f})"}
@@ -253,30 +283,46 @@ def sp_process_refund(payment_id, refund_amount, reason, user_id=1):
         today_str = dt.date.today().strftime("%Y-%m-%d")
         now_str = dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
-        cur.execute("BEGIN TRANSACTION;")
-        cur.execute(
-            "INSERT INTO refunds (payment_id, refund_amount, refund_date, reason, status) "
-            "VALUES (?, ?, ?, ?, 'completed')",
-            (payment_id, refund_amount, today_str, reason)
-        )
-        ref_id = cur.lastrowid
+        if not is_mysql():
+            # For SQLite, check if transaction already active
+            try:
+                cur.execute("BEGIN TRANSACTION;")
+            except Exception:
+                pass
+        
+        if refund_id:
+            # Transition existing requested refund to completed
+            cur.execute(
+                f"UPDATE refunds SET status = 'completed', refund_date = {ph} WHERE refund_id = {ph}",
+                (today_str, refund_id)
+            )
+            ref_id = refund_id
+        else:
+            # Insert new completed refund
+            cur.execute(
+                f"INSERT INTO refunds (payment_id, refund_amount, refund_date, reason, status) "
+                f"VALUES ({ph}, {ph}, {ph}, {ph}, 'completed')",
+                (payment_id, refund_amount, today_str, reason)
+            )
+            ref_id = cur.lastrowid
         
         # If full refund, cancel membership
         if (existing_refunds + float(refund_amount)) >= orig_amount - 0.01:
-            cur.execute("UPDATE memberships SET status = 'cancelled' WHERE membership_id = ?", (ms_id,))
+            cur.execute(f"UPDATE memberships SET status = 'cancelled' WHERE membership_id = {ph}", (ms_id,))
             if inv_id:
-                cur.execute("UPDATE invoices SET status = 'refunded' WHERE invoice_id = ?", (inv_id,))
+                cur.execute(f"UPDATE invoices SET status = 'refunded' WHERE invoice_id = {ph}", (inv_id,))
         
+        # Write audit log
         cur.execute(
-            "INSERT INTO audit_log (user_id, action, table_name, record_id, old_value, new_value, created_at) "
-            "VALUES (?, ?, ?, ?, ?, ?, ?)",
+            f"INSERT INTO audit_log (user_id, action, table_name, record_id, old_value, new_value, created_at) "
+            f"VALUES ({ph}, {ph}, {ph}, {ph}, {ph}, {ph}, {ph})",
             (user_id, "REFUND_COMPLETED", "REFUNDS", ref_id,
              json.dumps({"existing_refunds": existing_refunds}),
              json.dumps({"refund_id": ref_id, "amount": float(refund_amount), "payment_id": payment_id}),
              now_str)
         )
         conn.commit()
-        return {"success": True, "refund_id": ref_id, "status_code": "SUCCESS", "message": "Refund processed successfully"}
+        return {"success": True, "refund_id": ref_id, "status_code": "SUCCESS", "message": "Refund processed and approved successfully"}
     except Exception as e:
         conn.rollback()
         return {"success": False, "refund_id": 0, "status_code": "ERROR_ROLLBACK", "message": str(e)}

@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% block title %}Portal Hub{% endblock %}
+
+{% block content %}
+<div class="container" style="padding: 3rem 1.25rem;">
+
+  <!-- Page Header -->
+  <div style="text-align: center; margin-bottom: 3rem;">
+    <span class="badge badge-yellow" style="font-size: 0.85rem; margin-bottom: 1rem; display: inline-block;">Jaskr GymGrid</span>
+    <h1 style="font-size: 2.8rem; margin-bottom: 0.75rem;">Choose Your Portal</h1>
+    <p style="color: var(--ink-muted); font-size: 1.1rem; max-width: 520px; margin: 0 auto;">
+      Sign in to access your role-specific dashboard. Each portal has its own permissions and tools.
+    </p>
+  </div>
+
+  <!-- Portal Cards Grid -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem; max-width: 1000px; margin: 0 auto 3rem auto;">
+
+    <!-- Member Portal -->
+    <div class="card" style="border-top: 8px solid var(--mint-green); box-shadow: var(--shadow-md); display: flex; flex-direction: column; gap: 1rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <div style="width: 52px; height: 52px; background: var(--mint-green-subtle); border: 2px solid var(--mint-green); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0;">👤</div>
+        <div>
+          <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--mint-green); letter-spacing: 0.05em;">Member</div>
+          <h2 style="font-size: 1.4rem; margin: 0;">Member Portal</h2>
+        </div>
+      </div>
+      <p style="color: var(--ink-muted); font-size: 0.92rem; line-height: 1.6;">
+        Access your gym pass, check-in records, membership invoices, training sessions, and smart access checker across all branches.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; font-size: 0.78rem;">
+        <span class="badge badge-mint">Dashboard</span>
+        <span class="badge badge-mint">Check-In</span>
+        <span class="badge badge-mint">Billing</span>
+        <span class="badge badge-mint">Training</span>
+        <span class="badge badge-mint">Access Checker</span>
+      </div>
+      <div style="border-top: 1.5px solid rgba(20,18,31,0.08); padding-top: 1rem; margin-top: auto;">
+        {% if session.user_id and session.role == 'member' %}
+          <a href="{{ url_for('member.dashboard') }}" class="btn btn-primary" style="width: 100%; background: var(--mint-green); border-color: var(--ink-primary);">
+            Go to Member Dashboard →
+          </a>
+        {% else %}
+          <a href="{{ url_for('auth.login') }}?next=/member/dashboard" class="btn" style="width: 100%; background: var(--mint-green-subtle); border-color: var(--mint-green); color: var(--ink-primary);">
+            Sign In as Member
+          </a>
+          <div style="margin-top: 0.6rem; font-size: 0.78rem; color: var(--ink-subtle); text-align: center;">
+            Demo: <code style="font-size:0.78rem;">member.demo@jaskrgymgrid.example</code>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Staff Portal -->
+    <div class="card" style="border-top: 8px solid var(--electric-blue); box-shadow: var(--shadow-md); display: flex; flex-direction: column; gap: 1rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <div style="width: 52px; height: 52px; background: var(--electric-blue-subtle); border: 2px solid var(--electric-blue); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0;">📋</div>
+        <div>
+          <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--electric-blue); letter-spacing: 0.05em;">Staff</div>
+          <h2 style="font-size: 1.4rem; margin: 0;">Staff Portal</h2>
+        </div>
+      </div>
+      <p style="color: var(--ink-muted); font-size: 0.92rem; line-height: 1.6;">
+        Manage floor operations, QR check-ins, trainer rosters, finance vouchers, and branch KPIs from dedicated role consoles.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; font-size: 0.78rem;">
+        <span class="badge badge-blue">Front Desk</span>
+        <span class="badge badge-blue">Trainer Console</span>
+        <span class="badge badge-blue">Finance Desk</span>
+        <span class="badge badge-blue">Branch Manager</span>
+      </div>
+      <div style="border-top: 1.5px solid rgba(20,18,31,0.08); padding-top: 1rem; margin-top: auto;">
+        {% if session.user_id and session.role == 'staff' %}
+          {% if session.job_role == 'FRONT_DESK' %}
+            <a href="{{ url_for('staff.front_desk') }}" class="btn btn-accent" style="width: 100%;">Go to Front Desk →</a>
+          {% elif session.job_role == 'TRAINER' %}
+            <a href="{{ url_for('staff.trainer_console') }}" class="btn btn-accent" style="width: 100%;">Go to Trainer Console →</a>
+          {% elif session.job_role == 'FINANCE' %}
+            <a href="{{ url_for('staff.finance_desk') }}" class="btn btn-accent" style="width: 100%;">Go to Finance Desk →</a>
+          {% else %}
+            <a href="{{ url_for('staff.branch_manager') }}" class="btn btn-accent" style="width: 100%;">Go to Manager Console →</a>
+          {% endif %}
+        {% else %}
+          <a href="{{ url_for('auth.login') }}" class="btn" style="width: 100%; background: var(--electric-blue-subtle); border-color: var(--electric-blue); color: var(--ink-primary);">
+            Sign In as Staff
+          </a>
+          <div style="margin-top: 0.6rem; font-size: 0.78rem; color: var(--ink-subtle); text-align: center;">
+            Demo: <code style="font-size:0.78rem;">frontdesk.demo@jaskrgymgrid.example</code>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Owner Portal -->
+    <div class="card" style="border-top: 8px solid var(--hot-coral); box-shadow: var(--shadow-md); display: flex; flex-direction: column; gap: 1rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <div style="width: 52px; height: 52px; background: var(--hot-coral-subtle); border: 2px solid var(--hot-coral); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0;">👑</div>
+        <div>
+          <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--hot-coral); letter-spacing: 0.05em;">Franchise Owner</div>
+          <h2 style="font-size: 1.4rem; margin: 0;">Owner Portal</h2>
+        </div>
+      </div>
+      <p style="color: var(--ink-muted); font-size: 0.92rem; line-height: 1.6;">
+        Executive P&amp;L analytics, multi-branch financial reconciliation, refund approval queue, staff management, and the plans access matrix.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; font-size: 0.78rem;">
+        <span class="badge badge-coral">Dashboard</span>
+        <span class="badge badge-coral">Finance P&L</span>
+        <span class="badge badge-coral">Plans Matrix</span>
+        <span class="badge badge-coral">Refunds</span>
+        <span class="badge badge-coral">Audit Log</span>
+      </div>
+      <div style="border-top: 1.5px solid rgba(20,18,31,0.08); padding-top: 1rem; margin-top: auto;">
+        {% if session.user_id and session.role == 'owner' %}
+          <a href="{{ url_for('owner.dashboard') }}" class="btn btn-danger" style="width: 100%;">
+            Go to Owner Dashboard →
+          </a>
+        {% else %}
+          <a href="{{ url_for('auth.login') }}" class="btn" style="width: 100%; background: var(--hot-coral-subtle); border-color: var(--hot-coral); color: var(--ink-primary);">
+            Sign In as Owner
+          </a>
+          <div style="margin-top: 0.6rem; font-size: 0.78rem; color: var(--ink-subtle); text-align: center;">
+            Demo: <code style="font-size:0.78rem;">owner.ironpulse.demo@jaskrgymgrid.example</code>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Admin + Lab Row -->
+  <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; margin-bottom: 3rem;">
+
+    <!-- Admin Portal -->
+    <div class="card" style="border-top: 8px solid var(--violet-royal); box-shadow: var(--shadow-md); display: flex; flex-direction: column; gap: 0.75rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <div style="width: 46px; height: 46px; background: var(--violet-subtle); border: 2px solid var(--violet-royal); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;">⚡</div>
+        <div>
+          <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--violet-royal); letter-spacing: 0.05em;">Superuser</div>
+          <h3 style="font-size: 1.2rem; margin: 0;">Admin Portal</h3>
+        </div>
+      </div>
+      <p style="color: var(--ink-muted); font-size: 0.88rem;">
+        Platform-wide approval queue, all user accounts, database health monitor across all 24 tables.
+      </p>
+      <div style="margin-top: auto; padding-top: 0.75rem; border-top: 1.5px solid rgba(20,18,31,0.08);">
+        {% if session.user_id and session.role == 'admin' %}
+          <a href="{{ url_for('admin.dashboard') }}" class="btn" style="width: 100%; background: var(--violet-royal); color: #fff; border-color: var(--ink-primary);">Go to Admin Portal →</a>
+        {% else %}
+          <a href="{{ url_for('auth.login') }}" class="btn" style="width: 100%; background: var(--violet-subtle); border-color: var(--violet-royal); color: var(--ink-primary);">Sign In as Admin</a>
+          <div style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--ink-subtle); text-align: center;">Demo: <code style="font-size:0.75rem;">admin.demo@jaskrgymgrid.example</code></div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- DBMS Lab -->
+    <div class="card" style="border-top: 8px solid #8B5CF6; background: var(--violet-subtle); box-shadow: var(--shadow-md); display: flex; flex-direction: column; gap: 0.75rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <div style="width: 46px; height: 46px; background: #fff; border: 2px solid var(--violet-royal); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;">🔬</div>
+        <div>
+          <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--violet-royal); letter-spacing: 0.05em;">Evaluator</div>
+          <h3 style="font-size: 1.2rem; margin: 0;">DBMS Lab</h3>
+        </div>
+      </div>
+      <p style="color: var(--ink-muted); font-size: 0.88rem;">
+        ER Explorer, Live SQL Runner, Constraint Sandbox, ACID Transaction Theater, DCL Matrix — no login required.
+      </p>
+      <div style="margin-top: auto; padding-top: 0.75rem; border-top: 1.5px solid rgba(139,92,246,0.2);">
+        <a href="{{ url_for('lab.index') }}" class="btn" style="width: 100%; background: var(--violet-royal); color: #fff; border-color: var(--ink-primary);">Open DBMS Lab →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- One-Click Demo Login Chips -->
+  <div style="max-width: 1000px; margin: 0 auto;">
+    <div class="card" style="background: var(--ink-primary); color: #fff; border: none;">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap;">
+        <span class="badge badge-yellow">Demo Mode</span>
+        <span style="font-size: 0.85rem; color: rgba(255,255,255,0.7);">1-Click Quick Login — all accounts use password: <strong style="color:#FFD60A;">Demo@1234</strong></span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+        <a href="{{ url_for('auth.quick_login', email='member.demo@jaskrgymgrid.example') }}" class="demo-chip">👤 Rohan (Member)</a>
+        <a href="{{ url_for('auth.quick_login', email='member.monthly.demo@jaskrgymgrid.example') }}" class="demo-chip">👤 Priya (Home Only)</a>
+        <a href="{{ url_for('auth.quick_login', email='member.expired.demo@jaskrgymgrid.example') }}" class="demo-chip">👤 Imran (Expired)</a>
+        <a href="{{ url_for('auth.quick_login', email='frontdesk.demo@jaskrgymgrid.example') }}" class="demo-chip">📋 Front Desk</a>
+        <a href="{{ url_for('auth.quick_login', email='trainer.demo@jaskrgymgrid.example') }}" class="demo-chip">🏋️ Trainer</a>
+        <a href="{{ url_for('auth.quick_login', email='finance.demo@jaskrgymgrid.example') }}" class="demo-chip">💰 Finance</a>
+        <a href="{{ url_for('auth.quick_login', email='manager.demo@jaskrgymgrid.example') }}" class="demo-chip">🏢 Manager</a>
+        <a href="{{ url_for('auth.quick_login', email='owner.ironpulse.demo@jaskrgymgrid.example') }}" class="demo-chip">👑 IronPulse Owner</a>
+        <a href="{{ url_for('auth.quick_login', email='owner.flexnation.demo@jaskrgymgrid.example') }}" class="demo-chip">🛡️ FlexNation Owner</a>
+        <a href="{{ url_for('auth.quick_login', email='admin.demo@jaskrgymgrid.example') }}" class="demo-chip">⚡ Platform Admin</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
